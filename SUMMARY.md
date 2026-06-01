@@ -1,0 +1,47 @@
+# Table of contents
+
+* [Welcome to RTMLink Help](README.md)
+
+## Getting Started
+
+* [Welcome to RTMLink](getting-started/welcome-to-rtmlink.md)
+* [Logging in & account setup](getting-started/logging-in-and-account-setup.md)
+* [Understanding your role](getting-started/understanding-your-role.md)
+* [Navigating the dashboard](getting-started/navigating-the-dashboard.md)
+
+## Patients
+
+* [Viewing & searching patients](patients/viewing-and-searching-patients.md)
+* [Creating a new patient](patients/creating-a-new-patient.md)
+* [Editing patient information](patients/editing-patient-information.md)
+* [Managing patient consent](patients/patient-consent-management.md)
+* [Messaging a patient](patients/messaging-a-patient.md)
+
+## Episodes
+
+* [Understanding episodes](episodes/understanding-episodes.md)
+* [Enrolling a patient](episodes/enrolling-a-patient.md)
+* [Viewing episode details](episodes/viewing-episode-details.md)
+* [Managing episode status](episodes/managing-episode-status.md)
+* [Episode search & filters](episodes/episode-search-and-filters.md)
+* [Episode actions](episodes/episode-actions.md)
+
+## Surveys
+
+* [Understanding surveys](surveys/understanding-surveys.md)
+* [Creating a survey](surveys/creating-a-survey.md)
+* [Editing & managing surveys](surveys/editing-and-managing-surveys.md)
+* [Previewing a survey](surveys/previewing-a-survey.md)
+* [Understanding survey responses](surveys/understanding-survey-responses.md)
+* [Survey amendments](surveys/survey-amendments.md)
+
+<!--
+  NAV GROWS AS ARTICLES LAND. Add each article here only once its file exists,
+  so the published nav never points at a missing page.
+
+  Sections still to come (keep this order; see meta/CONTENT-OUTLINE.md):
+    ## Exercises   → exercises/*.md
+    ## Messages, Billing, Settings, Integrations, Reference, Troubleshooting (later phases)
+
+  DO NOT list anything under meta/ here — that folder must stay unpublished.
+-->
