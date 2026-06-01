@@ -1,0 +1,1129 @@
+# =============================================================================
+# RTMLink Help Center — REGISTRY (the keystone)
+# =============================================================================
+# This single file ties together everything an agent needs:
+#   • which articles exist            → `articles[]`
+#   • where we left off               → each article's `status`
+#   • what code each article derives from (for accuracy + the maintenance loop)
+#                                      → each article's `sources[]` (globs)
+#   • which screenshots to capture    → `screenshots{}` + each article's `screenshots[]`
+#
+# READ FIRST: ../AGENTS.md, meta/AUTHORING-GUIDE.md, meta/SCOPE-AND-TMI.md
+#
+# status:   todo | drafting | review | published | stale | blocked
+#   todo      — not started
+#   drafting  — being written now
+#   review    — written, awaiting human PR review (set last_reviewed_commit)
+#   published — merged & live on GitBook
+#   stale     — app changed under this article (set by the maintenance loop)
+#   blocked   — outline calls for it but the feature isn't in the code yet
+#
+# priority: 1 | 2 | 3 | 4   (writing phase; do lower numbers first)
+#
+# sources:  paths/globs RELATIVE TO THE APP ROOT (../). The maintenance loop
+#           matches changed app paths against these globs to flag staleness.
+#           Use directory globs (…/**) so internal file moves still match.
+#
+# screenshots: list of ids from the `screenshots:` map at the bottom.
+#              Empty [] is normal and good — most articles need no screenshot.
+# =============================================================================
+
+meta:
+  app_root: ".."
+  asset_root: ".gitbook/assets"
+  demo_url: "https://demo.rtmlink.com"   # demo clinic (production) — the ONLY source for screenshots; never .test, never a real clinic
+  clinic_panel_path: "/"        # Filament Clinic panel is served at the subdomain root
+  roles: [clinic_owner, provider, staff, billing_staff, auditor]
+  # PHI: screenshots come from the DEMO tenant ONLY. Never Tula / real patients.
+
+# -----------------------------------------------------------------------------
+# ARTICLES
+# -----------------------------------------------------------------------------
+articles:
+
+  # === 1. Getting Started (Phase 1) ========================================
+  - path: getting-started/welcome-to-rtmlink.md
+    section: getting-started
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - CLAUDE.MD
+      - docs/V1-SCOPE.md
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: getting-started/logging-in-and-account-setup.md
+    section: getting-started
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Pages/Auth/**
+      - app/Filament/Clinic/Pages/InitialPasswordSetup.php
+      - app/Actions/Fortify/**
+      - config/fortify.php
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: getting-started/understanding-your-role.md
+    section: getting-started
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Models/User.php
+      - database/seeders/RolesSeeder.php
+      - app/Policies/**
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: getting-started/navigating-the-dashboard.md
+    section: getting-started
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Pages/Dashboard.php
+      - app/Filament/Clinic/Widgets/**
+      - app/Services/ClinicDashboardMetrics.php
+      - app/Services/ClinicDashboardAttentionService.php
+      - app/Services/NeedsAttentionService.php
+    screenshots: [dashboard-overview]
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  # === 2. Patients (Phase 1) ===============================================
+  - path: patients/viewing-and-searching-patients.md
+    section: patients
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Resources/PatientResource.php
+      - app/Filament/Clinic/Resources/PatientResource/Pages/ListPatients.php
+      - app/Models/Patient.php
+    screenshots: [patient-list]
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: patients/creating-a-new-patient.md
+    section: patients
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Resources/PatientResource.php
+      - app/Filament/Clinic/Resources/PatientResource/Pages/CreatePatient.php
+      - app/Models/Patient.php
+      - database/migrations/**
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: patients/editing-patient-information.md
+    section: patients
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Resources/PatientResource/Pages/EditPatient.php
+      - app/Filament/Clinic/Resources/PatientResource/Pages/ViewPatient.php
+      - app/Models/Patient.php
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: patients/patient-consent-management.md
+    section: patients
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Models/Patient.php
+      - app/Filament/Clinic/Resources/PatientResource.php
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: patients/messaging-a-patient.md
+    section: patients
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Livewire/Clinic/MessagingDrawer.php
+      - app/Models/Message.php
+      - app/Models/Conversation.php
+      - app/Enums/Channel.php
+      - app/Services/Messaging/**
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  # === 3. Episodes (Phase 1) ===============================================
+  - path: episodes/understanding-episodes.md
+    section: episodes
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Models/Episode.php
+      - app/Models/Window.php
+      - app/Models/EpisodePauseHistory.php
+      - app/Services/EpisodeWindowService.php
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: episodes/enrolling-a-patient.md
+    section: episodes
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Resources/EpisodeResource.php
+      - app/Filament/Clinic/Resources/EpisodeResource/Pages/CreateEpisode.php
+      - app/Services/EpisodeEnrollmentService.php
+      - app/Models/Episode.php
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: episodes/viewing-episode-details.md
+    section: episodes
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Resources/EpisodeResource/Pages/ViewEpisode.php
+      - app/Filament/Clinic/Resources/EpisodeResource/RelationManagers/**
+      - app/Filament/Clinic/Resources/EpisodeResource/Widgets/**
+      - app/Livewire/Clinic/Episodes/**
+    screenshots: [episode-list]
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: episodes/managing-episode-status.md
+    section: episodes
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Services/EpisodeLifecycleService.php
+      - app/Models/Episode.php
+      - app/Models/EpisodePauseHistory.php
+      - app/Filament/Clinic/Resources/EpisodeResource.php
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: episodes/episode-search-and-filters.md
+    section: episodes
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Resources/EpisodeResource/Pages/ListEpisodes.php
+      - app/Filament/Clinic/Resources/EpisodeResource.php
+      - app/Services/NeedsAttentionService.php
+    screenshots: [episode-list]
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: episodes/episode-actions.md
+    section: episodes
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Resources/EpisodeResource.php
+      - app/Filament/Clinic/Resources/EpisodeResource/Pages/**
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  # === 4. Surveys (Phase 1) ================================================
+  - path: surveys/understanding-surveys.md
+    section: surveys
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Models/Survey.php
+      - app/Models/SurveyVersion.php
+      - app/Filament/Clinic/Resources/SurveyResource.php
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: surveys/creating-a-survey.md
+    section: surveys
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Resources/SurveyResource.php
+      - app/Filament/Clinic/Resources/SurveyResource/Pages/**
+      - app/Models/SurveyQuestion.php
+      - app/Models/SurveyAnswerOption.php
+      - app/Enums/QuestionType.php
+    screenshots: [survey-list]
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: surveys/editing-and-managing-surveys.md
+    section: surveys
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Resources/SurveyResource.php
+      - app/Services/SurveyDuplicationService.php
+      - app/Services/SurveyVersioningService.php
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: surveys/previewing-a-survey.md
+    section: surveys
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - routes/tenant.php
+      - app/Livewire/Patient/SurveyForm.php
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: surveys/understanding-survey-responses.md
+    section: surveys
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Models/SurveyResponse.php
+      - app/Services/SurveyResponseService.php
+      - app/Livewire/Patient/SurveyForm.php
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  - path: surveys/survey-amendments.md
+    section: surveys
+    audience: clinic-staff
+    status: review
+    priority: 1
+    sources:
+      - app/Models/SurveyResponse.php
+      - routes/tenant.php
+    screenshots: []
+    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+
+  # === 5. Exercises / HEP (Phase 2) ========================================
+  - path: exercises/understanding-hep.md
+    section: exercises
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Models/HepAssignment.php
+      - app/Models/ExerciseProgram.php
+      - app/Services/HepService.php
+      - app/Services/ExerciseCompletionService.php
+      - app/Enums/HepFrequency.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: exercises/the-exercise-library.md
+    section: exercises
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Resources/ExerciseResource.php
+      - app/Filament/Clinic/Resources/ExerciseResource/**
+      - app/Models/Exercise.php
+      - app/Enums/ExerciseCategory.php
+      - app/Enums/ExerciseDifficulty.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: exercises/exercise-videos.md
+    section: exercises
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Resources/ExerciseVideoResource.php
+      - app/Filament/Clinic/Resources/ExerciseVideoResource/**
+      - app/Models/ExerciseVideo.php
+      - app/Livewire/ExerciseVideo/**
+      - app/Enums/ExerciseVideoStatus.php
+      - app/Services/MuxService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: exercises/exercise-programs.md
+    section: exercises
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Resources/ExerciseProgramResource.php
+      - app/Filament/Clinic/Resources/ExerciseProgramResource/**
+      - app/Models/ExerciseProgram.php
+      - app/Models/ExerciseProgramItem.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: exercises/assigning-hep-to-an-episode.md
+    section: exercises
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Resources/EpisodeResource/RelationManagers/HepAssignmentsRelationManager.php
+      - app/Models/HepAssignment.php
+      - app/Enums/HepFrequency.php
+      - app/Services/HepService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: exercises/tracking-exercise-adherence.md
+    section: exercises
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Resources/EpisodeResource/Widgets/ExerciseAdherenceWidget.php
+      - app/Models/ExerciseLog.php
+      - app/Services/ExerciseCompletionService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: exercises/the-patient-exercise-experience.md
+    section: exercises
+    audience: patient
+    status: todo
+    priority: 2
+    sources:
+      - app/Livewire/Patient/ExerciseWalkthrough.php
+      - app/Models/ExerciseLog.php
+      - app/Enums/ExerciseFeeling.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 6. Messaging (Phase 2) ==============================================
+  - path: messaging/messages-center-overview.md
+    section: messaging
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Pages/MessagesCenter.php
+      - app/Livewire/Clinic/MessagesCenter.php
+      - app/Models/Conversation.php
+      - app/Enums/ConversationStatus.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: messaging/viewing-conversations.md
+    section: messaging
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Livewire/Clinic/MessagesCenter.php
+      - app/Models/Message.php
+      - app/Enums/DeliveryStatus.php
+      - app/Enums/MessageDirection.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: messaging/sending-messages.md
+    section: messaging
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Livewire/Clinic/MessagingDrawer.php
+      - app/Models/Message.php
+      - app/Enums/Channel.php
+      - app/Services/Messaging/**
+      - app/Services/Sms/**
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: messaging/managing-conversations.md
+    section: messaging
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Models/Conversation.php
+      - app/Enums/ConversationStatus.php
+      - app/Livewire/Clinic/MessagesCenter.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: messaging/message-templates.md
+    section: messaging
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Resources/MessageTemplates/**
+      - app/Models/MessageTemplate.php
+      - app/Enums/TemplateType.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 7. Time Tracking (Phase 2) ==========================================
+  - path: time-tracking/understanding-time-tracking.md
+    section: time-tracking
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Models/TimeEntry.php
+      - app/Services/TimeTracking/**
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: time-tracking/logging-time-on-an-episode.md
+    section: time-tracking
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Livewire/Clinic/Episodes/TimeTrackingWidget.php
+      - app/Models/TimeEntry.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: time-tracking/managing-time-entries.md
+    section: time-tracking
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Livewire/Clinic/Episodes/TimeEntriesTable.php
+      - app/Models/TimeEntry.php
+      - app/Services/RtmCounterService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: time-tracking/logging-time-via-provider-summaries.md
+    section: time-tracking
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Pages/ReviewSummary.php
+      - app/Models/TimeEntry.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 8. Provider Summaries (Phase 2) =====================================
+  - path: provider-summaries/what-are-provider-summaries.md
+    section: provider-summaries
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Services/ProviderSummary/ProviderSummaryBuilder.php
+      - app/Services/ProviderSummary/ProviderSummaryNotifier.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: provider-summaries/generating-summaries.md
+    section: provider-summaries
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Pages/PendingSummaries.php
+      - app/Services/ProviderSummary/**
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: provider-summaries/reviewing-a-summary.md
+    section: provider-summaries
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Pages/ReviewSummary.php
+      - app/Services/ProviderSummary/UnreadSurveyService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: provider-summaries/logging-time-during-review.md
+    section: provider-summaries
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Pages/ReviewSummary.php
+      - app/Models/TimeEntry.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: provider-summaries/summary-status-and-management.md
+    section: provider-summaries
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Pages/PendingSummaries.php
+      - app/Services/ProviderSummary/**
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 9. Billing & Claims (Phase 2) =======================================
+  - path: billing/understanding-rtm-billing.md
+    section: billing
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Models/BillingSuggestion.php
+      - app/Models/BillingClaim.php
+      - app/Models/Window.php
+      - app/Services/RtmCounterService.php
+      - app/Services/EpisodeWindowService.php
+      - CLAUDE.MD
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: billing/billing-suggestions.md
+    section: billing
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Resources/BillingSuggestionResource/**
+      - app/Models/BillingSuggestion.php
+      - app/Services/BillingSuggestionGenerationService.php
+      - app/Services/BillingSuggestionService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: billing/approving-and-rejecting-claims.md
+    section: billing
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Resources/BillingSuggestionResource/Actions/**
+      - app/Models/BillingSuggestion.php
+      - app/Models/BillingClaim.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: billing/clinical-notes.md
+    section: billing
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Resources/ClinicalNoteTemplates/**
+      - app/Models/ClinicalNoteTemplate.php
+      - app/Services/ClinicalNoteTemplateService.php
+      - app/Services/BillingEvidenceFormatter.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: billing/exporting-to-drchrono.md
+    section: billing
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Services/BillingExportService.php
+      - app/Services/Ehr/DrChronoAppointmentExportService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: billing/billing-window-progress.md
+    section: billing
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Models/Window.php
+      - app/Services/RtmCounterService.php
+      - app/Services/EpisodeWindowService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: billing/configuring-billing-rates.md
+    section: billing
+    audience: clinic-staff
+    status: todo
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Pages/BillingSettings.php
+      - app/Services/BillingRevenueService.php
+      - app/Models/Tenant.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 10. Appointments (Phase 3) ==========================================
+  - path: appointments/viewing-appointments.md
+    section: appointments
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Filament/Clinic/Pages/Appointments.php
+      - app/Models/Appointment.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: appointments/syncing-appointments.md
+    section: appointments
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Services/Ehr/DrChronoAppointmentSyncService.php
+      - app/Filament/Imports/**
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 11. Front Desk Check-In (Phase 3) ===================================
+  - path: check-in/setting-up-check-in.md
+    section: check-in
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Filament/Clinic/Pages/ClinicSettings.php
+      - app/Services/CheckinService.php
+      - app/Models/Tenant.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: check-in/using-the-check-in-kiosk.md
+    section: check-in
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Livewire/Checkin/FrontDeskCheckin.php
+      - resources/views/livewire/checkin/**
+      - app/Services/CheckinService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: check-in/enrolling-patients-at-check-in.md
+    section: check-in
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Livewire/Checkin/FrontDeskCheckin.php
+      - app/Services/EpisodeEnrollmentService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: check-in/managing-episodes-at-check-in.md
+    section: check-in
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Livewire/Checkin/FrontDeskCheckin.php
+      - app/Services/EpisodeLifecycleService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 12. Patient Portal (Phase 3) ========================================
+  - path: patient-portal/taking-a-survey.md
+    section: patient-portal
+    audience: patient
+    status: todo
+    priority: 3
+    sources:
+      - app/Livewire/Patient/SurveyForm.php
+      - app/Services/SurveyResponseService.php
+      - routes/tenant.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: patient-portal/survey-history-and-amendments.md
+    section: patient-portal
+    audience: patient
+    status: todo
+    priority: 3
+    sources:
+      - app/Models/SurveyResponse.php
+      - routes/tenant.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: patient-portal/completing-exercises.md
+    section: patient-portal
+    audience: patient
+    status: todo
+    priority: 3
+    sources:
+      - app/Livewire/Patient/ExerciseWalkthrough.php
+      - app/Models/ExerciseLog.php
+      - app/Enums/ExerciseFeeling.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 13. Settings (Phase 3) ==============================================
+  - path: settings/clinic-information.md
+    section: settings
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Filament/Clinic/Pages/ClinicSettings.php
+      - app/Models/Tenant.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: settings/branding.md
+    section: settings
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Filament/Clinic/Pages/ClinicSettings.php
+      - app/Models/Tenant.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: settings/security-settings.md
+    section: settings
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Filament/Clinic/Pages/ClinicSettings.php
+      - app/Models/Tenant.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: settings/provider-summary-settings.md
+    section: settings
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Filament/Clinic/Pages/ClinicSettings.php
+      - app/Services/ProviderSummary/ClinicOwnerDigestService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: settings/provider-notification-preferences.md
+    section: settings
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Filament/Clinic/Pages/ProviderNotifications.php
+      - app/Models/ProviderNotificationSetting.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: settings/emr-system-selection.md
+    section: settings
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Filament/Clinic/Pages/Integrations.php
+      - app/Models/Tenant.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: settings/rtm-billing-settings.md
+    section: settings
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Filament/Clinic/Pages/BillingSettings.php
+      - app/Models/Tenant.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 14. User Management (Phase 3) =======================================
+  - path: users/viewing-users.md
+    section: users
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Filament/Clinic/Resources/UserResource.php
+      - app/Filament/Clinic/Resources/UserResource/Pages/**
+      - app/Models/User.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: users/creating-a-user.md
+    section: users
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Filament/Clinic/Resources/UserResource.php
+      - app/Models/User.php
+      - database/seeders/RolesSeeder.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: users/managing-users.md
+    section: users
+    audience: clinic-staff
+    status: todo
+    priority: 3
+    sources:
+      - app/Filament/Clinic/Resources/UserResource.php
+      - app/Models/User.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 15. Integrations (Phase 4) ==========================================
+  - path: integrations/drchrono-ehr-integration.md
+    section: integrations
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - app/Filament/Clinic/Pages/Integrations.php
+      - app/Services/Ehr/DrChronoClient.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: integrations/drchrono-data-sync.md
+    section: integrations
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - app/Services/Ehr/**
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: integrations/drchrono-provider-mappings.md
+    section: integrations
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - app/Services/Ehr/DrChronoProviderSyncService.php
+      - app/Filament/Clinic/Pages/Integrations.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: integrations/billing-and-subscription.md
+    section: integrations
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - app/Services/SaasBillingService.php
+      - app/Services/StripeInvoicingService.php
+      - config/cashier.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 16. My Profile (Phase 4) ============================================
+  - path: profile/changing-your-password.md
+    section: profile
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - app/Filament/Clinic/Pages/Profile.php
+      - app/Actions/Fortify/ResetUserPassword.php
+      - app/Actions/Fortify/PasswordValidationRules.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: profile/notification-preferences.md
+    section: profile
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - app/Filament/Clinic/Pages/Profile.php
+      - app/Filament/Clinic/Pages/ProviderNotifications.php
+      - app/Models/ProviderNotificationSetting.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 17. Compliance & Audit (Phase 4) ====================================
+  - path: compliance/activity-logging.md
+    section: compliance
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - config/activitylog.php
+      - app/Models/Patient.php
+      - app/Models/Episode.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: compliance/data-retention.md
+    section: compliance
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - app/Models/Patient.php
+      - app/Models/Survey.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 18. Workflows (Phase 4) =============================================
+  - path: workflows/patient-enrollment-workflow.md
+    section: workflows
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - app/Services/EpisodeEnrollmentService.php
+      - app/Services/SurveyDeliveryService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: workflows/daily-provider-review-workflow.md
+    section: workflows
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - app/Services/ProviderSummary/**
+      - app/Filament/Clinic/Pages/ReviewSummary.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: workflows/billing-workflow.md
+    section: workflows
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - app/Services/BillingSuggestionGenerationService.php
+      - app/Services/BillingExportService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: workflows/front-desk-check-in-workflow.md
+    section: workflows
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - app/Livewire/Checkin/FrontDeskCheckin.php
+      - app/Services/CheckinService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: workflows/drchrono-sync-workflow.md
+    section: workflows
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - app/Services/Ehr/**
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 19. Troubleshooting & FAQ (Phase 4) =================================
+  - path: troubleshooting/common-issues.md
+    section: troubleshooting
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - app/Services/SurveyDeliveryService.php
+      - app/Services/Messaging/**
+      - app/Services/Ehr/**
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: troubleshooting/frequently-asked-questions.md
+    section: troubleshooting
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - CLAUDE.MD
+      - app/Models/Episode.php
+      - app/Models/BillingSuggestion.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === Reference (Phase 4) =================================================
+  - path: reference/glossary.md
+    section: reference
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - CLAUDE.MD
+      - app/Models/Episode.php
+      - app/Models/Window.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: reference/role-permissions-matrix.md
+    section: reference
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - database/seeders/RolesSeeder.php
+      - app/Policies/**
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: reference/cpt-code-reference.md
+    section: reference
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - CLAUDE.MD
+      - app/Models/BillingSuggestion.php
+      - app/Services/RtmCounterService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: reference/survey-question-types.md
+    section: reference
+    audience: clinic-staff
+    status: todo
+    priority: 4
+    sources:
+      - app/Enums/QuestionType.php
+      - app/Models/SurveyQuestion.php
+    screenshots: []
+    last_reviewed_commit: null
+
+# -----------------------------------------------------------------------------
+# SCREENSHOTS
+# -----------------------------------------------------------------------------
+# The harness (php artisan help:screenshots) iterates this map: log into the
+# DEMO tenant as `role`, visit `url`, wait for `wait_for` text, write `output`.
+# Keep this list SHORT — high-value, stable, demo-safe screens only.
+# `url` is best-effort; the harness resolves the real authenticated URL.
+# -----------------------------------------------------------------------------
+screenshots:
+  dashboard-overview:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/
+    wait_for: "Needs Attention"
+    output: .gitbook/assets/getting-started/dashboard-overview.png
+
+  patient-list:
+    role: staff
+    url: https://demo.rtmlink.com/patients
+    wait_for: "Patients"
+    output: .gitbook/assets/patients/patient-list.png
+
+  episode-list:
+    role: provider
+    url: https://demo.rtmlink.com/episodes
+    wait_for: "Episodes"
+    output: .gitbook/assets/episodes/episode-list.png
+
+  survey-list:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/surveys
+    wait_for: "Surveys"
+    output: .gitbook/assets/surveys/survey-list.png

@@ -1,0 +1,15 @@
+# GitBook Git Sync configuration.
+# Docs: https://gitbook.com/docs/getting-started/git-sync
+#
+# Publish flow: edit markdown here → push to `main` → GitBook auto-syncs → help.rtmlink.com
+#
+# What gets published: only pages listed in SUMMARY.md (with README.md as the
+# landing page). The meta/ folder is intentionally NOT listed in SUMMARY.md, so
+# the authoring instructions, registry, and state files never appear on the
+# public site. Keep it that way — do not add meta/ entries to SUMMARY.md.
+
+root: ./
+
+structure:
+  readme: README.md
+  summary: SUMMARY.md

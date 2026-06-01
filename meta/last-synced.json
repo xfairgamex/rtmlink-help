@@ -1,0 +1,6 @@
+{
+  "app_commit": "b8a760f1b76baaebe50f1b4a28be30260538a12e",
+  "app_branch": "main",
+  "synced_at": "2026-05-29",
+  "note": "The RTMLink app commit on `main` (production, live at rtmlink.com) that this help center is reconciled to. ALWAYS use main/origin/main as the baseline — never `git rev-parse HEAD`, because the app working tree is frequently checked out on an unmerged feature branch. The maintenance loop (meta/MAINTENANCE.md) diffs `main` forward from this commit to find what shipped, then flags affected articles stale. Advance this only to a merged `main` commit, after the resulting doc changes are reviewed and merged. Current state: Phase-1 getting-started + patients reviewed; episodes + surveys pending."
+}
