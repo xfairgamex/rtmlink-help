@@ -41,7 +41,7 @@ The current 30-day billing window's progress:
 
 ### Survey Settings
 
-- **Assigned Survey**, **Frequency**, **Send Time**, **Communication Methods** — the schedule set at enrollment.
+- **Assigned Survey**, **Frequency**, **Send Time**, **Communication Methods** — the schedule set at enrollment. See [How often surveys are sent](enrolling-a-patient.md#how-often-surveys-are-sent).
 - **Survey Link** — the patient's personal survey link. Click the copy icon to copy it (handy for reading the link to a patient over the phone).
 
 ## The working area

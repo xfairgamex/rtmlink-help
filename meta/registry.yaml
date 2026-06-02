@@ -178,9 +178,10 @@ articles:
       - app/Filament/Clinic/Resources/EpisodeResource.php
       - app/Filament/Clinic/Resources/EpisodeResource/Pages/CreateEpisode.php
       - app/Services/EpisodeEnrollmentService.php
+      - app/Enums/SurveyFrequency.php
       - app/Models/Episode.php
     screenshots: []
-    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+    last_reviewed_commit: bbbc056ba55d8bee6cd228991773e619b2f0ce9e
 
   - path: episodes/viewing-episode-details.md
     section: episodes
