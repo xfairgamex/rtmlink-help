@@ -28,7 +28,7 @@ A messaging panel opens, already set to the patient's preferred channel (SMS or 
 To change how an episode runs, open it and click **Edit** (or choose **Edit** from the actions menu). You can change:
 
 - **Assigned Provider**
-- **Survey**, **Frequency**, and **Send Time**
+- **Survey**, **Frequency**, and **Send Time** — see [How often surveys are sent](enrolling-a-patient.md#how-often-surveys-are-sent)
 - **Communication Methods** (SMS / Email)
 - **Clinical Context** — diagnosis code, ICD-10 codes, body part, treatment type, and a custom **Episode Name**
 - **Notes**
