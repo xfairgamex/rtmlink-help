@@ -13,6 +13,8 @@ This repo is a **separate git repo nested inside the main `rtmlink` app** (the p
 1. **Author** new help articles and keep the set complete.
 2. **Maintain** — keep existing articles current as the app changes (see `meta/MAINTENANCE.md`).
 
+These run as a **three-agent pipeline** — a **Scout** triages app changes + coverage gaps into the registry, a **Writer** writes the verified prose, and a **Visualizer** captures the screenshots. Handoff prompts + the pipeline overview live in **`meta/agents/`**.
+
 ---
 
 ## Golden rules (non-negotiable)
