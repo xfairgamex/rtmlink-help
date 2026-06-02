@@ -175,38 +175,11 @@ Flip the merged articles' `status` to `published`. The next maintenance run now 
 
 ## Refreshing screenshots
 
-Screenshots are **registry-driven**: the top-level `screenshots:` map in `meta/registry.yaml` is the source of truth. Each entry declares the `role` to log in as, the `url` to visit, the `wait_for` text that proves the page rendered, and the `output` path (relative to this repo root, e.g. `.gitbook/assets/episodes/episode-list.png`). The harness iterates that map — add an entry and it gets captured; you never hand-script a single shot.
+Screenshots are **registry-driven** and captured by an automated harness (`php artisan help:screenshots`) from the **demo clinic only** (`demo.rtmlink.com` — never the real Tula clinic, never `.test` in published prose). The full mechanics — the registry schema (`role`/`url`/`wait_for`/`output` plus `selector`/`steps`/`auth`), demo-data seeding, the local-iterate→prod-capture workflow, and embedding — live in **`meta/SCREENSHOTS.md`**.
 
-> **Build status:** the harness — `php artisan help:screenshots`, a Pest browser test under the app's `tests/Browser/Screenshots/` — lives in the **app** repo and is **still to be built** (a hand-off prompt exists for it). Everything below is the steady-state workflow once it lands. Until then, screenshots are captured by hand against the same demo clinic.
+**In the three-agent pipeline, capture is the Visualizer's job — not the Scout's.** The Scout (this maintenance loop) never logs into prod or shoots images. When an article goes `stale` (Step 2a) and a *pictured* screen actually changed, the Scout just **flags which of its screenshot ids need re-shooting** (and fixes any obviously-drifted `wait_for`/`url`/`selector` it can read from the code). The **Visualizer** (`meta/agents/visualizer.md`) then re-shoots **only those ids** against the demo clinic and embeds them in its own PR.
 
-**Capture targets the LIVE demo clinic — `https://demo.rtmlink.com` — never a local copy and never the real Tula clinic.** That clinic holds only synthetic `[DEMO]`-tagged patients (555 numbers, fictional names), so it is the one PHI-safe source. The captured PNG never shows the address bar, so `.com` vs `.test` is only the browser's navigation target, not anything a reader sees.
-
-### One-time setup (on production, human-run)
-
-1. Ensure the `demo` tenant exists on prod with a `demo` domain (so `demo.rtmlink.com` resolves).
-2. Seed the demo-only screenshot logins — one per role (clinic_owner/provider/staff), attached to the `demo` tenant **only**, password from the `DEMO_SCREENSHOT_PASSWORD` env var:
-   ```bash
-   php artisan db:seed --class=DemoScreenshotUserSeeder --force   # on prod
-   ```
-
-### Each refresh (human-run)
-
-```bash
-# 1. (on prod) refresh the synthetic demo data so dates/flags look current
-php artisan rtmlink:reset-demo demo && php artisan rtmlink:seed-demo demo
-
-# 2. (from any machine with Playwright) capture — default target is demo.rtmlink.com
-php artisan help:screenshots                       # all screenshots
-php artisan help:screenshots --only=episode-list   # one (use this in the loop, Step 3.3)
-```
-
-The PNGs write into **this** repo's `.gitbook/assets/…` and commit **here**, as part of the same docs PR that changed the prose — never in an app PR. For developing the harness against local Herd instead of prod, the app side honors `SCREENSHOT_BASE_URL=https://demo.rtmlink.test`; the default (unset) hits production.
-
-> **These are production database writes.** Seeding the logins and reseeding demo data mutate the live DB, so they are **human-run and deliberate** — never automated, never part of the scheduled loop. The scheduled agent updates prose and flags *which* screenshot ids need re-shooting; a human runs the capture. (Consistent with this doc's golden rule: humans gate anything that touches production.)
-
-### In the maintenance loop
-
-When an article goes `stale` (Step 2a) and a *pictured* screen actually changed, re-shoot **only that article's** screenshot ids (`--only=<id>`), not the whole set. If the screen didn't change, don't re-shoot. A drifted `wait_for` (the page heading/text moved) makes the harness fail loudly — fix the `wait_for` or `url` in the registry as part of the same PR.
+> **Capture touches production.** Seeding demo data and capturing run against the live demo clinic, so they are deliberate and human-gated — never part of an automated Scout run.
 
 ---
 
