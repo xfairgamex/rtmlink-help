@@ -308,7 +308,7 @@ articles:
   - path: exercises/understanding-hep.md
     section: exercises
     audience: clinic-staff
-    status: todo
+    status: review
     priority: 2
     sources:
       - app/Models/HepAssignment.php
@@ -317,12 +317,12 @@ articles:
       - app/Services/ExerciseCompletionService.php
       - app/Enums/HepFrequency.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 34227328
 
   - path: exercises/the-exercise-library.md
     section: exercises
     audience: clinic-staff
-    status: todo
+    status: review
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ExerciseResource.php
@@ -330,13 +330,13 @@ articles:
       - app/Models/Exercise.php
       - app/Enums/ExerciseCategory.php
       - app/Enums/ExerciseDifficulty.php
-    screenshots: []
-    last_reviewed_commit: null
+    screenshots: [exercise-list]
+    last_reviewed_commit: 34227328
 
   - path: exercises/exercise-videos.md
     section: exercises
     audience: clinic-staff
-    status: todo
+    status: review
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ExerciseVideoResource.php
@@ -346,12 +346,12 @@ articles:
       - app/Enums/ExerciseVideoStatus.php
       - app/Services/MuxService.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 34227328
 
   - path: exercises/exercise-programs.md
     section: exercises
     audience: clinic-staff
-    status: todo
+    status: review
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ExerciseProgramResource.php
@@ -359,44 +359,44 @@ articles:
       - app/Models/ExerciseProgram.php
       - app/Models/ExerciseProgramItem.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 34227328
 
   - path: exercises/assigning-hep-to-an-episode.md
     section: exercises
     audience: clinic-staff
-    status: todo
+    status: review
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/RelationManagers/HepAssignmentsRelationManager.php
       - app/Models/HepAssignment.php
       - app/Enums/HepFrequency.php
       - app/Services/HepService.php
-    screenshots: []
-    last_reviewed_commit: null
+    screenshots: [episode-exercises-tab]
+    last_reviewed_commit: 34227328
 
   - path: exercises/tracking-exercise-adherence.md
     section: exercises
     audience: clinic-staff
-    status: todo
+    status: review
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/Widgets/ExerciseAdherenceWidget.php
       - app/Models/ExerciseLog.php
       - app/Services/ExerciseCompletionService.php
-    screenshots: []
-    last_reviewed_commit: null
+    screenshots: [exercise-adherence]
+    last_reviewed_commit: 34227328
 
   - path: exercises/the-patient-exercise-experience.md
     section: exercises
     audience: patient
-    status: todo
+    status: review
     priority: 2
     sources:
       - app/Livewire/Patient/ExerciseWalkthrough.php
       - app/Models/ExerciseLog.php
       - app/Enums/ExerciseFeeling.php
-    screenshots: []
-    last_reviewed_commit: null
+    screenshots: [patient-walkthrough]
+    last_reviewed_commit: 34227328
 
   # === 6. Messaging (Phase 2) ==============================================
   - path: messaging/messages-center-overview.md
@@ -1127,3 +1127,36 @@ screenshots:
     url: https://demo.rtmlink.com/surveys
     wait_for: "Surveys"
     output: .gitbook/assets/surveys/survey-list.png
+
+  # --- Phase 2 (Exercises / HEP) ---
+  # selector/steps values are best-guesses tuned during local capture.
+
+  exercise-list:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/exercises
+    wait_for: "Exercises"
+    output: .gitbook/assets/exercises/exercise-list.png
+
+  episode-exercises-tab:
+    role: provider
+    url: https://demo.rtmlink.com/episodes
+    steps:
+      - 'a:text-is("[DEMO] Marcus Chen")'
+      - 'button:has-text("Exercises")'
+    wait_for: "Assign Exercise"
+    output: .gitbook/assets/exercises/episode-exercises-tab.png
+
+  exercise-adherence:
+    role: provider
+    url: https://demo.rtmlink.com/episodes
+    steps:
+      - 'a:text-is("[DEMO] Marcus Chen")'
+    wait_for: "7-Day Adherence"
+    output: .gitbook/assets/exercises/exercise-adherence.png
+
+  patient-walkthrough:
+    role: provider
+    auth: false
+    url: https://demo.rtmlink.com/s/demohep1/exercises
+    wait_for: "View All"
+    output: .gitbook/assets/exercises/patient-walkthrough.png

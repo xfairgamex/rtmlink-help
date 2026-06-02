@@ -35,12 +35,21 @@
 * [Understanding survey responses](surveys/understanding-survey-responses.md)
 * [Survey amendments](surveys/survey-amendments.md)
 
+## Exercises
+
+* [Understanding the Home Exercise Program](exercises/understanding-hep.md)
+* [The exercise library](exercises/the-exercise-library.md)
+* [Exercise videos](exercises/exercise-videos.md)
+* [Exercise programs](exercises/exercise-programs.md)
+* [Assigning HEP to an episode](exercises/assigning-hep-to-an-episode.md)
+* [Tracking exercise adherence](exercises/tracking-exercise-adherence.md)
+* [The patient's exercise experience](exercises/the-patient-exercise-experience.md)
+
 <!--
   NAV GROWS AS ARTICLES LAND. Add each article here only once its file exists,
   so the published nav never points at a missing page.
 
   Sections still to come (keep this order; see meta/CONTENT-OUTLINE.md):
-    ## Exercises   → exercises/*.md
     ## Messages, Billing, Settings, Integrations, Reference, Troubleshooting (later phases)
 
   DO NOT list anything under meta/ here — that folder must stay unpublished.
