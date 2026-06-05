@@ -158,6 +158,8 @@ PR body should make review fast — list, per article: **what app change trigger
 
 ## Step 5 — After merge: advance the anchor
 
+> **In the three-agent pipeline this is the Scout's job, done earlier.** The Scout advances `last-synced.json` to `TARGET` inside its *triage* PR — the `stale`/`todo` flags carry the unwritten work forward (see `meta/agents/scout.md` step 4). The monolithic flow below — advance only after the *reconciliation* merges — applies when a single agent does triage **and** writing in one pass. Either way the anchor only ever moves to a merged `main` commit.
+
 Only once the PR is **reviewed and merged** do you move the anchor forward:
 
 ```bash
@@ -205,7 +207,7 @@ When a path matches nothing and isn't obviously user-facing, **default to ignore
 ## Edge cases & gotchas
 
 - **A rename in the app breaks a `sources` glob.** If a PR moves `app/Services/DrChrono/` → `app/Services/Ehr/`, the old glob stops matching future changes. When you update the article, **also fix its `sources[]`** to the new path. Stale globs silently stop flagging — audit globs whenever you touch an article.
-- **`last_reviewed_commit` vs. `last-synced.json`.** Per-article `last_reviewed_commit` = when *that article* was last verified. Global `last-synced.json` = the floor the whole loop diffs from. They can differ (an article reviewed in an earlier pass keeps its older commit until something re-flags it). That's correct.
+- **`last_reviewed_commit` vs. `last-synced.json`.** Per-article `last_reviewed_commit` = when *that article* was last verified (the **Writer** advances it on reconciliation). Global `last-synced.json` = the floor the whole loop diffs from = *triaged up to here* (the **Scout** advances it in its triage PR). They differ by design — an article can be flagged `stale` (triaged) long before a Writer reviews it. **Advancing `last-synced` after triage does NOT skip work**: the work lives in the `stale`/`todo` flags, not in re-diffing. This is exactly what stops the Scout re-triaging the same window every run.
 - **Big windows (loop hasn't run in a while).** Same procedure; just expect more matches. Triage in priority order; if it's too large for one PR, split by section (e.g. one PR for `episodes/*`, one for `billing/*`) but **don't advance the anchor until the last split PR merges**, or advance it per-merged-PR using that PR's reconciled SHA.
 - **Outline drift.** If the app grew a feature the `CONTENT-OUTLINE.md` never anticipated, add it to the outline in the same PR so the next author has guidance.
 - **No `gh` / no remote.** The loop still works with pure `git -C .. log` for context; PR creation is the only step that needs the remote.
