@@ -159,7 +159,8 @@ articles:
   - path: episodes/understanding-episodes.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "Episode model gained exercises_last_viewed_at and a patient-locked exercise relationship (PR #460); verify the episode lifecycle explanation is still accurate"
     priority: 1
     sources:
       - app/Models/Episode.php
@@ -200,7 +201,8 @@ articles:
   - path: episodes/managing-episode-status.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "EpisodeResource changed across PRs #460 and #494; Episode model gained exercises_last_viewed_at; verify the status actions (pause/resume/discharge) are unchanged"
     priority: 1
     sources:
       - app/Services/EpisodeLifecycleService.php
@@ -213,7 +215,8 @@ articles:
   - path: episodes/episode-search-and-filters.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "SurveyFrequency enum gained every_3_days and every_7_days (PR #494); verify the frequency filter options in the episode list"
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/Pages/ListEpisodes.php

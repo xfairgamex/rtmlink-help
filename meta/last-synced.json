@@ -1,6 +1,6 @@
 {
-  "app_commit": "b8a760f1b76baaebe50f1b4a28be30260538a12e",
+  "app_commit": "c2881dc17d01c096c7182c17d3fce18a1afe21e3",
   "app_branch": "main",
-  "synced_at": "2026-05-29",
-  "note": "The RTMLink app commit on `main` (production, live at rtmlink.com) that this help center is reconciled to. ALWAYS use main/origin/main as the baseline — never `git rev-parse HEAD`, because the app working tree is frequently checked out on an unmerged feature branch. The maintenance loop (meta/MAINTENANCE.md) diffs `main` forward from this commit to find what shipped, then flags affected articles stale. Advance this only to a merged `main` commit, after the resulting doc changes are reviewed and merged. Current state: Phase-1 getting-started + patients reviewed; episodes + surveys pending."
+  "synced_at": "2026-06-05",
+  "note": "The RTMLink app commit on `main` (production, live at rtmlink.com) that the help center has been TRIAGED up to. In the three-agent pipeline the Scout (meta/agents/scout.md) advances this in its triage PR, after diffing `main` forward from here and flagging affected articles — it means 'every change up to here has been triaged into the registry as stale/todo', NOT 'every article is reconciled'. Per-article reconciliation is tracked separately by each article's `last_reviewed_commit`, which the Writer advances. ALWAYS diff from origin/main, never `git rev-parse HEAD` (the app working tree is often an unmerged feature branch). Advance this only to a merged `main` commit, together with that window's flags."
 }
