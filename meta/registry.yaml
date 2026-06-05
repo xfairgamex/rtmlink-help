@@ -81,7 +81,8 @@ articles:
   - path: getting-started/navigating-the-dashboard.md
     section: getting-started
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "BAA milestone removed from OnboardingChecklistWidget (PR #473); new UndeliverablePhoneBannerWidget added to Episodes panel; ClinicDashboardMetrics changed"
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Dashboard.php
@@ -172,7 +173,8 @@ articles:
   - path: episodes/enrolling-a-patient.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "SurveyFrequency gained two new cadences (every_3_days, every_7_days); frequency dropdown in enrollment form now shows 5 options (PR #494)"
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -186,7 +188,8 @@ articles:
   - path: episodes/viewing-episode-details.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "Window and BillingClaim detail modals now populated (were blank) (PR #486); BillingSuggestionsRelationManager added to episode view"
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/Pages/ViewEpisode.php
@@ -224,7 +227,8 @@ articles:
   - path: episodes/episode-actions.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "EpisodeResource frequency options now include every_3_days and every_7_days via SurveyFrequency enum (PR #494)"
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -309,7 +313,8 @@ articles:
   - path: exercises/understanding-hep.md
     section: exercises
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "HepAssignment gained locked_patient_id (patient-locked exercises concept); HepService updated accordingly (PR #460)"
     priority: 2
     sources:
       - app/Models/HepAssignment.php
@@ -323,7 +328,8 @@ articles:
   - path: exercises/the-exercise-library.md
     section: exercises
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "ExerciseResource gained copy-from button+modal and native paste (PR #478); Exercise model gained locked_patient_id and template copy; 'updated' badge added (PR #460)"
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ExerciseResource.php
@@ -337,7 +343,8 @@ articles:
   - path: exercises/exercise-videos.md
     section: exercises
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "ExerciseVideo model gained source and external_ref fields; Mux direct-upload restricted to video-create roles + HEP flag (PR #460)"
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ExerciseVideoResource.php
@@ -365,7 +372,8 @@ articles:
   - path: exercises/assigning-hep-to-an-episode.md
     section: exercises
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "HEP assignment list now supports drag-reorder (sort_order) and sortable columns (PR #482); patient-locked exercises added via locked_patient_id (PR #460)"
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/RelationManagers/HepAssignmentsRelationManager.php
@@ -390,7 +398,8 @@ articles:
   - path: exercises/the-patient-exercise-experience.md
     section: exercises
     audience: patient
-    status: review
+    status: stale
+    note: "ExerciseWalkthrough updated for patient-locked exercises and 'updated' badge visible to patients (PR #460)"
     priority: 2
     sources:
       - app/Livewire/Patient/ExerciseWalkthrough.php
@@ -726,6 +735,19 @@ articles:
     last_reviewed_commit: null
 
   # === 12. Patient Portal (Phase 3) ========================================
+  - path: patient-portal/recovering-portal-access.md
+    section: patient-portal
+    audience: patient
+    status: todo
+    priority: 3
+    sources:
+      - app/Services/PatientPortalAuthService.php
+      - app/Http/Controllers/Patient/Portal/ForgotPasswordController.php
+      - app/Http/Controllers/Patient/Portal/SurveyLinkController.php
+      - routes/tenant.php
+    screenshots: []
+    last_reviewed_commit: null
+
   - path: patient-portal/taking-a-survey.md
     section: patient-portal
     audience: patient
