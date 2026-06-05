@@ -82,7 +82,7 @@ articles:
     section: getting-started
     audience: clinic-staff
     status: stale
-    note: "BAA milestone removed from OnboardingChecklistWidget (PR #473); new UndeliverablePhoneBannerWidget added to Episodes panel; ClinicDashboardMetrics changed"
+    note: "BAA milestone removed from OnboardingChecklistWidget (PR #473); new UndeliverablePhoneBannerWidget added to Episodes panel; ClinicDashboardMetrics changed; PR #499 fixed phone_undeliverable filter link on the banner"
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Dashboard.php
@@ -160,7 +160,8 @@ articles:
   - path: episodes/understanding-episodes.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "Episode model gained exercises_last_viewed_at field and locked_patient relationship (PR #460); verify article explanation is current"
     priority: 1
     sources:
       - app/Models/Episode.php
@@ -201,7 +202,8 @@ articles:
   - path: episodes/managing-episode-status.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "EpisodeResource changed across PRs #460 and #494; Episode model gained exercises_last_viewed_at; verify status action UI unchanged"
     priority: 1
     sources:
       - app/Services/EpisodeLifecycleService.php
@@ -214,7 +216,8 @@ articles:
   - path: episodes/episode-search-and-filters.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "SurveyFrequency enum gained every_3_days ('Every 3 days') and every_7_days ('Every 7 days') (PR #494); verify frequency filter options in episode list"
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/Pages/ListEpisodes.php
@@ -277,7 +280,8 @@ articles:
   - path: surveys/previewing-a-survey.md
     section: surveys
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "routes/tenant.php changed — PR #472 added portal forgot-password and new-link routes; verify survey preview route itself is unchanged"
     priority: 1
     sources:
       - routes/tenant.php
@@ -300,7 +304,8 @@ articles:
   - path: surveys/survey-amendments.md
     section: surveys
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "routes/tenant.php changed — PR #472 added portal forgot-password and new-link routes; verify amendment route unchanged"
     priority: 1
     sources:
       - app/Models/SurveyResponse.php
@@ -594,6 +599,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: todo
+    note: "BillingOverviewWidget added to list page; sorted by service_date desc (PR #480); exported status retired, export now non-mutating (PRs #507, #509); export modal copy trimmed"
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/**
@@ -607,6 +613,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: todo
+    note: "SendToDrChronoAction success toast now auto-dismisses after 10s (PR #480); claim export non-mutating — status unchanged after export (PR #507)"
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/Actions/**
@@ -632,6 +639,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: todo
+    note: "Export excludes already-exported clinical notes from regen backfill (PR #508); export is non-mutating — claim status unchanged post-export (PR #507)"
     priority: 2
     sources:
       - app/Services/BillingExportService.php
@@ -655,6 +663,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: todo
+    note: "BillingSettings page renamed to 'Invoices'; slug changed to /invoices (PR #500)"
     priority: 2
     sources:
       - app/Filament/Clinic/Pages/BillingSettings.php
@@ -853,6 +862,7 @@ articles:
     section: settings
     audience: clinic-staff
     status: todo
+    note: "BillingSettings page renamed to 'Invoices'; slug changed to /invoices (PR #500)"
     priority: 3
     sources:
       - app/Filament/Clinic/Pages/BillingSettings.php
