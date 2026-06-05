@@ -26,11 +26,11 @@ These are live counts, so they're a fast way to take the pulse of the clinic wit
 
 ## Needs Attention
 
-The **Needs Attention** list surfaces the active episodes that need a look, most urgent first. An episode shows up here when, for example:
+The **Needs Attention** list surfaces the active episodes that need a look, most urgent first. An episode shows up here when:
 
 - a patient is flagged as **high risk**,
-- a patient **hasn't responded** in a few days,
-- a billing window is **about to close**, or
+- a patient **hasn't responded** in three or more days,
+- a billing window is **off pace** or **about to close** (fewer days remaining than days still needed), or
 - a patient is **behind pace** for their monitoring goal.
 
 Each item names the patient and links straight to their episode, so you can go from "who needs me?" to the right screen in one click.
@@ -39,11 +39,22 @@ Each item names the patient and links straight to their episode, so you can go f
 
 ## Quick Actions
 
-The **Quick Actions** area gives you one-click shortcuts to the things you do most, such as **Enroll Patient**. Use it to jump straight into a common task instead of hunting through the menus.
+The **Quick Actions** area gives you one-click shortcuts to the most common tasks:
+
+- **Enroll Patient** — opens the new-episode form so you can start monitoring a patient right away.
+- **Send Surveys** — takes you to your check-in queue to review and send pending surveys.
 
 ## Getting set up (new clinics)
 
-When your clinic is brand new, the dashboard shows a **setup checklist** to guide you through the first steps — things like having your business agreement on file, inviting your first provider, enrolling your first patient, and receiving your first survey response. Once those basics are done, the checklist disappears on its own and makes room for your day-to-day numbers.
+When your clinic is brand new, the dashboard shows an **Onboarding Checklist** to guide you through the first steps:
+
+1. **First provider invited** — add at least one therapist or clinic owner so they can start logging interactions.
+2. **First patient enrolled** — enroll a patient so they can begin receiving daily check-in surveys.
+3. **First survey response received** — a patient has completed their first daily check-in.
+4. **First interactive contact logged** — a provider has documented their first qualifying phone, video, or in-person contact. This is required for treatment-management billing codes.
+5. **First billing suggestion generated** — RTM thresholds have been met for a patient and a billing suggestion is ready to review.
+
+Each incomplete step shows a **Take action** link that drops you directly onto the right screen. Once every milestone is checked off, the checklist disappears automatically.
 
 ## Finding your way around
 

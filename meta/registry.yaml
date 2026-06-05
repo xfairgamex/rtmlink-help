@@ -81,8 +81,7 @@ articles:
   - path: getting-started/navigating-the-dashboard.md
     section: getting-started
     audience: clinic-staff
-    status: stale
-    note: "BAA milestone removed from OnboardingChecklistWidget (PR #473); new UndeliverablePhoneBannerWidget added to Episodes panel; ClinicDashboardMetrics changed"
+    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Dashboard.php
@@ -91,7 +90,7 @@ articles:
       - app/Services/ClinicDashboardAttentionService.php
       - app/Services/NeedsAttentionService.php
     screenshots: [dashboard-overview]
-    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+    last_reviewed_commit: c2881dc17d01c096c7182c17d3fce18a1afe21e3
 
   # === 2. Patients (Phase 1) ===============================================
   - path: patients/viewing-and-searching-patients.md
