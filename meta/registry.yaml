@@ -173,8 +173,7 @@ articles:
   - path: episodes/enrolling-a-patient.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "SurveyFrequency gained two new cadences (every_3_days, every_7_days); frequency dropdown in enrollment form now shows 5 options (PR #494)"
+    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -183,7 +182,7 @@ articles:
       - app/Enums/SurveyFrequency.php
       - app/Models/Episode.php
     screenshots: []
-    last_reviewed_commit: bbbc056ba55d8bee6cd228991773e619b2f0ce9e
+    last_reviewed_commit: c2881dc17d01c096c7182c17d3fce18a1afe21e3
 
   - path: episodes/viewing-episode-details.md
     section: episodes
