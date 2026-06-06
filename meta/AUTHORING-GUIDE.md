@@ -157,7 +157,7 @@ These are the traps that cost real time. A field or resource *existing in the co
 
 ### Article template
 
-Every article follows this shape (omit sections that don't apply — a short article is fine):
+Every article follows this shape (omit sections that don't apply; a short article is fine). **Default to the steps.** Include Overview and How It Works only when the reader genuinely needs context first; when in doubt, cut straight to the numbered steps. Small, actionable steps beat long prose, so favor a short numbered list with one action per line over an explanatory essay.
 
 ```markdown
 # Article Title
@@ -179,8 +179,8 @@ The concept or workflow at a high level, before the click-by-click steps.
 1. Go to **Section Name** in the left sidebar.
 2. Click the **Create** button.
 3. Fill in the fields:
-   - **Field Name** — what it's for and any constraint (e.g. required, max length).
-   - **Another Field** — description and allowed values.
+   - **Field Name:** what it's for and any constraint (e.g. required, max length).
+   - **Another Field:** description and allowed values.
 4. Click **Save**.
 
 > **Note:** Important callouts, warnings, and "gotchas" go in blockquotes.
@@ -215,6 +215,8 @@ Explain statuses, calculations, or concepts the user needs (e.g. what an "intera
 - Tables for comparing options, listing statuses, role permissions.
 - Numbered lists for sequential steps; bullets for non-sequential info.
 - Keep paragraphs short. Clinic staff scan; they don't read.
+- **No em-dashes (—) or en-dashes (–).** They read as AI-written, which undercuts trust. Use commas, parentheses (like this), colons, or semicolons instead, even when the grammar is slightly less polished. A plain hyphen (-) is fine only where a real hyphen belongs (for example, "30-day window").
+- **Lead with steps, not essays.** One action per numbered line. If you catch yourself writing a paragraph that explains three things, split it into three steps. Put the *why* in a one-line aside or a short blockquote, never a wall of prose.
 
 ### Do / Don't
 
@@ -223,6 +225,7 @@ Explain statuses, calculations, or concepts the user needs (e.g. what an "intera
 - State role restrictions when they apply ("Only Clinic Owners and Staff can…").
 - Explain *why* when behavior is non-obvious (e.g. why a billing code only appears after a window closes).
 - Link related articles.
+- Route the reader to the right help. For clinic-internal matters (user accounts, permissions, restoring a record), keep pointing to "your clinic administrator." For anything wrong with RTMLink itself, or that a clinic admin cannot fix (a bug, a how-to gap, a question about RTMLink billing or your account), point to RTMLink support: email [support@rtmlink.com](mailto:support@rtmlink.com) or open a ticket at [support.rtmlink.com/forms/rtmlink-support](https://support.rtmlink.com/forms/rtmlink-support).
 
 **Don't**
 - Guess at UI labels — always confirm in the resource/page code.
