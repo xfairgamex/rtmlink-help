@@ -188,7 +188,7 @@ articles:
     section: episodes
     audience: clinic-staff
     status: stale
-    note: "Window and BillingClaim detail modals now populated (were blank) (PR #486); BillingSuggestionsRelationManager added to episode view"
+    note: "Window and BillingClaim detail modals now populated (were blank) (PR #486); BillingSuggestionsRelationManager added to episode view; 'Add Claim' button added to episode billing tab for manual claim entry (PR #514)"
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/Pages/ViewEpisode.php
@@ -580,7 +580,8 @@ articles:
   - path: billing/understanding-rtm-billing.md
     section: billing
     audience: clinic-staff
-    status: todo
+    status: stale
+    note: "BillingSuggestion gained a source field (system vs. manual); manual claims excluded from auto-regeneration sweep and never overwritten by the system — document the manual claim concept (PR #514)"
     priority: 2
     sources:
       - app/Models/BillingSuggestion.php
@@ -595,7 +596,8 @@ articles:
   - path: billing/billing-suggestions.md
     section: billing
     audience: clinic-staff
-    status: todo
+    status: stale
+    note: "Manual claim entry ('Add Claim' button) added to episode billing tab (PR #514); 'Change Status' corrective action added to table row menu and view-page header (PR #511); 'Source: Manual entry' badge shown on manually-created claims"
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/**
@@ -608,7 +610,8 @@ articles:
   - path: billing/approving-and-rejecting-claims.md
     section: billing
     audience: clinic-staff
-    status: todo
+    status: stale
+    note: "'Change Status' action added as a corrective path: lets users with billing.approve move a claim to any status (Ready to Bill / Billed / Rejected) regardless of current state; available in table row menu and view-page header (PR #511)"
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/Actions/**
@@ -1018,7 +1021,8 @@ articles:
   - path: workflows/billing-workflow.md
     section: workflows
     audience: clinic-staff
-    status: todo
+    status: stale
+    note: "Manual claim entry is now a step in the billing workflow; billing staff can add claims the system did not derive automatically via 'Add Claim' on the episode billing tab (PR #514)"
     priority: 4
     sources:
       - app/Services/BillingSuggestionGenerationService.php
