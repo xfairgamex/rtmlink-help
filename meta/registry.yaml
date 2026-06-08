@@ -1130,6 +1130,7 @@ articles:
 # DEMO tenant as `role`, visit `url`, wait for `wait_for` text, write `output`.
 # Optional per-entry fields for trickier screens:
 #   selector: <css>      crop to one element instead of full-page
+#   highlight: <sel|[…]> ring control(s) before the shot; pair with selector
 #   steps: [<click>...]  click-navigate to a record/tab the URL can't address
 #   auth: false          skip login for a token/magic-link page (e.g. /s/{token}/…)
 # Full schema + capture workflow + demo-data seeding → meta/SCREENSHOTS.md.

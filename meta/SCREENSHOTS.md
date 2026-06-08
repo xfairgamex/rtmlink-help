@@ -24,6 +24,7 @@ screenshots:
       - 'button:has-text("Exercises")'
     wait_for: "Assign Exercise"          # text that must appear before capturing (proves it rendered)
     selector: '.fi-section'              # OPTIONAL — crop to this element instead of full-page
+    highlight: 'button:text-is("Assign Exercise")'  # OPTIONAL: ring a control inside the crop (string or list)
     auth: false                          # OPTIONAL — skip login for token/magic-link pages (default true)
     output: .gitbook/assets/exercises/episode-exercises-tab.png
 ```
@@ -35,6 +36,7 @@ screenshots:
 | `wait_for` | yes | Text that must be present before the shot fires — the proof the page (or the post-`steps` state) rendered. Pick a stable, specific string. |
 | `output` | yes | PNG path **relative to this repo root** (`.gitbook/assets/<section>/<id>.png`). |
 | `selector` | no | A CSS selector to **crop** to (one element) instead of full-page. |
+| `highlight` | no | A selector (string, or a list) for control(s) to visually **ring** before the shot, baked into the PNG. Resolves plain CSS and the `:has-text()`/`:text-is()` text pseudos. Pair with `selector` (crop to a wrapper) so the ring is not clipped; a list adds numbered badges. |
 | `steps` | no | An ordered list of clicks (text or CSS) to run **after** navigating, **before** the shot — to reach a record/tab the URL can't address. |
 | `auth` | no | `false` = **don't log in**; go straight to `url`. For patient magic-link pages (`/s/{token}/…`). Defaults to `true`. |
 
@@ -43,6 +45,8 @@ screenshots:
 **Full-page (default).** Top-level list/dashboard pages reachable by a static URL after login (`/patients`, `/exercises`). Just `role` + `url` + `wait_for` + `output`. This covers most screenshots.
 
 **Crop (`selector`) — "clean crop + context."** Use to focus on one control or section (a form field, a toolbar, a widget). The harness's `screenshotElement` captures the element's box *tightly*, so **point `selector` at a wrapper that carries context** (a Filament section like `.fi-section`, a field wrapper like `.fi-fo-field-wrp`), **not** a bare `<button>` — a floating button reads as a fragment. There's no auto-padding; the framing comes from the selector you choose.
+
+**Highlight (`highlight`): ring the exact control.** For a "do this" step, ring the button or field the reader should act on, baked into the screenshot (the Tango look). Give a single selector, or a list (a list adds numbered badges, for "1, 2, 3" steps in one shot). It accepts plain CSS and the same `:has-text()`/`:text-is()` text pseudos as `steps`, and picks the smallest matching element so it rings the control, not its container. Because an outline draws outside the element's own box, pair `highlight` with a `selector` that crops to a **wrapper** and ring a **child** inside it, or the ring gets clipped. Example: `selector: '.fi-header'` with `highlight: 'a:has-text("New patient")'` rings the New patient button inside the cropped page header.
 
 **Click-navigation (`steps`).** Record-specific screens (an episode's tab, a widget on one patient's page) live at `/episodes/{uuid}` — a URL the registry can't hardcode and the harness can't look up (it hits prod over HTTP with no DB access). Instead, start at a static list `url` and `steps` your way in: click the `[DEMO]` patient's row, then the tab. Each step is passed to the harness's `click()`, which accepts a visible **text** *or* a **CSS selector** — use CSS when text is ambiguous (the sidebar nav *and* the tab both say "Exercises"; `'button:has-text("Exercises")'` disambiguates). Set `wait_for` to text on the **final** state.
 
