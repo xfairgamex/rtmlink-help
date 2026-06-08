@@ -159,8 +159,7 @@ articles:
   - path: episodes/understanding-episodes.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "Episode model gained exercises_last_viewed_at and a patient-locked exercise relationship (PR #460); verify the episode lifecycle explanation is still accurate"
+    status: review
     priority: 1
     sources:
       - app/Models/Episode.php
@@ -168,7 +167,7 @@ articles:
       - app/Models/EpisodePauseHistory.php
       - app/Services/EpisodeWindowService.php
     screenshots: []
-    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+    last_reviewed_commit: cf3ec337317d9423269683f76833cd3ea12b3724
 
   - path: episodes/enrolling-a-patient.md
     section: episodes
