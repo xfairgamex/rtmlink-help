@@ -34,13 +34,13 @@ You move an episode between these states with the **Pause**, **Resume**, **Disch
 
 ## 30-day billing windows
 
-RTM billing is organized into **30-day windows**. The first window (**Window 1**) starts on the episode's start date and runs for 30 days. When it ends, the next window begins automatically, and so on for as long as the episode is active. You don't create or close windows by hand — RTMLink rolls them forward for you.
+RTM billing is organized into **30-day windows**. The first window (**Window 1**) starts on the episode's start date and runs for 30 days. When it ends, the next window begins automatically, and so on for as long as the episode is active. You don't create or close windows by hand. RTMLink rolls them forward for you.
 
 Each window keeps its own running totals:
 
-- **Interaction days** — how many separate calendar days the patient engaged (answered a survey question or completed a home exercise).
-- **Minutes reviewed** — provider time logged reviewing the patient's data during the window.
-- **Interactive contacts** — phone, video, or in-person contacts recorded.
+- **Interaction days:** how many separate calendar days the patient engaged (answered a survey question or completed a home exercise).
+- **Minutes reviewed:** provider time logged reviewing the patient's data during the window.
+- **Interactive contacts:** phone, video, or in-person contacts recorded.
 
 These totals are what RTM billing codes are measured against. For example, the device-supply codes require a certain number of interaction days within a 30-day window, which is why some billing suggestions only appear *after* a window closes.
 
@@ -50,9 +50,9 @@ These totals are what RTM billing codes are measured against. For example, the d
 
 Think of it as three layers:
 
-1. **Patient** — the person. Created once; reused across episodes.
-2. **Episode** — one course of monitoring for that patient, with a start and end.
-3. **Windows** — the 30-day periods inside an episode that billing is measured against.
+1. **Patient:** the person. Created once; reused across episodes.
+2. **Episode:** one course of monitoring for that patient, with a start and end.
+3. **Windows:** the 30-day periods inside an episode that billing is measured against.
 
 A patient may come back for a second course of care months later; that's a new episode with its own windows, while their original patient record (and history) stays intact.
 
