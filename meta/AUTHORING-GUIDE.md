@@ -250,6 +250,8 @@ The full mechanics — the registry schema (`role`/`url`/`wait_for`/`output` plu
 
 Screenshot **high-value, stable** screens only — dashboards, primary list views, key forms. **Don't** screenshot every field, modal, or anything that changes every release. Most articles need zero. See `meta/SCOPE-AND-TMI.md` for the screenshot filter.
 
+For a **step-by-step** article, a small **cropped, highlighted** shot of the exact control a step acts on (a ringed button or field) is worth far more than another full-page image. Declare it with `selector` (crop to a wrapper) plus `highlight` (ring the control inside it); see `meta/SCREENSHOTS.md`. Use these on the load-bearing "do this" steps, not every one.
+
 ---
 
 ## Quality checklist (run before setting `status: review`)
