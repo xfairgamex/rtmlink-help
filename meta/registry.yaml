@@ -50,6 +50,7 @@ articles:
     sources:
       - CLAUDE.MD
       - docs/V1-SCOPE.md
+      - app/Filament/Clinic/Pages/WelcomeLanding.php   # coverage census: the welcome/landing page belongs to this intro article
     screenshots: []
     last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
 
@@ -572,6 +573,17 @@ articles:
     sources:
       - app/Filament/Clinic/Pages/PendingSummaries.php
       - app/Services/ProviderSummary/**
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: provider-summaries/daily-summary-setup.md
+    section: provider-summaries
+    audience: clinic-staff
+    status: todo
+    note: "Coverage census (2026-06): the DailyPatientSelection page ('Daily Summary Setup' under RTM Operations) had no article. Configures which patients are included in the daily provider summary."
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Pages/DailyPatientSelection.php
     screenshots: []
     last_reviewed_commit: null
 
