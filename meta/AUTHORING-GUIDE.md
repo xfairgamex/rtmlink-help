@@ -215,7 +215,7 @@ Explain statuses, calculations, or concepts the user needs (e.g. what an "intera
 - Tables for comparing options, listing statuses, role permissions.
 - Numbered lists for sequential steps; bullets for non-sequential info.
 - Keep paragraphs short. Clinic staff scan; they don't read.
-- **No em-dashes (—) or en-dashes (–).** They read as AI-written, which undercuts trust. Use commas, parentheses (like this), colons, or semicolons instead, even when the grammar is slightly less polished. A plain hyphen (-) is fine only where a real hyphen belongs (for example, "30-day window").
+- **No em-dashes (—) or en-dashes (–).** They read as AI-written, which undercuts trust. Use commas, parentheses (like this), colons, or semicolons instead, even when the grammar is slightly less polished. A plain hyphen (-) is fine only where a real hyphen belongs (for example, "30-day window"). The most common slip is a definition bullet: write `**Term:** meaning`, never `**Term** (em-dash) meaning`. **CI rejects any changed article that contains one**, so clean the whole file you touch, not just your additions.
 - **Lead with steps, not essays.** One action per numbered line. If you catch yourself writing a paragraph that explains three things, split it into three steps. Put the *why* in a one-line aside or a short blockquote, never a wall of prose.
 
 ### Do / Don't
@@ -263,6 +263,7 @@ For a **step-by-step** article, a small **cropped, highlighted** shot of the exa
 - [ ] Status values match the actual enum/constant definitions.
 - [ ] Any stated limits (character counts, required fields) match the migration/validation.
 - [ ] No developer jargon slipped through (scan for the banned words).
+- [ ] No em-dashes or en-dashes anywhere in the file: `grep -nE '—|–'` returns nothing (CI blocks any changed article that has one). Clean the whole file you touched, not just your edits.
 - [ ] Article follows the template; paragraphs are short and scannable.
 - [ ] Screenshots (if any) are declared in `registry.yaml`, generated from the **demo** tenant, and referenced with a correct relative path.
 - [ ] Related articles are linked.

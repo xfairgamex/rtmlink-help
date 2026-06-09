@@ -1,0 +1,54 @@
+name: Style
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  no-em-dashes:
+    name: No em-dashes in changed articles
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check changed published Markdown for em-dashes
+        run: |
+          # GITHUB_BASE_REF is the PR's target branch (main/dev), provided by GitHub as
+          # a plain shell env var. No ${{ }} interpolation is used anywhere here, so no
+          # untrusted PR input (title, branch name, body) can reach the shell.
+          git fetch --no-tags origin "$GITHUB_BASE_REF"
+          base="$(git rev-parse FETCH_HEAD)"
+
+          # Only published article Markdown that THIS PR changed; skip meta/, README, SUMMARY.
+          # "Touched = clean": editing an article means leaving it fully em-dash-free, while
+          # older articles nobody touched are grandfathered until they are next refreshed.
+          mapfile -t files < <(
+            git diff --name-only --diff-filter=d "$base...HEAD" -- \
+              '*.md' ':(exclude)meta/**' ':(exclude)README.md' ':(exclude)SUMMARY.md'
+          )
+
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No published Markdown changed in this PR."
+            exit 0
+          fi
+
+          status=0
+          for f in "${files[@]}"; do
+            if grep -nP '\x{2014}|\x{2013}' "$f"; then
+              echo "::error file=$f::Em-dash or en-dash found. Use a comma, parentheses, a colon, or a semicolon instead. See meta/AUTHORING-GUIDE.md."
+              status=1
+            fi
+          done
+
+          if [ "$status" -ne 0 ]; then
+            echo ""
+            echo "Published help articles must not contain em-dashes (U+2014) or en-dashes (U+2013)."
+            echo "It is the house voice rule (it reads as machine-written). Touch an article, leave it fully clean."
+            exit 1
+          fi
+
+          echo "No em-dashes in changed articles."
