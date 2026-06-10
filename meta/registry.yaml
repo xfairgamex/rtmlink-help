@@ -201,8 +201,7 @@ articles:
   - path: episodes/managing-episode-status.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "EpisodeResource changed across PRs #460 and #494; Episode model gained exercises_last_viewed_at; verify the status actions (pause/resume/discharge) are unchanged"
+    status: review
     priority: 1
     sources:
       - app/Services/EpisodeLifecycleService.php
@@ -210,7 +209,7 @@ articles:
       - app/Models/EpisodePauseHistory.php
       - app/Filament/Clinic/Resources/EpisodeResource.php
     screenshots: []
-    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+    last_reviewed_commit: 8947296fb233d31b71cf8e051a2fea204031f348
 
   - path: episodes/episode-search-and-filters.md
     section: episodes
