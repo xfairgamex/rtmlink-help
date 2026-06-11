@@ -1,5 +1,5 @@
 ---
-description: A tour of the episode detail page in RTMLink: the patient summary, current 30-day window progress, survey settings, responses, time tracking, billing status, and the four detail tabs at the bottom.
+description: "A tour of the episode detail page in RTMLink: the patient summary, current 30-day window progress, survey settings, responses, time tracking, billing status, and the four detail tabs at the bottom."
 ---
 
 # Viewing episode details
