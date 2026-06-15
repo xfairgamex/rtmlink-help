@@ -230,14 +230,13 @@ articles:
   - path: episodes/episode-actions.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "EpisodeResource frequency options now include every_3_days and every_7_days via SurveyFrequency enum (PR #494)"
+    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
       - app/Filament/Clinic/Resources/EpisodeResource/Pages/**
     screenshots: []
-    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+    last_reviewed_commit: 3d0da0988db6a51d06368409bb2a9489d09e146f
 
   # === 4. Surveys (Phase 1) ================================================
   - path: surveys/understanding-surveys.md
