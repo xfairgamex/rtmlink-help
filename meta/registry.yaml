@@ -50,6 +50,7 @@ articles:
     sources:
       - CLAUDE.MD
       - docs/V1-SCOPE.md
+      - app/Filament/Clinic/Pages/WelcomeLanding.php   # coverage census: the welcome/landing page belongs to this intro article
     screenshots: []
     last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
 
@@ -81,7 +82,8 @@ articles:
   - path: getting-started/navigating-the-dashboard.md
     section: getting-started
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "\"Unread Surveys\" KPI now returns real counts — was hardcoded 0; ClinicDashboardMetrics.unreadSurveysCount() wired to UnreadSurveyService (PR #535)"
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Dashboard.php
@@ -186,7 +188,8 @@ articles:
   - path: episodes/viewing-episode-details.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "Window and BillingClaim detail modals now populated (were blank) (PR #486); BillingSuggestionsRelationManager added to episode view; 'Add Claim' button added to episode billing tab for manual claim entry (PR #514); copy-to-clipboard button added next to patient name in episode heading (PR #537)"
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/Pages/ViewEpisode.php
@@ -214,7 +217,7 @@ articles:
     section: episodes
     audience: clinic-staff
     status: stale
-    note: "SurveyFrequency enum gained every_3_days and every_7_days (PR #494); verify the frequency filter options in the episode list"
+    note: "SurveyFrequency enum gained every_3_days and every_7_days (PR #494); verify the frequency filter options in the episode list; Patient column now sorts by last name then first name (sort was broken before, PR #530)"
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/Pages/ListEpisodes.php
@@ -574,12 +577,23 @@ articles:
     screenshots: []
     last_reviewed_commit: null
 
+  - path: provider-summaries/daily-summary-setup.md
+    section: provider-summaries
+    audience: clinic-staff
+    status: todo
+    note: "Coverage census (2026-06): the DailyPatientSelection page ('Daily Summary Setup' under RTM Operations) had no article. Configures which patients are included in the daily provider summary."
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Pages/DailyPatientSelection.php
+    screenshots: []
+    last_reviewed_commit: null
+
   # === 9. Billing & Claims (Phase 2) =======================================
   - path: billing/understanding-rtm-billing.md
     section: billing
     audience: clinic-staff
     status: stale
-    note: "BillingSuggestion gained a source field (system vs. manual); manual claims excluded from auto-regeneration sweep and never overwritten by the system — document the manual claim concept (PR #514)"
+    note: "BillingSuggestion gained a source field (system vs. manual); manual claims excluded from auto-regeneration sweep and never overwritten by the system — document the manual claim concept (PR #514); PRs #534/#538 introduced claim grouping: 98980+98981 lines are now one BillingClaim record submitted together — document what 'one row per claim' means and how claim totals work"
     priority: 2
     sources:
       - app/Models/BillingSuggestion.php
@@ -595,7 +609,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: stale
-    note: "Manual claim entry ('Add Claim' button) added to episode billing tab (PR #514); 'Change Status' corrective action added to table row menu and view-page header (PR #511); 'Source: Manual entry' badge shown on manually-created claims"
+    note: "Manual claim entry ('Add Claim' button) added to episode billing tab (PR #514); 'Change Status' corrective action added to table row menu and view-page header (PR #511); 'Source: Manual entry' badge shown on manually-created claims; PRs #534/#538: table now shows ONE row per claim (98980+98981 combined), tab badges count claims, 'Codes on This Claim' summary added to view page, clinical note and generate-note actions hidden on 98981 add-on lines"
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/**
@@ -609,7 +623,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: stale
-    note: "'Change Status' action added as a corrective path: lets users with billing.approve move a claim to any status (Ready to Bill / Billed / Rejected) regardless of current state; available in table row menu and view-page header (PR #511)"
+    note: "'Change Status' action added as a corrective path: lets users with billing.approve move a claim to any status (Ready to Bill / Billed / Rejected) regardless of current state; available in table row menu and view-page header (PR #511); PR #534: Mark Billed and Reject now operate claim-wide — all CPT codes on the claim are processed together; confirmation modal names all affected codes"
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/Actions/**
@@ -634,7 +648,8 @@ articles:
   - path: billing/exporting-to-drchrono.md
     section: billing
     audience: clinic-staff
-    status: todo
+    status: stale
+    note: "PR #534: DrChrono export is now claim-scoped — one DrChrono appointment per claim, all CPT lines (98980+98981) linked to the same appointment; DrChronoAppointmentExportService refactored accordingly; also CSV export now includes a Claim ID column (BillingExportService)"
     priority: 2
     sources:
       - app/Services/BillingExportService.php
@@ -685,7 +700,7 @@ articles:
     priority: 3
     sources:
       - app/Services/Ehr/DrChronoAppointmentSyncService.php
-      - app/Filament/Imports/**
+      - app/Filament/Clinic/Imports/**
     screenshots: []
     last_reviewed_commit: null
 
@@ -1020,7 +1035,7 @@ articles:
     section: workflows
     audience: clinic-staff
     status: stale
-    note: "Manual claim entry is now a step in the billing workflow; billing staff can add claims the system did not derive automatically via 'Add Claim' on the episode billing tab (PR #514)"
+    note: "Manual claim entry is now a step in the billing workflow; billing staff can add claims the system did not derive automatically via 'Add Claim' on the episode billing tab (PR #514); PRs #534/#538: billing table now shows one row per claim; CSV export adds Claim ID column; Mark Billed and Reject act on all lines of a claim at once — update workflow description to reflect claim-level operations"
     priority: 4
     sources:
       - app/Services/BillingSuggestionGenerationService.php

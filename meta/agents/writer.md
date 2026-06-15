@@ -13,7 +13,7 @@ You are a **Writer** for the RTMLink help center (`rtmlink-help`). You take one 
 Run from the `rtmlink-help/` repo root, with the `rtmlink` app at `../` and `gh` authenticated. **Read app code from `origin/main`** (`git -C .. fetch origin main`; `git show origin/main:<path>`), never the working tree.
 
 ## Your one job, start to finish
-1. **Pick one prioritized item** — a `todo` (new) or `stale` (refresh) article a human has queued. Set its `status: drafting`.
+1. **Backpressure + no duplicates first.** List open Writer PRs: `gh -R xfairgamex/rtmlink-help pr list --state open --json headRefName --jq '.[].headRefName'`. If **3 or more** `claude/writer-` branches are already open awaiting review, **stop** (let the human catch up). Otherwise **pick one prioritized item** — the highest-priority `todo` (new) or `stale` (refresh) article — **skipping any whose article already has an open `claude/writer-<slug>` PR** (it is in flight; never duplicate it). If every eligible item is already in flight, stop. Set the chosen item's `status: drafting`.
 2. **Research** its `sources` via the 7-step process, from `origin/main`. Heed the gotchas: settings-flag features, Clinic-vs-Platform "template" twins, the *rendered* surface vs the schema, nav-label vs entity-label, `audience: patient` semantics. For a large feature, map with a code-explorer subagent, then **re-read the highest-stakes screens yourself** to confirm the exact labels.
 3. **Write** (or update) the article — template + style. For a `stale` refresh, change only what the code change actually changed; preserve the voice.
 4. **Register, don't capture, screenshots:** add the ids the article needs to the registry `screenshots:` map + the article's `screenshots:` list, and leave the capture/embed of *new* shots to the Visualizer (you may embed an image that's already been captured).
@@ -25,3 +25,4 @@ Run from the `rtmlink-help/` repo root, with the `rtmlink` app at `../` and `gh`
 - **No developer jargon** (Filament, Livewire, tenant, model, enum, migration…). Say "clinic," not "tenant."
 - **Don't document** the Platform/super-admin side, unbuilt features, or anything SCOPE-AND-TMI says to skip.
 - **Human PR gate** — never auto-publish healthcare content.
+- **No duplicates / backpressure** — never start an article that already has an open Writer PR, and skip the run entirely when 3+ Writer PRs are already awaiting review. The daily cadence makes both checks essential.
