@@ -216,6 +216,7 @@ Explain statuses, calculations, or concepts the user needs (e.g. what an "intera
 - Numbered lists for sequential steps; bullets for non-sequential info.
 - Keep paragraphs short. Clinic staff scan; they don't read.
 - **No em-dashes (—) or en-dashes (–).** They read as AI-written, which undercuts trust. Use commas, parentheses (like this), colons, or semicolons instead, even when the grammar is slightly less polished. A plain hyphen (-) is fine only where a real hyphen belongs (for example, "30-day window"). The most common slip is a definition bullet: write `**Term:** meaning`, never `**Term** (em-dash) meaning`. **CI rejects any changed article that contains one**, so clean the whole file you touch, not just your additions.
+- **Frontmatter must be valid YAML.** GitBook parses the `--- ... ---` block, so an unquoted colon breaks the publish (CI rejects it too). If a `description` contains a colon, quote the whole value: `description: "A tour of X: the details"`. This bites most right after you replace a description's em-dash with a colon (the rule above), so quote it then.
 - **Lead with steps, not essays.** One action per numbered line. If you catch yourself writing a paragraph that explains three things, split it into three steps. Put the *why* in a one-line aside or a short blockquote, never a wall of prose.
 
 ### Do / Don't
