@@ -57,7 +57,8 @@ articles:
   - path: getting-started/logging-in-and-account-setup.md
     section: getting-started
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "Self-service registration and email verification removed — accounts provisioned by admins only via welcome-email set-password flow (PR #567); /signin now redirects to /login — old clinic-finder page removed, central login routes directly to each clinic (PR #544); deactivated accounts get mid-session logout with 'Your account has been deactivated.' flash (PR #545)"
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Auth/**
@@ -70,7 +71,8 @@ articles:
   - path: getting-started/understanding-your-role.md
     section: getting-started
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "User.canAccessPanel() now blocks deactivated users at login time (returns false if !isActive()); FilamentClinicAuth middleware also ends live sessions on deactivation — inactive account is now a user-visible access gate independent of role (PR #545)"
     priority: 1
     sources:
       - app/Models/User.php
@@ -83,7 +85,7 @@ articles:
     section: getting-started
     audience: clinic-staff
     status: stale
-    note: "\"Unread Surveys\" KPI now returns real counts — was hardcoded 0; ClinicDashboardMetrics.unreadSurveysCount() wired to UnreadSurveyService (PR #535)"
+    note: "\"Unread Surveys\" KPI now returns real counts — was hardcoded 0; ClinicDashboardMetrics.unreadSurveysCount() wired to UnreadSurveyService (PR #535); dashboard page heading changed from '{name} Dashboard' to '{name}'s RTMLink Dashboard' (PR #587)"
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Dashboard.php
