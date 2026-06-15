@@ -223,7 +223,7 @@ articles:
       - app/Filament/Clinic/Resources/EpisodeResource.php
       - app/Services/NeedsAttentionService.php
     screenshots: [episode-list]
-    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+    last_reviewed_commit: ed0b83bafa30dacf292d77cffd2f168d4cbd9d8f
 
   - path: episodes/episode-actions.md
     section: episodes
