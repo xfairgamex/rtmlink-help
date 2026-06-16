@@ -57,8 +57,7 @@ articles:
   - path: getting-started/logging-in-and-account-setup.md
     section: getting-started
     audience: clinic-staff
-    status: stale
-    note: "Self-service registration and email verification removed — accounts provisioned by admins only via welcome-email set-password flow (PR #567); /signin now redirects to /login — old clinic-finder page removed, central login routes directly to each clinic (PR #544); deactivated accounts get mid-session logout with 'Your account has been deactivated.' flash (PR #545); login page now shows 'Welcome back' heading + 'Sign in to your RTMLink dashboard' subheading; new per-clinic forgot-password page (RequestPasswordReset.php) with 'Forgot password' heading, 'Enter the email address associated with your account' subheading, 'Email password reset link' button label, and back-to-login link relocated below the form (PR #588)"
+    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Auth/**
@@ -66,7 +65,7 @@ articles:
       - app/Actions/Fortify/**
       - config/fortify.php
     screenshots: []
-    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+    last_reviewed_commit: 5be1c377f2dcdbb8d3a8b1e8eda90974a01e12d2
 
   - path: getting-started/understanding-your-role.md
     section: getting-started
