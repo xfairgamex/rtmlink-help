@@ -16,12 +16,12 @@ Start with **Getting Started** in the sidebar. It covers signing in, finding you
 
 Use the sidebar to jump to a topic:
 
-* **Getting Started** — sign in, the dashboard, and your role.
-* **Patients** — adding patients, consent, and keeping records up to date.
-* **Episodes** — enrolling a patient in RTM, pausing, and closing.
-* **Surveys** — sending check-ins, reading responses, and what counts toward billing.
-* **Exercises** — assigning home-exercise programs and tracking completion.
-* **Messages, Billing, Settings, and more** — everything else your clinic manages day to day.
+* **Getting Started**: sign in, the dashboard, and your role.
+* **Patients**: adding patients, consent, and keeping records up to date.
+* **Episodes**: enrolling a patient in RTM, pausing, and closing.
+* **Surveys**: sending check-ins, reading responses, and what counts toward billing.
+* **Exercises**: assigning home-exercise programs and tracking completion.
+* **Messages, Billing, Settings, and more**: everything else your clinic manages day to day.
 
 ## Can't find an answer?
 
