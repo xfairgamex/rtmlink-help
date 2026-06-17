@@ -71,15 +71,14 @@ articles:
   - path: getting-started/understanding-your-role.md
     section: getting-started
     audience: clinic-staff
-    status: stale
-    note: "User.canAccessPanel() now blocks deactivated users at login time (returns false if !isActive()); FilamentClinicAuth middleware also ends live sessions on deactivation — inactive account is now a user-visible access gate independent of role (PR #545)"
+    status: review
     priority: 1
     sources:
       - app/Models/User.php
       - database/seeders/RolesSeeder.php
       - app/Policies/**
     screenshots: []
-    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+    last_reviewed_commit: 5b90ad6aed193bd86c67de3bf8cfecc05eb752ff
 
   - path: getting-started/navigating-the-dashboard.md
     section: getting-started
