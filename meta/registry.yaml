@@ -57,7 +57,8 @@ articles:
   - path: getting-started/logging-in-and-account-setup.md
     section: getting-started
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "Post-login redirect changed from '/' to '/dashboard' (fortify.home); the marketing root '/' is now public to all visitors; after login users are dispatched to their clinic or picker via DashboardRedirectController (PR #612/Bundle 46)"
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Auth/**
@@ -84,7 +85,7 @@ articles:
     section: getting-started
     audience: clinic-staff
     status: stale
-    note: "\"Unread Surveys\" KPI now returns real counts — was hardcoded 0; ClinicDashboardMetrics.unreadSurveysCount() wired to UnreadSurveyService (PR #535); dashboard page heading changed from '{name} Dashboard' to '{name}'s RTMLink Dashboard' (PR #587)"
+    note: "\"Unread Surveys\" KPI now returns real counts — was hardcoded 0; ClinicDashboardMetrics.unreadSurveysCount() wired to UnreadSurveyService (PR #535); dashboard page heading changed from '{name} Dashboard' to '{name}'s RTMLink Dashboard' (PR #587); NeedsAttentionWidget and QuickActionsWidget removed (PRs #628/#620); replaced by two role-segmented widgets: ProviderActionFeedWidget (providers only — surveys/HEPs to review, claims to sign, near-billable nudges, drop-offs scoped to assigned patients, PR #617/Bundle 50) and ClinicOwnerInsightsWidget (owners/staff/billing — revenue opportunities, claims awaiting sign-off, patient drop-offs with quick Pause/Stop actions, revenue values shown to owners/billing only, drill-down by provider, PR #620/Bundle 51); 'Send reminder' on drop-off rows now opens the patient messaging composer (PR #622)"
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Dashboard.php
@@ -147,7 +148,8 @@ articles:
   - path: patients/messaging-a-patient.md
     section: patients
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "MessagingDrawer gained markAsUnread() — staff can mark a conversation unread directly from the drawer, which closes it and resurfaces the thread as unread in the Messages inbox (Bundle 55, PR #621)"
     priority: 1
     sources:
       - app/Livewire/Clinic/MessagingDrawer.php
@@ -414,6 +416,7 @@ articles:
     section: messaging
     audience: clinic-staff
     status: todo
+    note: "Bundle 55 (PR #621): conversations can be marked as unread from both the Messages Center (markAsUnread clears thread selection and reloads inbox with unread badge) and the messaging drawer (markAsUnread closes drawer)"
     priority: 2
     sources:
       - app/Filament/Clinic/Pages/MessagesCenter.php
@@ -427,6 +430,7 @@ articles:
     section: messaging
     audience: clinic-staff
     status: todo
+    note: "Bundle 55 (PR #621): mark-as-unread action added to conversation threads"
     priority: 2
     sources:
       - app/Livewire/Clinic/MessagesCenter.php
@@ -440,6 +444,7 @@ articles:
     section: messaging
     audience: clinic-staff
     status: todo
+    note: "Bundle 55 (PR #621): MessagingDrawer gained a mark-as-unread button that closes the drawer and resurfaces the conversation as unread"
     priority: 2
     sources:
       - app/Livewire/Clinic/MessagingDrawer.php
@@ -454,6 +459,7 @@ articles:
     section: messaging
     audience: clinic-staff
     status: todo
+    note: "Bundle 55 (PR #621): markAsUnread() lets staff flag a conversation for follow-up without losing it in the inbox"
     priority: 2
     sources:
       - app/Models/Conversation.php
@@ -579,8 +585,8 @@ articles:
   - path: provider-summaries/daily-summary-setup.md
     section: provider-summaries
     audience: clinic-staff
-    status: todo
-    note: "Coverage census (2026-06): the DailyPatientSelection page ('Daily Summary Setup' under RTM Operations) had no article. Configures which patients are included in the daily provider summary."
+    status: blocked
+    note: "REMOVED: DailyPatientSelection page (PR #624), model, view, and database table (PR #629) were all deleted as 'orphaned'; this entry should be removed from the registry — the feature no longer exists and the article was never written"
     priority: 2
     sources:
       - app/Filament/Clinic/Pages/DailyPatientSelection.php
@@ -608,7 +614,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: stale
-    note: "Manual claim entry ('Add Claim' button) added to episode billing tab (PR #514); 'Change Status' corrective action added to table row menu and view-page header (PR #511); 'Source: Manual entry' badge shown on manually-created claims; PRs #534/#538: table now shows ONE row per claim (98980+98981 combined), tab badges count claims, 'Codes on This Claim' summary added to view page, clinical note and generate-note actions hidden on 98981 add-on lines"
+    note: "Manual claim entry ('Add Claim' button) added to episode billing tab (PR #514); 'Change Status' corrective action added to table row menu and view-page header (PR #511); 'Source: Manual entry' badge shown on manually-created claims; PRs #534/#538: table now shows ONE row per claim (98980+98981 combined), tab badges count claims, 'Codes on This Claim' summary added to view page, clinical note and generate-note actions hidden on 98981 add-on lines; PR #618: providers can now view the billing pages (BillingAccess::canViewBilling() includes the provider role) and approve/export claims scoped to their own assigned patients' episodes"
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/**
@@ -622,7 +628,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: stale
-    note: "'Change Status' action added as a corrective path: lets users with billing.approve move a claim to any status (Ready to Bill / Billed / Rejected) regardless of current state; available in table row menu and view-page header (PR #511); PR #534: Mark Billed and Reject now operate claim-wide — all CPT codes on the claim are processed together; confirmation modal names all affected codes"
+    note: "'Change Status' action added as a corrective path: lets users with billing.approve move a claim to any status (Ready to Bill / Billed / Rejected) regardless of current state; available in table row menu and view-page header (PR #511); PR #534: Mark Billed and Reject now operate claim-wide — all CPT codes on the claim are processed together; confirmation modal names all affected codes; PR #618: providers can now approve/sign/reject claims for their own assigned patients' episodes (BillingAccess::canApprove() gates per-record actions by assigned_provider_id)"
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/Actions/**
@@ -635,6 +641,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: todo
+    note: "PR #618: providers can now sign clinical notes for claims on their own assigned patients' episodes (BillingAccess::canApprove() gate, scoped to assigned_provider_id)"
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ClinicalNoteTemplates/**
@@ -648,7 +655,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: stale
-    note: "PR #534: DrChrono export is now claim-scoped — one DrChrono appointment per claim, all CPT lines (98980+98981) linked to the same appointment; DrChronoAppointmentExportService refactored accordingly; also CSV export now includes a Claim ID column (BillingExportService)"
+    note: "PR #534: DrChrono export is now claim-scoped — one DrChrono appointment per claim, all CPT lines (98980+98981) linked to the same appointment; DrChronoAppointmentExportService refactored accordingly; also CSV export now includes a Claim ID column (BillingExportService); PR #618: providers can now send/delete/link-appointment on claims for their own assigned patients (BillingAccess::canExport() gate)"
     priority: 2
     sources:
       - app/Services/BillingExportService.php
@@ -870,6 +877,7 @@ articles:
     section: settings
     audience: clinic-staff
     status: todo
+    note: "Bundle 56 (PR #615): ClinicSettings gained a 'Revenue Opportunity Nudges' section with sensitivity select (focused/balanced/all) and include-check-in-nudges toggle (98985/98977 nudges per 30-day window); controls the near-billable signals on the dashboard"
     priority: 3
     sources:
       - app/Filament/Clinic/Pages/BillingSettings.php
@@ -1105,6 +1113,7 @@ articles:
     section: reference
     audience: clinic-staff
     status: todo
+    note: "PR #618: providers now have billing-view access (can open billing pages, previously owner/billing_staff only) and can approve/sign/export claims scoped to their own assigned patients; update the role matrix when drafted"
     priority: 4
     sources:
       - database/seeders/RolesSeeder.php
