@@ -147,8 +147,7 @@ articles:
   - path: patients/messaging-a-patient.md
     section: patients
     audience: clinic-staff
-    status: stale
-    note: "MessagingDrawer gained markAsUnread() — staff can mark a conversation unread directly from the drawer, which closes it and resurfaces the thread as unread in the Messages inbox (Bundle 55, PR #621)"
+    status: review
     priority: 1
     sources:
       - app/Livewire/Clinic/MessagingDrawer.php
@@ -157,7 +156,7 @@ articles:
       - app/Enums/Channel.php
       - app/Services/Messaging/**
     screenshots: []
-    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+    last_reviewed_commit: 3c008f525f885bfac3eb94e759a0193a9634819f
 
   # === 3. Episodes (Phase 1) ===============================================
   - path: episodes/understanding-episodes.md
