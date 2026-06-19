@@ -83,17 +83,17 @@ articles:
   - path: getting-started/navigating-the-dashboard.md
     section: getting-started
     audience: clinic-staff
-    status: stale
+    status: review
     note: "\"Unread Surveys\" KPI now returns real counts — was hardcoded 0; ClinicDashboardMetrics.unreadSurveysCount() wired to UnreadSurveyService (PR #535); dashboard page heading changed from '{name} Dashboard' to '{name}'s RTMLink Dashboard' (PR #587); NeedsAttentionWidget and QuickActionsWidget removed (PRs #628/#620); replaced by two role-segmented widgets: ProviderActionFeedWidget (providers only — surveys/HEPs to review, claims to sign, near-billable nudges, drop-offs scoped to assigned patients, PR #617/Bundle 50) and ClinicOwnerInsightsWidget (owners/staff/billing — revenue opportunities, claims awaiting sign-off, patient drop-offs with quick Pause/Stop actions, revenue values shown to owners/billing only, drill-down by provider, PR #620/Bundle 51); 'Send reminder' on drop-off rows now opens the patient messaging composer (PR #622)"
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Dashboard.php
       - app/Filament/Clinic/Widgets/**
       - app/Services/ClinicDashboardMetrics.php
-      - app/Services/ClinicDashboardAttentionService.php
-      - app/Services/NeedsAttentionService.php
+      - app/Services/ProviderActionFeedService.php
+      - app/Services/ClinicOwnerInsightsService.php
     screenshots: [dashboard-overview]
-    last_reviewed_commit: c2881dc17d01c096c7182c17d3fce18a1afe21e3
+    last_reviewed_commit: 4638203313606f5c0251fdf46a6e2ca5a90e6498
 
   # === 2. Patients (Phase 1) ===============================================
   - path: patients/viewing-and-searching-patients.md
