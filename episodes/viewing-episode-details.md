@@ -12,6 +12,13 @@ Click **Episodes** in the left sidebar to see your episodes, then click a patien
 
 ![The Episodes list: each row is one patient's RTM episode. Click a name to open it.](../.gitbook/assets/episodes/episode-list.png)
 
+## The page heading
+
+At the top of the page you'll see the patient's name, followed by a status badge (**Active**, **Paused**, **Completed**, or **Discharged**) so you can tell at a glance where the episode stands.
+
+- Click the copy icon next to the name to copy the patient's full name to your clipboard (handy when you're looking them up in another system or reading it to someone over the phone).
+- The buttons across the top let you act on the episode: start a time tracking timer, message the patient, resume it if it's paused, and edit its details. See [Episode actions](episode-actions.md).
+
 ## The summary rail
 
 Down the side of the page you'll find at-a-glance cards:
