@@ -189,8 +189,7 @@ articles:
   - path: episodes/viewing-episode-details.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "Window and BillingClaim detail modals now populated (were blank) (PR #486); BillingSuggestionsRelationManager added to episode view; 'Add Claim' button added to episode billing tab for manual claim entry (PR #514); copy-to-clipboard button added next to patient name in episode heading (PR #537)"
+    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/Pages/ViewEpisode.php
@@ -198,7 +197,7 @@ articles:
       - app/Filament/Clinic/Resources/EpisodeResource/Widgets/**
       - app/Livewire/Clinic/Episodes/**
     screenshots: [episode-list]
-    last_reviewed_commit: dbfb29ffcb32792c9fe23bd106a03918d4ee6f82
+    last_reviewed_commit: 46fb3b7f5cc236473f7846a799a24a776c5fcb9a
 
   - path: episodes/managing-episode-status.md
     section: episodes
