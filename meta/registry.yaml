@@ -58,7 +58,7 @@ articles:
     section: getting-started
     audience: clinic-staff
     status: stale
-    note: "Post-login redirect changed from '/' to '/dashboard' (fortify.home); the marketing root '/' is now public to all visitors; after login users are dispatched to their clinic or picker via DashboardRedirectController (PR #612/Bundle 46)"
+    note: "Post-login redirect changed from '/' to '/dashboard' (fortify.home); the marketing root '/' is now public to all visitors; after login users are dispatched to their clinic or picker via DashboardRedirectController (PR #612/Bundle 46); PR #683: post-login redirect now honors a safe 'intended' destination (e.g. the 'Reply in RTMLink' support deep link) instead of always forcing the dashboard — it still guards against the /login loop and open-redirects, but otherwise lands you on the deep-linked page after signing in"
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Auth/**
@@ -1090,6 +1090,21 @@ articles:
       - CLAUDE.MD
       - app/Models/Episode.php
       - app/Models/BillingSuggestion.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 20. Support Portal (Phase 2) ========================================
+  - path: support/contacting-support.md
+    section: support
+    audience: clinic-staff
+    status: todo
+    note: "NEW clinic surface, no prior article (Bundle 42 — PRs #655/#658/#659/#661/#666/#679): a 'Support' item in the clinic panel (lifebuoy icon, slug 'support', nav sort 90) where clinic users open and track their own support tickets without sending email. They create a ticket (subject + a 'How can we help?' rich-text body), optionally CC colleagues at creation, reply on the thread, and see status (open/solved). Visibility is scoped per user — SupportTicket has NO tenant global scope; getEloquentQuery routes every row through SupportTicket::scopeForClinicUser, so owners see the whole clinic's tickets while staff/providers see only tickets they're involved in. Replies surface via the clinic panel's in-app notification bell (ClinicPanelProvider->databaseNotifications(), written by SupportNotificationService::notifyPortalReply — PR #670). SCOPE-AND-TMI: earns an article (Tier 1) — getting help is a distinct task and the CC / per-user visibility / status lifecycle aren't obvious from the screen. NOTE for Writer: the support-agent API, inbound-email handling, PHI tokenizer, help-article sync, and the Platform-panel ticket view are all internal/out-of-scope — document only the clinic Support portal. Verify all labels against origin/main."
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Resources/SupportTicketResource.php
+      - app/Filament/Clinic/Resources/SupportTicketResource/**
+      - app/Models/SupportTicket.php
+      - app/Enums/SupportTicketStatus.php
     screenshots: []
     last_reviewed_commit: null
 
