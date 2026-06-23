@@ -1098,13 +1098,16 @@ articles:
     section: support
     audience: clinic-staff
     status: todo
-    note: "NEW clinic surface, no prior article (Bundle 42 — PRs #655/#658/#659/#661/#666/#679): a 'Support' item in the clinic panel (lifebuoy icon, slug 'support', nav sort 90) where clinic users open and track their own support tickets without sending email. They create a ticket (subject + a 'How can we help?' rich-text body), optionally CC colleagues at creation, reply on the thread, and see status (open/solved). Visibility is scoped per user — SupportTicket has NO tenant global scope; getEloquentQuery routes every row through SupportTicket::scopeForClinicUser, so owners see the whole clinic's tickets while staff/providers see only tickets they're involved in. Replies surface via the clinic panel's in-app notification bell (ClinicPanelProvider->databaseNotifications(), written by SupportNotificationService::notifyPortalReply — PR #670). SCOPE-AND-TMI: earns an article (Tier 1) — getting help is a distinct task and the CC / per-user visibility / status lifecycle aren't obvious from the screen. NOTE for Writer: the support-agent API, inbound-email handling, PHI tokenizer, help-article sync, and the Platform-panel ticket view are all internal/out-of-scope — document only the clinic Support portal. Verify all labels against origin/main."
+    note: "NEW 'getting help' surface, no prior article (Bundle 42 + Bundle 75). ENTRY POINT is the topbar 'Help' menu (App\\Livewire\\Clinic\\HelpMenu, rendered just before the user menu) — Bundle 75 (PRs #689/#691) replaced the old sidebar 'Support' link: SupportTicketResource::shouldRegisterNavigation() now returns false (the portal's routes/pages still exist, only the sidebar entry is hidden). The Help dropdown offers: a link out to this help center (services.help.base_url), the support-ticket portal (badged with the user's 'Awaiting reply' = Pending count), 'New ticket', and 'Schedule a call' — a slideover that books a support call via NeetoCal in the clinic's timezone, shown only when configured (SupportCallBookingService::isAvailable). The ticket portal itself (Bundle 42 — PRs #655/#658/#659/#661/#666/#679): clinic users open and track their own tickets without email — create (subject + 'How can we help?' rich body), CC colleagues at creation, reply on the thread, mark solved; replies surface via the in-app notification bell (ClinicPanelProvider->databaseNotifications(), SupportNotificationService::notifyPortalReply — PR #670). Visibility is scoped per user — SupportTicket has NO tenant global scope; scopeForClinicUser routes every row so owners see the whole clinic's tickets while staff/providers see only tickets they're involved in. SCOPE-AND-TMI: Tier-1 article. NOTE for Writer: document only the clinic Help menu + ticket portal + schedule-a-call; the support-agent API, inbound email, PHI tokenizer, help-article sync, and Platform-panel ticket view are internal/out-of-scope. Verify all labels against origin/main."
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/SupportTicketResource.php
       - app/Filament/Clinic/Resources/SupportTicketResource/**
+      - app/Livewire/Clinic/HelpMenu.php
+      - resources/views/livewire/clinic/help-menu.blade.php
       - app/Models/SupportTicket.php
       - app/Enums/SupportTicketStatus.php
+      - app/Services/Support/SupportCallBookingService.php
     screenshots: []
     last_reviewed_commit: null
 
