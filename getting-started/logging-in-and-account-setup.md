@@ -12,9 +12,19 @@ RTMLink runs in your web browser (nothing to install). The easiest place to sign
 
 `rtmlink.com/login`
 
-Enter your email and password, then click **Log in**. If your account belongs to one clinic, you'll be forwarded to your clinic's dashboard automatically. You can also sign in directly from your clinic's own web address (for example, `yourclinic.rtmlink.com`), which takes you straight to your clinic's login page. Either path works. Once you're in, bookmark your clinic's dashboard URL so you can jump back without going through the login page each time.
+Enter your email and password, then click **Log in**. You can also sign in directly from your clinic's own web address (for example, `yourclinic.rtmlink.com`), which takes you straight to your clinic's login page. Either path works. Once you're in, bookmark your clinic's dashboard URL so you can jump back without going through the login page each time.
 
 > Your clinic administrator can give you the exact clinic address if you need it.
+
+## What happens right after you sign in
+
+When you sign in from the main `rtmlink.com` page, RTMLink sends you to the right place automatically:
+
+- **You belong to one clinic:** you're forwarded straight to that clinic's dashboard.
+- **You belong to more than one clinic:** you'll see a **Choose your clinic** page listing the clinics your account can access (your main one is tagged **Primary**). Click a clinic to continue.
+- **Your account isn't linked to a clinic yet:** you'll see a page headed **Your account is not linked to a clinic yet**. Contact your clinic administrator or RTMLink support to be added.
+
+When you sign in from your clinic's own web address instead, you go straight to that clinic's dashboard.
 
 ## Setting up your account the first time
 

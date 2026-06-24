@@ -57,8 +57,7 @@ articles:
   - path: getting-started/logging-in-and-account-setup.md
     section: getting-started
     audience: clinic-staff
-    status: stale
-    note: "Post-login redirect changed from '/' to '/dashboard' (fortify.home); the marketing root '/' is now public to all visitors; after login users are dispatched to their clinic or picker via DashboardRedirectController (PR #612/Bundle 46)"
+    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Auth/**
@@ -66,7 +65,7 @@ articles:
       - app/Actions/Fortify/**
       - config/fortify.php
     screenshots: []
-    last_reviewed_commit: 5be1c377f2dcdbb8d3a8b1e8eda90974a01e12d2
+    last_reviewed_commit: fa0ed79ba718acd7c08a559ed585f6963c67f0eb
 
   - path: getting-started/understanding-your-role.md
     section: getting-started
