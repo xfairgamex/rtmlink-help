@@ -57,6 +57,8 @@ articles:
   - path: getting-started/logging-in-and-account-setup.md
     section: getting-started
     audience: clinic-staff
+    status: stale
+    note: "Post-login redirect changed from '/' to '/dashboard' (fortify.home); the marketing root '/' is now public to all visitors; after login users are dispatched to their clinic or picker via DashboardRedirectController (PR #612/Bundle 46); PR #683: post-login redirect now honors a safe 'intended' destination (e.g. the 'Reply in RTMLink' support deep link) instead of always forcing the dashboard — it still guards against the /login loop and open-redirects, but otherwise lands you on the deep-linked page after signing in"
     status: review
     priority: 1
     sources:
@@ -1089,6 +1091,24 @@ articles:
       - CLAUDE.MD
       - app/Models/Episode.php
       - app/Models/BillingSuggestion.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  # === 20. Support Portal (Phase 2) ========================================
+  - path: support/contacting-support.md
+    section: support
+    audience: clinic-staff
+    status: todo
+    note: "NEW 'getting help' surface, no prior article (Bundle 42 + Bundle 75). ENTRY POINT is the topbar 'Help' menu (App\\Livewire\\Clinic\\HelpMenu, rendered just before the user menu) — Bundle 75 (PRs #689/#691) replaced the old sidebar 'Support' link: SupportTicketResource::shouldRegisterNavigation() now returns false (the portal's routes/pages still exist, only the sidebar entry is hidden). The Help dropdown offers: a link out to this help center (services.help.base_url), the support-ticket portal (badged with the user's 'Awaiting reply' = Pending count), 'New ticket', and 'Schedule a call' — a slideover that books a support call via NeetoCal in the clinic's timezone, shown only when configured (SupportCallBookingService::isAvailable). The ticket portal itself (Bundle 42 — PRs #655/#658/#659/#661/#666/#679): clinic users open and track their own tickets without email — create (subject + 'How can we help?' rich body), CC colleagues at creation, reply on the thread, mark solved; replies surface via the in-app notification bell (ClinicPanelProvider->databaseNotifications(), SupportNotificationService::notifyPortalReply — PR #670). Visibility is scoped per user — SupportTicket has NO tenant global scope; scopeForClinicUser routes every row so owners see the whole clinic's tickets while staff/providers see only tickets they're involved in. SCOPE-AND-TMI: Tier-1 article. NOTE for Writer: document only the clinic Help menu + ticket portal + schedule-a-call; the support-agent API, inbound email, PHI tokenizer, help-article sync, and Platform-panel ticket view are internal/out-of-scope. Verify all labels against origin/main."
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Resources/SupportTicketResource.php
+      - app/Filament/Clinic/Resources/SupportTicketResource/**
+      - app/Livewire/Clinic/HelpMenu.php
+      - resources/views/livewire/clinic/help-menu.blade.php
+      - app/Models/SupportTicket.php
+      - app/Enums/SupportTicketStatus.php
+      - app/Services/Support/SupportCallBookingService.php
     screenshots: []
     last_reviewed_commit: null
 
