@@ -59,6 +59,7 @@ articles:
     audience: clinic-staff
     status: stale
     note: "Post-login redirect changed from '/' to '/dashboard' (fortify.home); the marketing root '/' is now public to all visitors; after login users are dispatched to their clinic or picker via DashboardRedirectController (PR #612/Bundle 46); PR #683: post-login redirect now honors a safe 'intended' destination (e.g. the 'Reply in RTMLink' support deep link) instead of always forcing the dashboard — it still guards against the /login loop and open-redirects, but otherwise lands you on the deep-linked page after signing in"
+    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Auth/**
@@ -66,7 +67,7 @@ articles:
       - app/Actions/Fortify/**
       - config/fortify.php
     screenshots: []
-    last_reviewed_commit: 5be1c377f2dcdbb8d3a8b1e8eda90974a01e12d2
+    last_reviewed_commit: fa0ed79ba718acd7c08a559ed585f6963c67f0eb
 
   - path: getting-started/understanding-your-role.md
     section: getting-started
@@ -215,15 +216,15 @@ articles:
   - path: episodes/episode-search-and-filters.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "SurveyFrequency enum gained every_3_days and every_7_days (PR #494); verify the frequency filter options in the episode list; Patient column now sorts by last name then first name (sort was broken before, PR #530)"
+    status: review
+    note: "Re-verified against the episode list: the new SurveyFrequency options (every_3_days/every_7_days, PR #494) appear only in the enrollment Frequency field, not as a list filter (the list has no frequency filter); the PR #530 Patient-column sort fix is not user-visible. Article already accurate; re-stamped."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/Pages/ListEpisodes.php
       - app/Filament/Clinic/Resources/EpisodeResource.php
       - app/Services/NeedsAttentionService.php
     screenshots: [episode-list]
-    last_reviewed_commit: ed0b83bafa30dacf292d77cffd2f168d4cbd9d8f
+    last_reviewed_commit: a5447f2ff386b8488625325e7ae6d926e138d963
 
   - path: episodes/episode-actions.md
     section: episodes
