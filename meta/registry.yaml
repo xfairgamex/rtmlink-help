@@ -190,9 +190,11 @@ articles:
   - path: episodes/viewing-episode-details.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "Bundle 41 (PR #709): the episode detail's window-stats area dropped the 'Minutes Tracked' and 'Interactive Contacts' entries — monthly treatment-management codes (98979/98980/98981) bill per CALENDAR MONTH, not per 30-day window, so the window-scoped figures disagreed with the Stats/Billing cards and were removed. Month-to-date time now reads from one definition (BillingSuggestionService::measureCurrentCalendarMonth) across the Stats 'Time Tracked (Month)' entry, the Billing-Status card, and the episodes-list 'Time (Month)' column. Verify the detail page against origin/main. NOTE: added app/Filament/Clinic/Resources/EpisodeResource.php to sources — the infolist (detail view) lives there, not in ViewEpisode.php, so the old glob never flagged it."
     priority: 1
     sources:
+      - app/Filament/Clinic/Resources/EpisodeResource.php
       - app/Filament/Clinic/Resources/EpisodeResource/Pages/ViewEpisode.php
       - app/Filament/Clinic/Resources/EpisodeResource/RelationManagers/**
       - app/Filament/Clinic/Resources/EpisodeResource/Widgets/**
@@ -216,8 +218,8 @@ articles:
   - path: episodes/episode-search-and-filters.md
     section: episodes
     audience: clinic-staff
-    status: review
-    note: "Re-verified against the episode list: the new SurveyFrequency options (every_3_days/every_7_days, PR #494) appear only in the enrollment Frequency field, not as a list filter (the list has no frequency filter); the PR #530 Patient-column sort fix is not user-visible. Article already accurate; re-stamped."
+    status: stale
+    note: "Bundle 41 (PR #709): the episodes-list 'Time' column was relabeled 'Time (Month)' and now sums only qualifying activity types over COALESCE(ended_at, created_at) within the clinic-tz calendar month (matching what the billing engine bills) — verify the column label/meaning against origin/main. (Prior re-verification still holds: SurveyFrequency options every_3_days/every_7_days, PR #494, appear only in the enrollment Frequency field, not as a list filter; PR #530 Patient-column sort fix is not user-visible.)"
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/Pages/ListEpisodes.php
@@ -330,7 +332,7 @@ articles:
     section: exercises
     audience: clinic-staff
     status: stale
-    note: "ExerciseResource gained copy-from button+modal and native paste (PR #478); Exercise model gained locked_patient_id and template copy; 'updated' badge added (PR #460)"
+    note: "ExerciseResource gained copy-from button+modal and native paste (PR #478); Exercise model gained locked_patient_id and template copy; 'updated' badge added (PR #460). PRs #695/#696/#704: the platform exercise library expanded to a full ~110 condition-organized set imported from JSON data (Exercise gained slug identity + modular metadata); ExerciseCategory grew well beyond PT/chiro to add Balance & Gait plus Occupational-Therapy (Hand Therapy, Fine Motor, Daily Activities (ADL)) and Speech-Language-Pathology (Swallowing (Dysphagia), Articulation & Speech, Voice, Language) and shared Cognition categories, now grouped by clinical discipline (PT/Chiro, Occupational Therapy, Speech-Language Pathology) — verify the available category filters/labels in the clinic library against origin/main."
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ExerciseResource.php
