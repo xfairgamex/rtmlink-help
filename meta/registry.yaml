@@ -329,17 +329,16 @@ articles:
   - path: exercises/the-exercise-library.md
     section: exercises
     audience: clinic-staff
-    status: stale
-    note: "ExerciseResource gained copy-from button+modal and native paste (PR #478); Exercise model gained locked_patient_id and template copy; 'updated' badge added (PR #460)"
+    status: review
+    note: "Refreshed: category list updated to the expanded default set, which now spans PT/chiro, occupational therapy, and speech-language pathology plus Cognition and General (ExerciseCategory enum). Copy-from, native clipboard paste, Import from Library, the Platform/Imported/Custom source labels, and patient-locked exercises re-verified against the app and already accurate; the clinic dropdown renders a flat list (no discipline grouping) so none was claimed. All em-dashes removed for CI."
     priority: 2
     sources:
-      - app/Filament/Clinic/Resources/ExerciseResource.php
       - app/Filament/Clinic/Resources/ExerciseResource/**
       - app/Models/Exercise.php
       - app/Enums/ExerciseCategory.php
       - app/Enums/ExerciseDifficulty.php
     screenshots: [exercise-list]
-    last_reviewed_commit: 34227328
+    last_reviewed_commit: c819ca3c8d5f0cf62641f1feba449c5a6b5b242e
 
   - path: exercises/exercise-videos.md
     section: exercises
