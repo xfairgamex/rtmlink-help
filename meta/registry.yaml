@@ -316,8 +316,8 @@ articles:
   - path: exercises/understanding-hep.md
     section: exercises
     audience: clinic-staff
-    status: stale
-    note: "HepAssignment gained locked_patient_id (patient-locked exercises concept); HepService updated accordingly (PR #460)"
+    status: review
+    note: "Refreshed for patient-specific (patient-locked) exercises: an exercise can be private to one patient (locked_patient_id on Exercise; HepService enforces it on assignment, surfaced as a lock icon + 'Private to' badge + 'Patient-specific' filter). Added a one-line note to the library piece; cleaned all em-dashes. Nav labels (Templates group, Exercises, Exercise Programs), exercises_enabled gating, and the interaction-day billing rule all re-verified accurate."
     priority: 2
     sources:
       - app/Models/HepAssignment.php
@@ -326,7 +326,7 @@ articles:
       - app/Services/ExerciseCompletionService.php
       - app/Enums/HepFrequency.php
     screenshots: []
-    last_reviewed_commit: 34227328
+    last_reviewed_commit: b7bf0447094d612a9aca3bfeb4017a680e426e39
 
   - path: exercises/the-exercise-library.md
     section: exercises
