@@ -176,12 +176,15 @@ articles:
   - path: episodes/enrolling-a-patient.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: stale
+    note: "Bundle 45/episode-comms-redesign (PR #745 + #740/#741): the enrollment form's 'Communication Methods' checkbox list was replaced by per-channel destinations — separate 'Text message (SMS)' and 'Email' checkboxes; ticking SMS reveals an inline 'Mobile number' field (edits the patient's number on file) plus a phone line-type badge and, when unverified, a 'We'll verify this number can receive texts' hint with an inline 'Check now' link (proactive landline detection via Twilio Lookup at episode start — new ChecksLineTypeOnDemand page trait; EpisodeEnrollmentService now dispatches the lookup when SMS is chosen). The 'Frequency' field moved below 'Send Time'. Tier-2 consequence to capture: if a survey SMS is later rejected at the carrier (landline/invalid), the system auto-enables Email and re-sends that day's check-in by email (SurveyDeliveryService::resendViaEmailAfterSmsFailure). Verify all labels against origin/main."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
       - app/Filament/Clinic/Resources/EpisodeResource/Pages/CreateEpisode.php
+      - app/Filament/Clinic/Resources/EpisodeResource/Pages/Concerns/ChecksLineTypeOnDemand.php
       - app/Services/EpisodeEnrollmentService.php
+      - app/Services/SurveyDeliveryService.php
       - app/Enums/SurveyFrequency.php
       - app/Models/Episode.php
     screenshots: []
@@ -191,7 +194,7 @@ articles:
     section: episodes
     audience: clinic-staff
     status: stale
-    note: "Bundle 41 (PR #709): the episode detail's window-stats area dropped the 'Minutes Tracked' and 'Interactive Contacts' entries — monthly treatment-management codes (98979/98980/98981) bill per CALENDAR MONTH, not per 30-day window, so the window-scoped figures disagreed with the Stats/Billing cards and were removed. Month-to-date time now reads from one definition (BillingSuggestionService::measureCurrentCalendarMonth) across the Stats 'Time Tracked (Month)' entry, the Billing-Status card, and the episodes-list 'Time (Month)' column. Verify the detail page against origin/main. NOTE: added app/Filament/Clinic/Resources/EpisodeResource.php to sources — the infolist (detail view) lives there, not in ViewEpisode.php, so the old glob never flagged it."
+    note: "Bundle 41 (PR #709): the episode detail's window-stats area dropped the 'Minutes Tracked' and 'Interactive Contacts' entries — monthly treatment-management codes (98979/98980/98981) bill per CALENDAR MONTH, not per 30-day window, so the window-scoped figures disagreed with the Stats/Billing cards and were removed. Month-to-date time now reads from one definition (BillingSuggestionService::measureCurrentCalendarMonth) across the Stats 'Time Tracked (Month)' entry, the Billing-Status card, and the episodes-list 'Time (Month)' column. Verify the detail page against origin/main. NOTE: added app/Filament/Clinic/Resources/EpisodeResource.php to sources — the infolist (detail view) lives there, not in ViewEpisode.php, so the old glob never flagged it. Bundle 41 FOLLOW-UP (PRs #734/#714, finalized in PR #745): the detail sidebar now leads with TWO titled billing-progress cards, one per billing clock — '30-Day Window #N' (device-supply codes 98977/98985: interaction days over the rolling 30-day window) and 'This Calendar Month' (treatment-management codes: provider minutes + an interactive contact over the calendar month); the redundant single 'This Window' card was dropped and interaction days are shown once as the billing signal. The on-page TimeTrackingWidget's month figures were corrected to read the same canonical BillingSuggestionService measure (was UTC-bucketed, mis-counting clinic-local entries at month edges), so the widget and the Billing Status card can no longer disagree."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
