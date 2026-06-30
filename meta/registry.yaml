@@ -176,8 +176,8 @@ articles:
   - path: episodes/enrolling-a-patient.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "Bundle 45/episode-comms-redesign (PR #745 + #740/#741): the enrollment form's 'Communication Methods' checkbox list was replaced by per-channel destinations — separate 'Text message (SMS)' and 'Email' checkboxes; ticking SMS reveals an inline 'Mobile number' field (edits the patient's number on file) plus a phone line-type badge and, when unverified, a 'We'll verify this number can receive texts' hint with an inline 'Check now' link (proactive landline detection via Twilio Lookup at episode start — new ChecksLineTypeOnDemand page trait; EpisodeEnrollmentService now dispatches the lookup when SMS is chosen). The 'Frequency' field moved below 'Send Time'. Tier-2 consequence to capture: if a survey SMS is later rejected at the carrier (landline/invalid), the system auto-enables Email and re-sends that day's check-in by email (SurveyDeliveryService::resendViaEmailAfterSmsFailure). Verify all labels against origin/main."
+    status: review
+    note: "Refreshed for Bundle 45/episode-comms-redesign: replaced the old 'Communication Methods' multi-select with the per-channel 'Text message (SMS)' and 'Email' checkboxes, the inline 'Mobile number' field, the line-type result (green confirmation / red 'Landline' warning) and 'Check now' link, and the at-least-one-channel rule. Added a 'Choosing how to reach the patient' section plus a note on the SMS-to-email carrier-failure fallback (resend that day's survey by email when the patient has email + consent). Reordered Send Time/Frequency, and fixed the episodes-list header button label from 'Create' to 'New episode'. All bold labels verified against the rtmlink checkout; no em-dashes."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -188,7 +188,7 @@ articles:
       - app/Enums/SurveyFrequency.php
       - app/Models/Episode.php
     screenshots: []
-    last_reviewed_commit: c2881dc17d01c096c7182c17d3fce18a1afe21e3
+    last_reviewed_commit: d221c6b1a3a065601ae5355a6e1fd017b4f7c6d9
 
   - path: episodes/viewing-episode-details.md
     section: episodes
