@@ -223,15 +223,15 @@ articles:
   - path: episodes/episode-search-and-filters.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "Bundle 41 (PR #709): the episodes-list 'Time' column was relabeled 'Time (Month)' and now sums only qualifying activity types over COALESCE(ended_at, created_at) within the clinic-tz calendar month (matching what the billing engine bills) — verify the column label/meaning against origin/main. (Prior re-verification still holds: SurveyFrequency options every_3_days/every_7_days, PR #494, appear only in the enrollment Frequency field, not as a list filter; PR #530 Patient-column sort fix is not user-visible.)"
+    status: review
+    note: "Refreshed for Bundle 41 (PR #709): the episodes-list 'Time' column heading is now 'Time (Month)' (relabeled from 'Time'); its meaning (billable provider time over the clinic-tz calendar month, matching BillingSuggestionService::monthBoundsUtc and the episode billing cards) was already described and is re-verified. Added a one-line note tying the column to the calendar-month billing clock. Re-verified against the rtmlink checkout: SurveyFrequency options every_3_days/every_7_days appear only in the enrollment Frequency field, not as a list filter; the Patient-column sort fix is not user-visible. Search fields, all column labels, and every filter (Status/Provider/Survey/Attention/Time (This Month)/Communication/Undeliverable phone/Start Date) re-verified. Removed all em-dashes from the file for CI."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/Pages/ListEpisodes.php
       - app/Filament/Clinic/Resources/EpisodeResource.php
       - app/Services/NeedsAttentionService.php
     screenshots: [episode-list]
-    last_reviewed_commit: a5447f2ff386b8488625325e7ae6d926e138d963
+    last_reviewed_commit: 89bb65a49b7d7e18d1aea57c8d6a445d3e581227
 
   - path: episodes/episode-actions.md
     section: episodes
