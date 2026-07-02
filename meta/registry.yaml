@@ -380,7 +380,7 @@ articles:
     section: exercises
     audience: clinic-staff
     status: stale
-    note: "HEP assignment list now supports drag-reorder (sort_order) and sortable columns (PR #482); patient-locked exercises added via locked_patient_id (PR #460)"
+    note: "HEP assignment list now supports drag-reorder (sort_order) and sortable columns (PR #482); patient-locked exercises added via locked_patient_id (PR #460); PR #773 (a1b9560): the assignment row menu gained a 'Reactivate' action (green, confirm modal 'Reactivate assignment?') for deactivated assignments — it adds the exercise back to the patient's active program, re-placed at the end of the order; pairs with the existing 'Deactivate'. Verify the label against origin/main."
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/RelationManagers/HepAssignmentsRelationManager.php
