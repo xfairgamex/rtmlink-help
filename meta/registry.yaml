@@ -350,18 +350,17 @@ articles:
   - path: exercises/exercise-videos.md
     section: exercises
     audience: clinic-staff
-    status: stale
-    note: "ExerciseVideo model gained source and external_ref fields; Mux direct-upload restricted to video-create roles + HEP flag (PR #460)"
+    status: review
+    note: "Refreshed for the exercises gating + role restriction (PR #460 era, re-verified against production main): the video feature only appears when the clinic has exercises enabled (ExerciseVideoResource::canViewAny guards on tenant()->exercises_enabled), and uploading/editing videos is limited to clinic owners and providers (canCreate/canEdit; staff can browse/reuse but not upload), matching who manages exercises. Added a leading condition + who-can-do-what note. The internal source/external_ref fields are not rendered in any clinic screen, so they aren't documented. Re-verified every label against the app: the three Media buttons (Upload Video / Select from Library / Add Video URL), the upload slide-over (Browse files, MP4/MOV/WebM up to 2 GB, Title/Body Region/Tags/Description, Upload, 'Upload successful!'), the status flow (Pending/Processing/Ready/Error per ExerciseVideoStatus), Thumbnail Selector (Timestamp/Go/Save Thumbnail) and Animated GIF Preview (Start/End seconds, Preview GIF/Save GIF Selection/Remove GIF, max 5s). Removed all em-dashes and en-dashes for CI (the old file was full of them, including a stray en-dash in '30-60 seconds')."
     priority: 2
     sources:
-      - app/Filament/Clinic/Resources/ExerciseVideoResource.php
       - app/Filament/Clinic/Resources/ExerciseVideoResource/**
       - app/Models/ExerciseVideo.php
       - app/Livewire/ExerciseVideo/**
       - app/Enums/ExerciseVideoStatus.php
       - app/Services/MuxService.php
     screenshots: []
-    last_reviewed_commit: 34227328
+    last_reviewed_commit: ecc299a37675c7f8c5dc40e697c841720a945658
 
   - path: exercises/exercise-programs.md
     section: exercises
