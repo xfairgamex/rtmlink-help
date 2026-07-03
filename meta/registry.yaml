@@ -602,7 +602,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: stale
-    note: "BillingSuggestion gained a source field (system vs. manual); manual claims excluded from auto-regeneration sweep and never overwritten by the system — document the manual claim concept (PR #514); PRs #534/#538 introduced claim grouping: 98980+98981 lines are now one BillingClaim record submitted together — document what 'one row per claim' means and how claim totals work"
+    note: "BillingSuggestion gained a source field (system vs. manual); manual claims excluded from auto-regeneration sweep and never overwritten by the system — document the manual claim concept (PR #514); PRs #534/#538 introduced claim grouping: 98980+98981 lines are now one BillingClaim record submitted together — document what 'one row per claim' means and how claim totals work. PR #785 (patient-month treatment billing): treatment-management codes 98979/98980/98981 now bill PER PATIENT PER CALENDAR MONTH, aggregating qualifying minutes + interactive contacts across ALL of a patient's episodes that month (including paused/discharged/closed ones) into ONE claim attached to a single 'anchor' episode — was previously measured per-episode. The anchor is the most-recently-enrolled episode with qualifying activity that month, unless a protected row (billed/exported/rejected/note-signed/DrChrono-linked/manual) already pins the month to its episode. Consequence to document for billing staff: a patient with multiple concurrent episodes gets ONE monthly treatment-management claim, not one per episode; duplicate system suggestions on non-anchor episodes are auto-removed. Device-supply codes 98977/98985 remain per-episode per 30-day window (unchanged). Sources widened to the suggestion engines so future changes flag here. Verify all wording against origin/main."
     priority: 2
     sources:
       - app/Models/BillingSuggestion.php
@@ -610,6 +610,8 @@ articles:
       - app/Models/Window.php
       - app/Services/RtmCounterService.php
       - app/Services/EpisodeWindowService.php
+      - app/Services/BillingSuggestionService.php
+      - app/Services/BillingSuggestionGenerationService.php
       - CLAUDE.MD
     screenshots: []
     last_reviewed_commit: null
@@ -618,7 +620,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: stale
-    note: "Manual claim entry ('Add Claim' button) added to episode billing tab (PR #514); 'Change Status' corrective action added to table row menu and view-page header (PR #511); 'Source: Manual entry' badge shown on manually-created claims; PRs #534/#538: table now shows ONE row per claim (98980+98981 combined), tab badges count claims, 'Codes on This Claim' summary added to view page, clinical note and generate-note actions hidden on 98981 add-on lines; PR #618: providers can now view the billing pages (BillingAccess::canViewBilling() includes the provider role) and approve/export claims scoped to their own assigned patients' episodes"
+    note: "Manual claim entry ('Add Claim' button) added to episode billing tab (PR #514); 'Change Status' corrective action added to table row menu and view-page header (PR #511); 'Source: Manual entry' badge shown on manually-created claims; PRs #534/#538: table now shows ONE row per claim (98980+98981 combined), tab badges count claims, 'Codes on This Claim' summary added to view page, clinical note and generate-note actions hidden on 98981 add-on lines; PR #618: providers can now view the billing pages (BillingAccess::canViewBilling() includes the provider role) and approve/export claims scoped to their own assigned patients' episodes. PR #785 (patient-month treatment billing): treatment-management suggestions (98979/98980/98981) are now generated per PATIENT per calendar month (generateForPatientCalendarMonth), aggregating minutes + interactive contacts across all of the patient's episodes, and attach to ONE 'anchor' episode's billing tab — so for a multi-episode patient the treatment-management suggestion appears on only one episode, and stale duplicate suggestions previously created on other episodes are pruned. Device-supply suggestions (98977/98985) still generate per-episode per 30-day window. Verify labels/behavior against origin/main."
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/**
@@ -1046,7 +1048,7 @@ articles:
     section: workflows
     audience: clinic-staff
     status: stale
-    note: "Manual claim entry is now a step in the billing workflow; billing staff can add claims the system did not derive automatically via 'Add Claim' on the episode billing tab (PR #514); PRs #534/#538: billing table now shows one row per claim; CSV export adds Claim ID column; Mark Billed and Reject act on all lines of a claim at once — update workflow description to reflect claim-level operations"
+    note: "Manual claim entry is now a step in the billing workflow; billing staff can add claims the system did not derive automatically via 'Add Claim' on the episode billing tab (PR #514); PRs #534/#538: billing table now shows one row per claim; CSV export adds Claim ID column; Mark Billed and Reject act on all lines of a claim at once — update workflow description to reflect claim-level operations. PR #785 (patient-month treatment billing): treatment-management codes 98979/98980/98981 now bill per PATIENT per calendar month, so the workflow should reflect that a multi-episode patient produces ONE monthly treatment-management claim (aggregated across their episodes, anchored to a single episode), not a separate claim per episode; device-supply codes 98977/98985 remain per-episode per 30-day window. Verify against origin/main."
     priority: 4
     sources:
       - app/Services/BillingSuggestionGenerationService.php
