@@ -378,8 +378,8 @@ articles:
   - path: exercises/assigning-hep-to-an-episode.md
     section: exercises
     audience: clinic-staff
-    status: stale
-    note: "HEP assignment list now supports drag-reorder (sort_order) and sortable columns (PR #482); patient-locked exercises added via locked_patient_id (PR #460); PR #773 (a1b9560): the assignment row menu gained a 'Reactivate' action (green, confirm modal 'Reactivate assignment?') for deactivated assignments — it adds the exercise back to the patient's active program, re-placed at the end of the order; pairs with the existing 'Deactivate'. Verify the label against origin/main."
+    status: review
+    note: "Refreshed for PR #773 (a1b9560): added the 'Reactivate' row action (green, 'Reactivate assignment?' confirm) alongside the existing 'Deactivate', in a new 'Editing, removing, and restoring exercises' section that splits actions by active vs deactivated state and notes that a reactivated exercise returns at the end of the order. Also noted the lock icon that marks a patient-private exercise in the assigned list, matched the Prescription separator to the app's literal ' x ', and removed all em-dashes for CI. Drag-reorder and patient-locked exercises (PRs #482/#460) were already covered and re-verified accurate."
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/RelationManagers/HepAssignmentsRelationManager.php
@@ -387,7 +387,7 @@ articles:
       - app/Enums/HepFrequency.php
       - app/Services/HepService.php
     screenshots: [episode-exercises-tab]
-    last_reviewed_commit: 34227328
+    last_reviewed_commit: 0f2ea07bc1723a30d09e622ee61690e2ab20a7bd
 
   - path: exercises/tracking-exercise-adherence.md
     section: exercises
