@@ -176,8 +176,8 @@ articles:
   - path: episodes/enrolling-a-patient.md
     section: episodes
     audience: clinic-staff
-    status: review
-    note: "Refreshed for Bundle 45/episode-comms-redesign: replaced the old 'Communication Methods' multi-select with the per-channel 'Text message (SMS)' and 'Email' checkboxes, the inline 'Mobile number' field, the line-type result (green confirmation / red 'Landline' warning) and 'Check now' link, and the at-least-one-channel rule. Added a 'Choosing how to reach the patient' section plus a note on the SMS-to-email carrier-failure fallback (resend that day's survey by email when the patient has email + consent). Reordered Send Time/Frequency, and fixed the episodes-list header button label from 'Create' to 'New episode'. All bold labels verified against the rtmlink checkout; no em-dashes."
+    status: stale
+    note: "Bundle 101 (PR #805, RTM consent capture): the enrollment form gained an 'RTM Program Consent' radio (options 'Send digital consent form' / 'Verbal consent obtained' / 'Paper consent form signed', digital default), shown and required ONLY when the clinic has turned on 'Require RTM Program Consent' in Clinic Settings; verbal/paper record the enrolling user as witness, digital sends the patient a one-time consent page on first survey-link open (surveys still send on schedule). Add a Tier-2 note on this field and cross-link the new settings/patient-consent article; skip the internal patient-search refactor (ilike -> LOWER LIKE, no label change). Verify labels against origin/main. --- Prior Bundle 45/episode-comms-redesign refresh still holds: per-channel 'Text message (SMS)' and 'Email' checkboxes, inline 'Mobile number' field, the line-type result (green confirmation / red 'Landline' warning) and 'Check now' link, the at-least-one-channel rule, the 'Choosing how to reach the patient' section, the SMS-to-email carrier-failure fallback, Send Time/Frequency order, and the 'New episode' header button label."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -193,8 +193,8 @@ articles:
   - path: episodes/viewing-episode-details.md
     section: episodes
     audience: clinic-staff
-    status: review
-    note: "Re-verified against production main 7d630e3: already current, re-stamped (no rewrite). The prior Bundle 41 / PRs #734/#714/#745 refresh still matches the code: EpisodeResource's infolist leads the sidebar with two titled billing-progress cards ('30-Day Window #N' for device-supply 98977/98985 interaction days toward 16, and 'This Calendar Month' for treatment-management 98979/98980/98981 minutes + interactive contacts), followed by the Episode Details card; ViewEpisode's heading carries the status badge and copy icon with Provider/start/DOB in the subheading; working area (Patient Responses, Time Tracking & Interactions) and the four tabs (Appointments, Billing Claims with Add Claim/Regenerate Claims + the 98985/98977 banner, Exercises, Windows) all confirmed. Only intervening source change since d73609a was the HEP 'Reactivate' row action (a1b9560) on the Exercises tab, which this article links out to rather than detailing, so no edit was needed."
+    status: stale
+    note: "Bundle 101 (PR #805, RTM consent capture): the episode-view 'Episode Details' infolist gained an 'RTM Consent' status badge, shown only when the episode has a consent record — reads e.g. 'Accepted — verbal (witnessed by Sam PT) · Jul 6, 2026' (green), 'Pending patient agreement' (amber), or 'Declined' (red). Add a one-line note on this entry (detail live at the new settings/patient-consent article). Verify wording against origin/main. --- Prior re-verification against production main 7d630e3: already current, re-stamped (no rewrite). The prior Bundle 41 / PRs #734/#714/#745 refresh still matches the code: EpisodeResource's infolist leads the sidebar with two titled billing-progress cards ('30-Day Window #N' for device-supply 98977/98985 interaction days toward 16, and 'This Calendar Month' for treatment-management 98979/98980/98981 minutes + interactive contacts), followed by the Episode Details card; ViewEpisode's heading carries the status badge and copy icon with Provider/start/DOB in the subheading; working area (Patient Responses, Time Tracking & Interactions) and the four tabs (Appointments, Billing Claims with Add Claim/Regenerate Claims + the 98985/98977 banner, Exercises, Windows) all confirmed. Only intervening source change since d73609a was the HEP 'Reactivate' row action (a1b9560) on the Exercises tab, which this article links out to rather than detailing, so no edit was needed."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -888,6 +888,24 @@ articles:
     sources:
       - app/Filament/Clinic/Pages/BillingSettings.php
       - app/Models/Tenant.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: settings/patient-consent.md
+    section: settings
+    audience: clinic-staff
+    status: todo
+    note: "NEW coverage — Bundle 101 (PR #805, RTM Program Consent). No prior article. A per-clinic, default-OFF feature: Clinic Settings gains a 'Patient Consent' section with a 'Require RTM Program Consent' toggle. When on, every new enrollment records how RTM consent was obtained — 'Verbal consent obtained' or 'Paper consent form signed' (recorded immediately with the enrolling user as witness), or 'Send digital consent form' (the patient sees a one-time consent page the first time they open their survey/exercise link, agrees once, then passes through forever; surveys still send on schedule). Consent status shows on the episode view as an 'RTM Consent' badge (Accepted/Pending/Declined). Existing episodes are never affected; disabling the toggle drops all gates. NOTE for Writer: this is the setup + concept + patient-facing consent-page article; the per-episode enrollment field and the episode-view badge are cross-referenced from the (now stale) enrolling-a-patient and viewing-episode-details articles. Consent is NOT an interaction day / not billable. Out of scope: per-clinic custom consent text, decline->provider notification, and revocation (all Phase 2, not yet built). Verify all labels against origin/main."
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Pages/ClinicSettings.php
+      - app/Models/Tenant.php
+      - app/Models/Consent.php
+      - app/Services/ConsentService.php
+      - app/Http/Controllers/Patient/ConsentController.php
+      - app/Http/Controllers/Patient/Concerns/GatesOnRtmConsent.php
+      - resources/views/patient/consent.blade.php
+      - resources/views/patient/partials/rtm-consent-text.blade.php
     screenshots: []
     last_reviewed_commit: null
 
