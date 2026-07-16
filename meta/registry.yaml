@@ -193,8 +193,8 @@ articles:
   - path: episodes/viewing-episode-details.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "Bundle 101 (PR #805, RTM consent capture): the episode-view 'Episode Details' infolist gained an 'RTM Consent' status badge, shown only when the episode has a consent record — reads e.g. 'Accepted — verbal (witnessed by Sam PT) · Jul 6, 2026' (green), 'Pending patient agreement' (amber), or 'Declined' (red). Add a one-line note on this entry (detail live at the new settings/patient-consent article). Verify wording against origin/main. --- Prior re-verification against production main 7d630e3: already current, re-stamped (no rewrite). The prior Bundle 41 / PRs #734/#714/#745 refresh still matches the code: EpisodeResource's infolist leads the sidebar with two titled billing-progress cards ('30-Day Window #N' for device-supply 98977/98985 interaction days toward 16, and 'This Calendar Month' for treatment-management 98979/98980/98981 minutes + interactive contacts), followed by the Episode Details card; ViewEpisode's heading carries the status badge and copy icon with Provider/start/DOB in the subheading; working area (Patient Responses, Time Tracking & Interactions) and the four tabs (Appointments, Billing Claims with Add Claim/Regenerate Claims + the 98985/98977 banner, Exercises, Windows) all confirmed. Only intervening source change since d73609a was the HEP 'Reactivate' row action (a1b9560) on the Exercises tab, which this article links out to rather than detailing, so no edit was needed."
+    status: review
+    note: "Refreshed for Bundle 101 (PR #805, RTM consent capture): added an 'RTM Consent' bullet to the Episode Details section describing the new status badge on the episode view (Accepted/green with method+witness+date, Pending patient agreement/amber, Declined/red), noting it appears only when consent was captured and that pre-consent episodes have none. Verified against the rtmlink checkout: EpisodeResource infolist TextEntry 'rtm_consent', label 'RTM Consent', visible only when rtmConsent record exists; buildRtmConsentLabel + Consent STATUS_ACCEPTED/DECLINED/PENDING and VIA_PORTAL/VERBAL/PAPER. Cross-linked to enrolling-a-patient (settings/patient-consent article not yet written, so no dead link). Rest of the article re-verified accurate. No em-dashes. Prior Bundle 41 refresh still holds."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -203,7 +203,7 @@ articles:
       - app/Filament/Clinic/Resources/EpisodeResource/Widgets/**
       - app/Livewire/Clinic/Episodes/**
     screenshots: [episode-list, episode-detail-overview]
-    last_reviewed_commit: 7d630e3a6d5879b14f978eefe8d8ca5aecb8f4b1
+    last_reviewed_commit: 94a3b0e65e5e12998e453ab11897b77a6ee5b092
 
   - path: episodes/managing-episode-status.md
     section: episodes
