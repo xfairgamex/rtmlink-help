@@ -176,8 +176,8 @@ articles:
   - path: episodes/enrolling-a-patient.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "Bundle 101 (PR #805, RTM consent capture): the enrollment form gained an 'RTM Program Consent' radio (options 'Send digital consent form' / 'Verbal consent obtained' / 'Paper consent form signed', digital default), shown and required ONLY when the clinic has turned on 'Require RTM Program Consent' in Clinic Settings; verbal/paper record the enrolling user as witness, digital sends the patient a one-time consent page on first survey-link open (surveys still send on schedule). Add a Tier-2 note on this field and cross-link the new settings/patient-consent article; skip the internal patient-search refactor (ilike -> LOWER LIKE, no label change). Verify labels against origin/main. --- Prior Bundle 45/episode-comms-redesign refresh still holds: per-channel 'Text message (SMS)' and 'Email' checkboxes, inline 'Mobile number' field, the line-type result (green confirmation / red 'Landline' warning) and 'Check now' link, the at-least-one-channel rule, the 'Choosing how to reach the patient' section, the SMS-to-email carrier-failure fallback, Send Time/Frequency order, and the 'New episode' header button label."
+    status: review
+    note: "Refreshed for Bundle 101 (PR #805, RTM consent capture): added the 'RTM Program Consent' field to the Enrollment section and a new 'Recording RTM consent' section covering the three options ('Send digital consent form' default / 'Verbal consent obtained' / 'Paper consent form signed'), the fact it appears and is required only when a clinic administrator turns on 'Require RTM Program Consent' in Clinic Settings > Patient Consent, that verbal/paper record the enrolling user as witness and digital shows a one-time consent page on first survey-link open (surveys still send on schedule), that it affects new enrollments only, and that recording consent is not billable. Labels verified against the settings toggle, the CreateEpisode consent_method radio, and the Consent model. Cross-linked to viewing-episode-details for the resulting badge; did not link the settings/patient-consent article (not written yet, would be a dead link). Skipped the internal patient-search refactor (no label change). Prior Bundle 45/episode-comms-redesign content (per-channel 'Text message (SMS)'/'Email' checkboxes, inline 'Mobile number', line-type green/red 'Landline' result + 'Check now', at-least-one-channel rule, SMS-to-email fallback, Frequency options) re-verified against main and still accurate. No em-dashes."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -188,7 +188,7 @@ articles:
       - app/Enums/SurveyFrequency.php
       - app/Models/Episode.php
     screenshots: []
-    last_reviewed_commit: d221c6b1a3a065601ae5355a6e1fd017b4f7c6d9
+    last_reviewed_commit: 4bd0af0db6f317ffe6016ea844ee1b04435985e5
 
   - path: episodes/viewing-episode-details.md
     section: episodes

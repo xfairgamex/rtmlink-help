@@ -20,6 +20,7 @@ Both open the same enrollment form.
 - **Patient:** required. Search by name. If the patient already has an active or paused episode, RTMLink won't let you enroll them again, and you'll see a message telling you so. If they have a *paused* episode, a notice appears with a link to view it.
 - **Assigned Provider:** required. The provider responsible for this episode. When you pick a patient who has a primary provider, this fills in automatically; you can change it. The list includes your clinic's providers and owners.
 - **Start Date:** required. Defaults to today and **can't be in the future**. This is the day monitoring begins and the day the first 30-day window starts. You can't change the start date after the episode is created.
+- **RTM Program Consent:** appears only if your clinic requires it. A clinic administrator turns this on with **Require RTM Program Consent** in **Clinic Settings**, under **Patient Consent**. When it appears, it's required, and you record how the patient's consent was obtained (see [Recording RTM consent](#recording-rtm-consent) below).
 
 ### Survey & Schedule
 
@@ -56,6 +57,18 @@ RTMLink then checks whether that number can actually receive texts and shows the
 When you tick **Email**, RTMLink shows the address surveys will be sent to. If the patient has no email on file, it tells you to add one on the patient record before email can be used; see [Editing patient information](editing-patient-information.md).
 
 > **If a text can't be delivered, RTMLink falls back to email.** If a survey text is accepted when sent but later rejected by the carrier (for example, the number turns out to be a landline), RTMLink automatically turns on email for the episode and re-sends that day's survey by email, so the patient isn't skipped. This only happens when the patient has an email on file and has consented to email; otherwise the undeliverable number is flagged for staff to fix.
+
+## Recording RTM consent
+
+If your clinic requires RTM Program Consent, the enrollment form shows an **RTM Program Consent** choice in the **Enrollment** section. You must pick one before you can enroll the patient. It defaults to **Send digital consent form**.
+
+- **Send digital consent form:** the patient reviews and agrees online the first time they open their survey link. Surveys still send on schedule, so nothing is delayed while you wait for them to agree.
+- **Verbal consent obtained:** you confirm the patient agreed verbally. RTMLink records the consent right away, with you as the witness.
+- **Paper consent form signed:** the clinic keeps the signed form. RTMLink records the consent right away, with you as the witness.
+
+After enrollment, the consent status shows on the episode's detail page; see [Viewing episode details](viewing-episode-details.md).
+
+> **This field only appears when your clinic has turned it on.** A clinic administrator enables it with **Require RTM Program Consent** in **Clinic Settings**, under **Patient Consent**. Turning it on affects new enrollments only, never episodes that already exist. Recording consent is not a billable interaction and does not count toward billing time.
 
 ## How often surveys are sent
 
