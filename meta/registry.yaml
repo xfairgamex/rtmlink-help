@@ -404,15 +404,18 @@ articles:
   - path: exercises/the-patient-exercise-experience.md
     section: exercises
     audience: patient
-    status: stale
-    note: "ExerciseWalkthrough updated for patient-locked exercises and 'updated' badge visible to patients (PR #460). NEW this window (4bd0af0..94a3b0e): (a) on the way out of exercises (summary and 'all' views) the exit button now reads 'Finish your check-in →' (primary, when today's survey isn't yet submitted) instead of 'Back to Home' — because doing exercises never submits the survey (the two flows are decoupled); (b) a '🖨️ Print my exercises' button was added next to it, opening the print-friendly handout in a new tab; (c) clinics can now move where the 'Start Your Exercises' CTA appears via a new Clinic Settings 'Patient Exercise Flow' radio ('Top of the check-in' = before_survey, default, shows above the survey and again on the thank-you page; vs 'After the check-in is submitted' = after_submit, thank-you page only) — worth a Tier-2 line so patients/staff understand why the button may or may not appear before the survey. Verify all wording against origin/main."
+    status: review
+    note: "Refreshed against production main (4cc2854): documented the '💪 Start Your Exercises' entry button and its Clinic Settings 'Patient Exercise Flow' placement (Top of the check-in / After the check-in is submitted), the 'Your Exercises' page title, the Done! -> Continue feedback flow (feeling Easy/OK/Hard, pain Yes/No with Pain level None..Severe and body-area chips, Additional comments max 500), the 'View All' quick 'Done ✓' completion, the exit buttons ('Finish your check-in →' when today's check-in isn't submitted vs 'Back to Home', since exercises and the survey are separate flows), and the '🖨️ Print my exercises' handout (Print button + 'Scan for video exercises' QR back to the digital version). Patient-locked exercises (PR #460) add nothing to the patient surface; the 'New'/'Updated' badges + 'updated since your last visit' banner were already covered. Removed all em-dashes/en-dashes for CI."
     priority: 2
     sources:
       - app/Livewire/Patient/ExerciseWalkthrough.php
+      - resources/views/livewire/patient/exercise-walkthrough.blade.php
+      - app/Http/Controllers/Patient/ExerciseController.php
+      - resources/views/patient/exercises/print.blade.php
       - app/Models/ExerciseLog.php
       - app/Enums/ExerciseFeeling.php
     screenshots: [patient-walkthrough]
-    last_reviewed_commit: 34227328
+    last_reviewed_commit: 4cc2854124becac09e95cb814bb36f9b08440aeb
 
   # === 6. Messaging (Phase 2) ==============================================
   - path: messaging/messages-center-overview.md
