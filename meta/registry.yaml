@@ -545,7 +545,7 @@ articles:
   - path: time-tracking/logging-interactive-contacts.md
     section: time-tracking
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Livewire/Clinic/Episodes/TimeTrackingWidget.php
@@ -686,7 +686,7 @@ articles:
   - path: billing/clinical-notes.md
     section: billing
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ClinicalNoteTemplates/**
