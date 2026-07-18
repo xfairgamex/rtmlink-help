@@ -59,7 +59,6 @@ articles:
     audience: clinic-staff
     status: stale
     note: "Post-login redirect changed from '/' to '/dashboard' (fortify.home); the marketing root '/' is now public to all visitors; after login users are dispatched to their clinic or picker via DashboardRedirectController (PR #612/Bundle 46); PR #683: post-login redirect now honors a safe 'intended' destination (e.g. the 'Reply in RTMLink' support deep link) instead of always forcing the dashboard — it still guards against the /login loop and open-redirects, but otherwise lands you on the deep-linked page after signing in"
-    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Auth/**
@@ -510,10 +509,12 @@ articles:
     section: time-tracking
     audience: clinic-staff
     status: todo
-    priority: 2
+    priority: 1
     sources:
       - app/Models/TimeEntry.php
       - app/Services/TimeTracking/**
+      - app/Models/InteractiveContact.php
+      - app/Support/TimeEntryActivityType.php
     screenshots: []
     last_reviewed_commit: null
 
@@ -521,10 +522,12 @@ articles:
     section: time-tracking
     audience: clinic-staff
     status: todo
-    priority: 2
+    priority: 1
     sources:
       - app/Livewire/Clinic/Episodes/TimeTrackingWidget.php
+      - resources/views/livewire/clinic/episodes/time-tracking-widget.blade.php
       - app/Models/TimeEntry.php
+      - app/Support/TimeEntryActivityType.php
     screenshots: []
     last_reviewed_commit: null
 
@@ -532,19 +535,37 @@ articles:
     section: time-tracking
     audience: clinic-staff
     status: todo
-    priority: 2
+    priority: 1
     sources:
       - app/Livewire/Clinic/Episodes/TimeEntriesTable.php
       - app/Models/TimeEntry.php
+      - app/Models/InteractiveContact.php
       - app/Services/RtmCounterService.php
     screenshots: []
     last_reviewed_commit: null
+
+  - path: time-tracking/logging-interactive-contacts.md
+    section: time-tracking
+    audience: clinic-staff
+    status: review
+    priority: 2
+    sources:
+      - app/Livewire/Clinic/Episodes/TimeTrackingWidget.php
+      - resources/views/livewire/clinic/episodes/time-tracking-widget.blade.php
+      - app/Models/InteractiveContact.php
+      - app/Models/TimeEntry.php
+      - app/Support/TimeEntryActivityType.php
+      - app/Services/BillingOpportunityService.php
+    screenshots:
+      - episode-time-tracking-card
+      - log-time-entry-modal
+    last_reviewed_commit: fcb2020fd8e61f9e4675d51346a5c208e58ca4e0
 
   - path: time-tracking/logging-time-via-provider-summaries.md
     section: time-tracking
     audience: clinic-staff
     status: todo
-    priority: 2
+    priority: 1
     sources:
       - app/Filament/Clinic/Pages/ReviewSummary.php
       - app/Models/TimeEntry.php
@@ -624,7 +645,7 @@ articles:
     audience: clinic-staff
     status: stale
     note: "BillingSuggestion gained a source field (system vs. manual); manual claims excluded from auto-regeneration sweep and never overwritten by the system — document the manual claim concept (PR #514); PRs #534/#538 introduced claim grouping: 98980+98981 lines are now one BillingClaim record submitted together — document what 'one row per claim' means and how claim totals work. PR #785 (patient-month treatment billing): treatment-management codes 98979/98980/98981 now bill PER PATIENT PER CALENDAR MONTH, aggregating qualifying minutes + interactive contacts across ALL of a patient's episodes that month (including paused/discharged/closed ones) into ONE claim attached to a single 'anchor' episode — was previously measured per-episode. The anchor is the most-recently-enrolled episode with qualifying activity that month, unless a protected row (billed/exported/rejected/note-signed/DrChrono-linked/manual) already pins the month to its episode. Consequence to document for billing staff: a patient with multiple concurrent episodes gets ONE monthly treatment-management claim, not one per episode; duplicate system suggestions on non-anchor episodes are auto-removed. Device-supply codes 98977/98985 remain per-episode per 30-day window (unchanged). Sources widened to the suggestion engines so future changes flag here. Verify all wording against origin/main."
-    priority: 2
+    priority: 1
     sources:
       - app/Models/BillingSuggestion.php
       - app/Models/BillingClaim.php
@@ -642,7 +663,7 @@ articles:
     audience: clinic-staff
     status: stale
     note: "Manual claim entry ('Add Claim' button) added to episode billing tab (PR #514); 'Change Status' corrective action added to table row menu and view-page header (PR #511); 'Source: Manual entry' badge shown on manually-created claims; PRs #534/#538: table now shows ONE row per claim (98980+98981 combined), tab badges count claims, 'Codes on This Claim' summary added to view page, clinical note and generate-note actions hidden on 98981 add-on lines; PR #618: providers can now view the billing pages (BillingAccess::canViewBilling() includes the provider role) and approve/export claims scoped to their own assigned patients' episodes. PR #785 (patient-month treatment billing): treatment-management suggestions (98979/98980/98981) are now generated per PATIENT per calendar month (generateForPatientCalendarMonth), aggregating minutes + interactive contacts across all of the patient's episodes, and attach to ONE 'anchor' episode's billing tab — so for a multi-episode patient the treatment-management suggestion appears on only one episode, and stale duplicate suggestions previously created on other episodes are pruned. Device-supply suggestions (98977/98985) still generate per-episode per 30-day window. Verify labels/behavior against origin/main."
-    priority: 2
+    priority: 1
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/**
       - app/Models/BillingSuggestion.php
@@ -656,7 +677,7 @@ articles:
     audience: clinic-staff
     status: stale
     note: "'Change Status' action added as a corrective path: lets users with billing.approve move a claim to any status (Ready to Bill / Billed / Rejected) regardless of current state; available in table row menu and view-page header (PR #511); PR #534: Mark Billed and Reject now operate claim-wide — all CPT codes on the claim are processed together; confirmation modal names all affected codes; PR #618: providers can now approve/sign/reject claims for their own assigned patients' episodes (BillingAccess::canApprove() gates per-record actions by assigned_provider_id)"
-    priority: 2
+    priority: 1
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/Actions/**
       - app/Models/BillingSuggestion.php
@@ -667,23 +688,30 @@ articles:
   - path: billing/clinical-notes.md
     section: billing
     audience: clinic-staff
-    status: todo
-    note: "PR #618: providers can now sign clinical notes for claims on their own assigned patients' episodes (BillingAccess::canApprove() gate, scoped to assigned_provider_id)"
+    status: review
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ClinicalNoteTemplates/**
       - app/Models/ClinicalNoteTemplate.php
       - app/Services/ClinicalNoteTemplateService.php
       - app/Services/BillingEvidenceFormatter.php
-    screenshots: []
-    last_reviewed_commit: null
+      - app/Filament/Clinic/Resources/BillingSuggestionResource/Actions/**
+      - app/Filament/Clinic/Resources/BillingSuggestionResource/Tables/BillingSuggestionsTable.php
+      - app/Filament/Clinic/Resources/BillingSuggestionResource/Pages/ViewBillingSuggestion.php
+      - app/Models/BillingSuggestion.php
+      - app/Support/BillingAccess.php
+      - app/Mail/ProviderClaimsToSignMail.php
+    screenshots:
+      - billing-claims-list
+      - clinical-note-modal
+    last_reviewed_commit: fcb2020fd8e61f9e4675d51346a5c208e58ca4e0
 
   - path: billing/exporting-to-drchrono.md
     section: billing
     audience: clinic-staff
     status: stale
     note: "PR #534: DrChrono export is now claim-scoped — one DrChrono appointment per claim, all CPT lines (98980+98981) linked to the same appointment; DrChronoAppointmentExportService refactored accordingly; also CSV export now includes a Claim ID column (BillingExportService); PR #618: providers can now send/delete/link-appointment on claims for their own assigned patients (BillingAccess::canExport() gate)"
-    priority: 2
+    priority: 1
     sources:
       - app/Services/BillingExportService.php
       - app/Services/Ehr/DrChronoAppointmentExportService.php
@@ -694,7 +722,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: todo
-    priority: 2
+    priority: 1
     sources:
       - app/Models/Window.php
       - app/Services/RtmCounterService.php
@@ -706,7 +734,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: todo
-    priority: 2
+    priority: 1
     sources:
       - app/Filament/Clinic/Pages/BillingSettings.php
       - app/Services/BillingRevenueService.php
@@ -1285,3 +1313,44 @@ screenshots:
     url: https://demo.rtmlink.com/s/demohep1/exercises
     wait_for: "View All"
     output: .gitbook/assets/exercises/patient-walkthrough.png
+
+  # --- Billing (clinical notes) & Time Tracking (interactive contacts) ---
+  # clinic_owner role: billing note actions need billing.approve, and the
+  # seeded screenshot provider is not the assigned provider on demo episodes.
+
+  billing-claims-list:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/billing-suggestions
+    wait_for: "Clinical Note"
+    output: .gitbook/assets/billing/billing-claims-list.png
+
+  # URL pins [DEMO] Robert Williams' 98980 treatment claim; re-pin after a
+  # demo reseed. Header "Clinical Note" button opens the modal (same-page).
+  clinical-note-modal:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/billing-suggestions/019e7545-b4ae-708f-8f67-de3422a76e2e
+    steps:
+      - 'button:text-is("Clinical Note")'
+    wait_for: "Add or update the claim clinical note."
+    selector: '.fi-modal-window:visible'
+    output: .gitbook/assets/billing/clinical-note-modal.png
+
+  # Direct episode URLs: click-navigation into an episode times out in the
+  # harness (regression since the June captures — affects the exercise specs
+  # too). URL pins [DEMO] Robert Williams' episode; re-pin after a demo reseed.
+  episode-time-tracking-card:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/episodes/019e7545-b2fb-702f-8975-7b4f02e943fc
+    wait_for: "Start Timer"
+    selector: 'section.fi-section:has-text("Time Tracking & Interactions")'
+    output: .gitbook/assets/time-tracking/episode-time-tracking-card.png
+
+  log-time-entry-modal:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/episodes/019e7545-b2fb-702f-8975-7b4f02e943fc
+    steps:
+      - 'button:text-is("Add")'
+      - 'label:has-text("Log interactive contact")'
+    wait_for: "Log Time Entry"
+    selector: '[id^="time-entry-modal-"] .fi-modal-window'
+    output: .gitbook/assets/time-tracking/log-time-entry-modal.png

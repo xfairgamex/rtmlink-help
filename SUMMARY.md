@@ -45,12 +45,21 @@
 * [Tracking exercise adherence](exercises/tracking-exercise-adherence.md)
 * [The patient's exercise experience](exercises/the-patient-exercise-experience.md)
 
+## Time Tracking
+
+* [Logging interactive contacts](time-tracking/logging-interactive-contacts.md)
+
+## Billing
+
+* [Clinical notes and sign-off](billing/clinical-notes.md)
+
 <!--
   NAV GROWS AS ARTICLES LAND. Add each article here only once its file exists,
   so the published nav never points at a missing page.
 
-  Sections still to come (keep this order; see meta/CONTENT-OUTLINE.md):
-    ## Messages, Billing, Settings, Integrations, Reference, Troubleshooting (later phases)
+  Sections still to come (keep outline order; see meta/CONTENT-OUTLINE.md):
+    ## Messages (before Time Tracking), Provider Summaries (between Time
+    Tracking and Billing), Settings, Integrations, Reference, Troubleshooting
 
   DO NOT list anything under meta/ here — that folder must stay unpublished.
 -->
