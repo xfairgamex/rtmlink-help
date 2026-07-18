@@ -258,6 +258,13 @@ Per-section coverage for the help center, organized by functional area. Each ent
 - Bulk time logging across multiple patients
 - Activity type and duration per patient
 
+### 7.5 Logging Interactive Contacts
+- What qualifies: phone call, video call, synchronous chat, in-person (async messages do not)
+- One qualifying contact per calendar month required for 98979/98980/98981
+- The "Log interactive contact" checkbox on the Log Time Entry form (recommended for Live Communication activity)
+- Editing an entry can add or remove its linked contact; deleting the entry removes the contact too
+- Where counts surface: episode This Calendar Month card, month contact counter, dashboard "Add Interaction" prompt
+
 ---
 
 ## 8. Provider Summaries
@@ -322,6 +329,11 @@ Per-section coverage for the help center, organized by functional area. Each ent
 - Generating clinical notes for billing items
 - Using clinical note templates
 - Linking appointments to claims
+- Note states on a claim: Missing, Draft (saved but unsigned), Signed (locked, read-only)
+- Save Note / Sign Note / ReOpen Note workflow; signer and timestamp recorded on sign
+- One note per claim: lives on the primary treatment line, shared by 98981 add-on lines
+- Finding unsigned claims: Clinical Note column, "Needs signature" filter, Claims to sign dashboard pill, weekly email
+- A signed note freezes the claim against automatic regeneration; signing is not a hard gate for export or billing
 
 ### 9.5 Exporting to DrChrono
 - Sending approved claims to the EHR
