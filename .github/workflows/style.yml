@@ -15,19 +15,44 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Resolve the PR base
+        run: |
+          # GITHUB_BASE_REF is the PR's target branch (main/dev), provided by GitHub
+          # as a plain shell env var. Nothing in this workflow interpolates untrusted
+          # PR input (title, branch name, body) into the shell.
+          #
+          # WARNING: never write a literal GitHub expression (a dollar sign followed
+          # by two opening curly braces) anywhere in this file, not even inside a
+          # shell comment. GitHub expands expressions while parsing the workflow
+          # file, before any shell exists, and a malformed one (such as an empty
+          # expression) makes GitHub reject the entire file: the workflow then never
+          # registers and silently never runs on PRs. Exactly that, in a comment
+          # right here, kept this check from ever firing from 2026-06-07 until it
+          # was diagnosed on 2026-07-18.
+          git fetch --no-tags origin "$GITHUB_BASE_REF"
+          echo "PR_BASE_SHA=$(git rev-parse FETCH_HEAD)" >> "$GITHUB_ENV"
+
+      - name: Registry has no duplicate YAML keys
+        run: |
+          # Scout runs have repeatedly appended a second status:/note: pair to an
+          # article entry instead of replacing the old one. Ruby's YAML.safe_load
+          # keeps the last key silently, but the app's screenshot harness parses
+          # meta/registry.yaml strictly and rejects duplicates, which hard-blocks
+          # every capture. This runs first because it blocks the whole pipeline.
+          if git diff --name-only --diff-filter=d "$PR_BASE_SHA...HEAD" -- meta/registry.yaml | grep -q .; then
+            ruby .github/scripts/yaml_strict_check.rb meta/registry.yaml
+            echo "meta/registry.yaml: valid YAML, no duplicate keys."
+          else
+            echo "meta/registry.yaml unchanged in this PR."
+          fi
+
       - name: Lint changed published Markdown
         run: |
-          # GITHUB_BASE_REF is the PR's target branch (main/dev), provided by GitHub as
-          # a plain shell env var. No ${{ }} interpolation is used anywhere here, so no
-          # untrusted PR input (title, branch name, body) can reach the shell.
-          git fetch --no-tags origin "$GITHUB_BASE_REF"
-          base="$(git rev-parse FETCH_HEAD)"
-
           # Only published article Markdown that THIS PR changed; skip meta/, README, SUMMARY.
           # "Touched = clean": editing an article means leaving it fully clean, while older
           # articles nobody touched are grandfathered until they are next refreshed.
           mapfile -t files < <(
-            git diff --name-only --diff-filter=d "$base...HEAD" -- \
+            git diff --name-only --diff-filter=d "$PR_BASE_SHA...HEAD" -- \
               '*.md' ':(exclude)meta/**' ':(exclude)README.md' ':(exclude)SUMMARY.md'
           )
 
@@ -37,26 +62,26 @@ jobs:
           fi
 
           status=0
+
+          # 1. No em-dashes / en-dashes (the house voice rule; reads as machine-written).
           for f in "${files[@]}"; do
-            # 1. No em-dashes / en-dashes (the house voice rule; reads as machine-written).
             if grep -nP '\x{2014}|\x{2013}' "$f"; then
               echo "::error file=$f::Em-dash or en-dash found. Use a comma, parentheses, a colon, or a semicolon instead. See meta/AUTHORING-GUIDE.md."
               status=1
             fi
-
-            # 2. Valid YAML frontmatter (GitBook parses it; an unquoted colon breaks the publish).
-            if [ "$(head -n 1 "$f")" = "---" ]; then
-              if ! awk 'NR==1 {next} /^---[[:space:]]*$/ {exit} {print}' "$f" \
-                   | ruby -ryaml -e 'YAML.safe_load($stdin.read)' 2>/tmp/fm_err; then
-                echo "::error file=$f::Invalid YAML frontmatter ($(head -n 1 /tmp/fm_err)). Quote any value that contains a colon, e.g. description: \"... RTMLink: the ...\"."
-                status=1
-              fi
-            fi
           done
+
+          # 2. Frontmatter must be valid YAML (GitBook parses it; an unquoted colon
+          #    breaks the publish) with no duplicate keys. The script checks all
+          #    files in one pass and prints ::error annotations itself.
+          if ! ruby .github/scripts/yaml_strict_check.rb --frontmatter "${files[@]}"; then
+            status=1
+          fi
 
           if [ "$status" -ne 0 ]; then
             echo ""
-            echo "Published help articles must have valid YAML frontmatter and no em-dashes (U+2014) or en-dashes (U+2013)."
+            echo "Published help articles must have valid, duplicate-free YAML frontmatter"
+            echo "and no em-dashes (U+2014) or en-dashes (U+2013)."
             echo "Quote frontmatter values containing a colon; use , ( ) : ; instead of em-dashes in prose."
             exit 1
           fi
