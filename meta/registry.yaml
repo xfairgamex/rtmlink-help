@@ -502,9 +502,10 @@ articles:
     screenshots: []
     last_reviewed_commit: null
 
-  # === 7. Time Tracking (Phase 2) ==========================================
-  - path: time-tracking/understanding-time-tracking.md
-    section: time-tracking
+  # === 7. Time tracking guides (publish under the Episodes nav section; ====
+  # === no standalone Time Tracking section per Joe, July 2026) =============
+  - path: episodes/understanding-time-tracking.md
+    section: episodes
     audience: clinic-staff
     status: todo
     priority: 1
@@ -516,8 +517,8 @@ articles:
     screenshots: []
     last_reviewed_commit: null
 
-  - path: time-tracking/logging-time-on-an-episode.md
-    section: time-tracking
+  - path: episodes/logging-time-on-an-episode.md
+    section: episodes
     audience: clinic-staff
     status: todo
     priority: 1
@@ -529,8 +530,8 @@ articles:
     screenshots: []
     last_reviewed_commit: null
 
-  - path: time-tracking/managing-time-entries.md
-    section: time-tracking
+  - path: episodes/managing-time-entries.md
+    section: episodes
     audience: clinic-staff
     status: todo
     priority: 1
@@ -542,8 +543,8 @@ articles:
     screenshots: []
     last_reviewed_commit: null
 
-  - path: time-tracking/logging-interactive-contacts.md
-    section: time-tracking
+  - path: episodes/logging-interactive-contacts.md
+    section: episodes
     audience: clinic-staff
     status: published
     priority: 2
@@ -559,8 +560,8 @@ articles:
       - log-time-entry-modal
     last_reviewed_commit: fcb2020fd8e61f9e4675d51346a5c208e58ca4e0
 
-  - path: time-tracking/logging-time-via-provider-summaries.md
-    section: time-tracking
+  - path: episodes/logging-time-via-provider-summaries.md
+    section: episodes
     audience: clinic-staff
     status: todo
     priority: 1
@@ -1347,7 +1348,7 @@ screenshots:
     url: https://demo.rtmlink.com/episodes/019e7545-b2fb-702f-8975-7b4f02e943fc
     wait_for: "Start Timer"
     selector: 'section.fi-section:has-text("Time Tracking & Interactions")'
-    output: .gitbook/assets/time-tracking/episode-time-tracking-card.png
+    output: .gitbook/assets/episodes/episode-time-tracking-card.png
 
   log-time-entry-modal:
     role: clinic_owner
@@ -1357,4 +1358,4 @@ screenshots:
       - 'label:has-text("Log interactive contact")'
     wait_for: "Log Time Entry"
     selector: '[id^="time-entry-modal-"] .fi-modal-window'
-    output: .gitbook/assets/time-tracking/log-time-entry-modal.png
+    output: .gitbook/assets/episodes/log-time-entry-modal.png

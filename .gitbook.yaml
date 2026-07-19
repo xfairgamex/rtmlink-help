@@ -1,7 +1,9 @@
 # GitBook Git Sync configuration.
 # Docs: https://gitbook.com/docs/getting-started/git-sync
 #
-# Publish flow: edit markdown here → push to `main` → GitBook auto-syncs → help.rtmlink.com
+# Publish flow: edit markdown here → push to `main` → GitBook auto-syncs →
+# https://rtmlink.gitbook.io/docs (the URL the app's help menu links to;
+# help.rtmlink.com is not wired to GitBook as of July 2026)
 #
 # What gets published: only pages listed in SUMMARY.md (with README.md as the
 # landing page). The meta/ folder is intentionally NOT listed in SUMMARY.md, so
@@ -13,3 +15,7 @@ root: ./
 structure:
   readme: README.md
   summary: SUMMARY.md
+
+# Old URLs kept alive after moving pages between sections.
+redirects:
+  time-tracking/logging-interactive-contacts: episodes/logging-interactive-contacts.md
