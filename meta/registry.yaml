@@ -660,7 +660,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: stale
-    note: "Manual claim entry ('Add Claim' button) added to episode billing tab (PR #514); 'Change Status' corrective action added to table row menu and view-page header (PR #511); 'Source: Manual entry' badge shown on manually-created claims; PRs #534/#538: table now shows ONE row per claim (98980+98981 combined), tab badges count claims, 'Codes on This Claim' summary added to view page, clinical note and generate-note actions hidden on 98981 add-on lines; PR #618: providers can now view the billing pages (BillingAccess::canViewBilling() includes the provider role) and approve/export claims scoped to their own assigned patients' episodes. PR #785 (patient-month treatment billing): treatment-management suggestions (98979/98980/98981) are now generated per PATIENT per calendar month (generateForPatientCalendarMonth), aggregating minutes + interactive contacts across all of the patient's episodes, and attach to ONE 'anchor' episode's billing tab — so for a multi-episode patient the treatment-management suggestion appears on only one episode, and stale duplicate suggestions previously created on other episodes are pruned. Device-supply suggestions (98977/98985) still generate per-episode per 30-day window. Verify labels/behavior against origin/main."
+    note: "Manual claim entry ('Add Claim' button) added to episode billing tab (PR #514); 'Change Status' corrective action added to table row menu and view-page header (PR #511); 'Source: Manual entry' badge shown on manually-created claims; PRs #534/#538: table now shows ONE row per claim (98980+98981 combined), tab badges count claims, 'Codes on This Claim' summary added to view page, clinical note and generate-note actions hidden on 98981 add-on lines; PR #618: providers can now view the billing pages (BillingAccess::canViewBilling() includes the provider role) and approve/export claims scoped to their own assigned patients' episodes. PR #785 (patient-month treatment billing): treatment-management suggestions (98979/98980/98981) are now generated per PATIENT per calendar month (generateForPatientCalendarMonth), aggregating minutes + interactive contacts across all of the patient's episodes, and attach to ONE 'anchor' episode's billing tab — so for a multi-episode patient the treatment-management suggestion appears on only one episode, and stale duplicate suggestions previously created on other episodes are pruned. Device-supply suggestions (98977/98985) still generate per-episode per 30-day window. Verify labels/behavior against origin/main. --- Display-only this window (eba6a61..d3334ef, support #1015): the Billing tab table now hides the redundant Patient-name column by default in the patient-grouped main view and drops the 'Patient:' prefix on group headers (the name stays searchable and re-showable via the Columns toggle, and is removed outright on the episode billing tab)."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/**
@@ -686,7 +686,8 @@ articles:
   - path: billing/clinical-notes.md
     section: billing
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE this window (eba6a61..d3334ef). (1) PR #1018 (cd2170b): clinical-note TEMPLATES gained provider time-entry variables — a repeating '{#TIME_ENTRIES}...{/TIME_ENTRIES}' block ('{ENTRY_DATE}'/'{ENTRY_MINUTES}'/'{ENTRY_ACTIVITY}'/'{ENTRY_PROVIDER}') plus the aggregate '{TIME_ENTRIES_LIST}', surfaced as a new 'Listing provider time entries' hint block in the template editor's variable helper (ClinicalNoteTemplateForm) and in getAvailableVariables(); mirrors the existing interactive-contacts block. (2) The generated clinical note now renders as escaped plain text with hard line breaks instead of markdown, so the one-line-per-entry output of the new time-entry variables displays correctly (BillingSuggestionInfolist clinical_note entry). (3) Billing tab table (support #1015): the redundant Patient-name column is now hidden by default in the patient-grouped main view and group headers drop the 'Patient:' prefix (column stays searchable and re-showable via Columns toggle; removed outright on the episode billing tab). Per SCOPE-AND-TMI the article deliberately does NOT enumerate every template variable, so Writer should decide whether 'Generating a note from a template' needs a Tier-2 mention that templates can list provider time entries. Note the article's note now renders via Schemas/BillingSuggestionInfolist.php (added to sources), not Pages/ViewBillingSuggestion.php. Verify all labels against origin/main."
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ClinicalNoteTemplates/**
@@ -695,6 +696,7 @@ articles:
       - app/Services/BillingEvidenceFormatter.php
       - app/Filament/Clinic/Resources/BillingSuggestionResource/Actions/**
       - app/Filament/Clinic/Resources/BillingSuggestionResource/Tables/BillingSuggestionsTable.php
+      - app/Filament/Clinic/Resources/BillingSuggestionResource/Schemas/BillingSuggestionInfolist.php
       - app/Filament/Clinic/Resources/BillingSuggestionResource/Pages/ViewBillingSuggestion.php
       - app/Models/BillingSuggestion.php
       - app/Support/BillingAccess.php
@@ -897,10 +899,14 @@ articles:
     section: settings
     audience: clinic-staff
     status: todo
+    note: "SECTION RENAMED + RESTRUCTURED this window (Bundle 53/56, PRs #837/#842, commit 4036248). Clinic Settings 'Provider Survey Summaries' is now 'Staff Email Notifications' — one hub for every recurring team email, split into three fieldsets: 'Daily Provider Summaries' (the Enable toggle + Default Delivery Channel + Default Send Time, unchanged), 'Daily Owner Digest — Problems & Praise' (the 'Send the daily digest' toggle, now disabled unless Provider Summaries is on, since it rides the same morning run), and NEW 'Weekly Billing Nudge Emails' — two toggles: 'Provider \"claims to sign\" email' (each provider with unsigned ready-to-bill claims gets a weekly email deep-linking to their own sign-off list; counts and links only, no patient details) and 'Owner billing opportunities email' (near-billable episodes + an unsigned-claims rollup with estimated values), plus a shared 'Send Day' and 'Send Time' (clinic timezone). The old 'Digest Recipients' field is relabeled 'Owner & Admin Email Recipients' and now drives BOTH the daily digest AND the weekly owner billing email. The separate 'Revenue Opportunity Nudges' section (sensitivity/window-code tuning) now feeds the weekly emails' content (its description was updated to say so). This article is unwritten (todo); the Writer should broaden its scope to the whole Staff Email Notifications hub (or split it), documenting the emails as Tier-2 (what each contains + that the provider email is counts/links only and none of it is billable). Sources widened to the nudge-email service + mailables so future changes flag here. Verify all labels against origin/main."
     priority: 3
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
       - app/Services/ProviderSummary/ClinicOwnerDigestService.php
+      - app/Services/BillingNudgeEmailService.php
+      - app/Mail/ProviderClaimsToSignMail.php
+      - app/Mail/ClinicOwnerBillingReadyMail.php
     screenshots: []
     last_reviewed_commit: null
 
