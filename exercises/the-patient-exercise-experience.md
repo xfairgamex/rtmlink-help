@@ -36,7 +36,7 @@ When the patient finishes an exercise, they tap **Done!**, which opens a few qui
 
 To record the exercise and move on, they tap **Continue →**.
 
-> **Every question is optional.** After tapping **Done!**, the patient can tap **Continue →** without answering anything and the completion still counts. This feedback appears alongside the patient's survey responses on the episode, so you can see how their exercises are going. See [Understanding survey responses](../surveys/understanding-survey-responses.md).
+> **Every question is optional.** After tapping **Done!**, the patient can tap **Continue →** without answering anything and the completion still counts. This feedback appears alongside the patient's survey responses on the episode, so you can see how their exercises are going. See [Understanding survey responses](../check-ins/understanding-survey-responses.md).
 
 If they've already finished an exercise that day, it shows **You already completed this exercise today**, and doing it again won't double-count.
 
@@ -62,4 +62,4 @@ Each day a patient marks at least one exercise complete counts as an RTM interac
 - [Understanding the Home Exercise Program](understanding-hep.md)
 - [Assigning HEP to an episode](assigning-hep-to-an-episode.md)
 - [Tracking exercise adherence](tracking-exercise-adherence.md)
-- [Understanding survey responses](../surveys/understanding-survey-responses.md)
+- [Understanding survey responses](../check-ins/understanding-survey-responses.md)

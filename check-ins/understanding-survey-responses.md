@@ -1,5 +1,5 @@
 ---
-description: How patients answer surveys in RTMLink and how to review responses — the magic link, response statuses, what counts as an interaction, flagged answers, and where responses appear on the episode.
+description: "How patients answer surveys in RTMLink and how to review responses: the magic link, response statuses, what counts as an interaction, flagged answers, and where responses appear on the episode."
 ---
 
 # Understanding survey responses
@@ -10,7 +10,7 @@ A **response** is one patient's answers to one day's survey. This article covers
 
 Patients don't need an app or a password. On schedule, RTMLink sends each patient a personal **survey link** by SMS or email. Tapping it opens that day's check-in, where:
 
-- Every question is **optional** — the patient can answer what's relevant and skip the rest.
+- Every question is **optional**; the patient can answer what's relevant and skip the rest.
 - Answers **save automatically** as they go, so a patient can close the link and come back later without losing progress.
 - Submitting finishes the response and shows a thank-you page.
 
@@ -36,10 +36,10 @@ Open an episode and find the **Patient Responses** section. By default it lists 
 Click any response to open it. You'll see:
 
 - **Every question and the patient's answer**, formatted for easy reading (a scale shows as "7 / 10", a choice shows its label).
-- **Exercise feedback** the patient gave that same day, if they're on a home exercise program — how each exercise felt, any pain, and notes.
+- **Exercise feedback** the patient gave that same day, if they're on a home exercise program: how each exercise felt, any pain, and notes.
 - A **Read** / **Unread** badge.
 
-> Opening a completed, unread response **marks it as read** automatically and removes it from your unread count — no extra click needed.
+> Opening a completed, unread response **marks it as read** automatically and removes it from your unread count; no extra click needed.
 
 ## Flagged answers
 
@@ -52,7 +52,7 @@ Flags help you triage. From the **Episodes** list, the **Attention** filter surf
 
 ## Scanning answers without opening each response
 
-Questions marked **Featured** appear as their own columns in the episode, so you can scan a key value — like the day's pain score — across many days at a glance, then open only the responses that warrant a closer look.
+Questions marked **Featured** appear as their own columns in the episode, so you can scan a key value (like the day's pain score) across many days at a glance, then open only the responses that warrant a closer look.
 
 ## Related articles
 

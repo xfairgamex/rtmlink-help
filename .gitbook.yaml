@@ -19,3 +19,9 @@ structure:
 # Old URLs kept alive after moving pages between sections.
 redirects:
   time-tracking/logging-interactive-contacts: episodes/logging-interactive-contacts.md
+  surveys/understanding-surveys: check-ins/understanding-surveys.md
+  surveys/creating-a-survey: check-ins/creating-a-survey.md
+  surveys/editing-and-managing-surveys: check-ins/editing-and-managing-surveys.md
+  surveys/previewing-a-survey: check-ins/previewing-a-survey.md
+  surveys/understanding-survey-responses: check-ins/understanding-survey-responses.md
+  surveys/survey-amendments: check-ins/survey-amendments.md

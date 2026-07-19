@@ -27,14 +27,14 @@
 * [Episode actions](episodes/episode-actions.md)
 * [Logging interactive contacts](episodes/logging-interactive-contacts.md)
 
-## Surveys
+## Check-Ins
 
-* [Understanding surveys](surveys/understanding-surveys.md)
-* [Creating a survey](surveys/creating-a-survey.md)
-* [Editing & managing surveys](surveys/editing-and-managing-surveys.md)
-* [Previewing a survey](surveys/previewing-a-survey.md)
-* [Understanding survey responses](surveys/understanding-survey-responses.md)
-* [Survey amendments](surveys/survey-amendments.md)
+* [Understanding surveys](check-ins/understanding-surveys.md)
+* [Creating a survey](check-ins/creating-a-survey.md)
+* [Editing & managing surveys](check-ins/editing-and-managing-surveys.md)
+* [Previewing a survey](check-ins/previewing-a-survey.md)
+* [Understanding survey responses](check-ins/understanding-survey-responses.md)
+* [Survey amendments](check-ins/survey-amendments.md)
 
 ## Exercises
 
@@ -50,16 +50,23 @@
 
 * [Clinical notes and sign-off](billing/clinical-notes.md)
 
+## Patient Portal
+
+* [Recovering portal access](patient-portal/recovering-portal-access.md)
+
 <!--
   NAV GROWS AS ARTICLES LAND. Add each article here only once its file exists,
   so the published nav never points at a missing page.
 
-  Time tracking articles publish under Episodes (Joe's call, July 2026), so
-  outline section 7 has no nav section of its own.
-
-  Sections still to come (keep outline order; see meta/CONTENT-OUTLINE.md):
-    ## Messages (after Exercises), Provider Summaries (before Billing),
-    Settings, Integrations, Reference, Troubleshooting
+  TARGET LAYOUT (IA decision, July 2026; details in meta/CONTENT-OUTLINE.md):
+    Getting Started (+ 4 role quickstarts, written last)
+    Patients / Episodes (incl. time tracking) / Check-Ins (surveys +
+    the provider review queue) / Exercises / Messages / Appointments &
+    Front Desk / Billing / Patient Portal / Settings & Team (settings +
+    users + integrations folders share this one heading) / Reference
+    (nested sub-pages allowed here) / Troubleshooting & FAQ
+  No standalone Time Tracking, Provider Summaries, Profile, Compliance,
+  or Workflows sections.
 
   DO NOT list anything under meta/ here — that folder must stay unpublished.
 -->
