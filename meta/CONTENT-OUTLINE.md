@@ -235,6 +235,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 ## 7. Time Tracking
 
+> **Nav note (July 2026):** time tracking gets no standalone nav section (Joe's call). These articles live in `episodes/` and publish under the **Episodes** section of SUMMARY.md; this outline block stays as the planning home for their coverage.
+
 ### 7.1 Understanding Time Tracking in RTM
 - Why time tracking matters for billing (CPT 98979, 98980, 98981)
 - Activity types: data review, patient contact, team meeting, assessment, etc.

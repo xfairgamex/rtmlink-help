@@ -23,7 +23,7 @@ Open the patient's episode and find the **Time Tracking & Interactions** section
 
 You may also be pointed here from your dashboard: when an episode has enough minutes but no contact, the revenue opportunities list shows **Log 1 interactive contact to bill** the eligible code, and its **Add Interaction** button jumps straight to this section of the episode.
 
-![The Time Tracking & Interactions section of an episode: monthly minutes, the purple contact counter, and the Start Timer and Add buttons.](../.gitbook/assets/time-tracking/episode-time-tracking-card.png)
+![The Time Tracking & Interactions section of an episode: monthly minutes, the purple contact counter, and the Start Timer and Add buttons.](../.gitbook/assets/episodes/episode-time-tracking-card.png)
 
 ## Log a contact with a time entry
 
@@ -37,7 +37,7 @@ Interactive contacts ride along with time entries, so you record the conversatio
 6. Check **Log interactive contact**, then choose the contact type: **Phone call**, **Video call**, **Synchronous chat**, or **In-person**.
 7. Click **Save**.
 
-![The Log Time Entry window with Log interactive contact checked and the contact type list revealed.](../.gitbook/assets/time-tracking/log-time-entry-modal.png)
+![The Log Time Entry window with Log interactive contact checked and the contact type list revealed.](../.gitbook/assets/episodes/log-time-entry-modal.png)
 
 The time entry and its interactive contact are saved together. The purple counter ticks up, the **This Calendar Month** card updates, and the contact appears as supporting evidence on any treatment claim for that month.
 
@@ -64,6 +64,6 @@ Providers reviewing the day's survey responses can also log an interactive commu
 
 ## Related articles
 
-- [Viewing episode details](../episodes/viewing-episode-details.md)
-- [Understanding episodes](../episodes/understanding-episodes.md)
+- [Viewing episode details](viewing-episode-details.md)
+- [Understanding episodes](understanding-episodes.md)
 - [Understanding your role](../getting-started/understanding-your-role.md)

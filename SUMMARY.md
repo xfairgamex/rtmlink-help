@@ -25,6 +25,7 @@
 * [Managing episode status](episodes/managing-episode-status.md)
 * [Episode search & filters](episodes/episode-search-and-filters.md)
 * [Episode actions](episodes/episode-actions.md)
+* [Logging interactive contacts](episodes/logging-interactive-contacts.md)
 
 ## Surveys
 
@@ -45,10 +46,6 @@
 * [Tracking exercise adherence](exercises/tracking-exercise-adherence.md)
 * [The patient's exercise experience](exercises/the-patient-exercise-experience.md)
 
-## Time Tracking
-
-* [Logging interactive contacts](time-tracking/logging-interactive-contacts.md)
-
 ## Billing
 
 * [Clinical notes and sign-off](billing/clinical-notes.md)
@@ -57,9 +54,12 @@
   NAV GROWS AS ARTICLES LAND. Add each article here only once its file exists,
   so the published nav never points at a missing page.
 
+  Time tracking articles publish under Episodes (Joe's call, July 2026), so
+  outline section 7 has no nav section of its own.
+
   Sections still to come (keep outline order; see meta/CONTENT-OUTLINE.md):
-    ## Messages (before Time Tracking), Provider Summaries (between Time
-    Tracking and Billing), Settings, Integrations, Reference, Troubleshooting
+    ## Messages (after Exercises), Provider Summaries (before Billing),
+    Settings, Integrations, Reference, Troubleshooting
 
   DO NOT list anything under meta/ here — that folder must stay unpublished.
 -->
