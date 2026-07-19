@@ -620,8 +620,7 @@ articles:
   - path: billing/understanding-rtm-billing.md
     section: billing
     audience: clinic-staff
-    status: stale
-    note: "BillingSuggestion gained a source field (system vs. manual); manual claims excluded from auto-regeneration sweep and never overwritten by the system — document the manual claim concept (PR #514); PRs #534/#538 introduced claim grouping: 98980+98981 lines are now one BillingClaim record submitted together — document what 'one row per claim' means and how claim totals work. PR #785 (patient-month treatment billing): treatment-management codes 98979/98980/98981 now bill PER PATIENT PER CALENDAR MONTH, aggregating qualifying minutes + interactive contacts across ALL of a patient's episodes that month (including paused/discharged/closed ones) into ONE claim attached to a single 'anchor' episode — was previously measured per-episode. The anchor is the most-recently-enrolled episode with qualifying activity that month, unless a protected row (billed/exported/rejected/note-signed/DrChrono-linked/manual) already pins the month to its episode. Consequence to document for billing staff: a patient with multiple concurrent episodes gets ONE monthly treatment-management claim, not one per episode; duplicate system suggestions on non-anchor episodes are auto-removed. Device-supply codes 98977/98985 remain per-episode per 30-day window (unchanged). Sources widened to the suggestion engines so future changes flag here. Verify all wording against origin/main."
+    status: review
     priority: 1
     sources:
       - app/Models/BillingSuggestion.php
@@ -632,41 +631,40 @@ articles:
       - app/Services/BillingSuggestionService.php
       - app/Services/BillingSuggestionGenerationService.php
       - CLAUDE.MD
-    screenshots: []
-    last_reviewed_commit: null
+    screenshots:
+      - billing-claims-list
+    last_reviewed_commit: eab6ef9a165c2850785afb063d92abb709a59c67
 
   - path: billing/billing-suggestions.md
     section: billing
     audience: clinic-staff
-    status: stale
-    note: "Manual claim entry ('Add Claim' button) added to episode billing tab (PR #514); 'Change Status' corrective action added to table row menu and view-page header (PR #511); 'Source: Manual entry' badge shown on manually-created claims; PRs #534/#538: table now shows ONE row per claim (98980+98981 combined), tab badges count claims, 'Codes on This Claim' summary added to view page, clinical note and generate-note actions hidden on 98981 add-on lines; PR #618: providers can now view the billing pages (BillingAccess::canViewBilling() includes the provider role) and approve/export claims scoped to their own assigned patients' episodes. PR #785 (patient-month treatment billing): treatment-management suggestions (98979/98980/98981) are now generated per PATIENT per calendar month (generateForPatientCalendarMonth), aggregating minutes + interactive contacts across all of the patient's episodes, and attach to ONE 'anchor' episode's billing tab — so for a multi-episode patient the treatment-management suggestion appears on only one episode, and stale duplicate suggestions previously created on other episodes are pruned. Device-supply suggestions (98977/98985) still generate per-episode per 30-day window. Verify labels/behavior against origin/main. --- Display-only this window (eba6a61..d3334ef, support #1015): the Billing tab table now hides the redundant Patient-name column by default in the patient-grouped main view and drops the 'Patient:' prefix on group headers (the name stays searchable and re-showable via the Columns toggle, and is removed outright on the episode billing tab)."
+    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/**
       - app/Models/BillingSuggestion.php
       - app/Services/BillingSuggestionGenerationService.php
       - app/Services/BillingSuggestionService.php
-    screenshots: []
-    last_reviewed_commit: null
+    screenshots:
+      - billing-claim-detail
+    last_reviewed_commit: eab6ef9a165c2850785afb063d92abb709a59c67
 
   - path: billing/approving-and-rejecting-claims.md
     section: billing
     audience: clinic-staff
-    status: stale
-    note: "'Change Status' action added as a corrective path: lets users with billing.approve move a claim to any status (Ready to Bill / Billed / Rejected) regardless of current state; available in table row menu and view-page header (PR #511); PR #534: Mark Billed and Reject now operate claim-wide — all CPT codes on the claim are processed together; confirmation modal names all affected codes; PR #618: providers can now approve/sign/reject claims for their own assigned patients' episodes (BillingAccess::canApprove() gates per-record actions by assigned_provider_id)"
+    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/Actions/**
       - app/Models/BillingSuggestion.php
       - app/Models/BillingClaim.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: eab6ef9a165c2850785afb063d92abb709a59c67
 
   - path: billing/clinical-notes.md
     section: billing
     audience: clinic-staff
-    status: stale
-    note: "STALE this window (eba6a61..d3334ef). (1) PR #1018 (cd2170b): clinical-note TEMPLATES gained provider time-entry variables — a repeating '{#TIME_ENTRIES}...{/TIME_ENTRIES}' block ('{ENTRY_DATE}'/'{ENTRY_MINUTES}'/'{ENTRY_ACTIVITY}'/'{ENTRY_PROVIDER}') plus the aggregate '{TIME_ENTRIES_LIST}', surfaced as a new 'Listing provider time entries' hint block in the template editor's variable helper (ClinicalNoteTemplateForm) and in getAvailableVariables(); mirrors the existing interactive-contacts block. (2) The generated clinical note now renders as escaped plain text with hard line breaks instead of markdown, so the one-line-per-entry output of the new time-entry variables displays correctly (BillingSuggestionInfolist clinical_note entry). (3) Billing tab table (support #1015): the redundant Patient-name column is now hidden by default in the patient-grouped main view and group headers drop the 'Patient:' prefix (column stays searchable and re-showable via Columns toggle; removed outright on the episode billing tab). Per SCOPE-AND-TMI the article deliberately does NOT enumerate every template variable, so Writer should decide whether 'Generating a note from a template' needs a Tier-2 mention that templates can list provider time entries. Note the article's note now renders via Schemas/BillingSuggestionInfolist.php (added to sources), not Pages/ViewBillingSuggestion.php. Verify all labels against origin/main."
+    status: review
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ClinicalNoteTemplates/**
@@ -683,43 +681,45 @@ articles:
     screenshots:
       - billing-claims-list
       - clinical-note-modal
-    last_reviewed_commit: fcb2020fd8e61f9e4675d51346a5c208e58ca4e0
+    last_reviewed_commit: eab6ef9a165c2850785afb063d92abb709a59c67
 
   - path: billing/exporting-to-drchrono.md
     section: billing
     audience: clinic-staff
-    status: stale
-    note: "PR #534: DrChrono export is now claim-scoped — one DrChrono appointment per claim, all CPT lines (98980+98981) linked to the same appointment; DrChronoAppointmentExportService refactored accordingly; also CSV export now includes a Claim ID column (BillingExportService); PR #618: providers can now send/delete/link-appointment on claims for their own assigned patients (BillingAccess::canExport() gate)"
+    status: review
     priority: 1
     sources:
       - app/Services/BillingExportService.php
       - app/Services/Ehr/DrChronoAppointmentExportService.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: eab6ef9a165c2850785afb063d92abb709a59c67
 
   - path: billing/billing-window-progress.md
     section: billing
     audience: clinic-staff
-    status: todo
+    status: review
     priority: 1
     sources:
       - app/Models/Window.php
       - app/Services/RtmCounterService.php
       - app/Services/EpisodeWindowService.php
-    screenshots: []
-    last_reviewed_commit: null
+    screenshots:
+      - episode-window-card
+      - episode-month-card
+    last_reviewed_commit: eab6ef9a165c2850785afb063d92abb709a59c67
 
   - path: billing/configuring-billing-rates.md
     section: billing
     audience: clinic-staff
-    status: todo
+    status: review
     priority: 1
     sources:
-      - app/Filament/Clinic/Pages/BillingSettings.php
+      - app/Filament/Clinic/Pages/ClinicSettings.php
       - app/Services/BillingRevenueService.php
       - app/Models/Tenant.php
-    screenshots: []
-    last_reviewed_commit: null
+    screenshots:
+      - reimbursement-rates
+    last_reviewed_commit: eab6ef9a165c2850785afb063d92abb709a59c67
 
   # === 10. Appointments (Phase 3) ==========================================
   - path: appointments/viewing-appointments.md
@@ -918,7 +918,8 @@ articles:
     note: "Bundle 56 (PR #615): ClinicSettings gained a 'Revenue Opportunity Nudges' section with sensitivity select (focused/balanced/all) and include-check-in-nudges toggle (98985/98977 nudges per 30-day window); controls the near-billable signals on the dashboard"
     priority: 3
     sources:
-      - app/Filament/Clinic/Pages/BillingSettings.php
+      - app/Filament/Clinic/Pages/ClinicSettings.php
+      - app/Services/BillingRevenueService.php
       - app/Models/Tenant.php
     screenshots: []
     last_reviewed_commit: null
@@ -1341,3 +1342,33 @@ screenshots:
     wait_for: "Log Time Entry"
     selector: '[id^="time-entry-modal-"] .fi-modal-window'
     output: .gitbook/assets/episodes/log-time-entry-modal.png
+
+  # --- Billing batch 1 ---
+  billing-claim-detail:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/billing-suggestions/019e7545-b4ae-708f-8f67-de3422a76e2e
+    wait_for: "Qualification Criteria"
+    output: .gitbook/assets/billing/billing-claim-detail.png
+
+  episode-window-card:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/episodes/019e7545-b2fb-702f-8975-7b4f02e943fc
+    wait_for: "Interaction days are unique dates"
+    selector: 'section.fi-section:has-text("30-Day Window")'
+    output: .gitbook/assets/billing/episode-window-card.png
+
+  episode-month-card:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/episodes/019e7545-b2fb-702f-8975-7b4f02e943fc
+    wait_for: "minutes logged"
+    selector: 'section.fi-section:has-text("This Calendar Month")'
+    output: .gitbook/assets/billing/episode-month-card.png
+
+  reimbursement-rates:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/clinic-settings
+    wait_for: "Reimbursement Rates"
+    # "Reimbursement Rates" alone double-matches: the RTM Billing card's
+    # description also says "reimbursement rates" (has-text is case-blind).
+    selector: 'section.fi-section:has-text("Leave blank to use national averages")'
+    output: .gitbook/assets/billing/reimbursement-rates.png

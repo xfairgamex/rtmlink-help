@@ -40,7 +40,7 @@ If your clinic has set up clinical note templates, you can start from one instea
 2. The note is written from the template for the claim's CPT code, with the claim's details filled in. Review it and edit anything that needs a human touch.
 3. Click **Save Note** to keep it as a draft, or **Sign Note** if it is ready.
 
-> If no template is configured for the claim's CPT code, the window tells you so and you can simply type the note yourself. Clinic Owners manage templates under **Templates** > **Clinical Note Templates** in the left sidebar.
+> If no template is configured for the claim's CPT code, the window tells you so and you can simply type the note yourself. Clinic Owners manage templates under **Templates** > **Clinical Note Templates** in the left sidebar. Templates can also pull in the month's logged time entries and interactive contacts automatically, so generated notes reflect the work actually recorded.
 
 ## Signing a note
 
@@ -80,6 +80,7 @@ Providers can write and sign notes only on claims for their own assigned patient
 
 ## Related articles
 
+- [Approving and rejecting claims](approving-and-rejecting-claims.md)
 - [Viewing episode details](../episodes/viewing-episode-details.md)
 - [Navigating the dashboard](../getting-started/navigating-the-dashboard.md)
 - [Understanding your role](../getting-started/understanding-your-role.md)

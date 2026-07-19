@@ -48,7 +48,13 @@
 
 ## Billing
 
+* [Understanding RTM billing](billing/understanding-rtm-billing.md)
+* [Billing claims and suggestions](billing/billing-suggestions.md)
+* [Approving and rejecting claims](billing/approving-and-rejecting-claims.md)
 * [Clinical notes and sign-off](billing/clinical-notes.md)
+* [Exporting claims and sending to DrChrono](billing/exporting-to-drchrono.md)
+* [Tracking billing progress on an episode](billing/billing-window-progress.md)
+* [Configuring billing rates](billing/configuring-billing-rates.md)
 
 ## Patient Portal
 
