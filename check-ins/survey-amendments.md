@@ -1,5 +1,5 @@
 ---
-description: How survey amendments work in RTMLink — patients correcting a past check-in from their survey history, and how the corrected response appears to providers without overwriting the original.
+description: "How survey amendments work in RTMLink: patients correcting a past check-in from their survey history, and how the corrected response appears to providers without overwriting the original."
 ---
 
 # Survey amendments
@@ -10,7 +10,7 @@ An **amendment** is a patient's correction to a check-in they already submitted.
 
 Patients amend from their **survey history**, reached through their personal survey link:
 
-1. From their check-in, the patient opens their **History** — the list of check-ins they've submitted.
+1. From their check-in, the patient opens their **History**, the list of check-ins they've submitted.
 2. They open the submission they want to fix.
 3. They choose to **amend** it. The form reopens **pre-filled with their original answers**.
 4. They change what's needed and resubmit.
@@ -19,7 +19,7 @@ Patients amend from their **survey history**, reached through their personal sur
 
 An amendment doesn't overwrite anything. Instead, RTMLink creates a **new response linked to the original**:
 
-- The amended response arrives **unread**, so it re-enters your review queue just like any new response — you won't miss the correction.
+- The amended response arrives **unread**, so it re-enters your review queue just like any new response, so you won't miss the correction.
 - The **original response is preserved**. Both the original and the amended version stay on the episode, linked together, so the history of what changed is never lost.
 
 You review an amendment exactly like any other response, in the episode's **Patient Responses** section. See [Understanding survey responses](understanding-survey-responses.md).

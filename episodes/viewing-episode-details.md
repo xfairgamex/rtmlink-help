@@ -59,7 +59,7 @@ Progress toward the treatment-management codes (`98979`, `98980`, and `98981`), 
 
 The main part of the page is where you do the day-to-day work:
 
-- **Patient Responses:** recent survey responses and exercise feedback. Flagged answers are highlighted so you can spot anything that needs attention. See [Understanding survey responses](../surveys/understanding-survey-responses.md).
+- **Patient Responses:** recent survey responses and exercise feedback. Flagged answers are highlighted so you can spot anything that needs attention. See [Understanding survey responses](../check-ins/understanding-survey-responses.md).
 - **Time Tracking & Interactions:** log provider time and record interactive contacts (phone, video, in person) against the episode. See [Episode actions](episode-actions.md).
 
 ## Understanding the two billing clocks
@@ -89,6 +89,6 @@ Below the working area, four tabs let you view and manage more episode data:
 - [Understanding episodes](understanding-episodes.md)
 - [Managing episode status](managing-episode-status.md)
 - [Episode actions](episode-actions.md)
-- [Understanding survey responses](../surveys/understanding-survey-responses.md)
+- [Understanding survey responses](../check-ins/understanding-survey-responses.md)
 </content>
 </invoke>

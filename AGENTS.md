@@ -56,7 +56,7 @@ rtmlink-help/                     ← YOU ARE HERE (separate git repo)
 │   ├── MAINTENANCE.md
 │   ├── registry.yaml             ← articles + screenshots + status
 │   └── last-synced.json          ← app commit the docs were last reconciled to
-└── getting-started/ patients/ episodes/ surveys/ ...   ← article folders
+└── getting-started/ patients/ episodes/ check-ins/ ...   ← article folders
 
 ../                               ← the RTMLink app (READ from origin/main for accuracy; never edit from here)
 ├── app/Filament/Clinic/          ← clinic-staff UI (resources, pages, widgets)

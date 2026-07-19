@@ -260,9 +260,9 @@ articles:
     screenshots: []
     last_reviewed_commit: 3d0da0988db6a51d06368409bb2a9489d09e146f
 
-  # === 4. Surveys (Phase 1) ================================================
-  - path: surveys/understanding-surveys.md
-    section: surveys
+  # === 4. Check-Ins (surveys; app sidebar says Check-Ins) ================
+  - path: check-ins/understanding-surveys.md
+    section: check-ins
     audience: clinic-staff
     status: review
     priority: 1
@@ -273,8 +273,8 @@ articles:
     screenshots: []
     last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
 
-  - path: surveys/creating-a-survey.md
-    section: surveys
+  - path: check-ins/creating-a-survey.md
+    section: check-ins
     audience: clinic-staff
     status: review
     priority: 1
@@ -287,8 +287,8 @@ articles:
     screenshots: [survey-list]
     last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
 
-  - path: surveys/editing-and-managing-surveys.md
-    section: surveys
+  - path: check-ins/editing-and-managing-surveys.md
+    section: check-ins
     audience: clinic-staff
     status: review
     priority: 1
@@ -299,8 +299,8 @@ articles:
     screenshots: []
     last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
 
-  - path: surveys/previewing-a-survey.md
-    section: surveys
+  - path: check-ins/previewing-a-survey.md
+    section: check-ins
     audience: clinic-staff
     status: review
     priority: 1
@@ -310,8 +310,8 @@ articles:
     screenshots: []
     last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
 
-  - path: surveys/understanding-survey-responses.md
-    section: surveys
+  - path: check-ins/understanding-survey-responses.md
+    section: check-ins
     audience: clinic-staff
     status: review
     priority: 1
@@ -322,8 +322,8 @@ articles:
     screenshots: []
     last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
 
-  - path: surveys/survey-amendments.md
-    section: surveys
+  - path: check-ins/survey-amendments.md
+    section: check-ins
     audience: clinic-staff
     status: review
     priority: 1
@@ -560,8 +560,42 @@ articles:
       - log-time-entry-modal
     last_reviewed_commit: fcb2020fd8e61f9e4675d51346a5c208e58ca4e0
 
-  - path: episodes/logging-time-via-provider-summaries.md
-    section: episodes
+  # === 8. Check-Ins queue (provider daily review; check-ins section) ======
+  - path: check-ins/what-are-provider-summaries.md
+    section: check-ins
+    audience: clinic-staff
+    status: todo
+    priority: 1
+    sources:
+      - app/Services/ProviderSummary/ProviderSummaryBuilder.php
+      - app/Services/ProviderSummary/ProviderSummaryNotifier.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: check-ins/generating-summaries.md
+    section: check-ins
+    audience: clinic-staff
+    status: todo
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Pages/PendingSummaries.php
+      - app/Services/ProviderSummary/**
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: check-ins/reviewing-a-summary.md
+    section: check-ins
+    audience: clinic-staff
+    status: todo
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Pages/ReviewSummary.php
+      - app/Services/ProviderSummary/UnreadSurveyService.php
+    screenshots: []
+    last_reviewed_commit: null
+
+  - path: check-ins/logging-time-during-review.md
+    section: check-ins
     audience: clinic-staff
     status: todo
     priority: 1
@@ -571,70 +605,14 @@ articles:
     screenshots: []
     last_reviewed_commit: null
 
-  # === 8. Provider Summaries (Phase 2) =====================================
-  - path: provider-summaries/what-are-provider-summaries.md
-    section: provider-summaries
+  - path: check-ins/summary-status-and-management.md
+    section: check-ins
     audience: clinic-staff
     status: todo
-    priority: 2
-    sources:
-      - app/Services/ProviderSummary/ProviderSummaryBuilder.php
-      - app/Services/ProviderSummary/ProviderSummaryNotifier.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: provider-summaries/generating-summaries.md
-    section: provider-summaries
-    audience: clinic-staff
-    status: todo
-    priority: 2
+    priority: 1
     sources:
       - app/Filament/Clinic/Pages/PendingSummaries.php
       - app/Services/ProviderSummary/**
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: provider-summaries/reviewing-a-summary.md
-    section: provider-summaries
-    audience: clinic-staff
-    status: todo
-    priority: 2
-    sources:
-      - app/Filament/Clinic/Pages/ReviewSummary.php
-      - app/Services/ProviderSummary/UnreadSurveyService.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: provider-summaries/logging-time-during-review.md
-    section: provider-summaries
-    audience: clinic-staff
-    status: todo
-    priority: 2
-    sources:
-      - app/Filament/Clinic/Pages/ReviewSummary.php
-      - app/Models/TimeEntry.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: provider-summaries/summary-status-and-management.md
-    section: provider-summaries
-    audience: clinic-staff
-    status: todo
-    priority: 2
-    sources:
-      - app/Filament/Clinic/Pages/PendingSummaries.php
-      - app/Services/ProviderSummary/**
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: provider-summaries/daily-summary-setup.md
-    section: provider-summaries
-    audience: clinic-staff
-    status: blocked
-    note: "REMOVED: DailyPatientSelection page (PR #624), model, view, and database table (PR #629) were all deleted as 'orphaned'; this entry should be removed from the registry — the feature no longer exists and the article was never written"
-    priority: 2
-    sources:
-      - app/Filament/Clinic/Pages/DailyPatientSelection.php
     screenshots: []
     last_reviewed_commit: null
 
@@ -766,9 +744,9 @@ articles:
     screenshots: []
     last_reviewed_commit: null
 
-  # === 11. Front Desk Check-In (Phase 3) ===================================
-  - path: check-in/setting-up-check-in.md
-    section: check-in
+  # === 11. Front Desk (arrival check-ins; renamed from check-in) ==========
+  - path: front-desk/setting-up-check-in.md
+    section: front-desk
     audience: clinic-staff
     status: todo
     priority: 3
@@ -779,8 +757,8 @@ articles:
     screenshots: []
     last_reviewed_commit: null
 
-  - path: check-in/using-the-check-in-kiosk.md
-    section: check-in
+  - path: front-desk/using-the-check-in-kiosk.md
+    section: front-desk
     audience: clinic-staff
     status: todo
     priority: 3
@@ -791,8 +769,8 @@ articles:
     screenshots: []
     last_reviewed_commit: null
 
-  - path: check-in/enrolling-patients-at-check-in.md
-    section: check-in
+  - path: front-desk/enrolling-patients-at-check-in.md
+    section: front-desk
     audience: clinic-staff
     status: todo
     priority: 3
@@ -802,8 +780,8 @@ articles:
     screenshots: []
     last_reviewed_commit: null
 
-  - path: check-in/managing-episodes-at-check-in.md
-    section: check-in
+  - path: front-desk/managing-episodes-at-check-in.md
+    section: front-desk
     audience: clinic-staff
     status: todo
     priority: 3
@@ -1044,9 +1022,9 @@ articles:
     screenshots: []
     last_reviewed_commit: null
 
-  # === 16. My Profile (Phase 4) ============================================
-  - path: profile/changing-your-password.md
-    section: profile
+  # === 16. My Settings (merged into settings section) =====================
+  - path: settings/changing-your-password.md
+    section: settings
     audience: clinic-staff
     status: todo
     priority: 4
@@ -1057,8 +1035,8 @@ articles:
     screenshots: []
     last_reviewed_commit: null
 
-  - path: profile/notification-preferences.md
-    section: profile
+  - path: settings/notification-preferences.md
+    section: settings
     audience: clinic-staff
     status: todo
     priority: 4
@@ -1069,9 +1047,9 @@ articles:
     screenshots: []
     last_reviewed_commit: null
 
-  # === 17. Compliance & Audit (Phase 4) ====================================
-  - path: compliance/activity-logging.md
-    section: compliance
+  # === 17. Compliance & audit (merged into settings section) ==============
+  - path: settings/activity-logging.md
+    section: settings
     audience: clinic-staff
     status: todo
     priority: 4
@@ -1082,8 +1060,8 @@ articles:
     screenshots: []
     last_reviewed_commit: null
 
-  - path: compliance/data-retention.md
-    section: compliance
+  - path: settings/data-retention.md
+    section: settings
     audience: clinic-staff
     status: todo
     priority: 4
@@ -1093,57 +1071,61 @@ articles:
     screenshots: []
     last_reviewed_commit: null
 
-  # === 18. Workflows (Phase 4) =============================================
-  - path: workflows/patient-enrollment-workflow.md
-    section: workflows
+  # === 18. Role quickstarts (getting-started; write after sections exist) =
+  - path: getting-started/quickstart-owner-setup.md
+    section: getting-started
     audience: clinic-staff
     status: todo
-    priority: 4
+    note: "Role quickstart (owner first week: clinic settings, team, DrChrono, billing rates, agreements). Write LAST, after the Settings & Team articles exist."
+    priority: 3
     sources:
-      - app/Services/EpisodeEnrollmentService.php
-      - app/Services/SurveyDeliveryService.php
+      - app/Filament/Clinic/Pages/ClinicSettings.php
+      - app/Filament/Clinic/Resources/UserResource.php
+      - app/Filament/Clinic/Pages/Integrations.php
     screenshots: []
     last_reviewed_commit: null
 
-  - path: workflows/daily-provider-review-workflow.md
-    section: workflows
+  - path: getting-started/quickstart-provider-daily-loop.md
+    section: getting-started
     audience: clinic-staff
     status: todo
-    priority: 4
+    note: "Role quickstart (the provider daily loop: action feed, Check-Ins queue, logging time and contacts, signing notes). Write LAST, after the Check-Ins and Billing sections exist; related links may only point at existing articles."
+    priority: 3
     sources:
       - app/Services/ProviderSummary/**
       - app/Filament/Clinic/Pages/ReviewSummary.php
     screenshots: []
     last_reviewed_commit: null
 
-  - path: workflows/billing-workflow.md
-    section: workflows
+  - path: getting-started/quickstart-billing.md
+    section: getting-started
     audience: clinic-staff
     status: stale
-    note: "Manual claim entry is now a step in the billing workflow; billing staff can add claims the system did not derive automatically via 'Add Claim' on the episode billing tab (PR #514); PRs #534/#538: billing table now shows one row per claim; CSV export adds Claim ID column; Mark Billed and Reject act on all lines of a claim at once — update workflow description to reflect claim-level operations. PR #785 (patient-month treatment billing): treatment-management codes 98979/98980/98981 now bill per PATIENT per calendar month, so the workflow should reflect that a multi-episode patient produces ONE monthly treatment-management claim (aggregated across their episodes, anchored to a single episode), not a separate claim per episode; device-supply codes 98977/98985 remain per-episode per 30-day window. Verify against origin/main."
-    priority: 4
+    note: "Manual claim entry is now a step in the billing workflow; billing staff can add claims the system did not derive automatically via 'Add Claim' on the episode billing tab (PR #514); PRs #534/#538: billing table now shows one row per claim; CSV export adds Claim ID column; Mark Billed and Reject act on all lines of a claim at once — update workflow description to reflect claim-level operations. PR #785 (patient-month treatment billing): treatment-management codes 98979/98980/98981 now bill per PATIENT per calendar month, so the workflow should reflect that a multi-episode patient produces ONE monthly treatment-management claim (aggregated across their episodes, anchored to a single episode), not a separate claim per episode; device-supply codes 98977/98985 remain per-episode per 30-day window. Verify against origin/main. [Converted to the billing-staff role quickstart: write LAST, after the Billing section articles exist.]"
+    priority: 3
     sources:
       - app/Services/BillingSuggestionGenerationService.php
       - app/Services/BillingExportService.php
     screenshots: []
     last_reviewed_commit: null
 
-  - path: workflows/front-desk-check-in-workflow.md
-    section: workflows
+  - path: getting-started/quickstart-front-desk.md
+    section: getting-started
     audience: clinic-staff
     status: todo
-    priority: 4
+    note: "Role quickstart (front desk and staff: patients, appointments, arrival check-ins, messages). Write LAST, after the Appointments and Front Desk sections exist."
+    priority: 3
     sources:
       - app/Livewire/Checkin/FrontDeskCheckin.php
       - app/Services/CheckinService.php
     screenshots: []
     last_reviewed_commit: null
 
-  - path: workflows/drchrono-sync-workflow.md
-    section: workflows
+  - path: integrations/drchrono-sync-workflow.md
+    section: integrations
     audience: clinic-staff
     status: todo
-    priority: 4
+    priority: 2
     sources:
       - app/Services/Ehr/**
     screenshots: []
@@ -1284,7 +1266,7 @@ screenshots:
     role: clinic_owner
     url: https://demo.rtmlink.com/surveys
     wait_for: "Surveys"
-    output: .gitbook/assets/surveys/survey-list.png
+    output: .gitbook/assets/check-ins/survey-list.png
 
   # --- Phase 2 (Exercises / HEP) ---
   # selector/steps values are best-guesses tuned during local capture.

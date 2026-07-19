@@ -48,12 +48,14 @@ jobs:
 
       - name: Lint changed published Markdown
         run: |
-          # Only published article Markdown that THIS PR changed; skip meta/, README, SUMMARY.
+          # Only published article Markdown that THIS PR changed; skip meta/, README,
+          # SUMMARY, and AGENTS.md (repo-internal docs, never published via SUMMARY).
           # "Touched = clean": editing an article means leaving it fully clean, while older
           # articles nobody touched are grandfathered until they are next refreshed.
           mapfile -t files < <(
             git diff --name-only --diff-filter=d "$PR_BASE_SHA...HEAD" -- \
-              '*.md' ':(exclude)meta/**' ':(exclude)README.md' ':(exclude)SUMMARY.md'
+              '*.md' ':(exclude)meta/**' ':(exclude)README.md' ':(exclude)SUMMARY.md' \
+              ':(exclude)AGENTS.md'
           )
 
           if [ "${#files[@]}" -eq 0 ]; then

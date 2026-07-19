@@ -111,6 +111,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 ## 4. Surveys
 
+> **Nav note (July 2026):** published as the **Check-Ins** section (the app sidebar's word); files live in `check-ins/`. In-app forms still say "survey" in places, so articles may use both terms where the UI does.
+
 ### 4.1 Understanding Surveys
 - What surveys are and how they're used in RTM
 - Internal name vs. patient-facing name
@@ -271,6 +273,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 ## 8. Provider Summaries
 
+> **Nav note (July 2026):** these articles document the app's **Check-Ins** review queue, so they publish under the **Check-Ins** section (files in `check-ins/`); no standalone Provider Summaries section.
+
 ### 8.1 What Are Provider Summaries?
 - Daily summaries of patient survey data for providers
 - How summaries are generated and delivered (email, SMS)
@@ -373,6 +377,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 ---
 
 ## 11. Front Desk Check-In
+
+> **Nav note (July 2026):** registry section renamed to `front-desk` to avoid colliding with Check-Ins (the survey queue). Publishes under an **Appointments & Front Desk** heading when written.
 
 ### 11.1 Setting Up Check-In
 - Enabling the check-in page in clinic settings
@@ -510,6 +516,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 ## 16. My Profile
 
+> **Nav note (July 2026):** no standalone section; these publish under **Settings & Team** (files in `settings/`).
+
 ### 16.1 Changing Your Password
 - Current password verification
 - New password requirements
@@ -525,6 +533,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 ## 17. Compliance & Audit
 
+> **Nav note (July 2026):** no standalone section; these publish under **Settings & Team** (files in `settings/`).
+
 ### 17.1 Activity Logging
 - What gets logged: patient changes, episode changes, survey modifications, messaging, time entries
 - How to access the audit trail
@@ -539,6 +549,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 ---
 
 ## 18. Workflows & Best Practices
+
+> **Nav note (July 2026):** converted into the four role quickstarts in **Getting Started** (owner setup, provider daily loop, front desk, billing staff), written LAST so every link has a live target. The enrollment workflow was dropped as redundant with the published enrolling-a-patient article; the DrChrono sync workflow moved to Integrations.
 
 ### 18.1 Patient Enrollment Workflow
 - Step-by-step: create patient → create episode → configure survey → patient receives link → completes survey → provider reviews → time logged → billing generated
