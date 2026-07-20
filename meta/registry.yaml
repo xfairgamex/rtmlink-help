@@ -858,6 +858,19 @@ articles:
     last_reviewed_commit: null
 
   # === 13. Settings (Phase 3) ==============================================
+  # ACCESS ENFORCEMENT (app PR #879, merged + deployed to prod 2026-07-20):
+  # The ClinicSettings and Integrations Filament pages are now gated owner-only via
+  # canAccess() = hasAnyRole(['clinic_owner','super_admin','platform_admin']). Every
+  # article sourced from ClinicSettings.php or Integrations.php — clinic-information,
+  # branding, security-settings, provider-summary-settings, rtm-billing-settings,
+  # patient-consent, emr-system-selection, and the Integrations section — must be
+  # documented as Clinic-Owner-only. This is now enforced in code, so state it
+  # plainly; do NOT use the old "owner by convention" hedge. Non-owners
+  # (provider/staff/billing_staff/auditor) get a 403, including via a direct link.
+  # EXCEPTIONS in this section that are NOT owner-only (do not tag these owner-only):
+  #   - settings/changing-your-password.md + profile (Profile.php) = self-service, every role.
+  #   - settings/provider-notification-preferences.md (ProviderNotifications.php) = owner/admin
+  #     managing other providers' prefs; its own separate gate, not the ClinicSettings gate.
   - path: settings/clinic-information.md
     section: settings
     audience: clinic-staff
@@ -996,6 +1009,9 @@ articles:
     last_reviewed_commit: null
 
   # === 15. Integrations (Phase 4) ==========================================
+  # ACCESS: the DrChrono Integrations page is owner-only (canAccess, app PR #879,
+  # deployed 2026-07-20) — see the enforcement note under section 13. DrChrono
+  # sync/disconnect and provider mappings are owner-only actions; non-owners 403.
   - path: integrations/drchrono-ehr-integration.md
     section: integrations
     audience: clinic-staff
@@ -1032,8 +1048,10 @@ articles:
     section: integrations
     audience: clinic-staff
     status: todo
+    note: "This is the clinic's own SaaS subscription / Invoices page (BillingSettings.php, nav label 'Invoices', in the Settings nav group) — plan, payment method, invoices, cancellation. ACCESS: owner-only, enforced via canAccess() (app PR #879, deployed 2026-07-20); clinic_owner + platform staff only, everyone else 403. Do NOT conflate this with RTM 'Billing & claims' (claim review/approval/DrChrono export) — that area is billing_staff's and is unchanged. Billing Staff can manage RTM claims but CANNOT reach this subscription/Invoices page. Keep the understanding-your-role matrix consistent: 'Billing & claims' = billing_staff Full; the Invoices subscription page sits under owner-only 'Clinic settings'."
     priority: 4
     sources:
+      - app/Filament/Clinic/Pages/BillingSettings.php
       - app/Services/SaasBillingService.php
       - app/Services/StripeInvoicingService.php
       - config/cashier.php
