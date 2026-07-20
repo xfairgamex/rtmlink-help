@@ -205,6 +205,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 ## 6. Messaging & Communication
 
+> **Written July 2026** (5 articles). Stub renames: messages-center-overview became the-messages-inbox; viewing-conversations became scheduling-messages (schedule-send earned its own guide). Deliverability behaviors (landline detection, undeliverable banner, silent same-day email fallback) documented inside managing-conversations; templates article covers the automated template types only (no inbox canned replies exist).
+
 ### 6.1 Messages Center Overview
 - Accessing the messages center
 - Conversation list: searching, sorting, and navigating
@@ -363,6 +365,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 ---
 
 ## 10. Appointments
+
+> **Written July 2026** (2 articles). No in-app create/edit exists (sync or import only); the real import label is "Import Appointments". Access to import/sync documented as owners/admins per the clinic_admin role-gate fix in flight.
 
 ### 10.1 Viewing Appointments
 - Accessing the appointments page (EHR-integrated clinics only)

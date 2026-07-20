@@ -51,6 +51,19 @@
 * [Tracking exercise adherence](exercises/tracking-exercise-adherence.md)
 * [The patient's exercise experience](exercises/the-patient-exercise-experience.md)
 
+## Messages
+
+* [The Messages inbox](messaging/the-messages-inbox.md)
+* [Sending messages](messaging/sending-messages.md)
+* [Scheduling messages](messaging/scheduling-messages.md)
+* [Managing conversations](messaging/managing-conversations.md)
+* [Message templates](messaging/message-templates.md)
+
+## Appointments
+
+* [Viewing appointments](appointments/viewing-appointments.md)
+* [Getting appointments into RTMLink](appointments/syncing-appointments.md)
+
 ## Billing
 
 * [Understanding RTM billing](billing/understanding-rtm-billing.md)

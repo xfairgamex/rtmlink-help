@@ -434,73 +434,72 @@ articles:
     last_reviewed_commit: 4cc2854124becac09e95cb814bb36f9b08440aeb
 
   # === 6. Messaging (Phase 2) ==============================================
-  - path: messaging/messages-center-overview.md
+  - path: messaging/the-messages-inbox.md
     section: messaging
     audience: clinic-staff
-    status: todo
-    note: "Bundle 55 (PR #621): conversations can be marked as unread from both the Messages Center (markAsUnread clears thread selection and reloads inbox with unread badge) and the messaging drawer (markAsUnread closes drawer)"
+    status: review
     priority: 2
     sources:
       - app/Filament/Clinic/Pages/MessagesCenter.php
       - app/Livewire/Clinic/MessagesCenter.php
+      - resources/views/livewire/clinic/messages-center.blade.php
       - app/Models/Conversation.php
-      - app/Enums/ConversationStatus.php
-    screenshots: []
-    last_reviewed_commit: null
+    screenshots:
+      - messages-inbox
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
-  - path: messaging/viewing-conversations.md
+  - path: messaging/scheduling-messages.md
     section: messaging
     audience: clinic-staff
-    status: todo
-    note: "Bundle 55 (PR #621): mark-as-unread action added to conversation threads"
+    status: review
     priority: 2
     sources:
       - app/Livewire/Clinic/MessagesCenter.php
-      - app/Models/Message.php
-      - app/Enums/DeliveryStatus.php
-      - app/Enums/MessageDirection.php
+      - app/Models/ScheduledMessage.php
+      - app/Policies/ScheduledMessagePolicy.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   - path: messaging/sending-messages.md
     section: messaging
     audience: clinic-staff
-    status: todo
-    note: "Bundle 55 (PR #621): MessagingDrawer gained a mark-as-unread button that closes the drawer and resurfaces the conversation as unread"
+    status: review
     priority: 2
     sources:
+      - app/Livewire/Clinic/MessagesCenter.php
       - app/Livewire/Clinic/MessagingDrawer.php
-      - app/Models/Message.php
-      - app/Enums/Channel.php
       - app/Services/Messaging/**
-      - app/Services/Sms/**
-    screenshots: []
-    last_reviewed_commit: null
+      - app/Enums/Channel.php
+    screenshots:
+      - messages-inbox
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   - path: messaging/managing-conversations.md
     section: messaging
     audience: clinic-staff
-    status: todo
-    note: "Bundle 55 (PR #621): markAsUnread() lets staff flag a conversation for follow-up without losing it in the inbox"
+    status: review
     priority: 2
     sources:
-      - app/Models/Conversation.php
-      - app/Enums/ConversationStatus.php
       - app/Livewire/Clinic/MessagesCenter.php
+      - app/Models/Conversation.php
+      - app/Enums/DeliveryStatus.php
+      - app/Services/SurveyDeliveryService.php
+      - app/Filament/Clinic/Widgets/UndeliverablePhoneBannerWidget.php
+      - app/Services/Sms/SendSmsService.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   - path: messaging/message-templates.md
     section: messaging
     audience: clinic-staff
-    status: todo
+    status: review
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/MessageTemplates/**
       - app/Models/MessageTemplate.php
       - app/Enums/TemplateType.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   # === 7. Time tracking guides (publish under the Episodes nav section; ====
   # === no standalone Time Tracking section per Joe, July 2026) =============
@@ -739,24 +738,28 @@ articles:
   - path: appointments/viewing-appointments.md
     section: appointments
     audience: clinic-staff
-    status: todo
-    priority: 3
+    status: review
+    priority: 2
     sources:
       - app/Filament/Clinic/Pages/Appointments.php
-      - app/Models/Appointment.php
-    screenshots: []
-    last_reviewed_commit: null
+      - app/Filament/Clinic/Resources/EpisodeResource/RelationManagers/AppointmentsRelationManager.php
+      - app/Filament/Clinic/Concerns/HasAppointmentDisplay.php
+    screenshots:
+      - appointments-page
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   - path: appointments/syncing-appointments.md
     section: appointments
     audience: clinic-staff
-    status: todo
-    priority: 3
+    status: review
+    priority: 2
     sources:
-      - app/Services/Ehr/DrChronoAppointmentSyncService.php
-      - app/Filament/Clinic/Imports/**
+      - app/Filament/Clinic/Pages/Appointments.php
+      - app/Filament/Imports/AppointmentImporter.php
+      - app/Console/Commands/SyncEhrDataCommand.php
+      - app/Jobs/ProcessDrChronoWebhook.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   # === 11. Front Desk (arrival check-ins; renamed from check-in) ==========
   - path: front-desk/setting-up-check-in.md
@@ -1415,3 +1418,20 @@ screenshots:
     wait_for: "Daily Provider Summaries"
     selector: 'section.fi-section:has-text("Every recurring email RTMLink sends your team")'
     output: .gitbook/assets/check-ins/staff-email-notifications.png
+
+  # --- Messages & Appointments (batch 3) ---
+  # Re-shoot prep: opening the thread resets the unread state. Before
+  # re-capturing messages-inbox, set unread_count=1 on the [DEMO] Robert
+  # Williams conversation (demo tenant) so the unread pill shows.
+  messages-inbox:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/messages
+    wait_for: "New Message"
+    output: .gitbook/assets/messaging/messages-inbox.png
+
+  appointments-page:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/appointments
+    # wait_for must exist in RAW html ("Date & Time" encodes as &amp;)
+    wait_for: "Follow-up knee assessment"
+    output: .gitbook/assets/appointments/appointments-page.png
