@@ -98,21 +98,15 @@ articles:
   - path: getting-started/signing-your-subscription-agreement.md
     section: getting-started
     audience: clinic-staff
-    status: todo
-    note: "NEW coverage census + diff (94a3b0e..eba6a61, PRs #827/#828/#829, agreements feature). No prior article; the only uncovered user-facing Clinic surface in this window. When a clinic is flipped LIVE it holds a pending in-app Subscription Agreement + Business Associate Agreement (Addendum A) that the clinic OWNER must sign before anyone can use the app. New clinic pages: SignAgreement (slug agreements/sign, title 'Subscription Agreement & BAA') is the signing ceremony (review frozen text, tick a consent-to-transact-electronically checkbox, type full legal name + title as the electronic signature, Sign); AgreementRequired (slug agreements/required, title 'Almost there') is the waiting screen non-owner staff see until the owner signs. On signing, an executed PDF is emailed and downloadable anytime (/agreements/{id}/download, owner-only). EnsureAgreementsSigned middleware gates the whole clinic panel until signed (patient survey/portal surfaces are deliberately never gated). SCOPE-AND-TMI: Tier-1 article — a distinct clinic-owner task with a hard consequence (clinic is blocked until signed; staff can only wait) and non-obvious rules (only the owner can sign; only ACTIVE clinics with a pending agreement are gated; trial/demo and paper-signed clinics never see it). NOTE for Writer: document only the clinic-facing signing ceremony + waiting screen + executed-copy download; the Platform 'Go live' admin action (app/Filament/Platform/**) and the agreement generation/PDF internals are out of scope. Verify all labels against origin/main."
+    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/SignAgreement.php
       - app/Filament/Clinic/Pages/AgreementRequired.php
       - app/Http/Middleware/EnsureAgreementsSigned.php
-      - app/Services/AgreementService.php
-      - app/Models/Agreement.php
-      - config/agreements.php
       - resources/views/filament/clinic/pages/sign-agreement.blade.php
-      - resources/views/filament/clinic/pages/agreement-required.blade.php
-      - resources/views/agreements/**
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   # === 2. Patients (Phase 1) ===============================================
   - path: patients/viewing-and-searching-patients.md
@@ -894,85 +888,68 @@ articles:
     last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   # === 14. User Management (Phase 3) =======================================
-  - path: users/viewing-users.md
+  - path: users/adding-team-members.md
     section: users
     audience: clinic-staff
-    status: todo
-    priority: 3
+    status: review
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Resources/UserResource.php
+      - app/Filament/Clinic/Resources/UserResource/Pages/CreateUser.php
+      - app/Filament/Clinic/Pages/InitialPasswordSetup.php
+      - app/Jobs/SendUserWelcomeEmailJob.php
+    screenshots:
+      - users-list
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
+
+  - path: users/managing-your-team.md
+    section: users
+    audience: clinic-staff
+    status: review
+    priority: 1
     sources:
       - app/Filament/Clinic/Resources/UserResource.php
       - app/Filament/Clinic/Resources/UserResource/Pages/**
-      - app/Models/User.php
+      - app/Http/Middleware/FilamentClinicAuth.php
     screenshots: []
-    last_reviewed_commit: null
-
-  - path: users/creating-a-user.md
-    section: users
-    audience: clinic-staff
-    status: todo
-    priority: 3
-    sources:
-      - app/Filament/Clinic/Resources/UserResource.php
-      - app/Models/User.php
-      - database/seeders/RolesSeeder.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: users/managing-users.md
-    section: users
-    audience: clinic-staff
-    status: todo
-    priority: 3
-    sources:
-      - app/Filament/Clinic/Resources/UserResource.php
-      - app/Models/User.php
-    screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   # === 15. Integrations (Phase 4) ==========================================
-  - path: integrations/drchrono-ehr-integration.md
+  - path: integrations/connecting-drchrono.md
     section: integrations
     audience: clinic-staff
-    status: todo
-    priority: 4
+    status: review
+    priority: 1
     sources:
       - app/Filament/Clinic/Pages/Integrations.php
-      - app/Services/Ehr/DrChronoClient.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: integrations/drchrono-data-sync.md
-    section: integrations
-    audience: clinic-staff
-    status: todo
-    priority: 4
-    sources:
+      - resources/views/filament/clinic/pages/integrations.blade.php
+      - app/Http/Controllers/DrChronoOAuthController.php
       - app/Services/Ehr/**
-    screenshots: []
-    last_reviewed_commit: null
+    screenshots:
+      - integrations-connect
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   - path: integrations/drchrono-provider-mappings.md
     section: integrations
     audience: clinic-staff
-    status: todo
-    priority: 4
+    status: review
+    priority: 1
     sources:
-      - app/Services/Ehr/DrChronoProviderSyncService.php
       - app/Filament/Clinic/Pages/Integrations.php
+      - resources/views/filament/clinic/pages/integrations.blade.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
-  - path: integrations/billing-and-subscription.md
-    section: integrations
+  - path: settings/invoices-and-billing.md
+    section: settings
     audience: clinic-staff
-    status: todo
-    priority: 4
+    status: review
+    priority: 1
     sources:
-      - app/Services/SaasBillingService.php
-      - app/Services/StripeInvoicingService.php
-      - config/cashier.php
+      - app/Filament/Clinic/Pages/BillingSettings.php
+      - resources/views/filament/clinic/pages/billing-settings.blade.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   # === 16. My Settings (merged into settings section) =====================
   - path: settings/managing-your-account.md
@@ -1035,16 +1012,6 @@ articles:
     sources:
       - app/Livewire/Checkin/FrontDeskCheckin.php
       - app/Services/CheckinService.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: integrations/drchrono-sync-workflow.md
-    section: integrations
-    audience: clinic-staff
-    status: todo
-    priority: 2
-    sources:
-      - app/Services/Ehr/**
     screenshots: []
     last_reviewed_commit: null
 
@@ -1355,3 +1322,19 @@ screenshots:
     url: https://demo.rtmlink.com/profile
     wait_for: "Current Password"
     output: .gitbook/assets/settings/my-settings.png
+
+  # --- Team & Integrations (batch 4b) ---
+  users-list:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/settings/users
+    wait_for: "Last Login"
+    output: .gitbook/assets/users/users-list.png
+
+  # Demo tenant needs settings.ehr.system=drchrono (set demo-scoped) so the
+  # Integrations nav+page appear; it shows the Disconnected connect state.
+  integrations-connect:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/integrations
+    wait_for: "Connect to DrChrono"
+    selector: 'section.fi-section:has-text("DrChrono EHR")'
+    output: .gitbook/assets/integrations/integrations-connect.png

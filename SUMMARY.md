@@ -8,6 +8,7 @@
 * [Logging in & account setup](getting-started/logging-in-and-account-setup.md)
 * [Understanding your role](getting-started/understanding-your-role.md)
 * [Navigating the dashboard](getting-started/navigating-the-dashboard.md)
+* [Signing your subscription agreement](getting-started/signing-your-subscription-agreement.md)
 
 ## Patients
 
@@ -80,6 +81,11 @@
 * [Clinic information and branding](settings/clinic-information-and-branding.md)
 * [Security and compliance](settings/security-and-compliance.md)
 * [Managing your account](settings/managing-your-account.md)
+* [Adding team members](users/adding-team-members.md)
+* [Managing your team](users/managing-your-team.md)
+* [Connecting DrChrono](integrations/connecting-drchrono.md)
+* [DrChrono provider mappings](integrations/drchrono-provider-mappings.md)
+* [Invoices and billing](settings/invoices-and-billing.md)
 
 ## Patient Portal
 
