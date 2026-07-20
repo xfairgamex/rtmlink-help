@@ -760,7 +760,7 @@ articles:
   - path: front-desk/setting-up-check-in.md
     section: front-desk
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
@@ -772,7 +772,7 @@ articles:
   - path: front-desk/using-the-check-in-kiosk.md
     section: front-desk
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Livewire/Checkin/FrontDeskCheckin.php
@@ -785,7 +785,7 @@ articles:
   - path: front-desk/enrolling-and-managing-at-check-in.md
     section: front-desk
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Livewire/Checkin/FrontDeskCheckin.php
@@ -799,7 +799,7 @@ articles:
   - path: patient-portal/recovering-portal-access.md
     section: patient-portal
     audience: patient
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Http/Controllers/Patient/Portal/**
@@ -812,7 +812,7 @@ articles:
   - path: patient-portal/taking-a-survey.md
     section: patient-portal
     audience: patient
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Http/Controllers/Patient/SurveyController.php
@@ -827,7 +827,7 @@ articles:
   - path: patient-portal/survey-history-and-amendments.md
     section: patient-portal
     audience: patient
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Http/Controllers/Patient/SurveyHistoryController.php
