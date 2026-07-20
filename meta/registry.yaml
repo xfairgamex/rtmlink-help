@@ -564,7 +564,7 @@ articles:
   - path: check-ins/the-check-ins-queue.md
     section: check-ins
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/PendingSummaries.php
@@ -577,7 +577,7 @@ articles:
   - path: check-ins/daily-summary-notifications.md
     section: check-ins
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Console/Commands/SendProviderNotificationsCommand.php
@@ -591,7 +591,7 @@ articles:
   - path: check-ins/reviewing-daily-check-ins.md
     section: check-ins
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ReviewSummary.php
@@ -605,7 +605,7 @@ articles:
   - path: check-ins/logging-time-during-review.md
     section: check-ins
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ReviewSummary.php
@@ -619,7 +619,7 @@ articles:
   - path: check-ins/summary-notification-settings.md
     section: check-ins
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
