@@ -30,11 +30,16 @@
 ## Check-Ins
 
 * [Understanding surveys](check-ins/understanding-surveys.md)
+* [The Check-Ins queue](check-ins/the-check-ins-queue.md)
+* [Reviewing daily check-ins](check-ins/reviewing-daily-check-ins.md)
+* [Logging time and contacts during review](check-ins/logging-time-during-review.md)
+* [Daily summary emails and texts](check-ins/daily-summary-notifications.md)
+* [Summary notification settings](check-ins/summary-notification-settings.md)
+* [Understanding survey responses](check-ins/understanding-survey-responses.md)
+* [Survey amendments](check-ins/survey-amendments.md)
 * [Creating a survey](check-ins/creating-a-survey.md)
 * [Editing & managing surveys](check-ins/editing-and-managing-surveys.md)
 * [Previewing a survey](check-ins/previewing-a-survey.md)
-* [Understanding survey responses](check-ins/understanding-survey-responses.md)
-* [Survey amendments](check-ins/survey-amendments.md)
 
 ## Exercises
 
