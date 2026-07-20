@@ -98,7 +98,7 @@ articles:
   - path: getting-started/signing-your-subscription-agreement.md
     section: getting-started
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/SignAgreement.php
@@ -891,7 +891,7 @@ articles:
   - path: users/adding-team-members.md
     section: users
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/UserResource.php
@@ -905,7 +905,7 @@ articles:
   - path: users/managing-your-team.md
     section: users
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/UserResource.php
@@ -918,7 +918,7 @@ articles:
   - path: integrations/connecting-drchrono.md
     section: integrations
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Integrations.php
@@ -932,7 +932,7 @@ articles:
   - path: integrations/drchrono-provider-mappings.md
     section: integrations
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Integrations.php
@@ -943,7 +943,7 @@ articles:
   - path: settings/invoices-and-billing.md
     section: settings
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/BillingSettings.php
