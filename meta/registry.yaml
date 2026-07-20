@@ -57,8 +57,8 @@ articles:
   - path: getting-started/logging-in-and-account-setup.md
     section: getting-started
     audience: clinic-staff
-    status: stale
-    note: "Post-login redirect changed from '/' to '/dashboard' (fortify.home); the marketing root '/' is now public to all visitors; after login users are dispatched to their clinic or picker via DashboardRedirectController (PR #612/Bundle 46); PR #683: post-login redirect now honors a safe 'intended' destination (e.g. the 'Reply in RTMLink' support deep link) instead of always forcing the dashboard — it still guards against the /login loop and open-redirects, but otherwise lands you on the deep-linked page after signing in"
+    status: review
+    note: "Refreshed for PR #683 (post-login intended-URL). Added a short note to 'What happens right after you sign in' explaining that when you follow a link into a specific RTMLink page (e.g. a 'Reply in RTMLink' support email button) and are asked to sign in first, you now land on that page instead of always being forced to the dashboard, with a plain-language note that this only works for in-app pages (the open-redirect/auth-loop guard). Re-verified every other label against the rtmlink checkout (main 47f0bdd): central rtmlink.com/login button 'Log in', field labels 'Email address'/'Password', 'Forgot your password?' link; forgot-password page heading 'Forgot password' + field 'Email Address' + button 'Email password reset link'; reset page 'Reset password'/'Confirm password'; first-time setup heading 'Welcome to {clinic}', 'New Password'/'Confirm Password', 'Set Password & Sign In' button, 'Welcome aboard!' notice, 48-hour magic-token expiry (User::addHours(48)); Change Password on My Settings; multi-clinic picker 'Choose your clinic' with 'Primary' badge; 'Your account is not linked to a clinic yet'; 'Your account has been deactivated.'; inactivity notice 'You were logged out due to inactivity.'. The DashboardRedirectController dispatch (single clinic auto-forward / picker / no-clinic page) already matched and is re-verified. Password min 8 (Password::defaults()). No em-dashes."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Auth/**
@@ -66,7 +66,7 @@ articles:
       - app/Actions/Fortify/**
       - config/fortify.php
     screenshots: []
-    last_reviewed_commit: fa0ed79ba718acd7c08a559ed585f6963c67f0eb
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   - path: getting-started/understanding-your-role.md
     section: getting-started
