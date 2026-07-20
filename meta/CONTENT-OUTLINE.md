@@ -275,32 +275,34 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 > **Nav note (July 2026):** these articles document the app's **Check-Ins** review queue, so they publish under the **Check-Ins** section (files in `check-ins/`); no standalone Provider Summaries section.
 
-### 8.1 What Are Provider Summaries?
-- Daily summaries of patient survey data for providers
-- How summaries are generated and delivered (email, SMS)
-- Summary content: patient responses, pain trends, flagged answers, appointments
+> **Architecture note (July 2026):** there is no stored summary object; everything is live-computed from unread responses (is_read flag). The old "generate/queue/status" bullets below were rewritten to match. All five articles written July 2026.
 
-### 8.2 Generating Summaries (Admin)
-- "Generate for Today" action
-- Selecting which providers to include
-- Understanding the generation queue
+### 8.1 The Check-Ins Queue
+- The live provider queue (unread vs reviewed rows), View and Send actions, bulk send
+- Empty state and the appointments filter (Upload Appointments for non-EHR clinics)
+- Where the counts surface (owner Unread Surveys KPI, provider action-feed pill)
 
-### 8.3 Reviewing a Summary (Provider)
-- Accessing via secure token link (verify expiration window)
-- Reviewing patient-by-patient data
-- Expanding response details
-- Viewing appointment data (EHR-integrated clinics)
+### 8.2 Reviewing Daily Check-Ins
+- Three entrances: email/SMS magic link (48h), dashboard pill, queue row
+- Sections: today's patients, other unread comments, view-all backlog
+- Patient rows: responses, flagged answers, comments, Message Patient
+- Save-and-mark-read completion, guardrail prompts, reviewed state
 
-### 8.4 Logging Time During Summary Review
-- Auto-filled review time estimates
-- Adjusting duration and activity type per patient
-- Adding notes
-- Submitting time entries and marking responses as read
+### 8.3 Logging Time and Contacts During Review
+- Pre-filled minutes (time estimate formula), billing threshold hints
+- Activity type and notes per patient
+- Inline Add Interactive Communication form (defaults, statuses, discard)
 
-### 8.5 Summary Status & Management
-- Summary statuses: pending, delivered, reviewed
-- Re-sending expired summaries (token refresh)
-- Viewing summary history and review timestamps
+### 8.4 Daily Summary Emails and Texts
+- What arrives (email and SMS), the 48-hour magic link
+- Send timing: fixed vs hours-before-first-appointment, weekend rule, clinic timezone
+- Nothing sends when nothing is unread (the "no patients" case, by design)
+- Channel fallback SMS to email
+
+### 8.5 Summary Notification Settings
+- Clinic defaults (Staff Email Notifications section), owner digest, recipients
+- Provider Notifications admin page and per-provider overrides
+- My Settings self-service, time estimate formula
 
 ---
 

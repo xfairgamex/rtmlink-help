@@ -561,60 +561,74 @@ articles:
     last_reviewed_commit: fcb2020fd8e61f9e4675d51346a5c208e58ca4e0
 
   # === 8. Check-Ins queue (provider daily review; check-ins section) ======
-  - path: check-ins/what-are-provider-summaries.md
+  - path: check-ins/the-check-ins-queue.md
     section: check-ins
     audience: clinic-staff
-    status: todo
-    priority: 1
-    sources:
-      - app/Services/ProviderSummary/ProviderSummaryBuilder.php
-      - app/Services/ProviderSummary/ProviderSummaryNotifier.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: check-ins/generating-summaries.md
-    section: check-ins
-    audience: clinic-staff
-    status: todo
+    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/PendingSummaries.php
-      - app/Services/ProviderSummary/**
-    screenshots: []
-    last_reviewed_commit: null
+      - resources/views/filament/clinic/pages/pending-summaries.blade.php
+      - app/Services/ProviderSummary/UnreadSurveyService.php
+    screenshots:
+      - check-ins-queue
+    last_reviewed_commit: 3453c7a3fb85338403c078c0d4cea07e2bd812fa
 
-  - path: check-ins/reviewing-a-summary.md
+  - path: check-ins/daily-summary-notifications.md
     section: check-ins
     audience: clinic-staff
-    status: todo
+    status: review
+    priority: 1
+    sources:
+      - app/Console/Commands/SendProviderNotificationsCommand.php
+      - app/Jobs/SendProviderNotificationJob.php
+      - app/Services/ProviderSummary/ProviderSummaryNotifier.php
+      - app/Http/Middleware/ProviderMagicAuth.php
+      - resources/views/emails/provider-summary.blade.php
+    screenshots: []
+    last_reviewed_commit: 3453c7a3fb85338403c078c0d4cea07e2bd812fa
+
+  - path: check-ins/reviewing-daily-check-ins.md
+    section: check-ins
+    audience: clinic-staff
+    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ReviewSummary.php
+      - resources/views/filament/clinic/pages/review-summary.blade.php
+      - resources/views/filament/clinic/pages/partials/survey-patient-row.blade.php
       - app/Services/ProviderSummary/UnreadSurveyService.php
-    screenshots: []
-    last_reviewed_commit: null
+    screenshots:
+      - review-today-patients
+    last_reviewed_commit: 3453c7a3fb85338403c078c0d4cea07e2bd812fa
 
   - path: check-ins/logging-time-during-review.md
     section: check-ins
     audience: clinic-staff
-    status: todo
+    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ReviewSummary.php
-      - app/Models/TimeEntry.php
-    screenshots: []
-    last_reviewed_commit: null
+      - resources/views/filament/clinic/pages/partials/survey-patient-row.blade.php
+      - app/Services/TimeTracking/TimeEntryLogger.php
+      - app/Models/InteractiveContact.php
+    screenshots:
+      - review-log-communication
+    last_reviewed_commit: 3453c7a3fb85338403c078c0d4cea07e2bd812fa
 
-  - path: check-ins/summary-status-and-management.md
+  - path: check-ins/summary-notification-settings.md
     section: check-ins
     audience: clinic-staff
-    status: todo
+    status: review
     priority: 1
     sources:
-      - app/Filament/Clinic/Pages/PendingSummaries.php
-      - app/Services/ProviderSummary/**
-    screenshots: []
-    last_reviewed_commit: null
+      - app/Filament/Clinic/Pages/ClinicSettings.php
+      - app/Filament/Clinic/Pages/ProviderNotifications.php
+      - app/Filament/Clinic/Pages/Profile.php
+      - app/Services/ProviderSummary/ProviderSummaryNotifier.php
+    screenshots:
+      - staff-email-notifications
+    last_reviewed_commit: 3453c7a3fb85338403c078c0d4cea07e2bd812fa
 
   # === 9. Billing & Claims (Phase 2) =======================================
   - path: billing/understanding-rtm-billing.md
@@ -1372,3 +1386,32 @@ screenshots:
     # description also says "reimbursement rates" (has-text is case-blind).
     selector: 'section.fi-section:has-text("Leave blank to use national averages")'
     output: .gitbook/assets/billing/reimbursement-rates.png
+
+  # --- Check-Ins queue & review (batch 2) ---
+  check-ins-queue:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/pending-summaries
+    wait_for: "Check-In Summaries"
+    output: .gitbook/assets/check-ins/check-ins-queue.png
+
+  # Review page pins the [DEMO] Provider uuid; re-pin after a demo reseed.
+  review-today-patients:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/review-summary/1a63b732-cc8c-4a77-a7ae-cdb7fca21a09
+    wait_for: "Survey Summary"
+    output: .gitbook/assets/check-ins/review-today-patients.png
+
+  review-log-communication:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/review-summary/1a63b732-cc8c-4a77-a7ae-cdb7fca21a09
+    steps:
+      - ':nth-match(button:has-text("No interactive comm this month"), 1)'
+    wait_for: "Add Interactive Communication"
+    output: .gitbook/assets/check-ins/review-log-communication.png
+
+  staff-email-notifications:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/clinic-settings
+    wait_for: "Daily Provider Summaries"
+    selector: 'section.fi-section:has-text("Every recurring email RTMLink sends your team")'
+    output: .gitbook/assets/check-ins/staff-email-notifications.png
