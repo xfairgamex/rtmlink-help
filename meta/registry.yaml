@@ -45,7 +45,7 @@ articles:
   - path: getting-started/welcome-to-rtmlink.md
     section: getting-started
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - CLAUDE.MD
@@ -71,7 +71,7 @@ articles:
   - path: getting-started/understanding-your-role.md
     section: getting-started
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Models/User.php
@@ -83,7 +83,7 @@ articles:
   - path: getting-started/navigating-the-dashboard.md
     section: getting-started
     audience: clinic-staff
-    status: review
+    status: published
     note: "\"Unread Surveys\" KPI now returns real counts — was hardcoded 0; ClinicDashboardMetrics.unreadSurveysCount() wired to UnreadSurveyService (PR #535); dashboard page heading changed from '{name} Dashboard' to '{name}'s RTMLink Dashboard' (PR #587); NeedsAttentionWidget and QuickActionsWidget removed (PRs #628/#620); replaced by two role-segmented widgets: ProviderActionFeedWidget (providers only — surveys/HEPs to review, claims to sign, near-billable nudges, drop-offs scoped to assigned patients, PR #617/Bundle 50) and ClinicOwnerInsightsWidget (owners/staff/billing — revenue opportunities, claims awaiting sign-off, patient drop-offs with quick Pause/Stop actions, revenue values shown to owners/billing only, drill-down by provider, PR #620/Bundle 51); 'Send reminder' on drop-off rows now opens the patient messaging composer (PR #622)"
     priority: 1
     sources:
@@ -118,7 +118,7 @@ articles:
   - path: patients/viewing-and-searching-patients.md
     section: patients
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/PatientResource.php
@@ -130,7 +130,7 @@ articles:
   - path: patients/creating-a-new-patient.md
     section: patients
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/PatientResource.php
@@ -143,7 +143,7 @@ articles:
   - path: patients/editing-patient-information.md
     section: patients
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/PatientResource/Pages/EditPatient.php
@@ -155,7 +155,7 @@ articles:
   - path: patients/patient-consent-management.md
     section: patients
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Models/Patient.php
@@ -166,7 +166,7 @@ articles:
   - path: patients/messaging-a-patient.md
     section: patients
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Livewire/Clinic/MessagingDrawer.php
@@ -181,7 +181,7 @@ articles:
   - path: episodes/understanding-episodes.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Models/Episode.php
@@ -194,7 +194,7 @@ articles:
   - path: episodes/enrolling-a-patient.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: published
     note: "Refreshed for Bundle 101 (PR #805, RTM consent capture): added the 'RTM Program Consent' field to the Enrollment section and a new 'Recording RTM consent' section covering the three options ('Send digital consent form' default / 'Verbal consent obtained' / 'Paper consent form signed'), the fact it appears and is required only when a clinic administrator turns on 'Require RTM Program Consent' in Clinic Settings > Patient Consent, that verbal/paper record the enrolling user as witness and digital shows a one-time consent page on first survey-link open (surveys still send on schedule), that it affects new enrollments only, and that recording consent is not billable. Labels verified against the settings toggle, the CreateEpisode consent_method radio, and the Consent model. Cross-linked to viewing-episode-details for the resulting badge; did not link the settings/patient-consent article (not written yet, would be a dead link). Skipped the internal patient-search refactor (no label change). Prior Bundle 45/episode-comms-redesign content (per-channel 'Text message (SMS)'/'Email' checkboxes, inline 'Mobile number', line-type green/red 'Landline' result + 'Check now', at-least-one-channel rule, SMS-to-email fallback, Frequency options) re-verified against main and still accurate. No em-dashes."
     priority: 1
     sources:
@@ -226,7 +226,7 @@ articles:
   - path: episodes/managing-episode-status.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Services/EpisodeLifecycleService.php
@@ -239,7 +239,7 @@ articles:
   - path: episodes/episode-search-and-filters.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: published
     note: "Refreshed for Bundle 41 (PR #709): the episodes-list 'Time' column heading is now 'Time (Month)' (relabeled from 'Time'); its meaning (billable provider time over the clinic-tz calendar month, matching BillingSuggestionService::monthBoundsUtc and the episode billing cards) was already described and is re-verified. Added a one-line note tying the column to the calendar-month billing clock. Re-verified against the rtmlink checkout: SurveyFrequency options every_3_days/every_7_days appear only in the enrollment Frequency field, not as a list filter; the Patient-column sort fix is not user-visible. Search fields, all column labels, and every filter (Status/Provider/Survey/Attention/Time (This Month)/Communication/Undeliverable phone/Start Date) re-verified. Removed all em-dashes from the file for CI."
     priority: 1
     sources:
@@ -252,7 +252,7 @@ articles:
   - path: episodes/episode-actions.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -264,7 +264,7 @@ articles:
   - path: check-ins/understanding-surveys.md
     section: check-ins
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Models/Survey.php
@@ -276,7 +276,7 @@ articles:
   - path: check-ins/creating-a-survey.md
     section: check-ins
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/SurveyResource.php
@@ -290,7 +290,7 @@ articles:
   - path: check-ins/editing-and-managing-surveys.md
     section: check-ins
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/SurveyResource.php
@@ -302,7 +302,7 @@ articles:
   - path: check-ins/previewing-a-survey.md
     section: check-ins
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - routes/tenant.php
@@ -313,7 +313,7 @@ articles:
   - path: check-ins/understanding-survey-responses.md
     section: check-ins
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Models/SurveyResponse.php
@@ -325,7 +325,7 @@ articles:
   - path: check-ins/survey-amendments.md
     section: check-ins
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Models/SurveyResponse.php
@@ -337,7 +337,7 @@ articles:
   - path: exercises/understanding-hep.md
     section: exercises
     audience: clinic-staff
-    status: review
+    status: published
     note: "Refreshed for patient-specific (patient-locked) exercises: an exercise can be private to one patient (locked_patient_id on Exercise; HepService enforces it on assignment, surfaced as a lock icon + 'Private to' badge + 'Patient-specific' filter). Added a one-line note to the library piece; cleaned all em-dashes. Nav labels (Templates group, Exercises, Exercise Programs), exercises_enabled gating, and the interaction-day billing rule all re-verified accurate."
     priority: 2
     sources:
@@ -352,7 +352,7 @@ articles:
   - path: exercises/the-exercise-library.md
     section: exercises
     audience: clinic-staff
-    status: review
+    status: published
     note: "Refreshed for the clinic exercise-library rework (PRs #764/#763/#769/#771 + Bundle 88). Verified against the rtmlink checkout (main eba6a61): (1) Replaced the removed bulk 'Import from Library' header action with the per-row 'Duplicate to edit' flow (modal 'Duplicate to your library'; creates an editable '(copy)' shown as Imported; the exercise view page's own Duplicate to edit opens the copy for editing). (2) Added Hide / Restore for platform exercises and the new 'Hidden' table filter (Visible only / Hidden only / Visible + hidden). (3) Added the 'Tags' free-text field to the create form (helper 'Optional labels for everything this exercise addresses...') and a searchable Tags badge column to the list. (4) Added a 'Managing categories' section for the new 'Manage Categories' header button (tag icon) and its 'Exercise Categories' modal ('Add category' / 'Save categories'), which replaced the old Clinic Settings categories repeater; noted platform defaults are always included. (5) Led with the exercises-enabled condition. Category labels re-verified against ExerciseCategory; Platform/Imported/Custom source labels, copy-from, clipboard paste, and patient-locked exercises re-verified accurate. No em-dashes."
     priority: 2
     sources:
@@ -381,7 +381,7 @@ articles:
   - path: exercises/exercise-programs.md
     section: exercises
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ExerciseProgramResource.php
@@ -408,7 +408,7 @@ articles:
   - path: exercises/tracking-exercise-adherence.md
     section: exercises
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/Widgets/ExerciseAdherenceWidget.php
@@ -420,7 +420,7 @@ articles:
   - path: exercises/the-patient-exercise-experience.md
     section: exercises
     audience: patient
-    status: review
+    status: published
     note: "Refreshed against production main (4cc2854): documented the '💪 Start Your Exercises' entry button and its Clinic Settings 'Patient Exercise Flow' placement (Top of the check-in / After the check-in is submitted), the 'Your Exercises' page title, the Done! -> Continue feedback flow (feeling Easy/OK/Hard, pain Yes/No with Pain level None..Severe and body-area chips, Additional comments max 500), the 'View All' quick 'Done ✓' completion, the exit buttons ('Finish your check-in →' when today's check-in isn't submitted vs 'Back to Home', since exercises and the survey are separate flows), and the '🖨️ Print my exercises' handout (Print button + 'Scan for video exercises' QR back to the digital version). Patient-locked exercises (PR #460) add nothing to the patient surface; the 'New'/'Updated' badges + 'updated since your last visit' banner were already covered. Removed all em-dashes/en-dashes for CI."
     priority: 2
     sources:
@@ -620,7 +620,7 @@ articles:
   - path: billing/understanding-rtm-billing.md
     section: billing
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Models/BillingSuggestion.php
@@ -638,7 +638,7 @@ articles:
   - path: billing/billing-suggestions.md
     section: billing
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/**
@@ -652,7 +652,7 @@ articles:
   - path: billing/approving-and-rejecting-claims.md
     section: billing
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/Actions/**
@@ -664,7 +664,7 @@ articles:
   - path: billing/clinical-notes.md
     section: billing
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ClinicalNoteTemplates/**
@@ -686,7 +686,7 @@ articles:
   - path: billing/exporting-to-drchrono.md
     section: billing
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Services/BillingExportService.php
@@ -697,7 +697,7 @@ articles:
   - path: billing/billing-window-progress.md
     section: billing
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Models/Window.php
@@ -711,7 +711,7 @@ articles:
   - path: billing/configuring-billing-rates.md
     section: billing
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
