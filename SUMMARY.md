@@ -74,6 +74,13 @@
 * [Tracking billing progress on an episode](billing/billing-window-progress.md)
 * [Configuring billing rates](billing/configuring-billing-rates.md)
 
+## Settings & Team
+
+* [Clinic settings overview](settings/clinic-settings-overview.md)
+* [Clinic information and branding](settings/clinic-information-and-branding.md)
+* [Security and compliance](settings/security-and-compliance.md)
+* [Managing your account](settings/managing-your-account.md)
+
 ## Patient Portal
 
 * [Recovering portal access](patient-portal/recovering-portal-access.md)

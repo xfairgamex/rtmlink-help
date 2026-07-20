@@ -436,6 +436,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 ## 13. Settings & Configuration
 
+> **Consolidated July 2026.** The 12 planned settings sub-articles collapse to 4 real ones: clinic-settings-overview (the section map), clinic-information-and-branding (info + hours + branding + email), security-and-compliance (session timeout + consent + the backend audit trail / 7-yr retention, which have NO clinic-facing UI), and managing-your-account (My Settings password + notifications pointer). Deleted as redundant: provider-summary-settings + provider-notification-preferences + notification-preferences (all → check-ins/summary-notification-settings), rtm-billing-settings (→ billing/configuring-billing-rates), emr-system-selection (→ integrations + the overview). Note: ClinicSettings has no role gate in code (app fix in flight); articles frame it as owner-by-convention.
+
 ### 13.1 Clinic Information
 - Editing clinic name, contact email, phone, website, address
 - Setting timezone and business hours (opening/closing times)
@@ -522,6 +524,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 ## 16. My Profile
 
+> **Merged July 2026** into settings/managing-your-account.md (My Settings = password + notification prefs). No standalone My Profile section.
+
 > **Nav note (July 2026):** no standalone section; these publish under **Settings & Team** (files in `settings/`).
 
 ### 16.1 Changing Your Password
@@ -538,6 +542,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 ---
 
 ## 17. Compliance & Audit
+
+> **Merged July 2026** into settings/security-and-compliance.md. Audit logging is backend-only (spatie, 7-yr retention) with no clinic-facing viewer, so it is documented as a short reference, not a how-to.
 
 > **Nav note (July 2026):** no standalone section; these publish under **Settings & Team** (files in `settings/`).
 
