@@ -861,7 +861,7 @@ articles:
   - path: settings/clinic-settings-overview.md
     section: settings
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
@@ -872,7 +872,7 @@ articles:
   - path: settings/clinic-information-and-branding.md
     section: settings
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
@@ -885,7 +885,7 @@ articles:
   - path: settings/security-and-compliance.md
     section: settings
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
@@ -978,7 +978,7 @@ articles:
   - path: settings/managing-your-account.md
     section: settings
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Profile.php
