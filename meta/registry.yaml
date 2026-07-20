@@ -645,7 +645,8 @@ articles:
   - path: billing/billing-suggestions.md
     section: billing
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE this window (162647f, PR #860, support ticket #1015): on the Billing list the Patient column now auto-shows whenever the list is NOT grouped by patient (previously hidden-by-default/toggleable), and reappears when a user ungroups; patient-name search was moved to a table-level constraint so it keeps working in both grouped and ungrouped states. Re-verify the article's 'Rows are grouped by patient' description against origin/main (BillingSuggestionsTable::configure/getColumns) — the only user-visible change is the Patient column re-appearing on ungroup. No screenshot re-shoot needed (billing-claim-detail is a claim-detail view, not the grouped/ungrouped list)."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/**
