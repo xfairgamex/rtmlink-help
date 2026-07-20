@@ -598,6 +598,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 ## 19. Troubleshooting & FAQ
 
+> **Written July 2026** (2 articles): common-issues (the looks-broken-but-isn't list — no-summary-email, undeliverable texts, missing billing suggestion, one-treatment-claim-per-patient-month, hidden Integrations nav, note sign gates) and frequently-asked-questions. Fed by the behaviors surfaced across all batches; refresh from real support tickets as they accrue.
+
 ### 19.1 Common Issues
 - Patient not receiving survey SMS/email
 - Survey link expired or invalid
@@ -620,6 +622,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 ---
 
 ## Appendix
+
+> **Written July 2026** as the **Reference** nav section (4 articles): cpt-code-reference, glossary, role-permissions-matrix (built from RolesSeeder grants), survey-question-types. This is the one section where nested sub-pages are appropriate.
 
 ### A. Glossary of Terms
 - Episode, Window, Survey Response, Billing Suggestion, Interactive Contact, Interaction Day, Time Entry, CPT Code, ICD-10, Magic Link, Token, Flagged Response, Amendment, Provider Summary, HEP (Home Exercise Program), Adherence
