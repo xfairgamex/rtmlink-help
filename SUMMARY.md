@@ -9,6 +9,10 @@
 * [Understanding your role](getting-started/understanding-your-role.md)
 * [Navigating the dashboard](getting-started/navigating-the-dashboard.md)
 * [Signing your subscription agreement](getting-started/signing-your-subscription-agreement.md)
+* [Quickstart: setting up your clinic](getting-started/quickstart-owner-setup.md)
+* [Quickstart: the provider daily loop](getting-started/quickstart-provider-daily-loop.md)
+* [Quickstart: front desk](getting-started/quickstart-front-desk.md)
+* [Quickstart: billing](getting-started/quickstart-billing.md)
 
 ## Patients
 
