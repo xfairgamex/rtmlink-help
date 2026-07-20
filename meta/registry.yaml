@@ -967,57 +967,48 @@ articles:
   - path: getting-started/quickstart-owner-setup.md
     section: getting-started
     audience: clinic-staff
-    status: todo
-    note: "Role quickstart (owner first week: clinic settings, team, DrChrono, billing rates, agreements). Write LAST, after the Settings & Team articles exist."
+    status: review
     priority: 3
     sources:
-      - app/Filament/Clinic/Pages/ClinicSettings.php
-      - app/Filament/Clinic/Resources/UserResource.php
-      - app/Filament/Clinic/Pages/Integrations.php
+      - app/Filament/Clinic/**
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: f0f9e4180b0bcf10e39720c02a6bdf165e1f215d
 
   - path: getting-started/quickstart-provider-daily-loop.md
     section: getting-started
     audience: clinic-staff
-    status: todo
-    note: "Role quickstart (the provider daily loop: action feed, Check-Ins queue, logging time and contacts, signing notes). Write LAST, after the Check-Ins and Billing sections exist; related links may only point at existing articles."
+    status: review
     priority: 3
     sources:
-      - app/Services/ProviderSummary/**
-      - app/Filament/Clinic/Pages/ReviewSummary.php
+      - app/Filament/Clinic/**
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: f0f9e4180b0bcf10e39720c02a6bdf165e1f215d
 
   - path: getting-started/quickstart-billing.md
     section: getting-started
     audience: clinic-staff
-    status: stale
-    note: "Manual claim entry is now a step in the billing workflow; billing staff can add claims the system did not derive automatically via 'Add Claim' on the episode billing tab (PR #514); PRs #534/#538: billing table now shows one row per claim; CSV export adds Claim ID column; Mark Billed and Reject act on all lines of a claim at once — update workflow description to reflect claim-level operations. PR #785 (patient-month treatment billing): treatment-management codes 98979/98980/98981 now bill per PATIENT per calendar month, so the workflow should reflect that a multi-episode patient produces ONE monthly treatment-management claim (aggregated across their episodes, anchored to a single episode), not a separate claim per episode; device-supply codes 98977/98985 remain per-episode per 30-day window. Verify against origin/main. [Converted to the billing-staff role quickstart: write LAST, after the Billing section articles exist.]"
+    status: review
     priority: 3
     sources:
-      - app/Services/BillingSuggestionGenerationService.php
-      - app/Services/BillingExportService.php
+      - app/Filament/Clinic/**
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: f0f9e4180b0bcf10e39720c02a6bdf165e1f215d
 
   - path: getting-started/quickstart-front-desk.md
     section: getting-started
     audience: clinic-staff
-    status: todo
-    note: "Role quickstart (front desk and staff: patients, appointments, arrival check-ins, messages). Write LAST, after the Appointments and Front Desk sections exist."
+    status: review
     priority: 3
     sources:
-      - app/Livewire/Checkin/FrontDeskCheckin.php
-      - app/Services/CheckinService.php
+      - app/Filament/Clinic/**
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: f0f9e4180b0bcf10e39720c02a6bdf165e1f215d
 
   # === 19. Troubleshooting & FAQ (Phase 4) =================================
   - path: troubleshooting/common-issues.md
     section: troubleshooting
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Services/SurveyDeliveryService.php
@@ -1029,7 +1020,7 @@ articles:
   - path: troubleshooting/frequently-asked-questions.md
     section: troubleshooting
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - CLAUDE.MD
@@ -1058,7 +1049,7 @@ articles:
   - path: reference/glossary.md
     section: reference
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - CLAUDE.MD
@@ -1069,7 +1060,7 @@ articles:
   - path: reference/role-permissions-matrix.md
     section: reference
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - database/seeders/RolesSeeder.php
@@ -1080,7 +1071,7 @@ articles:
   - path: reference/cpt-code-reference.md
     section: reference
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - CLAUDE.MD
@@ -1091,7 +1082,7 @@ articles:
   - path: reference/survey-question-types.md
     section: reference
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/SurveyResource.php
