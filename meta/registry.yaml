@@ -98,7 +98,7 @@ articles:
   - path: getting-started/signing-your-subscription-agreement.md
     section: getting-started
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/SignAgreement.php
@@ -759,97 +759,80 @@ articles:
   - path: front-desk/setting-up-check-in.md
     section: front-desk
     audience: clinic-staff
-    status: todo
-    priority: 3
+    status: review
+    priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
-      - app/Services/CheckinService.php
-      - app/Models/Tenant.php
+      - app/Livewire/Checkin/FrontDeskCheckin.php
+      - routes/tenant.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   - path: front-desk/using-the-check-in-kiosk.md
     section: front-desk
     audience: clinic-staff
-    status: todo
-    priority: 3
+    status: review
+    priority: 1
     sources:
       - app/Livewire/Checkin/FrontDeskCheckin.php
-      - resources/views/livewire/checkin/**
+      - resources/views/livewire/checkin/front-desk-checkin.blade.php
       - app/Services/CheckinService.php
-    screenshots: []
-    last_reviewed_commit: null
+    screenshots:
+      - checkin-kiosk
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
-  - path: front-desk/enrolling-patients-at-check-in.md
+  - path: front-desk/enrolling-and-managing-at-check-in.md
     section: front-desk
     audience: clinic-staff
-    status: todo
-    priority: 3
+    status: review
+    priority: 1
     sources:
       - app/Livewire/Checkin/FrontDeskCheckin.php
+      - resources/views/livewire/checkin/front-desk-checkin.blade.php
       - app/Services/EpisodeEnrollmentService.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: front-desk/managing-episodes-at-check-in.md
-    section: front-desk
-    audience: clinic-staff
-    status: todo
-    priority: 3
-    sources:
-      - app/Livewire/Checkin/FrontDeskCheckin.php
       - app/Services/EpisodeLifecycleService.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   # === 12. Patient Portal (Phase 3) ========================================
   - path: patient-portal/recovering-portal-access.md
     section: patient-portal
     audience: patient
-    status: todo
-    priority: 3
+    status: review
+    priority: 1
     sources:
-      - app/Services/PatientPortalAuthService.php
-      - app/Http/Controllers/Patient/Portal/ForgotPasswordController.php
-      - app/Http/Controllers/Patient/Portal/SurveyLinkController.php
+      - app/Http/Controllers/Patient/Portal/**
+      - resources/views/patient/portal/**
+      - resources/views/patient/errors/session-expired.blade.php
       - routes/tenant.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   - path: patient-portal/taking-a-survey.md
     section: patient-portal
     audience: patient
-    status: todo
-    priority: 3
+    status: review
+    priority: 1
     sources:
+      - app/Http/Controllers/Patient/SurveyController.php
       - app/Livewire/Patient/SurveyForm.php
-      - app/Services/SurveyResponseService.php
-      - routes/tenant.php
-    screenshots: []
-    last_reviewed_commit: null
+      - resources/views/livewire/patient/survey-form.blade.php
+      - resources/views/patient/consent.blade.php
+      - resources/views/patient/survey/thank-you.blade.php
+    screenshots:
+      - patient-survey
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   - path: patient-portal/survey-history-and-amendments.md
     section: patient-portal
     audience: patient
-    status: todo
-    priority: 3
+    status: review
+    priority: 1
     sources:
-      - app/Models/SurveyResponse.php
-      - routes/tenant.php
+      - app/Http/Controllers/Patient/SurveyHistoryController.php
+      - resources/views/patient/history/**
     screenshots: []
-    last_reviewed_commit: null
-
-  - path: patient-portal/completing-exercises.md
-    section: patient-portal
-    audience: patient
-    status: todo
-    priority: 3
-    sources:
-      - app/Livewire/Patient/ExerciseWalkthrough.php
-      - app/Models/ExerciseLog.php
-      - app/Enums/ExerciseFeeling.php
-    screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   # === 13. Settings (Phase 3) ==============================================
   - path: settings/clinic-settings-overview.md
@@ -891,7 +874,7 @@ articles:
   - path: users/adding-team-members.md
     section: users
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/UserResource.php
@@ -905,7 +888,7 @@ articles:
   - path: users/managing-your-team.md
     section: users
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/UserResource.php
@@ -918,7 +901,7 @@ articles:
   - path: integrations/connecting-drchrono.md
     section: integrations
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Integrations.php
@@ -932,7 +915,7 @@ articles:
   - path: integrations/drchrono-provider-mappings.md
     section: integrations
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Integrations.php
@@ -943,7 +926,7 @@ articles:
   - path: settings/invoices-and-billing.md
     section: settings
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/BillingSettings.php
@@ -1338,3 +1321,20 @@ screenshots:
     wait_for: "Connect to DrChrono"
     selector: 'section.fi-section:has-text("DrChrono EHR")'
     output: .gitbook/assets/integrations/integrations-connect.png
+
+  # --- Front Desk & Patient Portal (batch 5) ---
+  # Check-in enabled demo-scoped on the demo tenant (access_key + empty PIN) so
+  # the public kiosk renders; re-pin the accessKey in the URL if it is rotated.
+  checkin-kiosk:
+    role: clinic_owner
+    auth: false
+    url: https://demo.rtmlink.com/checkin/DEMOCHECKINKEY000000000000000000
+    wait_for: "Today's Check-ins"
+    output: .gitbook/assets/front-desk/checkin-kiosk.png
+
+  patient-survey:
+    role: clinic_owner
+    auth: false
+    url: https://demo.rtmlink.com/s/demohep1
+    wait_for: "Daily Check-In"
+    output: .gitbook/assets/patient-portal/patient-survey.png

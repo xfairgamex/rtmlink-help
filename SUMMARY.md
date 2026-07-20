@@ -87,8 +87,16 @@
 * [DrChrono provider mappings](integrations/drchrono-provider-mappings.md)
 * [Invoices and billing](settings/invoices-and-billing.md)
 
+## Front Desk
+
+* [Setting up check-in](front-desk/setting-up-check-in.md)
+* [Using the check-in kiosk](front-desk/using-the-check-in-kiosk.md)
+* [Enrolling and managing patients at check-in](front-desk/enrolling-and-managing-at-check-in.md)
+
 ## Patient Portal
 
+* [Taking a survey](patient-portal/taking-a-survey.md)
+* [Survey history and amendments](patient-portal/survey-history-and-amendments.md)
 * [Recovering portal access](patient-portal/recovering-portal-access.md)
 
 <!--

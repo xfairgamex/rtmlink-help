@@ -384,6 +384,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 ## 11. Front Desk Check-In
 
+> **Written July 2026** (3 articles under a Front Desk nav section): setting-up-check-in, using-the-check-in-kiosk, enrolling-and-managing-at-check-in (enroll + manage modals merged). Kiosk is a public PIN-gated page; enabled demo-scoped on the demo tenant for screenshots. Kiosk has no arrival-marking or messaging (confirmed absent).
+
 > **Nav note (July 2026):** registry section renamed to `front-desk` to avoid colliding with Check-Ins (the survey queue). Publishes under an **Appointments & Front Desk** heading when written.
 
 ### 11.1 Setting Up Check-In
@@ -414,6 +416,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 ---
 
 ## 12. Patient Portal (Patient-Facing)
+
+> **Written July 2026** (3 articles, framed for staff supporting patients). taking-a-survey (landing + consent gate + question UI + thank-you), survey-history-and-amendments (patient History screen; cross-links to check-ins/survey-amendments for the provider side), recovering-portal-access (fleshed out from a headings-only stub that had gone live empty — fresh-link + password-reset + session-expired). completing-exercises stub DELETED (redundant with exercises/the-patient-exercise-experience).
 
 ### 12.1 Taking a Survey
 - Accessing via magic link (SMS or email)
