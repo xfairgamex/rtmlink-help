@@ -760,7 +760,7 @@ articles:
   - path: front-desk/setting-up-check-in.md
     section: front-desk
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
@@ -772,7 +772,7 @@ articles:
   - path: front-desk/using-the-check-in-kiosk.md
     section: front-desk
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Livewire/Checkin/FrontDeskCheckin.php
@@ -785,7 +785,7 @@ articles:
   - path: front-desk/enrolling-and-managing-at-check-in.md
     section: front-desk
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Livewire/Checkin/FrontDeskCheckin.php
@@ -799,7 +799,7 @@ articles:
   - path: patient-portal/recovering-portal-access.md
     section: patient-portal
     audience: patient
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Http/Controllers/Patient/Portal/**
@@ -812,7 +812,7 @@ articles:
   - path: patient-portal/taking-a-survey.md
     section: patient-portal
     audience: patient
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Http/Controllers/Patient/SurveyController.php
@@ -827,7 +827,7 @@ articles:
   - path: patient-portal/survey-history-and-amendments.md
     section: patient-portal
     audience: patient
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Http/Controllers/Patient/SurveyHistoryController.php
@@ -1003,26 +1003,24 @@ articles:
   - path: troubleshooting/common-issues.md
     section: troubleshooting
     audience: clinic-staff
-    status: todo
-    priority: 4
+    status: review
+    priority: 1
     sources:
       - app/Services/SurveyDeliveryService.php
-      - app/Services/Messaging/**
-      - app/Services/Ehr/**
+      - app/Services/Sms/SendSmsService.php
+      - app/Services/BillingSuggestionGenerationService.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   - path: troubleshooting/frequently-asked-questions.md
     section: troubleshooting
     audience: clinic-staff
-    status: todo
-    priority: 4
+    status: review
+    priority: 1
     sources:
       - CLAUDE.MD
-      - app/Models/Episode.php
-      - app/Models/BillingSuggestion.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   # === 20. Support Portal (Phase 2) ========================================
   - path: support/contacting-support.md
@@ -1046,49 +1044,46 @@ articles:
   - path: reference/glossary.md
     section: reference
     audience: clinic-staff
-    status: todo
-    priority: 4
+    status: review
+    priority: 1
     sources:
       - CLAUDE.MD
-      - app/Models/Episode.php
-      - app/Models/Window.php
+      - docs/specs/data-model/README.md
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   - path: reference/role-permissions-matrix.md
     section: reference
     audience: clinic-staff
-    status: todo
-    note: "PR #618: providers now have billing-view access (can open billing pages, previously owner/billing_staff only) and can approve/sign/export claims scoped to their own assigned patients; update the role matrix when drafted"
-    priority: 4
+    status: review
+    priority: 1
     sources:
       - database/seeders/RolesSeeder.php
-      - app/Policies/**
+      - app/Models/User.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   - path: reference/cpt-code-reference.md
     section: reference
     audience: clinic-staff
-    status: todo
-    priority: 4
+    status: review
+    priority: 1
     sources:
       - CLAUDE.MD
-      - app/Models/BillingSuggestion.php
-      - app/Services/RtmCounterService.php
+      - app/Services/BillingSuggestionGenerationService.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   - path: reference/survey-question-types.md
     section: reference
     audience: clinic-staff
-    status: todo
-    priority: 4
+    status: review
+    priority: 1
     sources:
-      - app/Enums/QuestionType.php
+      - app/Filament/Clinic/Resources/SurveyResource.php
       - app/Models/SurveyQuestion.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
 # -----------------------------------------------------------------------------
 # SCREENSHOTS

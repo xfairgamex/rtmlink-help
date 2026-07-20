@@ -99,6 +99,18 @@
 * [Survey history and amendments](patient-portal/survey-history-and-amendments.md)
 * [Recovering portal access](patient-portal/recovering-portal-access.md)
 
+## Reference
+
+* [CPT code reference](reference/cpt-code-reference.md)
+* [Glossary](reference/glossary.md)
+* [Role permissions matrix](reference/role-permissions-matrix.md)
+* [Survey question types](reference/survey-question-types.md)
+
+## Troubleshooting & FAQ
+
+* [Common issues](troubleshooting/common-issues.md)
+* [Frequently asked questions](troubleshooting/frequently-asked-questions.md)
+
 <!--
   NAV GROWS AS ARTICLES LAND. Add each article here only once its file exists,
   so the published nav never points at a missing page.
