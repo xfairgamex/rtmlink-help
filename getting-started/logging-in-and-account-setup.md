@@ -26,6 +26,8 @@ When you sign in from the main `rtmlink.com` page, RTMLink sends you to the righ
 
 When you sign in from your clinic's own web address instead, you go straight to that clinic's dashboard.
 
+> **If you followed a link into RTMLink, you land there, not on the dashboard.** When you click a link that points to a specific page (for example, a **Reply in RTMLink** button in a support email) and RTMLink asks you to sign in first, it takes you to that page once you're signed in, rather than the dashboard. For your security, this only works for pages inside RTMLink, so a bad link can never send you somewhere else.
+
 ## Setting up your account the first time
 
 You don't create your own account. Your clinic administrator adds you, and the system emails you a welcome message with a secure sign-in link.
