@@ -384,6 +384,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 ## 11. Front Desk Check-In
 
+> **Written July 2026** (3 articles under a Front Desk nav section): setting-up-check-in, using-the-check-in-kiosk, enrolling-and-managing-at-check-in (enroll + manage modals merged). Kiosk is a public PIN-gated page; enabled demo-scoped on the demo tenant for screenshots. Kiosk has no arrival-marking or messaging (confirmed absent).
+
 > **Nav note (July 2026):** registry section renamed to `front-desk` to avoid colliding with Check-Ins (the survey queue). Publishes under an **Appointments & Front Desk** heading when written.
 
 ### 11.1 Setting Up Check-In
@@ -415,6 +417,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 ## 12. Patient Portal (Patient-Facing)
 
+> **Written July 2026** (3 articles, framed for staff supporting patients). taking-a-survey (landing + consent gate + question UI + thank-you), survey-history-and-amendments (patient History screen; cross-links to check-ins/survey-amendments for the provider side), recovering-portal-access (fleshed out from a headings-only stub that had gone live empty — fresh-link + password-reset + session-expired). completing-exercises stub DELETED (redundant with exercises/the-patient-exercise-experience).
+
 ### 12.1 Taking a Survey
 - Accessing via magic link (SMS or email)
 - Navigating through survey questions
@@ -435,6 +439,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 ---
 
 ## 13. Settings & Configuration
+
+> **Consolidated July 2026.** The 12 planned settings sub-articles collapse to 4 real ones: clinic-settings-overview (the section map), clinic-information-and-branding (info + hours + branding + email), security-and-compliance (session timeout + consent + the backend audit trail / 7-yr retention, which have NO clinic-facing UI), and managing-your-account (My Settings password + notifications pointer). Deleted as redundant: provider-summary-settings + provider-notification-preferences + notification-preferences (all → check-ins/summary-notification-settings), rtm-billing-settings (→ billing/configuring-billing-rates), emr-system-selection (→ integrations + the overview). Note: ClinicSettings has no role gate in code (app fix in flight); articles frame it as owner-by-convention.
 
 ### 13.1 Clinic Information
 - Editing clinic name, contact email, phone, website, address
@@ -522,6 +528,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 ## 16. My Profile
 
+> **Merged July 2026** into settings/managing-your-account.md (My Settings = password + notification prefs). No standalone My Profile section.
+
 > **Nav note (July 2026):** no standalone section; these publish under **Settings & Team** (files in `settings/`).
 
 ### 16.1 Changing Your Password
@@ -538,6 +546,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 ---
 
 ## 17. Compliance & Audit
+
+> **Merged July 2026** into settings/security-and-compliance.md. Audit logging is backend-only (spatie, 7-yr retention) with no clinic-facing viewer, so it is documented as a short reference, not a how-to.
 
 > **Nav note (July 2026):** no standalone section; these publish under **Settings & Team** (files in `settings/`).
 

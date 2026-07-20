@@ -57,8 +57,8 @@ articles:
   - path: getting-started/logging-in-and-account-setup.md
     section: getting-started
     audience: clinic-staff
-    status: stale
-    note: "Post-login redirect changed from '/' to '/dashboard' (fortify.home); the marketing root '/' is now public to all visitors; after login users are dispatched to their clinic or picker via DashboardRedirectController (PR #612/Bundle 46); PR #683: post-login redirect now honors a safe 'intended' destination (e.g. the 'Reply in RTMLink' support deep link) instead of always forcing the dashboard — it still guards against the /login loop and open-redirects, but otherwise lands you on the deep-linked page after signing in"
+    status: review
+    note: "Refreshed for PR #683 (post-login intended-URL). Added a short note to 'What happens right after you sign in' explaining that when you follow a link into a specific RTMLink page (e.g. a 'Reply in RTMLink' support email button) and are asked to sign in first, you now land on that page instead of always being forced to the dashboard, with a plain-language note that this only works for in-app pages (the open-redirect/auth-loop guard). Re-verified every other label against the rtmlink checkout (main 47f0bdd): central rtmlink.com/login button 'Log in', field labels 'Email address'/'Password', 'Forgot your password?' link; forgot-password page heading 'Forgot password' + field 'Email Address' + button 'Email password reset link'; reset page 'Reset password'/'Confirm password'; first-time setup heading 'Welcome to {clinic}', 'New Password'/'Confirm Password', 'Set Password & Sign In' button, 'Welcome aboard!' notice, 48-hour magic-token expiry (User::addHours(48)); Change Password on My Settings; multi-clinic picker 'Choose your clinic' with 'Primary' badge; 'Your account is not linked to a clinic yet'; 'Your account has been deactivated.'; inactivity notice 'You were logged out due to inactivity.'. The DashboardRedirectController dispatch (single clinic auto-forward / picker / no-clinic page) already matched and is re-verified. Password min 8 (Password::defaults()). No em-dashes."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Auth/**
@@ -66,7 +66,7 @@ articles:
       - app/Actions/Fortify/**
       - config/fortify.php
     screenshots: []
-    last_reviewed_commit: fa0ed79ba718acd7c08a559ed585f6963c67f0eb
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   - path: getting-started/understanding-your-role.md
     section: getting-started
@@ -98,21 +98,15 @@ articles:
   - path: getting-started/signing-your-subscription-agreement.md
     section: getting-started
     audience: clinic-staff
-    status: todo
-    note: "NEW coverage census + diff (94a3b0e..eba6a61, PRs #827/#828/#829, agreements feature). No prior article; the only uncovered user-facing Clinic surface in this window. When a clinic is flipped LIVE it holds a pending in-app Subscription Agreement + Business Associate Agreement (Addendum A) that the clinic OWNER must sign before anyone can use the app. New clinic pages: SignAgreement (slug agreements/sign, title 'Subscription Agreement & BAA') is the signing ceremony (review frozen text, tick a consent-to-transact-electronically checkbox, type full legal name + title as the electronic signature, Sign); AgreementRequired (slug agreements/required, title 'Almost there') is the waiting screen non-owner staff see until the owner signs. On signing, an executed PDF is emailed and downloadable anytime (/agreements/{id}/download, owner-only). EnsureAgreementsSigned middleware gates the whole clinic panel until signed (patient survey/portal surfaces are deliberately never gated). SCOPE-AND-TMI: Tier-1 article — a distinct clinic-owner task with a hard consequence (clinic is blocked until signed; staff can only wait) and non-obvious rules (only the owner can sign; only ACTIVE clinics with a pending agreement are gated; trial/demo and paper-signed clinics never see it). NOTE for Writer: document only the clinic-facing signing ceremony + waiting screen + executed-copy download; the Platform 'Go live' admin action (app/Filament/Platform/**) and the agreement generation/PDF internals are out of scope. Verify all labels against origin/main."
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/SignAgreement.php
       - app/Filament/Clinic/Pages/AgreementRequired.php
       - app/Http/Middleware/EnsureAgreementsSigned.php
-      - app/Services/AgreementService.php
-      - app/Models/Agreement.php
-      - config/agreements.php
       - resources/views/filament/clinic/pages/sign-agreement.blade.php
-      - resources/views/filament/clinic/pages/agreement-required.blade.php
-      - resources/views/agreements/**
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   # === 2. Patients (Phase 1) ===============================================
   - path: patients/viewing-and-searching-patients.md
@@ -437,7 +431,7 @@ articles:
   - path: messaging/the-messages-inbox.md
     section: messaging
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Filament/Clinic/Pages/MessagesCenter.php
@@ -451,7 +445,7 @@ articles:
   - path: messaging/scheduling-messages.md
     section: messaging
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Livewire/Clinic/MessagesCenter.php
@@ -463,7 +457,7 @@ articles:
   - path: messaging/sending-messages.md
     section: messaging
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Livewire/Clinic/MessagesCenter.php
@@ -477,7 +471,7 @@ articles:
   - path: messaging/managing-conversations.md
     section: messaging
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Livewire/Clinic/MessagesCenter.php
@@ -492,7 +486,7 @@ articles:
   - path: messaging/message-templates.md
     section: messaging
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/MessageTemplates/**
@@ -651,7 +645,8 @@ articles:
   - path: billing/billing-suggestions.md
     section: billing
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE this window (162647f, PR #860, support ticket #1015): on the Billing list the Patient column now auto-shows whenever the list is NOT grouped by patient (previously hidden-by-default/toggleable), and reappears when a user ungroups; patient-name search was moved to a table-level constraint so it keeps working in both grouped and ungrouped states. Re-verify the article's 'Rows are grouped by patient' description against origin/main (BillingSuggestionsTable::configure/getColumns) — the only user-visible change is the Patient column re-appearing on ungroup. No screenshot re-shoot needed (billing-claim-detail is a claim-detail view, not the grouped/ungrouped list)."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/**
@@ -738,7 +733,7 @@ articles:
   - path: appointments/viewing-appointments.md
     section: appointments
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Filament/Clinic/Pages/Appointments.php
@@ -751,7 +746,7 @@ articles:
   - path: appointments/syncing-appointments.md
     section: appointments
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Filament/Clinic/Pages/Appointments.php
@@ -765,348 +760,209 @@ articles:
   - path: front-desk/setting-up-check-in.md
     section: front-desk
     audience: clinic-staff
-    status: todo
-    priority: 3
+    status: review
+    priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
-      - app/Services/CheckinService.php
-      - app/Models/Tenant.php
+      - app/Livewire/Checkin/FrontDeskCheckin.php
+      - routes/tenant.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   - path: front-desk/using-the-check-in-kiosk.md
     section: front-desk
     audience: clinic-staff
-    status: todo
-    priority: 3
+    status: review
+    priority: 1
     sources:
       - app/Livewire/Checkin/FrontDeskCheckin.php
-      - resources/views/livewire/checkin/**
+      - resources/views/livewire/checkin/front-desk-checkin.blade.php
       - app/Services/CheckinService.php
-    screenshots: []
-    last_reviewed_commit: null
+    screenshots:
+      - checkin-kiosk
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
-  - path: front-desk/enrolling-patients-at-check-in.md
+  - path: front-desk/enrolling-and-managing-at-check-in.md
     section: front-desk
     audience: clinic-staff
-    status: todo
-    priority: 3
+    status: review
+    priority: 1
     sources:
       - app/Livewire/Checkin/FrontDeskCheckin.php
+      - resources/views/livewire/checkin/front-desk-checkin.blade.php
       - app/Services/EpisodeEnrollmentService.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: front-desk/managing-episodes-at-check-in.md
-    section: front-desk
-    audience: clinic-staff
-    status: todo
-    priority: 3
-    sources:
-      - app/Livewire/Checkin/FrontDeskCheckin.php
       - app/Services/EpisodeLifecycleService.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   # === 12. Patient Portal (Phase 3) ========================================
   - path: patient-portal/recovering-portal-access.md
     section: patient-portal
     audience: patient
-    status: todo
-    priority: 3
+    status: review
+    priority: 1
     sources:
-      - app/Services/PatientPortalAuthService.php
-      - app/Http/Controllers/Patient/Portal/ForgotPasswordController.php
-      - app/Http/Controllers/Patient/Portal/SurveyLinkController.php
+      - app/Http/Controllers/Patient/Portal/**
+      - resources/views/patient/portal/**
+      - resources/views/patient/errors/session-expired.blade.php
       - routes/tenant.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   - path: patient-portal/taking-a-survey.md
     section: patient-portal
     audience: patient
-    status: todo
-    priority: 3
+    status: review
+    priority: 1
     sources:
+      - app/Http/Controllers/Patient/SurveyController.php
       - app/Livewire/Patient/SurveyForm.php
-      - app/Services/SurveyResponseService.php
-      - routes/tenant.php
-    screenshots: []
-    last_reviewed_commit: null
+      - resources/views/livewire/patient/survey-form.blade.php
+      - resources/views/patient/consent.blade.php
+      - resources/views/patient/survey/thank-you.blade.php
+    screenshots:
+      - patient-survey
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   - path: patient-portal/survey-history-and-amendments.md
     section: patient-portal
     audience: patient
-    status: todo
-    priority: 3
+    status: review
+    priority: 1
     sources:
-      - app/Models/SurveyResponse.php
-      - routes/tenant.php
+      - app/Http/Controllers/Patient/SurveyHistoryController.php
+      - resources/views/patient/history/**
     screenshots: []
-    last_reviewed_commit: null
-
-  - path: patient-portal/completing-exercises.md
-    section: patient-portal
-    audience: patient
-    status: todo
-    priority: 3
-    sources:
-      - app/Livewire/Patient/ExerciseWalkthrough.php
-      - app/Models/ExerciseLog.php
-      - app/Enums/ExerciseFeeling.php
-    screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   # === 13. Settings (Phase 3) ==============================================
-  # ACCESS ENFORCEMENT (app PR #879, merged + deployed to prod 2026-07-20):
-  # The ClinicSettings and Integrations Filament pages are now gated owner-only via
-  # canAccess() = hasAnyRole(['clinic_owner','super_admin','platform_admin']). Every
-  # article sourced from ClinicSettings.php or Integrations.php — clinic-information,
-  # branding, security-settings, provider-summary-settings, rtm-billing-settings,
-  # patient-consent, emr-system-selection, and the Integrations section — must be
-  # documented as Clinic-Owner-only. This is now enforced in code, so state it
-  # plainly; do NOT use the old "owner by convention" hedge. Non-owners
-  # (provider/staff/billing_staff/auditor) get a 403, including via a direct link.
-  # EXCEPTIONS in this section that are NOT owner-only (do not tag these owner-only):
-  #   - settings/changing-your-password.md + profile (Profile.php) = self-service, every role.
-  #   - settings/provider-notification-preferences.md (ProviderNotifications.php) = owner/admin
-  #     managing other providers' prefs; its own separate gate, not the ClinicSettings gate.
-  - path: settings/clinic-information.md
+  # ACCESS (app PR #879, merged + deployed to prod 2026-07-20): the ClinicSettings +
+  # Integrations Filament pages are gated owner-only via canAccess() =
+  # hasAnyRole(['clinic_owner','super_admin','platform_admin']). Articles sourced from
+  # ClinicSettings.php / Integrations.php (clinic-settings-overview,
+  # clinic-information-and-branding, security-and-compliance, invoices-and-billing,
+  # connecting-drchrono, drchrono-provider-mappings) are Clinic-Owner-only — enforced
+  # in code, state it plainly (not "owner by convention"); non-owners
+  # (provider/staff/billing_staff/auditor) 403, including via a direct link.
+  # NOT owner-only: settings/managing-your-account.md (My Settings / Profile.php) is
+  # self-service for every role.
+  - path: settings/clinic-settings-overview.md
     section: settings
     audience: clinic-staff
-    status: todo
-    priority: 3
+    status: published
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Pages/ClinicSettings.php
+      - resources/views/filament/clinic/pages/clinic-settings.blade.php
+    screenshots: []
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
+
+  - path: settings/clinic-information-and-branding.md
+    section: settings
+    audience: clinic-staff
+    status: published
+    priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
       - app/Models/Tenant.php
-    screenshots: []
-    last_reviewed_commit: null
+    screenshots:
+      - clinic-information-section
+      - branding-section
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
-  - path: settings/branding.md
+  - path: settings/security-and-compliance.md
     section: settings
     audience: clinic-staff
-    status: todo
-    priority: 3
+    status: published
+    priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
-      - app/Models/Tenant.php
+      - config/activitylog.php
     screenshots: []
-    last_reviewed_commit: null
-
-  - path: settings/security-settings.md
-    section: settings
-    audience: clinic-staff
-    status: todo
-    priority: 3
-    sources:
-      - app/Filament/Clinic/Pages/ClinicSettings.php
-      - app/Models/Tenant.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: settings/provider-summary-settings.md
-    section: settings
-    audience: clinic-staff
-    status: todo
-    note: "SECTION RENAMED + RESTRUCTURED this window (Bundle 53/56, PRs #837/#842, commit 4036248). Clinic Settings 'Provider Survey Summaries' is now 'Staff Email Notifications' — one hub for every recurring team email, split into three fieldsets: 'Daily Provider Summaries' (the Enable toggle + Default Delivery Channel + Default Send Time, unchanged), 'Daily Owner Digest — Problems & Praise' (the 'Send the daily digest' toggle, now disabled unless Provider Summaries is on, since it rides the same morning run), and NEW 'Weekly Billing Nudge Emails' — two toggles: 'Provider \"claims to sign\" email' (each provider with unsigned ready-to-bill claims gets a weekly email deep-linking to their own sign-off list; counts and links only, no patient details) and 'Owner billing opportunities email' (near-billable episodes + an unsigned-claims rollup with estimated values), plus a shared 'Send Day' and 'Send Time' (clinic timezone). The old 'Digest Recipients' field is relabeled 'Owner & Admin Email Recipients' and now drives BOTH the daily digest AND the weekly owner billing email. The separate 'Revenue Opportunity Nudges' section (sensitivity/window-code tuning) now feeds the weekly emails' content (its description was updated to say so). This article is unwritten (todo); the Writer should broaden its scope to the whole Staff Email Notifications hub (or split it), documenting the emails as Tier-2 (what each contains + that the provider email is counts/links only and none of it is billable). Sources widened to the nudge-email service + mailables so future changes flag here. Verify all labels against origin/main."
-    priority: 3
-    sources:
-      - app/Filament/Clinic/Pages/ClinicSettings.php
-      - app/Services/ProviderSummary/ClinicOwnerDigestService.php
-      - app/Services/BillingNudgeEmailService.php
-      - app/Mail/ProviderClaimsToSignMail.php
-      - app/Mail/ClinicOwnerBillingReadyMail.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: settings/provider-notification-preferences.md
-    section: settings
-    audience: clinic-staff
-    status: todo
-    priority: 3
-    sources:
-      - app/Filament/Clinic/Pages/ProviderNotifications.php
-      - app/Models/ProviderNotificationSetting.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: settings/emr-system-selection.md
-    section: settings
-    audience: clinic-staff
-    status: todo
-    priority: 3
-    sources:
-      - app/Filament/Clinic/Pages/Integrations.php
-      - app/Models/Tenant.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: settings/rtm-billing-settings.md
-    section: settings
-    audience: clinic-staff
-    status: todo
-    note: "Bundle 56 (PR #615): ClinicSettings gained a 'Revenue Opportunity Nudges' section with sensitivity select (focused/balanced/all) and include-check-in-nudges toggle (98985/98977 nudges per 30-day window); controls the near-billable signals on the dashboard"
-    priority: 3
-    sources:
-      - app/Filament/Clinic/Pages/ClinicSettings.php
-      - app/Services/BillingRevenueService.php
-      - app/Models/Tenant.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: settings/patient-consent.md
-    section: settings
-    audience: clinic-staff
-    status: todo
-    note: "NEW coverage — Bundle 101 (PR #805, RTM Program Consent). No prior article. A per-clinic, default-OFF feature: Clinic Settings gains a 'Patient Consent' section with a 'Require RTM Program Consent' toggle. When on, every new enrollment records how RTM consent was obtained — 'Verbal consent obtained' or 'Paper consent form signed' (recorded immediately with the enrolling user as witness), or 'Send digital consent form' (the patient sees a one-time consent page the first time they open their survey/exercise link, agrees once, then passes through forever; surveys still send on schedule). Consent status shows on the episode view as an 'RTM Consent' badge (Accepted/Pending/Declined). Existing episodes are never affected; disabling the toggle drops all gates. NOTE for Writer: this is the setup + concept + patient-facing consent-page article; the per-episode enrollment field and the episode-view badge are cross-referenced from the (now stale) enrolling-a-patient and viewing-episode-details articles. Consent is NOT an interaction day / not billable. Out of scope: per-clinic custom consent text, decline->provider notification, and revocation (all Phase 2, not yet built). Verify all labels against origin/main."
-    priority: 2
-    sources:
-      - app/Filament/Clinic/Pages/ClinicSettings.php
-      - app/Models/Tenant.php
-      - app/Models/Consent.php
-      - app/Services/ConsentService.php
-      - app/Http/Controllers/Patient/ConsentController.php
-      - app/Http/Controllers/Patient/Concerns/GatesOnRtmConsent.php
-      - resources/views/patient/consent.blade.php
-      - resources/views/patient/partials/rtm-consent-text.blade.php
-    screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   # === 14. User Management (Phase 3) =======================================
-  - path: users/viewing-users.md
+  - path: users/adding-team-members.md
     section: users
     audience: clinic-staff
-    status: todo
-    priority: 3
+    status: published
+    priority: 1
+    sources:
+      - app/Filament/Clinic/Resources/UserResource.php
+      - app/Filament/Clinic/Resources/UserResource/Pages/CreateUser.php
+      - app/Filament/Clinic/Pages/InitialPasswordSetup.php
+      - app/Jobs/SendUserWelcomeEmailJob.php
+    screenshots:
+      - users-list
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
+
+  - path: users/managing-your-team.md
+    section: users
+    audience: clinic-staff
+    status: published
+    priority: 1
     sources:
       - app/Filament/Clinic/Resources/UserResource.php
       - app/Filament/Clinic/Resources/UserResource/Pages/**
-      - app/Models/User.php
+      - app/Http/Middleware/FilamentClinicAuth.php
     screenshots: []
-    last_reviewed_commit: null
-
-  - path: users/creating-a-user.md
-    section: users
-    audience: clinic-staff
-    status: todo
-    priority: 3
-    sources:
-      - app/Filament/Clinic/Resources/UserResource.php
-      - app/Models/User.php
-      - database/seeders/RolesSeeder.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: users/managing-users.md
-    section: users
-    audience: clinic-staff
-    status: todo
-    priority: 3
-    sources:
-      - app/Filament/Clinic/Resources/UserResource.php
-      - app/Models/User.php
-    screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   # === 15. Integrations (Phase 4) ==========================================
   # ACCESS: the DrChrono Integrations page is owner-only (canAccess, app PR #879,
-  # deployed 2026-07-20) — see the enforcement note under section 13. DrChrono
-  # sync/disconnect and provider mappings are owner-only actions; non-owners 403.
-  - path: integrations/drchrono-ehr-integration.md
+  # deployed 2026-07-20) — see the note under section 13. DrChrono sync/disconnect
+  # and provider mappings are owner-only actions; non-owners 403.
+  - path: integrations/connecting-drchrono.md
     section: integrations
     audience: clinic-staff
-    status: todo
-    priority: 4
+    status: published
+    priority: 1
     sources:
       - app/Filament/Clinic/Pages/Integrations.php
-      - app/Services/Ehr/DrChronoClient.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: integrations/drchrono-data-sync.md
-    section: integrations
-    audience: clinic-staff
-    status: todo
-    priority: 4
-    sources:
+      - resources/views/filament/clinic/pages/integrations.blade.php
+      - app/Http/Controllers/DrChronoOAuthController.php
       - app/Services/Ehr/**
-    screenshots: []
-    last_reviewed_commit: null
+    screenshots:
+      - integrations-connect
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   - path: integrations/drchrono-provider-mappings.md
     section: integrations
     audience: clinic-staff
-    status: todo
-    priority: 4
+    status: published
+    priority: 1
     sources:
-      - app/Services/Ehr/DrChronoProviderSyncService.php
       - app/Filament/Clinic/Pages/Integrations.php
+      - resources/views/filament/clinic/pages/integrations.blade.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
-  - path: integrations/billing-and-subscription.md
-    section: integrations
+  - path: settings/invoices-and-billing.md
+    section: settings
     audience: clinic-staff
-    status: todo
-    note: "This is the clinic's own SaaS subscription / Invoices page (BillingSettings.php, nav label 'Invoices', in the Settings nav group) — plan, payment method, invoices, cancellation. ACCESS: owner-only, enforced via canAccess() (app PR #879, deployed 2026-07-20); clinic_owner + platform staff only, everyone else 403. Do NOT conflate this with RTM 'Billing & claims' (claim review/approval/DrChrono export) — that area is billing_staff's and is unchanged. Billing Staff can manage RTM claims but CANNOT reach this subscription/Invoices page. Keep the understanding-your-role matrix consistent: 'Billing & claims' = billing_staff Full; the Invoices subscription page sits under owner-only 'Clinic settings'."
-    priority: 4
+    status: published
+    note: "ACCESS: owner-only, enforced via canAccess() (app PR #879, deployed 2026-07-20) — clinic_owner + platform staff only, everyone else 403. This is the clinic's own SaaS subscription / Invoices page (BillingSettings.php, nav 'Invoices', Settings nav group). Do NOT conflate with RTM 'Billing & claims' (claim review/approval/DrChrono export) — that area is billing_staff's and is unchanged; billing_staff can manage claims but CANNOT reach this subscription/Invoices page."
+    priority: 1
     sources:
       - app/Filament/Clinic/Pages/BillingSettings.php
-      - app/Services/SaasBillingService.php
-      - app/Services/StripeInvoicingService.php
-      - config/cashier.php
+      - resources/views/filament/clinic/pages/billing-settings.blade.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   # === 16. My Settings (merged into settings section) =====================
-  - path: settings/changing-your-password.md
+  - path: settings/managing-your-account.md
     section: settings
     audience: clinic-staff
-    status: todo
-    priority: 4
+    status: published
+    priority: 1
     sources:
       - app/Filament/Clinic/Pages/Profile.php
-      - app/Actions/Fortify/ResetUserPassword.php
-      - app/Actions/Fortify/PasswordValidationRules.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: settings/notification-preferences.md
-    section: settings
-    audience: clinic-staff
-    status: todo
-    priority: 4
-    sources:
-      - app/Filament/Clinic/Pages/Profile.php
-      - app/Filament/Clinic/Pages/ProviderNotifications.php
-      - app/Models/ProviderNotificationSetting.php
-    screenshots: []
-    last_reviewed_commit: null
+      - app/Filament/Clinic/Pages/InitialPasswordSetup.php
+    screenshots:
+      - my-settings
+    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   # === 17. Compliance & audit (merged into settings section) ==============
-  - path: settings/activity-logging.md
-    section: settings
-    audience: clinic-staff
-    status: todo
-    priority: 4
-    sources:
-      - config/activitylog.php
-      - app/Models/Patient.php
-      - app/Models/Episode.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: settings/data-retention.md
-    section: settings
-    audience: clinic-staff
-    status: todo
-    priority: 4
-    sources:
-      - app/Models/Patient.php
-      - app/Models/Survey.php
-    screenshots: []
-    last_reviewed_commit: null
-
   # === 18. Role quickstarts (getting-started; write after sections exist) =
   - path: getting-started/quickstart-owner-setup.md
     section: getting-started
@@ -1154,16 +1010,6 @@ articles:
     sources:
       - app/Livewire/Checkin/FrontDeskCheckin.php
       - app/Services/CheckinService.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: integrations/drchrono-sync-workflow.md
-    section: integrations
-    audience: clinic-staff
-    status: todo
-    priority: 2
-    sources:
-      - app/Services/Ehr/**
     screenshots: []
     last_reviewed_commit: null
 
@@ -1453,3 +1299,57 @@ screenshots:
     # wait_for must exist in RAW html ("Date & Time" encodes as &amp;)
     wait_for: "Follow-up knee assessment"
     output: .gitbook/assets/appointments/appointments-page.png
+
+  # --- Settings (batch 4a) ---
+  clinic-information-section:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/clinic-settings
+    wait_for: "Basic information and contact details"
+    selector: 'section.fi-section:has-text("Basic information and contact details")'
+    output: .gitbook/assets/settings/clinic-information-section.png
+
+  branding-section:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/clinic-settings
+    wait_for: "Customize how your clinic appears"
+    selector: 'section.fi-section:has-text("Customize how your clinic appears")'
+    output: .gitbook/assets/settings/branding-section.png
+
+  my-settings:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/profile
+    wait_for: "Current Password"
+    output: .gitbook/assets/settings/my-settings.png
+
+  # --- Team & Integrations (batch 4b) ---
+  users-list:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/settings/users
+    wait_for: "Last Login"
+    output: .gitbook/assets/users/users-list.png
+
+  # Demo tenant needs settings.ehr.system=drchrono (set demo-scoped) so the
+  # Integrations nav+page appear; it shows the Disconnected connect state.
+  integrations-connect:
+    role: clinic_owner
+    url: https://demo.rtmlink.com/integrations
+    wait_for: "Connect to DrChrono"
+    selector: 'section.fi-section:has-text("DrChrono EHR")'
+    output: .gitbook/assets/integrations/integrations-connect.png
+
+  # --- Front Desk & Patient Portal (batch 5) ---
+  # Check-in enabled demo-scoped on the demo tenant (access_key + empty PIN) so
+  # the public kiosk renders; re-pin the accessKey in the URL if it is rotated.
+  checkin-kiosk:
+    role: clinic_owner
+    auth: false
+    url: https://demo.rtmlink.com/checkin/DEMOCHECKINKEY000000000000000000
+    wait_for: "Today's Check-ins"
+    output: .gitbook/assets/front-desk/checkin-kiosk.png
+
+  patient-survey:
+    role: clinic_owner
+    auth: false
+    url: https://demo.rtmlink.com/s/demohep1
+    wait_for: "Daily Check-In"
+    output: .gitbook/assets/patient-portal/patient-survey.png
