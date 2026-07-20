@@ -437,7 +437,7 @@ articles:
   - path: messaging/the-messages-inbox.md
     section: messaging
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Filament/Clinic/Pages/MessagesCenter.php
@@ -451,7 +451,7 @@ articles:
   - path: messaging/scheduling-messages.md
     section: messaging
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Livewire/Clinic/MessagesCenter.php
@@ -463,7 +463,7 @@ articles:
   - path: messaging/sending-messages.md
     section: messaging
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Livewire/Clinic/MessagesCenter.php
@@ -477,7 +477,7 @@ articles:
   - path: messaging/managing-conversations.md
     section: messaging
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Livewire/Clinic/MessagesCenter.php
@@ -492,7 +492,7 @@ articles:
   - path: messaging/message-templates.md
     section: messaging
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/MessageTemplates/**
@@ -738,7 +738,7 @@ articles:
   - path: appointments/viewing-appointments.md
     section: appointments
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Filament/Clinic/Pages/Appointments.php
@@ -751,7 +751,7 @@ articles:
   - path: appointments/syncing-appointments.md
     section: appointments
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Filament/Clinic/Pages/Appointments.php
