@@ -24,7 +24,7 @@ The **Cancellation** section has a **Cancel** button that requests cancellation 
 
 ## Who manages billing
 
-Subscription billing is a Clinic Owner responsibility.
+Subscription billing is a Clinic Owner responsibility, and only the Clinic Owner can open the **Invoices** page. It is not available to providers, staff, billing staff, or auditors. (This is your clinic's subscription to RTMLink, separate from the insurance claims your billing staff work on under **Billing**.)
 
 ## Related articles
 

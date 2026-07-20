@@ -26,7 +26,7 @@ This article is the map. Each section below links to a fuller guide where one ex
 
 ## Who configures the clinic
 
-Clinic Settings is the clinic owner's responsibility: these choices apply to the whole clinic and to what every patient sees. Set them once during onboarding, then revisit as your clinic grows.
+Clinic Settings is the clinic owner's responsibility: these choices apply to the whole clinic and to what every patient sees. Only the Clinic Owner can open it. The page does not appear for providers, staff, billing staff, or auditors, and it cannot be reached by a direct link. Set them once during onboarding, then revisit as your clinic grows.
 
 ## Related articles
 

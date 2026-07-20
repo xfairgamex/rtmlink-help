@@ -20,7 +20,7 @@ The **Exam Room Mapping** section maps each provider to a DrChrono exam room ind
 
 ## Who sets the mappings
 
-Mappings are configured by the Clinic Owner as part of setting up the integration.
+Mappings are configured by the Clinic Owner as part of setting up the integration. Like the rest of the **Integrations** page, they are available only to the Clinic Owner.
 
 ## Related articles
 

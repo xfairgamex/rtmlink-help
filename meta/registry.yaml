@@ -836,6 +836,16 @@ articles:
     last_reviewed_commit: bded1511d32ca8eae5c858bf49937502ee3c0b53
 
   # === 13. Settings (Phase 3) ==============================================
+  # ACCESS (app PR #879, merged + deployed to prod 2026-07-20): the ClinicSettings +
+  # Integrations Filament pages are gated owner-only via canAccess() =
+  # hasAnyRole(['clinic_owner','super_admin','platform_admin']). Articles sourced from
+  # ClinicSettings.php / Integrations.php (clinic-settings-overview,
+  # clinic-information-and-branding, security-and-compliance, invoices-and-billing,
+  # connecting-drchrono, drchrono-provider-mappings) are Clinic-Owner-only — enforced
+  # in code, state it plainly (not "owner by convention"); non-owners
+  # (provider/staff/billing_staff/auditor) 403, including via a direct link.
+  # NOT owner-only: settings/managing-your-account.md (My Settings / Profile.php) is
+  # self-service for every role.
   - path: settings/clinic-settings-overview.md
     section: settings
     audience: clinic-staff
@@ -899,6 +909,9 @@ articles:
     last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
 
   # === 15. Integrations (Phase 4) ==========================================
+  # ACCESS: the DrChrono Integrations page is owner-only (canAccess, app PR #879,
+  # deployed 2026-07-20) — see the note under section 13. DrChrono sync/disconnect
+  # and provider mappings are owner-only actions; non-owners 403.
   - path: integrations/connecting-drchrono.md
     section: integrations
     audience: clinic-staff
@@ -928,6 +941,7 @@ articles:
     section: settings
     audience: clinic-staff
     status: published
+    note: "ACCESS: owner-only, enforced via canAccess() (app PR #879, deployed 2026-07-20) — clinic_owner + platform staff only, everyone else 403. This is the clinic's own SaaS subscription / Invoices page (BillingSettings.php, nav 'Invoices', Settings nav group). Do NOT conflate with RTM 'Billing & claims' (claim review/approval/DrChrono export) — that area is billing_staff's and is unchanged; billing_staff can manage claims but CANNOT reach this subscription/Invoices page."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/BillingSettings.php

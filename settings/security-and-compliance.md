@@ -4,7 +4,7 @@ description: "RTMLink's HIPAA-minded settings and record-keeping: the automatic 
 
 # Security and compliance
 
-RTMLink handles protected health information, so a few settings and behaviors exist purely to keep your clinic compliant. This guide covers the two you control in Clinic Settings, plus what RTMLink does automatically.
+RTMLink handles protected health information, so a few settings and behaviors exist purely to keep your clinic compliant. This guide covers the two you control in Clinic Settings, plus what RTMLink does automatically. Both settings live on the Clinic Settings page, which only the Clinic Owner can open.
 
 ## Session timeout
 

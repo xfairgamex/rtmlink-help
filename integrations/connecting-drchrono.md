@@ -30,7 +30,7 @@ Click **Disconnect** and confirm to unlink the account. Syncing stops and the st
 
 ## Who manages the integration
 
-Connecting, syncing, and disconnecting are Clinic Owner tasks. After connecting, set up the provider and export mappings so claims export cleanly, in [DrChrono provider mappings](drchrono-provider-mappings.md).
+Connecting, syncing, and disconnecting are Clinic Owner tasks, and only the Clinic Owner can open the **Integrations** page. It is not available to providers, staff, billing staff, or auditors. After connecting, set up the provider and export mappings so claims export cleanly, in [DrChrono provider mappings](drchrono-provider-mappings.md).
 
 ## Related articles
 
