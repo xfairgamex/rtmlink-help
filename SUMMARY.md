@@ -30,6 +30,7 @@
 * [Managing episode status](episodes/managing-episode-status.md)
 * [Episode search & filters](episodes/episode-search-and-filters.md)
 * [Episode actions](episodes/episode-actions.md)
+* [Understanding time tracking](episodes/understanding-time-tracking.md)
 * [Logging interactive contacts](episodes/logging-interactive-contacts.md)
 
 ## Check-Ins
@@ -114,6 +115,7 @@
 
 * [Common issues](troubleshooting/common-issues.md)
 * [Frequently asked questions](troubleshooting/frequently-asked-questions.md)
+* [Contacting support](support/contacting-support.md)
 
 <!--
   NAV GROWS AS ARTICLES LAND. Add each article here only once its file exists,
