@@ -57,7 +57,7 @@ articles:
   - path: getting-started/logging-in-and-account-setup.md
     section: getting-started
     audience: clinic-staff
-    status: review
+    status: published
     note: "Refreshed for PR #683 (post-login intended-URL). Added a short note to 'What happens right after you sign in' explaining that when you follow a link into a specific RTMLink page (e.g. a 'Reply in RTMLink' support email button) and are asked to sign in first, you now land on that page instead of always being forced to the dashboard, with a plain-language note that this only works for in-app pages (the open-redirect/auth-loop guard). Re-verified every other label against the rtmlink checkout (main 47f0bdd): central rtmlink.com/login button 'Log in', field labels 'Email address'/'Password', 'Forgot your password?' link; forgot-password page heading 'Forgot password' + field 'Email Address' + button 'Email password reset link'; reset page 'Reset password'/'Confirm password'; first-time setup heading 'Welcome to {clinic}', 'New Password'/'Confirm Password', 'Set Password & Sign In' button, 'Welcome aboard!' notice, 48-hour magic-token expiry (User::addHours(48)); Change Password on My Settings; multi-clinic picker 'Choose your clinic' with 'Primary' badge; 'Your account is not linked to a clinic yet'; 'Your account has been deactivated.'; inactivity notice 'You were logged out due to inactivity.'. The DashboardRedirectController dispatch (single clinic auto-forward / picker / no-clinic page) already matched and is re-verified. Password min 8 (Password::defaults()). No em-dashes."
     priority: 1
     sources:
@@ -205,7 +205,7 @@ articles:
   - path: episodes/viewing-episode-details.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -359,7 +359,7 @@ articles:
   - path: exercises/exercise-videos.md
     section: exercises
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ExerciseVideoResource/**
@@ -386,7 +386,7 @@ articles:
   - path: exercises/assigning-hep-to-an-episode.md
     section: exercises
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/RelationManagers/HepAssignmentsRelationManager.php
@@ -497,7 +497,7 @@ articles:
   - path: episodes/understanding-time-tracking.md
     section: episodes
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Models/TimeEntry.php
@@ -616,7 +616,7 @@ articles:
   - path: billing/billing-suggestions.md
     section: billing
     audience: clinic-staff
-    status: review
+    status: published
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/**
@@ -937,7 +937,7 @@ articles:
   - path: getting-started/quickstart-owner-setup.md
     section: getting-started
     audience: clinic-staff
-    status: review
+    status: published
     priority: 3
     sources:
       - app/Filament/Clinic/**
@@ -947,7 +947,7 @@ articles:
   - path: getting-started/quickstart-provider-daily-loop.md
     section: getting-started
     audience: clinic-staff
-    status: review
+    status: published
     priority: 3
     sources:
       - app/Filament/Clinic/**
@@ -957,7 +957,7 @@ articles:
   - path: getting-started/quickstart-billing.md
     section: getting-started
     audience: clinic-staff
-    status: review
+    status: published
     priority: 3
     sources:
       - app/Filament/Clinic/**
@@ -967,7 +967,7 @@ articles:
   - path: getting-started/quickstart-front-desk.md
     section: getting-started
     audience: clinic-staff
-    status: review
+    status: published
     priority: 3
     sources:
       - app/Filament/Clinic/**
@@ -1001,7 +1001,7 @@ articles:
   - path: support/contacting-support.md
     section: support
     audience: clinic-staff
-    status: review
+    status: published
     priority: 2
     sources:
       - app/Livewire/Clinic/HelpMenu.php
