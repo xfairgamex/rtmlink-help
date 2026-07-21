@@ -24,7 +24,7 @@ Once you pick a file, add its details:
 
 - **Title:** defaults to the exercise name.
 - **Body Region:** the area the exercise targets.
-- **Tags:** optional keywords to help you find it later.
+- **Tags:** optional labels for everything the video addresses (for example, shoulder flexion, elbow extension). Press Enter after each one to add it.
 - **Description:** optional notes about the video.
 
 Click **Upload** to send it. When the upload finishes you'll see **Upload successful!** and a note that the video will be ready in about 30 to 60 seconds. RTMLink prepares it in the background so it plays smoothly on any phone.

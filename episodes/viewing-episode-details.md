@@ -45,6 +45,8 @@ Progress toward the treatment-management codes (`98979`, `98980`, and `98981`), 
 - **Interactive Contacts:** the number of live contacts (phone, video, or in person) this month.
 - A status line telling you what is still needed (for example, an interactive contact or more minutes), or which code the month is on track to earn.
 
+> **The verdict follows the patient, not just this episode.** The minutes and contacts at the top of the card are this episode's, but the eligibility line reflects the patient's whole month, because treatment codes bill once per patient per month. If another of the patient's episodes contributed activity, an extra line shows the patient's combined total across episodes and notes that the codes bill on the most recent episode with activity.
+
 ### Episode Details
 
 - **ICD-10 Codes:** diagnosis codes recorded on the episode, if any.

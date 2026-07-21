@@ -10,6 +10,8 @@ The **Billing** page is your worklist: every claim RTMLink has derived, ready to
 
 Open **Billing** in the left sidebar. The **Ready to Bill** tab is your worklist; **Billed**, **Rejected**, and **All** hold the rest. Rows are grouped by patient, and the list refreshes itself every few seconds, so newly qualifying claims appear without a reload.
 
+Because the patient's name is already the group heading, the **Patient** column stays hidden while the list is grouped. Turn grouping off and the column reappears on every row, so you always know whose claim you are looking at. Searching by patient name works either way.
+
 Use the filters to narrow the list:
 
 - **Billing Period** (a from and until date)

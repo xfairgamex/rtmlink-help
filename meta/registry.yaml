@@ -205,8 +205,7 @@ articles:
   - path: episodes/viewing-episode-details.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "STALE this window (94a3b0e..eba6a61, PR #825, multi-episode month billing display fix). The episode-view treatment-management billing card ('This Calendar Month', codes 98979/98980/98981) changed its user-visible behavior: the eligibility verdict (the check/arrow status and the 'Need N more minutes' / 'Eligible for 98980 + 98981 xN at month end' line) now follows the PATIENT-month aggregate the billing engine actually bills against, not this episode's figures alone; the headline minutes/contacts still show THIS episode. When another of the patient's episodes contributed activity that month, a NEW line appears: 'Patient total this month across episodes: X min · Y contact(s). Treatment codes bill once per patient per month, on the most recent episode with activity.' Re-verify the card wording against origin/main (EpisodeResource::formatTreatmentTimeMetrics) and note the cross-episode line. This is the display follow-up to the per-patient-per-month treatment billing already flagged on the billing/* articles. Screenshot episode-detail-overview may need a re-shoot only if the pictured card now shows the cross-episode line."
+    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -215,7 +214,7 @@ articles:
       - app/Filament/Clinic/Resources/EpisodeResource/Widgets/**
       - app/Livewire/Clinic/Episodes/**
     screenshots: [episode-list, episode-detail-overview]
-    last_reviewed_commit: 94a3b0e65e5e12998e453ab11897b77a6ee5b092
+    last_reviewed_commit: 057fea2ff55f721f9cb8d80987f7c6b6604e3769
 
   - path: episodes/managing-episode-status.md
     section: episodes
@@ -360,8 +359,7 @@ articles:
   - path: exercises/exercise-videos.md
     section: exercises
     audience: clinic-staff
-    status: stale
-    note: "STALE this window (4bd0af0..94a3b0e): the upload/edit form's 'Tags' field gained visible helper text ('Optional labels for everything this video addresses (e.g. shoulder flexion, elbow extension). Press Enter after each.') and now stores tags as a JSON array (a migration normalized old comma-joined values) — a small, verifiable copy change on the documented Tags field; re-verify the Tags helper wording, otherwise the article's form description still holds. --- Refreshed for the exercises gating + role restriction (PR #460 era, re-verified against production main): the video feature only appears when the clinic has exercises enabled (ExerciseVideoResource::canViewAny guards on tenant()->exercises_enabled), and uploading/editing videos is limited to clinic owners and providers (canCreate/canEdit; staff can browse/reuse but not upload), matching who manages exercises. Added a leading condition + who-can-do-what note. The internal source/external_ref fields are not rendered in any clinic screen, so they aren't documented. Re-verified every label against the app: the three Media buttons (Upload Video / Select from Library / Add Video URL), the upload slide-over (Browse files, MP4/MOV/WebM up to 2 GB, Title/Body Region/Tags/Description, Upload, 'Upload successful!'), the status flow (Pending/Processing/Ready/Error per ExerciseVideoStatus), Thumbnail Selector (Timestamp/Go/Save Thumbnail) and Animated GIF Preview (Start/End seconds, Preview GIF/Save GIF Selection/Remove GIF, max 5s). Removed all em-dashes and en-dashes for CI (the old file was full of them, including a stray en-dash in '30-60 seconds')."
+    status: review
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ExerciseVideoResource/**
@@ -370,7 +368,7 @@ articles:
       - app/Enums/ExerciseVideoStatus.php
       - app/Services/MuxService.php
     screenshots: []
-    last_reviewed_commit: ecc299a37675c7f8c5dc40e697c841720a945658
+    last_reviewed_commit: 057fea2ff55f721f9cb8d80987f7c6b6604e3769
 
   - path: exercises/exercise-programs.md
     section: exercises
@@ -388,8 +386,7 @@ articles:
   - path: exercises/assigning-hep-to-an-episode.md
     section: exercises
     audience: clinic-staff
-    status: stale
-    note: "STALE this window (4bd0af0..94a3b0e): the assigned-exercises table gained (a) a 'Print Handout' header action (printer icon, opens the patient's print-friendly exercise handout in a new tab; deliberately available even for discharged patients as long as the patient has a survey token), and (b) 'Deactivate selected' / 'Reactivate selected' bulk toolbar actions (select rows, confirm; each skips rows already in the target state and toasts a count). Add these to the actions section; verify labels/confirm wording against origin/main. --- Refreshed for PR #773 (a1b9560): added the 'Reactivate' row action (green, 'Reactivate assignment?' confirm) alongside the existing 'Deactivate', in a new 'Editing, removing, and restoring exercises' section that splits actions by active vs deactivated state and notes that a reactivated exercise returns at the end of the order. Also noted the lock icon that marks a patient-private exercise in the assigned list, matched the Prescription separator to the app's literal ' x ', and removed all em-dashes for CI. Drag-reorder and patient-locked exercises (PRs #482/#460) were already covered and re-verified accurate."
+    status: review
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/RelationManagers/HepAssignmentsRelationManager.php
@@ -397,7 +394,7 @@ articles:
       - app/Enums/HepFrequency.php
       - app/Services/HepService.php
     screenshots: [episode-exercises-tab]
-    last_reviewed_commit: 0f2ea07bc1723a30d09e622ee61690e2ab20a7bd
+    last_reviewed_commit: 057fea2ff55f721f9cb8d80987f7c6b6604e3769
 
   - path: exercises/tracking-exercise-adherence.md
     section: exercises
@@ -500,41 +497,15 @@ articles:
   - path: episodes/understanding-time-tracking.md
     section: episodes
     audience: clinic-staff
-    status: todo
+    status: review
     priority: 1
     sources:
       - app/Models/TimeEntry.php
       - app/Services/TimeTracking/**
-      - app/Models/InteractiveContact.php
       - app/Support/TimeEntryActivityType.php
-    screenshots: []
-    last_reviewed_commit: null
-
-  - path: episodes/logging-time-on-an-episode.md
-    section: episodes
-    audience: clinic-staff
-    status: todo
-    priority: 1
-    sources:
       - app/Livewire/Clinic/Episodes/TimeTrackingWidget.php
-      - resources/views/livewire/clinic/episodes/time-tracking-widget.blade.php
-      - app/Models/TimeEntry.php
-      - app/Support/TimeEntryActivityType.php
     screenshots: []
-    last_reviewed_commit: null
-
-  - path: episodes/managing-time-entries.md
-    section: episodes
-    audience: clinic-staff
-    status: todo
-    priority: 1
-    sources:
-      - app/Livewire/Clinic/Episodes/TimeEntriesTable.php
-      - app/Models/TimeEntry.php
-      - app/Models/InteractiveContact.php
-      - app/Services/RtmCounterService.php
-    screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 057fea2ff55f721f9cb8d80987f7c6b6604e3769
 
   - path: episodes/logging-interactive-contacts.md
     section: episodes
@@ -645,8 +616,7 @@ articles:
   - path: billing/billing-suggestions.md
     section: billing
     audience: clinic-staff
-    status: stale
-    note: "STALE this window (162647f, PR #860, support ticket #1015): on the Billing list the Patient column now auto-shows whenever the list is NOT grouped by patient (previously hidden-by-default/toggleable), and reappears when a user ungroups; patient-name search was moved to a table-level constraint so it keeps working in both grouped and ungrouped states. Re-verify the article's 'Rows are grouped by patient' description against origin/main (BillingSuggestionsTable::configure/getColumns) — the only user-visible change is the Patient column re-appearing on ungroup. No screenshot re-shoot needed (billing-claim-detail is a claim-detail view, not the grouped/ungrouped list)."
+    status: review
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/**
@@ -655,7 +625,7 @@ articles:
       - app/Services/BillingSuggestionService.php
     screenshots:
       - billing-claim-detail
-    last_reviewed_commit: eab6ef9a165c2850785afb063d92abb709a59c67
+    last_reviewed_commit: 057fea2ff55f721f9cb8d80987f7c6b6604e3769
 
   - path: billing/approving-and-rejecting-claims.md
     section: billing
@@ -1031,19 +1001,16 @@ articles:
   - path: support/contacting-support.md
     section: support
     audience: clinic-staff
-    status: todo
-    note: "NEW 'getting help' surface, no prior article (Bundle 42 + Bundle 75). ENTRY POINT is the topbar 'Help' menu (App\\Livewire\\Clinic\\HelpMenu, rendered just before the user menu) — Bundle 75 (PRs #689/#691) replaced the old sidebar 'Support' link: SupportTicketResource::shouldRegisterNavigation() now returns false (the portal's routes/pages still exist, only the sidebar entry is hidden). The Help dropdown offers: a link out to this help center (services.help.base_url), the support-ticket portal (badged with the user's 'Awaiting reply' = Pending count), 'New ticket', and 'Schedule a call' — a slideover that books a support call via NeetoCal in the clinic's timezone, shown only when configured (SupportCallBookingService::isAvailable). The ticket portal itself (Bundle 42 — PRs #655/#658/#659/#661/#666/#679): clinic users open and track their own tickets without email — create (subject + 'How can we help?' rich body), CC colleagues at creation, reply on the thread, mark solved; replies surface via the in-app notification bell (ClinicPanelProvider->databaseNotifications(), SupportNotificationService::notifyPortalReply — PR #670). Visibility is scoped per user — SupportTicket has NO tenant global scope; scopeForClinicUser routes every row so owners see the whole clinic's tickets while staff/providers see only tickets they're involved in. SCOPE-AND-TMI: Tier-1 article. NOTE for Writer: document only the clinic Help menu + ticket portal + schedule-a-call; the support-agent API, inbound email, PHI tokenizer, help-article sync, and Platform-panel ticket view are internal/out-of-scope. Verify all labels against origin/main."
+    status: review
     priority: 2
     sources:
-      - app/Filament/Clinic/Resources/SupportTicketResource.php
-      - app/Filament/Clinic/Resources/SupportTicketResource/**
       - app/Livewire/Clinic/HelpMenu.php
       - resources/views/livewire/clinic/help-menu.blade.php
-      - app/Models/SupportTicket.php
+      - app/Filament/Clinic/Resources/SupportTicketResource.php
+      - app/Filament/Clinic/Resources/SupportTicketResource/**
       - app/Enums/SupportTicketStatus.php
-      - app/Services/Support/SupportCallBookingService.php
     screenshots: []
-    last_reviewed_commit: null
+    last_reviewed_commit: 057fea2ff55f721f9cb8d80987f7c6b6604e3769
 
   # === Reference (Phase 4) =================================================
   - path: reference/glossary.md

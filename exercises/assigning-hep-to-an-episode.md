@@ -73,6 +73,14 @@ On a **deactivated** exercise:
 
 > **Deactivate, not delete.** RTM is a billable medical service, so an exercise the patient already worked on is never erased. Deactivating takes it out of their current routine while preserving the record, and you can reactivate it later if the patient resumes it.
 
+## Changing several at once
+
+To act on a batch, tick the exercises you want and use **Deactivate selected** or **Reactivate selected** in the toolbar, then confirm. Rows already in that state are skipped, and RTMLink tells you how many it changed.
+
+## Printing a handout
+
+**Print Handout** at the top of the tab opens the patient's print-friendly exercise sheet in a new tab, ready to hand them on the way out. It stays available even after an episode is discharged, so you can reprint a patient's exercises later.
+
 ## Related articles
 
 - [Understanding the Home Exercise Program](understanding-hep.md)
