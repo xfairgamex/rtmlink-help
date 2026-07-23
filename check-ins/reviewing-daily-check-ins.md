@@ -45,7 +45,7 @@ Back on the Check-Ins queue, the provider's row flips to **Reviewed** with today
 
 ## Role permissions
 
-A provider can open only their own review page; Clinic Owners and admins can open anyone's. Other roles that try get a permission error.
+A **provider** can open only their own review page. A **clinic owner** can open any provider's review page. Everyone else (staff, billing staff, and auditors) gets a permission error, even from a direct link.
 
 ## Related articles
 
