@@ -532,8 +532,8 @@ articles:
   - path: check-ins/the-check-ins-queue.md
     section: check-ins
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 47f0bdd..cf43d1a, app PR #875): the **Upload Appointments** header action on the Check-Ins queue (/pending-summaries) is now visible to clinic owners. It was gated on the unseeded `clinic_admin` ghost role, so it was effectively hidden from every real user; the gate now admits `clinic_owner`. (Only shown when the clinic has NO EHR integration.) Confirm whether the article should mention this owner-only header action."
+    status: review
+    note: "Refreshed for app PR #875 (clinic_admin ghost-role removal). The **Upload Appointments** header action on the Check-Ins queue was gated on the unseeded `clinic_admin` role, so it was hidden from every real user; the gate now admits `clinic_owner`. Rewrote the appointments-filter paragraph to state the button is clinic-owner only and only appears when no EHR is connected, and added an 'Upload today's appointments' row (owner-only) to the Role permissions table. Also tightened the bulk-send step to the exact button label 'Send N selected'. Re-verified against the rtmlink checkout (main cf43d1a): page title 'Check-In Summaries', nav label 'Check-Ins', 'All caught up!', per-row 'View'/'Send', 'Email queued' toast, 'Reviewed · N surveys read today' and 'N patients · N responses' count lines, and both filter footer lines. No em-dashes."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/PendingSummaries.php
@@ -541,7 +541,7 @@ articles:
       - app/Services/ProviderSummary/UnreadSurveyService.php
     screenshots:
       - check-ins-queue
-    last_reviewed_commit: 3453c7a3fb85338403c078c0d4cea07e2bd812fa
+    last_reviewed_commit: cf43d1a53ccca0a6e5786ef6436f59a50a2a4967
 
   - path: check-ins/daily-summary-notifications.md
     section: check-ins
