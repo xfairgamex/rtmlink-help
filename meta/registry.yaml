@@ -546,7 +546,8 @@ articles:
   - path: check-ins/daily-summary-notifications.md
     section: check-ins
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout aae867c..0337083, app Bundle 54 / PR #910, email restyle): the provider daily-summary EMAIL (provider-summary.blade.php) was rebuilt onto the shared branded email shell. Two user-visible changes the article currently states verbatim: (1) the CTA button label is now 'Review and Log Time' (was 'Review & Log Time' — the article bolds the old '&' spelling). (2) The stats layout changed from the 'Today's Patients' / 'Other Unread' count-card grid (Patients/Responses/Comments cards) to a prose summary line under a 'Today's patients' / 'To review' eyebrow ('from N patients, including N comments to read. Estimated review time ~N minutes.') plus, when applicable, an 'Other unread, outside today's schedule: ...' callout. UNCHANGED (do not touch): the email subject pattern ('Daily Summary: 3 patients, 7 responses (2 comments)'), send timing, the 48-hour magic link, the SMS/text version, and the no-unread-means-no-message rule (ProviderSummaryNotifier not touched this window). Writer: verify the button label + the 'what providers receive' paragraph against provider-summary.blade.php at production main."
     priority: 1
     sources:
       - app/Console/Commands/SendProviderNotificationsCommand.php
