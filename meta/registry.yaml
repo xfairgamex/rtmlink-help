@@ -589,8 +589,8 @@ articles:
   - path: check-ins/summary-notification-settings.md
     section: check-ins
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 47f0bdd..cf43d1a, app PR #880): the 'Daily Owner Digest — Problems & Praise' fieldset + 'Send the daily digest' toggle were REMOVED from Clinic Settings > Staff Email Notifications (feature deleted). The 'Owner & Admin Email Recipients' field is renamed 'Owner Email Recipients' (clinic owners only; the digest is gone so the list now feeds only the weekly owner billing email). Section description no longer mentions the daily digest. The weekly owner billing email is now PHI-free (aggregate counts + estimated value + a link into RTMLink; no patient names). Article body currently describes the owner digest + 'Owner & Admin Email Recipients' (lines ~17-19) — update. Screenshot `staff-email-notifications` needs re-shooting (section content changed)."
+    status: review
+    note: "Screenshot `staff-email-notifications` flagged for re-shoot: the Staff Email Notifications section content changed (the 'Daily Owner Digest / Problems & Praise' fieldset was removed and replaced by the 'Weekly Billing Nudge Emails' fieldset; the recipients field is now 'Owner Email Recipients'). The captured PNG still shows the old digest layout. Selector and wait_for still valid; Visualizer just needs a fresh capture."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
@@ -599,7 +599,7 @@ articles:
       - app/Services/ProviderSummary/ProviderSummaryNotifier.php
     screenshots:
       - staff-email-notifications
-    last_reviewed_commit: 3453c7a3fb85338403c078c0d4cea07e2bd812fa
+    last_reviewed_commit: f0cbd39c0642856db74a1c4b41ac4f2cc9dcbe4d
 
   # === 9. Billing & Claims (Phase 2) =======================================
   - path: billing/understanding-rtm-billing.md
