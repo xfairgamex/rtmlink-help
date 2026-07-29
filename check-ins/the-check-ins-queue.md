@@ -26,7 +26,7 @@ Click anywhere on a row (or its **View** button) to open that provider's review 
 Providers normally receive their summary automatically by email or text (see [Daily summary emails and texts](daily-summary-notifications.md)), but you can push one at any moment:
 
 1. Click **Send** on a provider's row and confirm. A toast reports **Email queued** and the summary goes out shortly.
-2. To nudge several providers at once, use **Select all** (or tick individual rows), then click **Send** for the selected group and confirm.
+2. To nudge several providers at once, use **Select all** (or tick individual rows), then click **Send N selected** and confirm.
 
 ## The appointments filter
 
@@ -35,7 +35,7 @@ A footer line tells you which mode the queue is in:
 - **Filtered to patients with appointments today**: the clinic has appointment data, so the queue focuses on today's schedule.
 - **Showing all patients with unread surveys**: no appointment data for today, so every unread response counts.
 
-Clinics without an EHR connection can use the **Upload Appointments** button at the top of the page to import today's schedule and turn on the filter.
+If your clinic has no connected EHR, a **clinic owner** can select **Upload Appointments** at the top of the page to import today's schedule and turn on the filter. This button appears only for clinic owners, and only when no EHR is connected; if you are not an owner, ask your clinic owner to upload the schedule.
 
 ## Where the counts surface
 
@@ -48,6 +48,7 @@ Clinics without an EHR connection can use the **Upload Appointments** button at 
 | --- | --- | --- | --- | --- | --- |
 | Open the Check-Ins queue | Yes | Yes | Yes | Yes | Yes |
 | Send summaries from the queue | Yes | Yes | Yes | Yes | No |
+| Upload today's appointments | Yes | No | No | No | No |
 | Review and log time on a summary | Yes | Own summary only | No | No | No |
 
 ## Related articles

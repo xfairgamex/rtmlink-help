@@ -160,7 +160,8 @@ articles:
   - path: patients/messaging-a-patient.md
     section: patients
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout cf43d1a..aae867c, app PR #886): the 'Message' button that opens the patient messaging drawer is now gated on the seeded messages.send permission and hidden for roles that lack it. It disappears from every entry point (the Patients list row + Patient view page, the Episodes list row + Episode view page, and the 'Message Patient' button on the daily-review rows). Enforced clinic-staff matrix now: clinic_owner/provider/staff can message; auditor and billing_staff CANNOT (a hard 403 even via a direct action). Verify who-can-message wording; note that non-senders no longer see the Message button at all."
     priority: 1
     sources:
       - app/Livewire/Clinic/MessagingDrawer.php
@@ -428,7 +429,8 @@ articles:
   - path: messaging/the-messages-inbox.md
     section: messaging
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout cf43d1a..aae867c, app PR #886): the Messages inbox is now gated on the seeded messages.view permission (canAccess), which also drives the nav item + unread badge. Enforced clinic-staff access: clinic_owner/provider/staff = full inbox; auditor = read-only (can open + read, cannot send); billing_staff = NO access — they never see the Messages nav item or inbox at all (previously any authenticated clinic user could open it and message patients). Update any 'who can see the inbox' wording. (Platform support roles are also admitted: super_admin full, platform_admin read-only — out of scope for clinic-staff prose.)"
     priority: 2
     sources:
       - app/Filament/Clinic/Pages/MessagesCenter.php
@@ -442,7 +444,8 @@ articles:
   - path: messaging/scheduling-messages.md
     section: messaging
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout cf43d1a..aae867c, app PR #886): scheduling a message is now enforced as a send action. ScheduledMessagePolicy was reconciled off the dead/unseeded permission names messages.create + messages.edit onto the seeded messages.send, so only clinic_owner/provider/staff (and the original sender for their own pending message) can schedule/edit a scheduled send; auditor can view pending sends but not create/edit them. Real-role behavior is largely unchanged, but the who-can-schedule story is now consistently enforced. Verify any role wording."
     priority: 2
     sources:
       - app/Livewire/Clinic/MessagesCenter.php
@@ -454,7 +457,8 @@ articles:
   - path: messaging/sending-messages.md
     section: messaging
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout cf43d1a..aae867c, app PR #886): sending is now enforced on the seeded messages.send permission at a single server-side choke point in both MessagesCenter and the MessagingDrawer (covers immediate, scheduled, and edit-scheduled sends). Send affordances are hidden for non-senders: the inbox 'New Message' action, both inbox composers, and the message-input box only render for users with messages.send. Only clinic_owner/provider/staff can send; auditor gets a read-only inbox; billing_staff has no inbox access. Verify who-can-send wording and any implication that everyone in the clinic can reply."
     priority: 2
     sources:
       - app/Livewire/Clinic/MessagesCenter.php
@@ -528,8 +532,8 @@ articles:
   - path: check-ins/the-check-ins-queue.md
     section: check-ins
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 47f0bdd..cf43d1a, app PR #875): the **Upload Appointments** header action on the Check-Ins queue (/pending-summaries) is now visible to clinic owners. It was gated on the unseeded `clinic_admin` ghost role, so it was effectively hidden from every real user; the gate now admits `clinic_owner`. (Only shown when the clinic has NO EHR integration.) Confirm whether the article should mention this owner-only header action."
+    status: review
+    note: "Refreshed for app PR #875 (clinic_admin ghost-role removal). The **Upload Appointments** header action on the Check-Ins queue was gated on the unseeded `clinic_admin` role, so it was hidden from every real user; the gate now admits `clinic_owner`. Rewrote the appointments-filter paragraph to state the button is clinic-owner only and only appears when no EHR is connected, and added an 'Upload today's appointments' row (owner-only) to the Role permissions table. Also tightened the bulk-send step to the exact button label 'Send N selected'. Re-verified against the rtmlink checkout (main cf43d1a): page title 'Check-In Summaries', nav label 'Check-Ins', 'All caught up!', per-row 'View'/'Send', 'Email queued' toast, 'Reviewed · N surveys read today' and 'N patients · N responses' count lines, and both filter footer lines. No em-dashes."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/PendingSummaries.php
@@ -537,7 +541,7 @@ articles:
       - app/Services/ProviderSummary/UnreadSurveyService.php
     screenshots:
       - check-ins-queue
-    last_reviewed_commit: 3453c7a3fb85338403c078c0d4cea07e2bd812fa
+    last_reviewed_commit: cf43d1a53ccca0a6e5786ef6436f59a50a2a4967
 
   - path: check-ins/daily-summary-notifications.md
     section: check-ins
@@ -558,6 +562,8 @@ articles:
     audience: clinic-staff
     status: review
     note: "Refreshed for app PR #875 (removed the unseeded clinic_admin ghost role). Rewrote the Role permissions paragraph: a provider opens only their own review page, a clinic owner can open any provider's review page (now enforced in code via User::hasOwnerLevelAccess = clinic_owner/super_admin/platform_admin), and staff/billing_staff/auditor get a permission error even from a direct link. Dropped the phantom 'admins' role (no real clinic user holds it). Verified the gate in ReviewSummary::mount. Appointment-time clinic-timezone change (PR #887) is display-only, no label change, so no body edit. Checked the per-row 'Message Patient' button: it is @can('messages.send')-gated, but every user who can open this page (providers + owners) holds messages.send, so it is never hidden here and line 29 stays accurate. All other labels ('... Survey Summary' title, Today's Patients, Other Unread Comments, View All Responses/Hide Responses, Save Today's Time and Mark as Read, missing-interactive-comm prompt) re-verified. No em-dashes."
+    status: stale
+    note: "STALE (scout 47f0bdd..cf43d1a, app PR #875): clinic OWNERS can now open any provider's daily review page (/review-summary/{uuid}). Previously they got a hard 403 because the gate checked the unseeded `clinic_admin` ghost role; the gate now admits `clinic_owner`. Providers still only see their own review page (others 403) — unchanged. Verify/adjust any access wording (who can open a provider's review). Same-page appointment times are now shown in the clinic timezone (PR #887) — minor, no label change. (logging-time-during-review.md shares this page; its time-logging mechanics are unchanged, so the owner-access fact is recorded here only.) ALSO (scout cf43d1a..aae867c, app PR #886): the per-row 'Message Patient' button on this daily-review page is now gated on messages.send and hidden for non-senders (auditor / billing_staff) — folded into the messaging permission flag on patients/messaging-a-patient.md; mention it here only if this article calls out that button."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ReviewSummary.php
