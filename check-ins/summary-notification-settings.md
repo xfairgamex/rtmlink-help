@@ -14,9 +14,9 @@ Open **Settings** > **Clinic Settings** and find the **Staff Email Notifications
 - **Default Delivery Channel**: **Email** or **SMS**. Providers can override this for themselves.
 - **Default Send Time**: when summaries go out (clinic timezone), unless a provider sets their own.
 
-The same section also holds the daily owner digest (the "Problems & Praise" roll-up of flagged answers and trends), the weekly billing nudge emails, and the **Owner & Admin Email Recipients** list that both owner emails share.
+The same section also holds the **Weekly Billing Nudge Emails**: a weekly **Provider "claims to sign" email** and a weekly **Owner billing opportunities email**, with a shared **Send Day** and **Send Time**. Neither email includes patient names. The **Owner Email Recipients** list at the bottom chooses which clinic owners receive the owner billing opportunities email.
 
-![The Staff Email Notifications section of Clinic Settings: provider summaries, the owner digest, weekly billing nudges, and shared recipients.](../.gitbook/assets/check-ins/staff-email-notifications.png)
+![The Staff Email Notifications section of Clinic Settings: daily provider summaries, the weekly billing nudge emails, and the owner email recipients list.](../.gitbook/assets/check-ins/staff-email-notifications.png)
 
 ## Per-provider overrides (owner-managed)
 
