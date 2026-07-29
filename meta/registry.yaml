@@ -160,8 +160,8 @@ articles:
   - path: patients/messaging-a-patient.md
     section: patients
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout cf43d1a..aae867c, app PR #886): the 'Message' button that opens the patient messaging drawer is now gated on the seeded messages.send permission and hidden for roles that lack it. It disappears from every entry point (the Patients list row + Patient view page, the Episodes list row + Episode view page, and the 'Message Patient' button on the daily-review rows). Enforced clinic-staff matrix now: clinic_owner/provider/staff can message; auditor and billing_staff CANNOT (a hard 403 even via a direct action). Verify who-can-message wording; note that non-senders no longer see the Message button at all."
+    status: review
+    note: "Refreshed for app PR #886 (messaging permission flag). The Message action is now gated on the seeded messages.send permission at every entry point (Patients list row, Patient record, Episode record) and the send itself hard-403s, so only clinic_owner/provider/staff can message; billing_staff and auditor cannot and never see the Message option. Added a lead-in note + a Role permissions table stating this. Also corrected the delivery-status list to the labels actually rendered in the thread (DeliveryStatus::threadLabel): 'Sending…' (was 'Pending') and 'Not delivered' (was 'Failed'); Sent/Delivered/Read unchanged. Re-verified against the rtmlink checkout (main aae867c): Message action label + ActionGroup placement on both list rows, the 'Message' button on ViewPatient/ViewEpisode, the daily-review 'Message Patient' @can('messages.send') gate, channel/consent rules (SMS needs consent + phone, Email needs consent + address; unavailable channels shown but not selectable), 1,600-char message limit + required email subject (max 255) + 'Re:' reply prefill, schedule flow ('Schedule for later' -> 'Send at ({tz})' -> 'Schedule', 'Scheduled' label, Edit/Cancel/Send Now), and 'Mark unread'. No new screenshots. No em-dashes."
     priority: 1
     sources:
       - app/Livewire/Clinic/MessagingDrawer.php
@@ -170,7 +170,7 @@ articles:
       - app/Enums/Channel.php
       - app/Services/Messaging/**
     screenshots: []
-    last_reviewed_commit: 3c008f525f885bfac3eb94e759a0193a9634819f
+    last_reviewed_commit: aae867c6bafe837dfcf2a8b6436dc299feb3ce6d
 
   # === 3. Episodes (Phase 1) ===============================================
   - path: episodes/understanding-episodes.md
