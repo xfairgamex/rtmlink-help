@@ -546,8 +546,8 @@ articles:
   - path: check-ins/daily-summary-notifications.md
     section: check-ins
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout aae867c..0337083, app Bundle 54 / PR #910, email restyle): the provider daily-summary EMAIL (provider-summary.blade.php) was rebuilt onto the shared branded email shell. Two user-visible changes the article currently states verbatim: (1) the CTA button label is now 'Review and Log Time' (was 'Review & Log Time' — the article bolds the old '&' spelling). (2) The stats layout changed from the 'Today's Patients' / 'Other Unread' count-card grid (Patients/Responses/Comments cards) to a prose summary line under a 'Today's patients' / 'To review' eyebrow ('from N patients, including N comments to read. Estimated review time ~N minutes.') plus, when applicable, an 'Other unread, outside today's schedule: ...' callout. UNCHANGED (do not touch): the email subject pattern ('Daily Summary: 3 patients, 7 responses (2 comments)'), send timing, the 48-hour magic link, the SMS/text version, and the no-unread-means-no-message rule (ProviderSummaryNotifier not touched this window). Writer: verify the button label + the 'what providers receive' paragraph against provider-summary.blade.php at production main."
+    status: review
+    note: "Refreshed for app Bundle 54 / PR #910 (provider-summary email restyle). Fixed the CTA button label to the current 'Review and Log Time' (was the old '&' spelling) and tightened the 'what providers receive' paragraph away from an implied patient list toward the new prose summary (how many patients/responses are waiting, how many responses carry a comment, estimated review time). Re-verified against the rtmlink checkout: button label in provider-summary.blade.php; subject pattern 'Daily Summary: N patients, N responses (N comments)' and the one-line SMS version with counts + link in ProviderSummaryNotifier (both unchanged); SMS-to-email fallback when no phone; the 48-hour magic link (User::generateMagicToken now()->addHours(48)); and the no-unread-means-no-message rule. No em-dashes."
     priority: 1
     sources:
       - app/Console/Commands/SendProviderNotificationsCommand.php
@@ -556,7 +556,7 @@ articles:
       - app/Http/Middleware/ProviderMagicAuth.php
       - resources/views/emails/provider-summary.blade.php
     screenshots: []
-    last_reviewed_commit: 3453c7a3fb85338403c078c0d4cea07e2bd812fa
+    last_reviewed_commit: d14896f4029b504f4b0f06b3f532d57f7cd85b63
 
   - path: check-ins/reviewing-daily-check-ins.md
     section: check-ins
