@@ -831,14 +831,14 @@ articles:
   - path: settings/clinic-settings-overview.md
     section: settings
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 47f0bdd..cf43d1a, app PR #880): the Staff Email Notifications bullet (line ~23) still lists 'the owner digest', which was removed from the app. Drop the daily owner digest from the summary; the section now holds only daily provider summaries + weekly billing nudge emails. No page-access change (canAccess owner-only gate was already documented)."
+    status: review
+    note: "Refreshed for app PR #880 (owner digest removal). Rewrote the Staff Email Notifications bullet: the section no longer holds a daily owner digest, so the summary now reads 'daily provider summaries and weekly billing nudge emails', matching the two fieldsets in ClinicSettings (main d14896f): 'Daily Provider Summaries' and 'Weekly Billing Nudge Emails' (plus the 'Owner Email Recipients' select). No page-access change (canAccess owner-only gate already documented). Every other section bullet re-verified against the ClinicSettings section headings and still accurate. No em-dashes."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
       - resources/views/filament/clinic/pages/clinic-settings.blade.php
     screenshots: []
-    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
+    last_reviewed_commit: d14896f4029b504f4b0f06b3f532d57f7cd85b63
 
   - path: settings/clinic-information-and-branding.md
     section: settings

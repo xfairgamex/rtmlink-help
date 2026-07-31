@@ -20,7 +20,7 @@ This article is the map. Each section below links to a fuller guide where one ex
 - **Front Desk Check-in**: turn on a public, PIN-protected page for front-desk staff and get its shareable link.
 - **Security**: the session timeout that logs idle users out. See [Security and compliance](security-and-compliance.md).
 - **Patient Consent**: whether each enrollment records RTM program consent. See [Security and compliance](security-and-compliance.md).
-- **Staff Email Notifications**: daily summaries, the owner digest, and weekly billing nudges. See [Summary notification settings](../check-ins/summary-notification-settings.md).
+- **Staff Email Notifications**: daily provider summaries and weekly billing nudge emails. See [Summary notification settings](../check-ins/summary-notification-settings.md).
 - **Time Estimate Formula**: how the review page pre-fills minutes per patient.
 - **Patient Exercise Flow**: where the "Start Your Exercises" button appears in the patient check-in (shown only when exercises are enabled).
 
