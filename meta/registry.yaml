@@ -573,7 +573,7 @@ articles:
       - app/Services/ProviderSummary/UnreadSurveyService.php
     screenshots:
       - review-today-patients
-    last_reviewed_commit: aae867c6bafe837dfcf2a8b6436dc299feb3ce6d
+    last_reviewed_commit: b50b7d77fb49e107190d7bfb0193605a9eaec0ce
 
   - path: check-ins/logging-time-during-review.md
     section: check-ins

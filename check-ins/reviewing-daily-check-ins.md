@@ -8,7 +8,7 @@ The review page is where a provider works through the day's patient responses in
 
 ## Three ways in
 
-- **The daily email or text**: the summary message's **Review & Log Time** button opens your review page directly, already signed in. The link works for 48 hours; after that it lands on the login page, and logging in takes you through.
+- **The daily email or text**: the summary message's **Review and Log Time** button opens your review page directly, already signed in. The link works for 48 hours; after that it lands on the login page, and logging in takes you through.
 - **The dashboard**: providers see a **Surveys to review** pill in **Your Action Feed** counting their own patients' unread responses.
 - **The Check-Ins queue**: anyone opening a provider's row lands here. See [The Check-Ins queue](the-check-ins-queue.md).
 
