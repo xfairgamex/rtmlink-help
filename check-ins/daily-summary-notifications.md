@@ -8,7 +8,7 @@ Every morning, RTMLink rounds up each provider's unread patient responses and de
 
 ## What providers receive
 
-The email subject follows the pattern "Daily Summary: 3 patients, 7 responses (2 comments)". Inside are the patients with unread responses, an estimated review time, and a **Review & Log Time** button. The text-message version carries the same counts and link in one line.
+The email subject follows the pattern "Daily Summary: 3 patients, 7 responses (2 comments)". Inside, a short summary tells the provider how many patients and responses are waiting, how many of those responses include a written comment to read, and an estimated review time, followed by a **Review and Log Time** button. The text-message version carries the same counts and link in one line.
 
 The link is a personal sign-in link: it opens the provider's review page directly, no password prompt, and stays valid for 48 hours. After it expires the link lands on the clinic login page instead, and signing in normally still gets you there.
 
