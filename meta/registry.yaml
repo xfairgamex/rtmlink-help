@@ -220,7 +220,8 @@ articles:
   - path: episodes/managing-episode-status.md
     section: episodes
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 0337083..d14896f, app PR #935, commit 115a8a3). NEW RULE on the Reopen action: reopening a completed/discharged episode is now REFUSED when the patient already has another active or paused episode (a patient may hold only one open episode). The Reopen action now shows a danger notification 'Cannot reopen this episode' with body 'This patient already has an active or paused episode. Continue care there, or close it first.' instead of falsely reporting 'Episode reopened'. If this article documents Reopen, add this one-open-episode constraint + the exact refusal message. last_reviewed_commit stays 8947296."
     priority: 1
     sources:
       - app/Services/EpisodeLifecycleService.php
@@ -514,7 +515,8 @@ articles:
   - path: episodes/logging-interactive-contacts.md
     section: episodes
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 0337083..d14896f, app PR #925, commits efa55eb/86db966/36d3c09). Billing-opportunity surfacing changed: an episode can now surface TWO near-billable opportunities at once -- one treatment-management (calendar-month) row AND one device-supply (30-day window) row -- instead of only the single highest-scoring one, because they are separate CPT codes on separate clocks and both can be captured together. The combined contact+minutes nudge now also names the remaining MINUTE shortfall, not just the missing interactive contact. Verify any near-billable / 'almost billable' nudge wording tied to logging a contact; likely verify-only. last_reviewed_commit stays fcb2020."
     priority: 2
     sources:
       - app/Livewire/Clinic/Episodes/TimeTrackingWidget.php
@@ -547,7 +549,7 @@ articles:
     section: check-ins
     audience: clinic-staff
     status: stale
-    note: "STALE (scout aae867c..0337083, app Bundle 54 / PR #910, email restyle): the provider daily-summary EMAIL (provider-summary.blade.php) was rebuilt onto the shared branded email shell. Two user-visible changes the article currently states verbatim: (1) the CTA button label is now 'Review and Log Time' (was 'Review & Log Time' — the article bolds the old '&' spelling). (2) The stats layout changed from the 'Today's Patients' / 'Other Unread' count-card grid (Patients/Responses/Comments cards) to a prose summary line under a 'Today's patients' / 'To review' eyebrow ('from N patients, including N comments to read. Estimated review time ~N minutes.') plus, when applicable, an 'Other unread, outside today's schedule: ...' callout. UNCHANGED (do not touch): the email subject pattern ('Daily Summary: 3 patients, 7 responses (2 comments)'), send timing, the 48-hour magic link, the SMS/text version, and the no-unread-means-no-message rule (ProviderSummaryNotifier not touched this window). Writer: verify the button label + the 'what providers receive' paragraph against provider-summary.blade.php at production main."
+    note: "STALE (scout aae867c..0337083, app Bundle 54 / PR #910, email restyle): the provider daily-summary EMAIL (provider-summary.blade.php) was rebuilt onto the shared branded email shell. Two user-visible changes the article currently states verbatim: (1) the CTA button label is now 'Review and Log Time' (was 'Review & Log Time' — the article bolds the old '&' spelling). (2) The stats layout changed from the 'Today's Patients' / 'Other Unread' count-card grid (Patients/Responses/Comments cards) to a prose summary line under a 'Today's patients' / 'To review' eyebrow ('from N patients, including N comments to read. Estimated review time ~N minutes.') plus, when applicable, an 'Other unread, outside today's schedule: ...' callout. UNCHANGED (do not touch): the email subject pattern ('Daily Summary: 3 patients, 7 responses (2 comments)'), send timing, the 48-hour magic link, the SMS/text version, and the no-unread-means-no-message rule. UPDATE (scout 0337083..d14896f, app PRs #921/#920, commits c1133f9/d11461c): ProviderSummaryNotifier now (a) sends the staff summary email FROM 'RTMLink' rather than the clinic's name (staff email is RTMLink-branded end to end; patient email still sends from the clinic), and (b) stamps the email's header date in the clinic's local timezone (was UTC, which could show tomorrow's date on an evening send west of UTC). If the article says who the email is 'from' or describes the header date, adjust. Writer: verify the button label + the 'what providers receive' + sender/date wording against provider-summary.blade.php / ProviderSummaryNotifier at production main."
     priority: 1
     sources:
       - app/Console/Commands/SendProviderNotificationsCommand.php
@@ -561,8 +563,6 @@ articles:
   - path: check-ins/reviewing-daily-check-ins.md
     section: check-ins
     audience: clinic-staff
-    status: review
-    note: "Refreshed for app PR #875 (removed the unseeded clinic_admin ghost role). Rewrote the Role permissions paragraph: a provider opens only their own review page, a clinic owner can open any provider's review page (now enforced in code via User::hasOwnerLevelAccess = clinic_owner/super_admin/platform_admin), and staff/billing_staff/auditor get a permission error even from a direct link. Dropped the phantom 'admins' role (no real clinic user holds it). Verified the gate in ReviewSummary::mount. Appointment-time clinic-timezone change (PR #887) is display-only, no label change, so no body edit. Checked the per-row 'Message Patient' button: it is @can('messages.send')-gated, but every user who can open this page (providers + owners) holds messages.send, so it is never hidden here and line 29 stays accurate. All other labels ('... Survey Summary' title, Today's Patients, Other Unread Comments, View All Responses/Hide Responses, Save Today's Time and Mark as Read, missing-interactive-comm prompt) re-verified. No em-dashes."
     status: stale
     note: "STALE (scout 47f0bdd..cf43d1a, app PR #875): clinic OWNERS can now open any provider's daily review page (/review-summary/{uuid}). Previously they got a hard 403 because the gate checked the unseeded `clinic_admin` ghost role; the gate now admits `clinic_owner`. Providers still only see their own review page (others 403) — unchanged. Verify/adjust any access wording (who can open a provider's review). Same-page appointment times are now shown in the clinic timezone (PR #887) — minor, no label change. (logging-time-during-review.md shares this page; its time-logging mechanics are unchanged, so the owner-access fact is recorded here only.) ALSO (scout cf43d1a..aae867c, app PR #886): the per-row 'Message Patient' button on this daily-review page is now gated on messages.send and hidden for non-senders (auditor / billing_staff) — folded into the messaging permission flag on patients/messaging-a-patient.md; mention it here only if this article calls out that button."
     priority: 1
@@ -626,7 +626,8 @@ articles:
   - path: billing/billing-suggestions.md
     section: billing
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 0337083..d14896f). Billing Overview widget: the 'Billed This Month' stat is now keyed on service_date (when care happened) and the clinic-local month, NOT updated_at (when the row was last touched) -- editing a July claim in August no longer drops it out of July's count (commit 802a345). Claim-detail (View Claim) evidence -- the Time entries and Interactive contacts sections in the infolist -- is now shown chronologically, oldest first (ticket #1023, app PR #948). The 'Export all ready'/bulk Export CSV filename is now stamped in clinic-local time (July, not the next UTC day). Verify the 'Billed This Month' meaning and any claim-detail evidence-ordering wording; likely small/verify-only. last_reviewed_commit stays 057fea2."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/**
@@ -652,7 +653,8 @@ articles:
   - path: billing/clinical-notes.md
     section: billing
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 0337083..d14896f). Bundle 111 (app PR #942): the clinical-note TEMPLATE PREVIEW now actually works. On the template Edit page the 'Preview' header action now opens a 'Preview with sample data' modal that previews the currently-edited (unsaved) body -- it used to be a relabeled ViewAction that navigated to the read-only View page and so could only ever show the last-saved body. On the template View page the 'Preview with Sample Data' card now always renders: when the clinic has no claim for that CPT code it falls back to synthesized sample data (footer reads 'Preview uses data from: sample data') instead of the old 'No billing suggestion for CPT ... available' empty state. ALSO (ticket #1023, app PR #948): interactive-contact and time-entry evidence inside the rendered note is now ordered chronologically, oldest first. ALSO (Bundle 54): the provider 'claims to sign' email (ProviderClaimsToSignMail) was rebuilt on the shared branded email shell -- verify its wording/labels. Writer: verify all preview + note-render labels against origin/main; last_reviewed_commit stays eab6ef9."
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ClinicalNoteTemplates/**
@@ -674,7 +676,8 @@ articles:
   - path: billing/exporting-to-drchrono.md
     section: billing
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 0337083..d14896f, app PR #941, commit bcbae2e). The billing export CSV now carries the claim's clinical note and its signed flag on the 98981 device add-on rows. Previously, because the CSV is one row per line and includes the 98981 add-on, the add-on row reported its OWN empty note and a 'No' signed flag for a claim that was in fact documented and signed on the primary (98979/98980) line; the add-on row now mirrors the primary line's note + signed status. Verify the article's description of the exported note/signed columns; likely verify-only. last_reviewed_commit stays eab6ef9."
     priority: 1
     sources:
       - app/Services/BillingExportService.php
@@ -685,7 +688,8 @@ articles:
   - path: billing/billing-window-progress.md
     section: billing
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 0337083..d14896f, app PR #939, commit b1b7466). The cached 'minutes reviewed' counter for a window (RtmCounterService::getMinutesReviewed) is now scoped to QUALIFYING activity types, so it matches the definition billing decisions already use (measureCalendarMonth). The minutes-toward-billing figure shown on the window/progress card may shift down for windows that previously counted non-qualifying time. This aligns the number to already-documented behavior, so likely VERIFY-ONLY (confirm the displayed minutes and that no prose over-counts). last_reviewed_commit stays eab6ef9."
     priority: 1
     sources:
       - app/Models/Window.php
