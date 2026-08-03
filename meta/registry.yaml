@@ -562,9 +562,7 @@ articles:
     section: check-ins
     audience: clinic-staff
     status: review
-    note: "Refreshed for app PR #875 (removed the unseeded clinic_admin ghost role). Rewrote the Role permissions paragraph: a provider opens only their own review page, a clinic owner can open any provider's review page (now enforced in code via User::hasOwnerLevelAccess = clinic_owner/super_admin/platform_admin), and staff/billing_staff/auditor get a permission error even from a direct link. Dropped the phantom 'admins' role (no real clinic user holds it). Verified the gate in ReviewSummary::mount. Appointment-time clinic-timezone change (PR #887) is display-only, no label change, so no body edit. Checked the per-row 'Message Patient' button: it is @can('messages.send')-gated, but every user who can open this page (providers + owners) holds messages.send, so it is never hidden here and line 29 stays accurate. All other labels ('... Survey Summary' title, Today's Patients, Other Unread Comments, View All Responses/Hide Responses, Save Today's Time and Mark as Read, missing-interactive-comm prompt) re-verified. No em-dashes."
-    status: stale
-    note: "STALE (scout 47f0bdd..cf43d1a, app PR #875): clinic OWNERS can now open any provider's daily review page (/review-summary/{uuid}). Previously they got a hard 403 because the gate checked the unseeded `clinic_admin` ghost role; the gate now admits `clinic_owner`. Providers still only see their own review page (others 403) — unchanged. Verify/adjust any access wording (who can open a provider's review). Same-page appointment times are now shown in the clinic timezone (PR #887) — minor, no label change. (logging-time-during-review.md shares this page; its time-logging mechanics are unchanged, so the owner-access fact is recorded here only.) ALSO (scout cf43d1a..aae867c, app PR #886): the per-row 'Message Patient' button on this daily-review page is now gated on messages.send and hidden for non-senders (auditor / billing_staff) — folded into the messaging permission flag on patients/messaging-a-patient.md; mention it here only if this article calls out that button."
+    note: "Re-verified against the rtmlink checkout (main b50b7d7). The prior stale flags were already reflected in the article: owner access (PR #875, a clinic owner can open any provider's review page, everyone else 403) is confirmed against ReviewSummary::mount using User::hasOwnerLevelAccess (OWNER_LEVEL_ROLES = clinic_owner/super_admin/platform_admin), and the per-row 'Message Patient' button (PR #886, @can('messages.send')-gated) is already covered and stays visible to providers + owners who hold that permission. ONE real fix this pass: the daily email/text CTA button was relabeled from 'Review & Log Time' to 'Review and Log Time' (Bundle 54 / PR #910, provider-summary.blade.php), so line 11 was updated to match. Re-verified all other labels: page title '{provider} Survey Summary', stats line Patients/Responses/Comments, 'Surveys to review' pill in 'Your Action Feed', 'Today's Patients', 'Other Unread Comments', 'View All Responses'/'Hide Responses', 'Comments' badge, 'View All Unread Surveys', 'Save Today's Time and Mark as Read', missing-interactive-comms prompt, 'Time Logged Successfully', 'All Surveys Reviewed', 48-hour magic link. No em-dashes."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ReviewSummary.php
@@ -573,7 +571,7 @@ articles:
       - app/Services/ProviderSummary/UnreadSurveyService.php
     screenshots:
       - review-today-patients
-    last_reviewed_commit: aae867c6bafe837dfcf2a8b6436dc299feb3ce6d
+    last_reviewed_commit: b50b7d77fb49e107190d7bfb0193605a9eaec0ce
 
   - path: check-ins/logging-time-during-review.md
     section: check-ins
