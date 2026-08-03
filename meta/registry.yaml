@@ -558,7 +558,7 @@ articles:
       - app/Http/Middleware/ProviderMagicAuth.php
       - resources/views/emails/provider-summary.blade.php
     screenshots: []
-    last_reviewed_commit: 3453c7a3fb85338403c078c0d4cea07e2bd812fa
+    last_reviewed_commit: d14896f4029b504f4b0f06b3f532d57f7cd85b63
 
   - path: check-ins/reviewing-daily-check-ins.md
     section: check-ins
