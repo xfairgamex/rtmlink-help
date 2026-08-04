@@ -676,14 +676,14 @@ articles:
   - path: billing/exporting-to-drchrono.md
     section: billing
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 0337083..d14896f, app PR #941, commit bcbae2e). The billing export CSV now carries the claim's clinical note and its signed flag on the 98981 device add-on rows. Previously, because the CSV is one row per line and includes the 98981 add-on, the add-on row reported its OWN empty note and a 'No' signed flag for a claim that was in fact documented and signed on the primary (98979/98980) line; the add-on row now mirrors the primary line's note + signed status. Verify the article's description of the exported note/signed columns; likely verify-only. last_reviewed_commit stays eab6ef9."
+    status: review
+    note: "Re-verified against commit bcbae2e (the 98981 add-on-row note fix in BillingExportService). That change is an internal correctness fix invisible on screen and does not add, remove, or rename any exported column, and the article already describes the CSV at claim level and states it carries the clinical note with its signed state, which remains accurate. Verify-only: already current, re-stamped to production HEAD f939dfb. DrChronoAppointmentExportService unchanged in this window."
     priority: 1
     sources:
       - app/Services/BillingExportService.php
       - app/Services/Ehr/DrChronoAppointmentExportService.php
     screenshots: []
-    last_reviewed_commit: eab6ef9a165c2850785afb063d92abb709a59c67
+    last_reviewed_commit: f939dfb765c12afa759f7c7b5ff8ba3776880d53
 
   - path: billing/billing-window-progress.md
     section: billing
