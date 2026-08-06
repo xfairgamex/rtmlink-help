@@ -64,6 +64,8 @@ If an episode was discharged or completed by mistake, or the patient returns to 
 
 The episode returns to **Active** and its most recent billing window is reopened.
 
+> **A patient can have only one open episode.** If the patient already has another episode that is **Active** or **Paused**, RTMLink will not reopen this one. You see the message "Cannot reopen this episode," with the note "This patient already has an active or paused episode. Continue care there, or close it first." Continue care on the episode that is already open, or discharge it first if you genuinely need to reopen this one.
+
 > **Reopen vs. a new episode.** Reopen continues the *same* episode and its existing billing windows. If the patient is starting a genuinely new course of care, enroll them in a fresh episode instead. See [Enrolling a patient](enrolling-a-patient.md).
 
 ## Related articles

@@ -220,8 +220,8 @@ articles:
   - path: episodes/managing-episode-status.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 0337083..d14896f, app PR #935, commit 115a8a3). NEW RULE on the Reopen action: reopening a completed/discharged episode is now REFUSED when the patient already has another active or paused episode (a patient may hold only one open episode). The Reopen action now shows a danger notification 'Cannot reopen this episode' with body 'This patient already has an active or paused episode. Continue care there, or close it first.' instead of falsely reporting 'Episode reopened'. If this article documents Reopen, add this one-open-episode constraint + the exact refusal message. last_reviewed_commit stays 8947296."
+    status: review
+    note: "Refreshed for app PR #935 (one-open-episode rule on Reopen). Added a note to 'Reopening an episode' stating a patient can hold only one open episode: when the patient already has another Active or Paused episode, reopening is refused and RTMLink shows 'Cannot reopen this episode' with the note 'This patient already has an active or paused episode. Continue care there, or close it first.' (verified against EpisodeResource::makeReopenAction and EpisodeLifecycleService::reopen at main f939dfb). Re-verified every other label against the rtmlink checkout (main f939dfb): the Reopen action label/Notes field + completed-or-discharged visibility; Pause reasons (Patient requested/Hospitalization/Vacation/Insufficient data/Insurance change/Other) + Notes required on Other; Discharge reasons (Completed/Patient request/Non-compliance/Medical/Other) + Notes required on Other; the Completed-vs-Discharged label split (reason 'completed' -> Completed, else Discharged); the row actions menu is an ActionGroup; the 'Resume Episode' header button on the open episode is paused-only. No screenshots. No em-dashes."
     priority: 1
     sources:
       - app/Services/EpisodeLifecycleService.php
@@ -229,7 +229,7 @@ articles:
       - app/Models/EpisodePauseHistory.php
       - app/Filament/Clinic/Resources/EpisodeResource.php
     screenshots: []
-    last_reviewed_commit: 8947296fb233d31b71cf8e051a2fea204031f348
+    last_reviewed_commit: f939dfb765c12afa759f7c7b5ff8ba3776880d53
 
   - path: episodes/episode-search-and-filters.md
     section: episodes
