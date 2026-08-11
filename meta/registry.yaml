@@ -206,7 +206,8 @@ articles:
   - path: episodes/viewing-episode-details.md
     section: episodes
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout f939dfb..2a0968c, app PR #997 / ticket #1024, commit 1dd7208). The episode Responses panel gained an 'Export CSV' button (arrow-down-tray icon, next to 'Show all', tooltip 'Download every response the patient engaged with, plus exercise feedback, as a spreadsheet'). It downloads the whole episode's response history plus exercise logs as a long-format CSV (one row per answer -- questions are versioned per response, so a wide sheet would break on a mid-episode amendment); timestamps render in the program timezone; the download logs a PHI-access activity entry. The button only shows when there is exportable data and is gated on episodes.view (SurveyResponseExportService, PatientResponsesTable::exportCsv at origin/main). Writer: add a Tier-2 line to the Responses section on exporting responses to CSV; verify the button label + tooltip against patient-responses-table.blade.php at origin/main. last_reviewed_commit stays 057fea2."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -655,7 +656,7 @@ articles:
     section: billing
     audience: clinic-staff
     status: stale
-    note: "STALE (scout 0337083..d14896f). Bundle 111 (app PR #942): the clinical-note TEMPLATE PREVIEW now actually works. On the template Edit page the 'Preview' header action now opens a 'Preview with sample data' modal that previews the currently-edited (unsaved) body -- it used to be a relabeled ViewAction that navigated to the read-only View page and so could only ever show the last-saved body. On the template View page the 'Preview with Sample Data' card now always renders: when the clinic has no claim for that CPT code it falls back to synthesized sample data (footer reads 'Preview uses data from: sample data') instead of the old 'No billing suggestion for CPT ... available' empty state. ALSO (ticket #1023, app PR #948): interactive-contact and time-entry evidence inside the rendered note is now ordered chronologically, oldest first. ALSO (Bundle 54): the provider 'claims to sign' email (ProviderClaimsToSignMail) was rebuilt on the shared branded email shell -- verify its wording/labels. Writer: verify all preview + note-render labels against origin/main; last_reviewed_commit stays eab6ef9."
+    note: "STALE (scout 0337083..d14896f). Bundle 111 (app PR #942): the clinical-note TEMPLATE PREVIEW now actually works. On the template Edit page the 'Preview' header action now opens a 'Preview with sample data' modal that previews the currently-edited (unsaved) body -- it used to be a relabeled ViewAction that navigated to the read-only View page and so could only ever show the last-saved body. On the template View page the 'Preview with Sample Data' card now always renders: when the clinic has no claim for that CPT code it falls back to synthesized sample data (footer reads 'Preview uses data from: sample data') instead of the old 'No billing suggestion for CPT ... available' empty state. ALSO (ticket #1023, app PR #948): interactive-contact and time-entry evidence inside the rendered note is now ordered chronologically, oldest first. ALSO (Bundle 54): the provider 'claims to sign' email (ProviderClaimsToSignMail) was rebuilt on the shared branded email shell -- verify its wording/labels. UPDATE (scout f939dfb..2a0968c): (1) two NEW clinical-note template variables (ClinicalNoteTemplate::getAvailableVariables, PR #997 window): '{TIME_ENTRIES_LIST_DETAILED}' (same as {TIME_ENTRIES_LIST} but each entry's narrative note is indented beneath its line) and the per-iteration block token '{ENTRY_NOTES}' (the note captured on a time entry, empty when none) -- both let a clinic surface the justification typed at logging time in the note without hand-copying; document them in the available-variables reference. (2) Time-entry evidence DATES in the rendered note now resolve in the program/clinic timezone (ticket #1026, TimeEntry::billingDate + BillingSuggestionService snapshot) -- fixes evening entries that could print on the next calendar day / outside their own billing period; verify-only, dates should now read correctly. (3) The provider 'claims to sign' nudge email copy was reframed 'ready to sign' -> 'ready to bill' (ProviderClaimsToSignMail + provider-claims-to-sign.blade.php, PRs #995/#1002: title 'Claims Ready to Bill', eyebrow 'Ready to bill', button 'Review Claims', subject-verb agreement fix) -- fold into any email-wording mention. Writer: verify all preview + note-render labels + the two new variables against origin/main; last_reviewed_commit stays eab6ef9."
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ClinicalNoteTemplates/**
@@ -677,12 +678,14 @@ articles:
   - path: billing/exporting-to-drchrono.md
     section: billing
     audience: clinic-staff
-    status: review
-    note: "Re-verified against commit bcbae2e (the 98981 add-on-row note fix in BillingExportService). That change is an internal correctness fix invisible on screen and does not add, remove, or rename any exported column, and the article already describes the CSV at claim level and states it carries the clinical note with its signed state, which remains accurate. Verify-only: already current, re-stamped to production HEAD f939dfb. DrChronoAppointmentExportService unchanged in this window."
+    status: stale
+    note: "STALE (scout f939dfb..2a0968c, app PR #975, commit 1ac8405). The Send to DrChrono modal (step 2 of this article: reviewing the pre-filled ICD-10 codes) gained a diagnosis-code staleness warning: a 'Check diagnosis codes' notice now appears above the ICD-10 Codes field when the pre-filled codes differ from the patient's most recent coded appointment as of the claim's service date (SendToDrChronoAction::icd10StalenessWarning + DrChronoIcd10SyncService::latestCodedAppointment). It is informational only -- the user decides what to send -- and does not block the send. Writer: add a Tier-2 line to the 'Send to DrChrono' steps noting RTMLink flags when the episode's stored ICD-10 codes look out of date vs. a newer appointment; verify the exact notice label ('Check diagnosis codes') and copy against SendToDrChronoAction at origin/main. Also fixed the too-narrow sources glob below (this article documents the Send to DrChrono modal but did not source the file that builds it, so send-modal changes were silently not flagging). last_reviewed_commit stays f939dfb."
     priority: 1
     sources:
       - app/Services/BillingExportService.php
       - app/Services/Ehr/DrChronoAppointmentExportService.php
+      - app/Filament/Clinic/Resources/BillingSuggestionResource/Actions/SendToDrChronoAction.php
+      - app/Services/Ehr/DrChronoIcd10SyncService.php
     screenshots: []
     last_reviewed_commit: f939dfb765c12afa759f7c7b5ff8ba3776880d53
 
