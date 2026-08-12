@@ -549,8 +549,8 @@ articles:
   - path: check-ins/daily-summary-notifications.md
     section: check-ins
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout aae867c..0337083, app Bundle 54 / PR #910, email restyle): the provider daily-summary EMAIL (provider-summary.blade.php) was rebuilt onto the shared branded email shell. Two user-visible changes the article currently states verbatim: (1) the CTA button label is now 'Review and Log Time' (was 'Review & Log Time' — the article bolds the old '&' spelling). (2) The stats layout changed from the 'Today's Patients' / 'Other Unread' count-card grid (Patients/Responses/Comments cards) to a prose summary line under a 'Today's patients' / 'To review' eyebrow ('from N patients, including N comments to read. Estimated review time ~N minutes.') plus, when applicable, an 'Other unread, outside today's schedule: ...' callout. UNCHANGED (do not touch): the email subject pattern ('Daily Summary: 3 patients, 7 responses (2 comments)'), send timing, the 48-hour magic link, the SMS/text version, and the no-unread-means-no-message rule. UPDATE (scout 0337083..d14896f, app PRs #921/#920, commits c1133f9/d11461c): ProviderSummaryNotifier now (a) sends the staff summary email FROM 'RTMLink' rather than the clinic's name (staff email is RTMLink-branded end to end; patient email still sends from the clinic), and (b) stamps the email's header date in the clinic's local timezone (was UTC, which could show tomorrow's date on an evening send west of UTC). If the article says who the email is 'from' or describes the header date, adjust. Writer: verify the button label + the 'what providers receive' + sender/date wording against provider-summary.blade.php / ProviderSummaryNotifier at production main."
+    status: review
+    note: "Already current, re-stamped. Re-verified against production main (2a0968c). The email-restyle changes previously flagged (Bundle 54 / PR #910) were already applied in the 2026-07-30 refresh and remain accurate: the CTA button reads 'Review and Log Time' and the stats render as a prose summary line ('from N patients, including N comments to read. Estimated review time ~N minutes.') under a 'Today's patients' / 'To review' eyebrow, both verified against provider-summary.blade.php. The later sender/date update (PRs #921/#920: the staff summary email now sends from 'RTMLink' rather than the clinic, and the header date is stamped in the clinic's local timezone) needs no prose change because the article never states who the email is from or describes the header date (both confirmed in ProviderSummaryNotifier: email sent with options: [] so no clinic-sender override, summaryDate = tenant->now()->format(...)). Re-verified every other bold label and rule against main: subject 'Daily Summary: N patients, N responses (N comments)' (ProviderSummaryNotifier); the SMS one-line version; the 48-hour magic link (User::generateMagicToken -> addHours(48)) that redirects to the clinic login page once expired (ProviderMagicAuth); the fixed 8:00 AM clinic-tz default vs hours-before-first-appointment send time, one summary per provider per day, weekend skip unless the clinic has appointments, and the offset-with-no-appointments skip (SendProviderNotificationsCommand); the no-unread-means-no-message rule (SendProviderNotificationJob, total_responses === 0); and the SMS-to-email fallback when no phone is on file. No source files changed in d14896f..2a0968c. No em-dashes."
     priority: 1
     sources:
       - app/Console/Commands/SendProviderNotificationsCommand.php
@@ -559,7 +559,7 @@ articles:
       - app/Http/Middleware/ProviderMagicAuth.php
       - resources/views/emails/provider-summary.blade.php
     screenshots: []
-    last_reviewed_commit: d14896f4029b504f4b0f06b3f532d57f7cd85b63
+    last_reviewed_commit: 2a0968cdbd0507e89cf1f91d2dc38b08e16e2708
 
   - path: check-ins/reviewing-daily-check-ins.md
     section: check-ins
