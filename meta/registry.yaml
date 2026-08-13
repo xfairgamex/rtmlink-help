@@ -564,8 +564,8 @@ articles:
   - path: check-ins/reviewing-daily-check-ins.md
     section: check-ins
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 47f0bdd..cf43d1a, app PR #875): clinic OWNERS can now open any provider's daily review page (/review-summary/{uuid}). Previously they got a hard 403 because the gate checked the unseeded `clinic_admin` ghost role; the gate now admits `clinic_owner`. Providers still only see their own review page (others 403) — unchanged. Verify/adjust any access wording (who can open a provider's review). Same-page appointment times are now shown in the clinic timezone (PR #887) — minor, no label change. (logging-time-during-review.md shares this page; its time-logging mechanics are unchanged, so the owner-access fact is recorded here only.) ALSO (scout cf43d1a..aae867c, app PR #886): the per-row 'Message Patient' button on this daily-review page is now gated on messages.send and hidden for non-senders (auditor / billing_staff) — folded into the messaging permission flag on patients/messaging-a-patient.md; mention it here only if this article calls out that button."
+    status: review
+    note: "Already current, re-stamped. Re-verified the three flagged app changes against the rtmlink checkout (main 7df976f) and found the article already accurate on all three, so no prose changed. (1) Owner access (PR #875): the Role permissions section already states a clinic owner can open any provider's review page and everyone else (staff/billing staff/auditor) gets a permission error, matching ReviewSummary::mount (provider-self OR User::hasOwnerLevelAccess = clinic_owner + platform staff). (2) Appointment times in clinic timezone (PR #887): no label change and the article makes no timezone claim (formatAppointment uses tenant()->convert). (3) 'Message Patient' gated on messages.send (PR #886): no visible effect on this page, because the only clinic roles that can open it (provider, clinic_owner) both hold messages.send per RolesSeeder, so the @can('messages.send') button always renders for any viewer here; adding a caveat would falsely imply some viewers cannot message. No source file (ReviewSummary.php, review-summary.blade.php, survey-patient-row.blade.php, UnreadSurveyService.php) changed between the prior last_reviewed_commit b50b7d77 and main HEAD. Re-verified every bold label against the blades: page title '{provider} Survey Summary', stats 'Patients/Responses/Comments', 'Today's Patients', 'Other Unread Comments', 'View All Unread Surveys', 'View All Responses'/'Hide Responses', response + 'Comments' badges, 'Message Patient' + red unread badge, 'Save Today's Time and Mark as Read' (+ Other/All variants), the missing-interactive-comm and unsaved-comm prompts, 'Time Logged Successfully', 'All Surveys Reviewed'. No em-dashes."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ReviewSummary.php
@@ -574,7 +574,7 @@ articles:
       - app/Services/ProviderSummary/UnreadSurveyService.php
     screenshots:
       - review-today-patients
-    last_reviewed_commit: b50b7d77fb49e107190d7bfb0193605a9eaec0ce
+    last_reviewed_commit: 7df976f496d2b3c5fbfd33c2ba9f3dcac99d0395
 
   - path: check-ins/logging-time-during-review.md
     section: check-ins
