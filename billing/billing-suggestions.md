@@ -10,6 +10,8 @@ The **Billing** page is your worklist: every claim RTMLink has derived, ready to
 
 Open **Billing** in the left sidebar. The **Ready to Bill** tab is your worklist; **Billed**, **Rejected**, and **All** hold the rest. Rows are grouped by patient, and the list refreshes itself every few seconds, so newly qualifying claims appear without a reload.
 
+A row of summary stats sits at the top of the page: **Ready to Bill** (claims awaiting billing), **Est. Revenue** (their estimated total), and **Billed This Month** (labeled with the current month). **Billed This Month** counts the claims marked billed whose service date falls in that month, so a claim keeps counting for the month the care happened, even if someone edits it later.
+
 Because the patient's name is already the group heading, the **Patient** column stays hidden while the list is grouped. Turn grouping off and the column reappears on every row, so you always know whose claim you are looking at. Searching by patient name works either way.
 
 Use the filters to narrow the list:
@@ -25,7 +27,7 @@ Click a claim (or choose **View** from its row menu) to open the full picture:
 
 - **Claim Overview**: the CPT code, billing period, service date, status, units, and estimated amount. Manually entered claims carry a **Manual entry** badge. When a claim carries several codes, **Codes on This Claim** lists each one with its own status, because the codes are submitted together on one claim.
 - **Episode Context**: the patient, enrollment date, body part, diagnosis code, and assigned provider, with links to jump there.
-- **Qualification Criteria**: the evidence behind the claim, including a summary, the counted interaction days or minutes, each time entry, and each interactive contact.
+- **Qualification Criteria**: the evidence behind the claim, including a summary, the counted interaction days or minutes, and each time entry and interactive contact. The time entries and interactive contacts are listed oldest first, so the evidence reads in the order the care happened.
 - **Clinical Note**: the note's status, signer, and text. See [Clinical notes and sign-off](clinical-notes.md).
 - **Workflow History**: who approved, rejected, or exported the claim and when. The **Last Exported** stamp is informational only; exporting does not change a claim's status.
 - **DrChrono Export**: appears once a claim has been sent, with a link to the appointment.

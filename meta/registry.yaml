@@ -628,7 +628,7 @@ articles:
   - path: billing/billing-suggestions.md
     section: billing
     audience: clinic-staff
-    status: stale
+    status: review
     note: "STALE (scout 0337083..d14896f). Billing Overview widget: the 'Billed This Month' stat is now keyed on service_date (when care happened) and the clinic-local month, NOT updated_at (when the row was last touched) -- editing a July claim in August no longer drops it out of July's count (commit 802a345). Claim-detail (View Claim) evidence -- the Time entries and Interactive contacts sections in the infolist -- is now shown chronologically, oldest first (ticket #1023, app PR #948). The 'Export all ready'/bulk Export CSV filename is now stamped in clinic-local time (July, not the next UTC day). Verify the 'Billed This Month' meaning and any claim-detail evidence-ordering wording; likely small/verify-only. last_reviewed_commit stays 057fea2."
     priority: 1
     sources:
@@ -638,7 +638,7 @@ articles:
       - app/Services/BillingSuggestionService.php
     screenshots:
       - billing-claim-detail
-    last_reviewed_commit: 057fea2ff55f721f9cb8d80987f7c6b6604e3769
+    last_reviewed_commit: 2a0968cdbd0507e89cf1f91d2dc38b08e16e2708
 
   - path: billing/approving-and-rejecting-claims.md
     section: billing
