@@ -206,8 +206,8 @@ articles:
   - path: episodes/viewing-episode-details.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout f939dfb..2a0968c, app PR #997 / ticket #1024, commit 1dd7208). The episode Responses panel gained an 'Export CSV' button (arrow-down-tray icon, next to 'Show all', tooltip 'Download every response the patient engaged with, plus exercise feedback, as a spreadsheet'). It downloads the whole episode's response history plus exercise logs as a long-format CSV (one row per answer -- questions are versioned per response, so a wide sheet would break on a mid-episode amendment); timestamps render in the program timezone; the download logs a PHI-access activity entry. The button only shows when there is exportable data and is gated on episodes.view (SurveyResponseExportService, PatientResponsesTable::exportCsv at origin/main). Writer: add a Tier-2 line to the Responses section on exporting responses to CSV; verify the button label + tooltip against patient-responses-table.blade.php at origin/main. last_reviewed_commit stays 057fea2."
+    status: review
+    note: "Refreshed for app ticket #1024 (commit 1dd7208): added a Tier-2 note to the working-area 'Patient Responses' section describing the new Export CSV button. Verified the label 'Export CSV' and tooltip against patient-responses-table.blade.php at main df8fe65, and the behavior against PatientResponsesTable::exportCsv + SurveyResponseExportService: the button appears only when there is exportable data (a billable-interaction response or an exercise log) and requires episodes.view; the file is a long-format spreadsheet (one row per answer plus one per exercise log) with columns Patient/Date/Type/Survey/Question/Answer/Flagged/Status/Submitted At, times in the program timezone, and opening it records a PHI-access activity entry. Kept the enumeration light per SCOPE (Tier-2 line, not a new section). Also removed stray '</content></invoke>' tags left at the end of the committed file. No screenshots added. No em-dashes."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -216,7 +216,7 @@ articles:
       - app/Filament/Clinic/Resources/EpisodeResource/Widgets/**
       - app/Livewire/Clinic/Episodes/**
     screenshots: [episode-list, episode-detail-overview]
-    last_reviewed_commit: 057fea2ff55f721f9cb8d80987f7c6b6604e3769
+    last_reviewed_commit: df8fe65583c4d8d18fd616b1c0446b4bda2dde7a
 
   - path: episodes/managing-episode-status.md
     section: episodes
