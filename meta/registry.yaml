@@ -678,8 +678,8 @@ articles:
   - path: billing/exporting-to-drchrono.md
     section: billing
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout f939dfb..2a0968c, app PR #975, commit 1ac8405). The Send to DrChrono modal (step 2 of this article: reviewing the pre-filled ICD-10 codes) gained a diagnosis-code staleness warning: a 'Check diagnosis codes' notice now appears above the ICD-10 Codes field when the pre-filled codes differ from the patient's most recent coded appointment as of the claim's service date (SendToDrChronoAction::icd10StalenessWarning + DrChronoIcd10SyncService::latestCodedAppointment). It is informational only -- the user decides what to send -- and does not block the send. Writer: add a Tier-2 line to the 'Send to DrChrono' steps noting RTMLink flags when the episode's stored ICD-10 codes look out of date vs. a newer appointment; verify the exact notice label ('Check diagnosis codes') and copy against SendToDrChronoAction at origin/main. Also fixed the too-narrow sources glob below (this article documents the Send to DrChrono modal but did not source the file that builds it, so send-modal changes were silently not flagging). last_reviewed_commit stays f939dfb."
+    status: review
+    note: "Refreshed for app PR #975 (commit 1ac8405): added a Tier-2 blockquote to the 'Sending a claim to DrChrono' steps describing the new diagnosis-code staleness warning. Verified against SendToDrChronoAction at the checkout's main (7df976f): the 'Check diagnosis codes' placeholder notice renders above the 'ICD-10 Codes' field only when the resolved codes differ from the patient's most recent coded appointment as of the claim's service date (icd10StalenessWarning + DrChronoIcd10SyncService::latestCodedAppointment), lists that newer appointment's codes, and is informational only (submit stays enabled, no block). Deliberately did NOT document the 'No diagnosis codes' empty-field notice or the ICD-10 field's live update: both are on an unmerged dev branch, not on production main (git diff main..HEAD confirms). Sources glob already carries SendToDrChronoAction (fixed in a prior pass). Re-verified the other bold labels in step 2 against main and left them unchanged (Provider, Appointment Profile, Office, Exam Room, Scheduled Date/Time, ICD-10 Codes, Billing Line Items, Clinical Note). No new screenshots. No em-dashes."
     priority: 1
     sources:
       - app/Services/BillingExportService.php
@@ -687,7 +687,7 @@ articles:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/Actions/SendToDrChronoAction.php
       - app/Services/Ehr/DrChronoIcd10SyncService.php
     screenshots: []
-    last_reviewed_commit: f939dfb765c12afa759f7c7b5ff8ba3776880d53
+    last_reviewed_commit: 7df976f496d2b3c5fbfd33c2ba9f3dcac99d0395
 
   - path: billing/billing-window-progress.md
     section: billing
