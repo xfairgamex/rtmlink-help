@@ -64,6 +64,8 @@ The main part of the page is where you do the day-to-day work:
 - **Patient Responses:** recent survey responses and exercise feedback. Flagged answers are highlighted so you can spot anything that needs attention. See [Understanding survey responses](../check-ins/understanding-survey-responses.md).
 - **Time Tracking & Interactions:** log provider time and record interactive contacts (phone, video, in person) against the episode. See [Episode actions](episode-actions.md).
 
+> **Export the response history.** When the patient has responses or exercise logs on file, an **Export CSV** button appears at the top of the **Patient Responses** panel. It downloads the episode's full response history, plus exercise feedback, as a spreadsheet you can open in Excel or Google Sheets: every answer is its own row, with times shown in the patient's time zone. Because the file contains patient health information, opening the download is recorded in your clinic's activity history.
+
 ## Understanding the two billing clocks
 
 RTM pays on two separate schedules, so the page tracks them with two separate cards that will rarely show matching numbers:
@@ -92,5 +94,3 @@ Below the working area, four tabs let you view and manage more episode data:
 - [Managing episode status](managing-episode-status.md)
 - [Episode actions](episode-actions.md)
 - [Understanding survey responses](../check-ins/understanding-survey-responses.md)
-</content>
-</invoke>
