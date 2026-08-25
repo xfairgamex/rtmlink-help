@@ -517,8 +517,8 @@ articles:
   - path: episodes/logging-interactive-contacts.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 0337083..d14896f, app PR #925, commits efa55eb/86db966/36d3c09). Billing-opportunity surfacing changed: an episode can now surface TWO near-billable opportunities at once -- one treatment-management (calendar-month) row AND one device-supply (30-day window) row -- instead of only the single highest-scoring one, because they are separate CPT codes on separate clocks and both can be captured together. The combined contact+minutes nudge now also names the remaining MINUTE shortfall, not just the missing interactive contact. Verify any near-billable / 'almost billable' nudge wording tied to logging a contact; likely verify-only. last_reviewed_commit stays fcb2020."
+    status: review
+    note: "Refreshed for app PR #925 (BillingOpportunityService). The dashboard revenue-opportunity nudge that routes to logging a contact now has a second wording: when an episode is short on both a contact and minutes (only in the month's tail, minutes at/above the combo floor but under 10), it reads 'Log 1 interactive contact + N more min to bill 98979' instead of the plain 'Log 1 interactive contact to bill <code>', so a contact alone is not mistaken for finishing the month. Added that variant to the dashboard paragraph; the fully-stranded 'Log 1 interactive contact to bill' case and the 'Add Interaction' button (both -> #time-tracking) are unchanged. The two-rows-at-once change (treatment + device surfaced together) is a device-supply/check-in nudge, out of scope for this contact article. Re-verified against production main (2c4ed78): reason() strings in BillingOpportunityService + scoreTreatmentMonth() types in BillingOpportunityScorer; and the widget/card labels 'Time Tracking & Interactions', 'This Calendar Month', 'Interactive Contacts', 'Need 1 interactive contact', 'Log Time Entry', 'Live Communication (Phone/Video Call)', '(Recommended)', 'Log interactive contact', the four contact types, 'Duration', 'Delete', 'Save'. No screenshots added. No em-dashes."
     priority: 2
     sources:
       - app/Livewire/Clinic/Episodes/TimeTrackingWidget.php
@@ -530,7 +530,7 @@ articles:
     screenshots:
       - episode-time-tracking-card
       - log-time-entry-modal
-    last_reviewed_commit: fcb2020fd8e61f9e4675d51346a5c208e58ca4e0
+    last_reviewed_commit: 2c4ed78b9f2cc66466609bdb52f9988270338915
 
   # === 8. Check-Ins queue (provider daily review; check-ins section) ======
   - path: check-ins/the-check-ins-queue.md
