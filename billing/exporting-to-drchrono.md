@@ -27,6 +27,8 @@ If your clinic has an active DrChrono connection and the patient is linked to a 
 4. The clinical note rides along as the appointment's SOAP Assessment note.
 5. Confirm. RTMLink creates the appointment and shows a link so you can open it in DrChrono.
 
+> **Watch for a diagnosis-code warning.** If the pre-filled ICD-10 codes do not match the patient's most recent coded appointment (as of the claim's service date), RTMLink shows a **Check diagnosis codes** notice above the **ICD-10 Codes** field, listing the codes on that newer appointment. It usually means a new course of care began after the patient was enrolled, so the episode's saved codes may be out of date. The notice is a heads-up only and does not block the send: review the codes, correct them if needed, then send.
+
 Each claim maps to **one** DrChrono appointment. If part of a claim was already sent, sending again adds the remaining line items to the same appointment rather than creating a second one.
 
 ## Linking to an existing appointment
