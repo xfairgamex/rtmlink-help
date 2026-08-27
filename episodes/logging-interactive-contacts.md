@@ -21,7 +21,7 @@ Asynchronous messages, like texts or portal messages the patient reads later, do
 
 Open the patient's episode and find the **Time Tracking & Interactions** section. Its header shows two counters for the current month: minutes logged (green) and interactive contacts (purple). The **This Calendar Month** card on the same page counts **Interactive Contacts** too, and when the month has none yet, its status line reads **Need 1 interactive contact** so you know exactly what is missing.
 
-You may also be pointed here from your dashboard: when an episode has enough minutes but no contact, the revenue opportunities list shows **Log 1 interactive contact to bill** the eligible code, and its **Add Interaction** button jumps straight to this section of the episode.
+You may also be pointed here from your dashboard. When an episode already has enough logged minutes but no contact, the revenue opportunities list shows **Log 1 interactive contact to bill** the eligible code. Near the end of the month, an episode that is short on minutes as well shows a combined nudge instead, such as **Log 1 interactive contact + 3 more min to bill 98979** (the number is the exact minute shortfall), so you know a contact on its own will not make the month billable. Either way, the row's **Add Interaction** button jumps straight to this section of the episode.
 
 ![The Time Tracking & Interactions section of an episode: monthly minutes, the purple contact counter, and the Start Timer and Add buttons.](../.gitbook/assets/episodes/episode-time-tracking-card.png)
 
