@@ -868,8 +868,8 @@ articles:
   - path: settings/clinic-information-and-branding.md
     section: settings
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout df8fe65..8de5fb3, app PR #1095, Bundle 153 -- App Retheme login + tenant-branding switch). The Brand Color scope changed. The field's helper text is now 'Used for buttons, links, and accents on patient-facing pages and emails. The staff panel always uses RTMLink colors.' (was '...in the patient portal'). Two deltas for the article's Branding section, which currently says the Brand Color is 'used for buttons, links, and accents in the patient portal': (1) it also colors clinic emails now, not just the survey/portal pages; (2) the clinic color no longer themes the staff-facing app -- the tenant color override was scoped out of the clinic panel, so every clinic's staff app now shows RTMLink chrome. If the article ever implied the brand color themes the staff app, correct it. Logo/Survey Background Color fields unchanged; the login logo banner also retired (login is RTMLink chrome now) but the article does not cover the login screen. Verify the helper copy against ClinicSettings at origin/main. Tier-2. last_reviewed_commit stays 47f0bdd. NB: the rest of ClinicSettings.php changed only for the Bundle 94 contextual save bar (chrome), which does not affect this or the other ClinicSettings-sourced articles."
+    status: review
+    note: "Refreshed for the Brand Color scope change (app PR #1095, Bundle 153). Rewrote the Branding section's Brand Color bullet: it now colors patient-facing pages (like the survey) AND the clinic's emails (was 'used for buttons, links, and accents in the patient portal'), and added that the RTMLink staff app always uses RTMLink's own colors, so the setting does not theme it, matching the field's current helper text 'Used for buttons, links, and accents on patient-facing pages and emails. The staff panel always uses RTMLink colors.' (verified against ClinicSettings brand_color at main 25c0461). Also updated the section lead-in to note the brand color reaches emails, not just the survey page. While re-verifying, corrected a stale preview label: the survey-preview control is now a 'Preview the patient experience' area with an 'Open patient preview' link (was described as an 'Open Survey Preview' link); verified against the survey_preview placeholder in ClinicSettings. Re-verified every other bold label against main 25c0461 and left them unchanged: Clinic Information (Clinic Name/Email Address required; Office Phone Number/Clinic Website/Clinic Address optional; 255/500 max), Business Hours & Timezone (Timezone, Opening Time/Closing Time 24-hour 09:00/17:00 default), Clinic Logo (PNG/JPG max 2MB, 800x200px), Survey Background Color, Email From Name (max 100, blank uses clinic name). Screenshots unchanged (only helper text changed; logo/background fields look the same, no re-shoot). No em-dashes."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
@@ -877,7 +877,7 @@ articles:
     screenshots:
       - clinic-information-section
       - branding-section
-    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
+    last_reviewed_commit: 25c0461776daac3d1687ae47003946371708a876
 
   - path: settings/security-and-compliance.md
     section: settings
