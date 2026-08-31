@@ -23,13 +23,13 @@ Set your **Timezone** first: it governs every date and time RTMLink shows, from 
 
 ## Branding
 
-Control how your clinic appears to patients on their survey page:
+Control how your clinic appears to patients on their survey page and in the emails you send them:
 
 - **Clinic Logo**: a PNG or JPG up to 2 MB. The recommended size is 800x200 pixels.
-- **Brand Color**: used for buttons, links, and accents in the patient portal.
+- **Brand Color**: used for buttons, links, and accents on patient-facing pages (like the survey) and in your clinic's emails. The RTMLink staff app you and your team work in always uses RTMLink's own colors, so this setting does not change it.
 - **Survey Background Color**: the background of the patient survey page.
 
-Once you have an active survey, an **Open Survey Preview** link appears here so you can see exactly how your branding looks to a patient before anything goes out.
+Once you have an active survey, a **Preview the patient experience** area appears here with an **Open patient preview** link, so you can walk through exactly what a patient sees before anything goes out.
 
 ![The Branding section: logo upload, brand color, and survey background color.](../.gitbook/assets/settings/branding-section.png)
 
