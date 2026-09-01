@@ -288,8 +288,8 @@ articles:
   - path: check-ins/creating-a-survey.md
     section: check-ins
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 8de5fb3..3280d5e, app PR #1139, commits c63f804/b94ec85). The question builder gained the controls that wire a check-in to the home exercise program (the new survey-to-exercises loop). On a question: a 'Home-program question' toggle (hep_linked); its helper: 'Ties this question to the home exercise program: a Start-exercises button appears while today's program is unfinished, and the patient is brought back to answer after finishing. Flag which answer means \"not done yet\" below to show the button only after that answer is chosen.' On each answer option of a home-program multiple-choice/yes-no question: a '\"Not done yet\" answer' toggle (triggers_hep_prompt) -- choosing that answer reveals the Start-exercises button, and it is cleared for re-asking once the patient finishes the program. SCOPE: worth a short Tier-1/Tier-2 addition -- a distinct thing a clinic sets up whose effect is not obvious from the labels; the resulting patient experience is covered by patient-portal/taking-a-survey. Writer: verify the toggle labels + helper copy and the answer-toggle visibility rule (only on hep_linked multiple-choice/yes-no questions) against SurveyResource form at origin/main; do NOT name Livewire/Filament. last_reviewed_commit stays b8a760f."
+    status: review
+    note: "Refreshed for app PR #1139 (survey-to-exercises loop). Added a 'Home-program question' bullet to the per-question field list and a new 'Linking a question to the home exercise program' section covering the two new controls: the per-question 'Home-program question' toggle and, on each answer option of a home-program Multiple Choice / Yes/No question, the '\"Not done yet\" answer' toggle. Described the resulting patient behavior in plain terms (a 'Start your exercises now' button that appears either right away or only after the flagged answer, then returns them to the check-in) and cross-linked to patient-portal/taking-a-survey for the phone experience. Verified every label + the answer-toggle visibility rule against SurveyResource form at main f3a11de: toggle labels 'Home-program question'/'\"Not done yet\" answer', the answer toggle visible only when hep_linked AND (Multiple Choice or Yes/No). Re-verified the rest of the article against main and left it accurate: nav 'Check-In Templates' under 'Templates'; Survey Details fields Internal Name (req, 255) / Patient-Facing Name (255) / Description (1000) / Status (default on) / Default Survey (default off); Add Question, Collapse all/Expand all, drag reorder; Question Text (req, 1000), Question Type, Analytics Category (Pain Intensity/Pain Frequency/Home Exercise Program/Activity Level/Sleep Quality/Global Rating of Change/Mood/Notes/Custom), Featured; QuestionType labels Scale (0-10)/Multiple Choice/Yes/No/Numeric Input/Free Text; Scale Min/Scale Max (max <=10 for scale), Min Label/Max Label (scale only); Answer Options (>=2, Label/Value) vs Alert Thresholds (Threshold Value); Alert toggle -> Severity (Low/Medium/High, default Medium)/Alert Message (500); Yes/No seeded Yes+No; Create button. No new screenshots (survey-list unchanged). No em-dashes. Do not name Livewire/Filament."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/SurveyResource.php
@@ -298,7 +298,7 @@ articles:
       - app/Models/SurveyAnswerOption.php
       - app/Enums/QuestionType.php
     screenshots: [survey-list]
-    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+    last_reviewed_commit: f3a11de23b8ee4343efa167bfc412a0000ed1741
 
   - path: check-ins/editing-and-managing-surveys.md
     section: check-ins
