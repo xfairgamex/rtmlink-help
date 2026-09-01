@@ -83,8 +83,8 @@ articles:
   - path: getting-started/navigating-the-dashboard.md
     section: getting-started
     audience: clinic-staff
-    status: published
-    note: "\"Unread Surveys\" KPI now returns real counts — was hardcoded 0; ClinicDashboardMetrics.unreadSurveysCount() wired to UnreadSurveyService (PR #535); dashboard page heading changed from '{name} Dashboard' to '{name}'s RTMLink Dashboard' (PR #587); NeedsAttentionWidget and QuickActionsWidget removed (PRs #628/#620); replaced by two role-segmented widgets: ProviderActionFeedWidget (providers only — surveys/HEPs to review, claims to sign, near-billable nudges, drop-offs scoped to assigned patients, PR #617/Bundle 50) and ClinicOwnerInsightsWidget (owners/staff/billing — revenue opportunities, claims awaiting sign-off, patient drop-offs with quick Pause/Stop actions, revenue values shown to owners/billing only, drill-down by provider, PR #620/Bundle 51); 'Send reminder' on drop-off rows now opens the patient messaging composer (PR #622)"
+    status: stale
+    note: "STALE (scout 3280d5e..f3a11de, app PR #1195 / commit d94db71, Bundle 173). A new owner-level dashboard widget: the per-therapist RTM enrollment rollup (TherapistEnrollmentRollupWidget, registered in the panel's dashboard widgets, canView = owner-level access only, sort 3, full width). It shows each therapist's RTM enrollment rate across their caseload for clinic owners; a companion change fixed how an empty caseload renders (shows n/a instead of a bare percent, PR #1197) and attributes caseload by who saw the patient rather than the primary provider. Writer: add a Tier-2 description of this widget to the dashboard article (owners only); verify heading/columns/empty-state copy against TherapistEnrollmentRollupWidget + TherapistEnrollmentRollupService + the widget blade at origin/main; do NOT name Filament/Livewire. last_reviewed_commit stays. --- PRIOR WRITER NOTE: \"Unread Surveys\" KPI now returns real counts — was hardcoded 0; ClinicDashboardMetrics.unreadSurveysCount() wired to UnreadSurveyService (PR #535); dashboard page heading changed from '{name} Dashboard' to '{name}'s RTMLink Dashboard' (PR #587); NeedsAttentionWidget and QuickActionsWidget removed (PRs #628/#620); replaced by two role-segmented widgets: ProviderActionFeedWidget (providers only — surveys/HEPs to review, claims to sign, near-billable nudges, drop-offs scoped to assigned patients, PR #617/Bundle 50) and ClinicOwnerInsightsWidget (owners/staff/billing — revenue opportunities, claims awaiting sign-off, patient drop-offs with quick Pause/Stop actions, revenue values shown to owners/billing only, drill-down by provider, PR #620/Bundle 51); 'Send reminder' on drop-off rows now opens the patient messaging composer (PR #622)"
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Dashboard.php
@@ -128,7 +128,8 @@ articles:
   - path: patients/viewing-and-searching-patients.md
     section: patients
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 3280d5e..f3a11de, app PR #1203 / commit 6d9c62d, Bundle 178 EMR import foundation). The patient list gained a 'Phone needs review' toggle filter that narrows to imported patients whose EMR phone value was held for review (a new phone_needs_review flag on Patient; the EHR sometimes sends extra text with a phone value, often a caregiver's number, so it is not applied automatically). Deliberately a filter, not an error banner — the hard stop lives at enrollment. Writer: add a Tier-2 line to the list/filters section describing the filter and what the review state means; verify the label 'Phone needs review' against PatientResource::table at origin/main. last_reviewed_commit stays."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/PatientResource.php
@@ -315,11 +316,13 @@ articles:
   - path: check-ins/previewing-a-survey.md
     section: check-ins
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 3280d5e..f3a11de, app PR #1175 / commits 343081a, 49a12c8, d29cbe0, Bundle 52). The staff preview grew from a survey-only preview into a walk of the whole patient flow. A new consent step now precedes the survey: a new /survey-preview/{survey}/consent route and SurveyController::previewConsent render the RTM consent screen the same way patients see it, but inert (nothing is saved). The preview mirrors the clinic's own settings — it starts at consent only when Patient Consent is turned on, otherwise it skips straight to the survey. On Clinic Settings the entry point was relabeled from 'Preview Survey' / 'Open Survey Preview' to 'Preview the patient experience' / 'Open patient preview' with a 'Skip to the survey' link. Writer: broaden this article to cover the consent-first preview + the settings entry point; verify route + labels + the consent-on/off behavior against SurveyController::previewConsent, routes/tenant.php, and ClinicSettings survey_preview at origin/main. Note the consent-screen content itself is also covered by patient-portal/taking-a-survey (stale). last_reviewed_commit stays. NEEDS a Visualizer sources update too — this article should also source app/Http/Controllers/Patient/SurveyController.php."
     priority: 1
     sources:
       - routes/tenant.php
       - app/Livewire/Patient/SurveyForm.php
+      - app/Http/Controllers/Patient/SurveyController.php
     screenshots: []
     last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
 
@@ -629,7 +632,8 @@ articles:
   - path: billing/understanding-rtm-billing.md
     section: billing
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 3280d5e..f3a11de, app PR #1194 / commit f2f5ef4, Bundle 175 assistant attribution + CQ/CO de minimis; see docs/decisions/ADR-022 in the app). RTM billing now models assistant-furnished work: when a PTA/OTA independently furnishes more than 10% of a billed unit, the claim line carries the CQ (PT assistant) / CO (OT assistant) modifier. Time entries can record whether work was performed jointly with the supervising therapist (joint work counts as therapist time and is excluded from the de minimis numerator). BillingSuggestionService computes the modifier; a clinic setting decides whether it is auto-applied or offered as a per-claim recommendation (see billing/configuring-billing-rates, also stale). Applies to Original Medicare FFS. Writer: add the CQ/CO assistant-modifier concept at the right depth (Tier-2, likely a short section) to the billing overview; verify against BillingSuggestionService + AssistantDeMinimisService + BillingSuggestion at origin/main. Cross-cuts billing-suggestions (review), approving-and-rejecting-claims (stale), configuring-billing-rates (stale), and users/managing-your-team (stale, credential fields). last_reviewed_commit stays."
     priority: 1
     sources:
       - app/Models/BillingSuggestion.php
@@ -662,7 +666,8 @@ articles:
   - path: billing/approving-and-rejecting-claims.md
     section: billing
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 3280d5e..f3a11de, app PR #1194 / commit f2f5ef4, Bundle 175). A claim line can now carry a CQ/CO assistant modifier (see billing/understanding-rtm-billing, stale, for the concept). When the clinic setting 'Auto-apply CQ/CO assistant modifiers' is OFF (default), the computed modifier is offered as a per-claim recommendation your team confirms before/at approval rather than applied silently; when ON it is applied automatically. Writer: verify whether the approve/reject flow surfaces a modifier confirmation and add a Tier-2 line if so — likely small/verify-only, with billing-suggestions (review) as the primary home for the modifier UI. Verify against BillingSuggestionService + the suggestion table/infolist at origin/main. last_reviewed_commit stays."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/Actions/**
@@ -726,7 +731,8 @@ articles:
   - path: billing/configuring-billing-rates.md
     section: billing
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 3280d5e..f3a11de, app PR #1194 / commit f2f5ef4, Bundle 175). The billing settings section gained an 'Auto-apply CQ/CO assistant modifiers' toggle (default OFF). Helper text: when a PTA/OTA independently furnishes more than 10% of a billed unit, apply the computed CQ/CO modifier to the claim line automatically; off means the modifier appears as a per-claim recommendation the team confirms. Applies to Original Medicare FFS; confirm the payer for Medicare Advantage / commercial. Writer: add a Tier-2 line to the billing-settings walkthrough describing this toggle and its consequence; verify label + helper against ClinicSettings form at origin/main. See billing/understanding-rtm-billing (stale) for the concept. last_reviewed_commit stays."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
@@ -912,7 +918,8 @@ articles:
   - path: users/managing-your-team.md
     section: users
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 3280d5e..f3a11de). The team-member form and list were substantially reworked across three merged PRs: (1) derive-discipline-from-credential (PR #1204 / commit 496a0fe) — the 'Discipline' select is replaced by a 'Licence level' select (credential_type: PT/PTA/OT/OTA/SLP/SLPA), and the users table gained a 'Licence' badge column (assistants shown in warning colour). (2) Bundle 175 assistant attribution (PR #1194) — a new 'Supervising therapist' field (shown/required only for assistant licence levels, options limited to matching-discipline therapists), and a rule that an SLPA cannot hold a time-logging role like Provider; licence level drives CQ/CO billing attribution and is orthogonal to panel role. (3) Bundle 178 EMR import (PR #1203 / commit 6d9c62d) — a new 'EMR provider mapping' section on the edit form (EMR provider name + billing provider key, unique per tenant) used to attribute imported schedules to this user; user-form field guidance also moved to hint-icon tooltips (PR #1200). Writer: reconcile the team-member add/edit fields + the list column; explain licence level vs role, the supervising-therapist requirement, and (lightly) the EMR mapping (cross-link integrations). Verify every label/tooltip against UserResource + EditUser + CredentialType at origin/main; do NOT name Filament. See also users/adding-team-members (already stale). last_reviewed_commit stays."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/UserResource.php
@@ -928,7 +935,8 @@ articles:
   - path: integrations/connecting-drchrono.md
     section: integrations
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 3280d5e..f3a11de, app PRs #1253 Bundle 159 / #1259 Bundle 179). The Integrations page is no longer DrChrono-only: it now also hosts a HENO integration (client ID/secret, Test Connection, Sync Now, sync-log history, disconnect) and a manual appointment CSV import path. DrChrono still works as documented, but this article's framing ('Integrations = DrChrono') is now too narrow. Writer: keep this article DrChrono-specific but reconcile any 'the Integrations page' framing that now implies DrChrono is the only EMR; the HENO connection flow itself is a NEW article (see the new integrations/connecting-heno.md todo below). Verify against Integrations.php + integrations.blade.php at origin/main. last_reviewed_commit stays."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Integrations.php
@@ -942,13 +950,32 @@ articles:
   - path: integrations/drchrono-provider-mappings.md
     section: integrations
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 3280d5e..f3a11de, app PR #1203 Bundle 178 EMR import foundation). Provider mapping is now EMR-generic, not DrChrono-only. The Integrations page gained an 'Unmapped EMR providers' queue (UnmappedEhrProvidersWidget) listing attending-provider values seen on imported schedules that don't yet map to a user; mapping a value writes onto the user's EMR provider mapping (name + billing key, unique per tenant), and the same mapping can be corrected on the user's edit form (see users/managing-your-team, stale). Values match exactly, never fuzzily. A three-state model persists excluded values across syncs. Writer: reconcile this article to cover the unmapped-provider queue as an EMR-generic mapping flow (DrChrono + HENO + CSV); consider whether the article should be retitled EMR-generic (flag for the human — do NOT rename here). Verify against UnmappedEhrProvidersWidget + ProviderMappingService + UserResource EMR-mapping section at origin/main. last_reviewed_commit stays."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Integrations.php
       - resources/views/filament/clinic/pages/integrations.blade.php
+      - app/Filament/Clinic/Widgets/UnmappedEhrProvidersWidget.php
+      - app/Services/Ehr/ProviderMappingService.php
     screenshots: []
     last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
+
+  - path: integrations/connecting-heno.md
+    section: integrations
+    audience: clinic-staff
+    status: todo
+    note: "NEW (coverage census, scout 3280d5e..f3a11de, app PRs #1253 Bundle 159 / #1259 Bundle 179). A genuinely new user-facing surface with no article: HENO, a second EMR integration alongside DrChrono. On the Integrations page a clinic owner enters HENO client credentials (client ID + client secret), uses 'Test Connection' to confirm HENO accepts them, and then either lets the nightly appointment sync run or triggers 'Sync Now'; a sync-log history and 'Disconnect' are also shown. A separate manual CSV import path (Bundle 179) imports the same HENO appointment export as a spreadsheet for clinics not using the API. SCOPE-AND-TMI: earns its own Tier-1 article — a distinct owner task (connect our EMR, get appointments flowing) that is NOT obvious from the screen (where to get HENO credentials, Test-before-Sync, API vs CSV). Keep it tight and cross-link the shared provider-mapping flow (integrations/drchrono-provider-mappings, stale) rather than re-explaining it. Writer: verify the connect/test/sync labels + credential fields against Integrations.php (saveHenoCredentials / testHenoConnection / syncHenoNow / disconnectHeno) + integrations.blade.php, and the CSV path against AppointmentImporter at origin/main; owner-only surface; do NOT name Filament/Livewire, do NOT invent HENO-side UI. last_reviewed_commit null (unwritten)."
+    priority: 2
+    sources:
+      - app/Filament/Clinic/Pages/Integrations.php
+      - resources/views/filament/clinic/pages/integrations.blade.php
+      - app/Services/Ehr/HenoClient.php
+      - app/Services/Ehr/HenoAppointmentSyncService.php
+      - app/Filament/Imports/AppointmentImporter.php
+      - config/heno.php
+    screenshots: []
+    last_reviewed_commit: null
 
   - path: settings/invoices-and-billing.md
     section: settings
