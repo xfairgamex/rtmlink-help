@@ -33,13 +33,15 @@ When you sign in from your clinic's own web address instead, you go straight to 
 You don't create your own account. Your clinic administrator adds you, and the system emails you a welcome message with a secure sign-in link.
 
 1. Open the welcome email and click the link.
-2. You'll land on a **Welcome to [Your Clinic]** page.
+2. You'll land on a page headed **Welcome, [Your Name]**, with a short note: "Set a password for your RTMLink account at [Your Clinic]. You'll use it to sign in from now on."
 3. Choose a password:
    - **New Password:** at least 8 characters.
    - **Confirm Password:** type the same password again.
-4. Click **Set Password & Sign In**. You'll see a **Welcome aboard!** notification and you'll be taken to your dashboard.
+4. Click **Set Password & Sign In**. You'll see a **Welcome aboard!** notification and you'll be taken to your dashboard, still signed in.
 
 > **The welcome link expires after 48 hours.** If you open it too late, it won't work. Ask your clinic administrator to send a new one.
+
+> **Just joined a clinic that's still getting set up?** If your clinic owner hasn't signed the RTMLink Subscription Agreement yet, you can still open the welcome link and set your password. You won't be able to enter the app until the owner signs, but your password will be ready and waiting. See [Signing your subscription agreement](signing-your-subscription-agreement.md).
 
 > **Tip:** Each password box has a small eye icon. Click it to reveal what you typed so you can double-check before saving.
 
