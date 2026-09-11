@@ -17,7 +17,7 @@ Both open the same enrollment form.
 
 ### Enrollment
 
-- **Patient:** required. Search by name. If the patient already has an active or paused episode, RTMLink won't let you enroll them again, and you'll see a message telling you so. If they have a *paused* episode, a notice appears with a link to view it.
+- **Patient:** required. Search by name. Each result shows the patient's date of birth in parentheses after their name (for example, `Jane Smith (03/14/1975)`), so you can tell apart two patients who share a name and avoid enrolling the wrong one. If the patient already has an active or paused episode, RTMLink won't let you enroll them again, and you'll see a message telling you so. If they have a *paused* episode, a notice appears with a link to view it.
 - **Assigned Provider:** required. The provider responsible for this episode. When you pick a patient who has a primary provider, this fills in automatically; you can change it. The list includes your clinic's providers and owners.
 - **Start Date:** required. Defaults to today and **can't be in the future**. This is the day monitoring begins and the day the first 30-day window starts. You can't change the start date after the episode is created.
 - **RTM Program Consent:** appears only if your clinic requires it. A clinic administrator turns this on with **Require RTM Program Consent** in **Clinic Settings**, under **Patient Consent**. When it appears, it's required, and you record how the patient's consent was obtained (see [Recording RTM consent](#recording-rtm-consent) below).
