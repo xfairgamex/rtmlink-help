@@ -128,15 +128,16 @@ articles:
   - path: patients/viewing-and-searching-patients.md
     section: patients
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 3280d5e..f3a11de, app PR #1203 / commit 6d9c62d, Bundle 178 EMR import foundation). The patient list gained a 'Phone needs review' toggle filter that narrows to imported patients whose EMR phone value was held for review (a new phone_needs_review flag on Patient; the EHR sometimes sends extra text with a phone value, often a caregiver's number, so it is not applied automatically). Deliberately a filter, not an error banner — the hard stop lives at enrollment. Writer: add a Tier-2 line to the list/filters section describing the filter and what the review state means; verify the label 'Phone needs review' against PatientResource::table at origin/main. last_reviewed_commit stays."
+    status: review
+    note: "Refreshed for app PR #1203 / commit 6d9c62d (Bundle 178, EMR import foundation): added the new 'Phone needs review' filter to the 'Narrowing the list with filters' section as a Tier-2 bullet plus a short note explaining the review state. Verified against the rtmlink checkout (production main 9040caa): PatientResource::table filter make('phone_needs_review')->label('Phone needs review')->toggle() (a plain toggle filter, not a ternary), whose query narrows to phone_needs_review = true. Described the meaning from PatientUpsertService::applyPhone (an imported phone value is only auto-applied when it parses clean; a dirty value, extra text or an empty EHR value for a phone-less patient, sets phone_needs_review = true and is held for a person to confirm) and noted the flag clears when a valid phone is saved (Patient saving hook clears phone_needs_review; also handled at enrollment via ReviewsImportedPhone), matching the in-code comment that this is deliberately a filter, not an error banner (the hard stop lives at enrollment). Used the existing article term 'connected EHR' for consistency (editing-patient-information / creating-a-new-patient). While editing, cleaned every em-dash from the file for CI (definition bullets converted to '**Term:** meaning'; prose em-dashes to commas/periods); no other prose changed. Left the existing 'global search' paragraph as-is (its retheme/quick-search relocation is tracked under getting-started/quick-search, todo). Re-verified the kept column/filter labels against main: DOB, Phone (SMS icon rules), Email, Status (Active/Paused/Completed/Discharged/Not enrolled), Current Episode (None placeholder), Provider, Created (toggled off by default); filters Provider, SMS Consent, Email Consent, Has Email. Screenshot patient-list unchanged (the filter panel is not shown in it), no re-shoot needed. No em-dashes."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/PatientResource.php
       - app/Filament/Clinic/Resources/PatientResource/Pages/ListPatients.php
       - app/Models/Patient.php
+      - app/Services/Ehr/PatientUpsertService.php
     screenshots: [patient-list]
-    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+    last_reviewed_commit: 9040caa3a968041e3ba0d17e5ea2317a5741c9eb
 
   - path: patients/creating-a-new-patient.md
     section: patients
