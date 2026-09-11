@@ -30,6 +30,7 @@ Each question has:
 - **Question Type**: how the patient answers (see below).
 - **Analytics Category**: optional. Tag the question (Pain Intensity, Pain Frequency, Home Exercise Program, Activity Level, Sleep Quality, Global Rating of Change, Mood, Notes, or Custom) so RTMLink can chart it over time.
 - **Featured**: when on, this question appears as its own column in the patient's episode, so key answers are visible at a glance.
+- **Home-program question**: when on, this question is tied to the patient's home exercise program. See [Linking a question to the home exercise program](#linking-a-question-to-the-home-exercise-program) below.
 
 > All questions are currently **optional** for the patient; they can skip any question. You don't set required/optional per question.
 
@@ -56,6 +57,21 @@ When you turn on **Alert**, set:
 - **Alert Message**: optional text explaining what the flag means (e.g. "Pain ≥ 8: call patient").
 
 Flagged responses are highlighted when you review them and can be surfaced with the episode list's **Attention** filter. See [Understanding survey responses](understanding-survey-responses.md).
+
+### Linking a question to the home exercise program
+
+If your clinic uses home exercise programs, you can connect a question to the patient's exercises so a check-in prompts them to do their exercises before they finish answering. This is useful for a question like "Did you do your exercises today?"
+
+Turn on **Home-program question** for the question. While the patient still has exercises left to do that day, RTMLink shows a **Start your exercises now** button under the question. When they tap it, they go through their exercise program and are then brought back to the check-in to finish answering.
+
+You control when that button appears:
+
+- **Leave it always on:** the button shows as soon as the patient reaches the question.
+- **Show it only after a specific answer:** on a **Multiple Choice** or **Yes/No** question, each answer option gains a **"Not done yet" answer** toggle. Turn it on for the answer that means the patient hasn't done their exercises (for example, **No**). The button then appears only after the patient picks that answer, and their answer is cleared so they can answer again once they finish.
+
+> The **"Not done yet" answer** toggle only appears on a **Multiple Choice** or **Yes/No** question that has **Home-program question** turned on.
+
+For what the patient sees on their phone, see [Taking a survey](../patient-portal/taking-a-survey.md).
 
 ## Saving
 
