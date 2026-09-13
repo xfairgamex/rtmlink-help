@@ -51,9 +51,10 @@
 
 * [Understanding the Home Exercise Program](exercises/understanding-hep.md)
 * [The exercise library](exercises/the-exercise-library.md)
-* [Exercise videos](exercises/exercise-videos.md)
+* [Building an exercise plan](exercises/building-an-exercise-plan.md)
 * [Exercise programs](exercises/exercise-programs.md)
-* [Assigning HEP to an episode](exercises/assigning-hep-to-an-episode.md)
+* [Assigning exercises to a patient](exercises/assigning-hep-to-an-episode.md)
+* [Exercise videos](exercises/exercise-videos.md)
 * [Tracking exercise adherence](exercises/tracking-exercise-adherence.md)
 * [The patient's exercise experience](exercises/the-patient-exercise-experience.md)
 

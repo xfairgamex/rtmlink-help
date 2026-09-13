@@ -30,6 +30,10 @@ Both open the same enrollment form.
 - **How we'll reach the patient:** pick at least one of **Text message (SMS)** or **Email** (see [Choosing how to reach the patient](#choosing-how-to-reach-the-patient) below). These are pre-filled from the patient's consent settings.
 - **Send Welcome Message Now:** on by default. When on, the patient gets their first survey right away. Turn it off to wait until the next scheduled send time instead.
 
+### Assign exercises
+
+If your clinic has exercises enabled, this optional section lets you start the patient's home exercise program while you enroll them. Click **Add exercise**, choose an **Exercise** (a preview shows its photo, instructions, and default dosage), and optionally adjust the prescription. If an exercise can't be assigned, the episode is still created and RTMLink tells you which exercises were skipped. See [Assigning exercises during enrollment](../exercises/assigning-hep-to-an-episode.md#assigning-exercises-during-enrollment).
+
 ### Notes
 
 An optional free-text box for anything you want recorded on the episode.
@@ -54,7 +58,7 @@ RTMLink then checks whether that number can actually receive texts and shows the
 
 ### Email
 
-When you tick **Email**, RTMLink shows the address surveys will be sent to. If the patient has no email on file, it tells you to add one on the patient record before email can be used; see [Editing patient information](editing-patient-information.md).
+When you tick **Email**, RTMLink shows the address surveys will be sent to. If the patient has no email on file, it tells you to add one on the patient record before email can be used; see [Editing patient information](../patients/editing-patient-information.md).
 
 > **If a text can't be delivered, RTMLink falls back to email.** If a survey text is accepted when sent but later rejected by the carrier (for example, the number turns out to be a landline), RTMLink automatically turns on email for the episode and re-sends that day's survey by email, so the patient isn't skipped. This only happens when the patient has an email on file and has consented to email; otherwise the undeliverable number is flagged for staff to fix.
 

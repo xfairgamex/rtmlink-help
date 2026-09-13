@@ -1,49 +1,49 @@
 ---
-description: "Adding demonstration videos to exercises in RTMLink: the three ways to attach a video (upload, reuse from your library, or paste a link), how processing works, and choosing a thumbnail and a short animated preview."
+description: "Adding demonstration videos to exercises in RTMLink: uploading a video from the exercise form, reusing one from your video library, pasting a YouTube or Vimeo link, how processing works, and choosing a thumbnail and a short animated preview."
 ---
 
 # Exercise videos
 
-A demonstration video shows the patient exactly how to perform an exercise. You add videos from the **Media** section of an exercise (see [Creating an exercise](the-exercise-library.md#creating-an-exercise)), and every video you upload is saved to your clinic's video library so you can reuse it on other exercises.
+A demonstration video shows the patient exactly how to perform an exercise. You add a video from the **Media** card on an exercise's form (see [Creating an exercise](the-exercise-library.md#creating-an-exercise)). Every video you upload is saved to your clinic's video library, so you can reuse it on other exercises.
 
-> **This is part of Exercises.** Videos appear only when your clinic has the exercise library turned on. If you don't see exercises in the sidebar, your clinic hasn't enabled them. Adding and editing videos is available to clinic owners and providers; other staff can browse and reuse existing videos but can't upload or edit them.
+> **Who can add videos.** Videos are part of Exercises, so they appear only when your clinic has exercises enabled. Clinic owners and providers can add and edit videos; only clinic owners can delete them from the video library.
 
 ## Three ways to add a video
 
-An exercise's **Media** section gives you three buttons:
+On the exercise form's **Media** card:
 
-- **Upload Video:** upload a video file from your computer.
-- **Select from Library:** reuse a video you've already uploaded.
-- **Add Video URL:** paste a link to a video hosted elsewhere.
+- **Upload a file:** drag a video file onto the **Media** card, or click **Browse for a video**.
+- **Choose from video library:** reuse a video your clinic already uploaded.
+- **Paste a YouTube or Vimeo link:** link to a video hosted elsewhere.
 
 ### Upload a video
 
-**Upload Video** opens a panel where you can drag and drop your video or click **Browse files**. Accepted formats are **MP4, MOV, or WebM**, up to **2 GB**.
+Drag the file onto the **Media** card or click **Browse for a video**. Accepted formats are **MP4, MOV, or WebM**, up to **2 GB**, one video per exercise.
 
-Once you pick a file, add its details:
+The upload starts right away and shows its progress on the card. The video is named after the exercise, so give the exercise its name first. If an upload fails, click **Try again**.
 
-- **Title:** defaults to the exercise name.
-- **Body Region:** the area the exercise targets.
-- **Tags:** optional labels for everything the video addresses (for example, shoulder flexion, elbow extension). Press Enter after each one to add it.
-- **Description:** optional notes about the video.
-
-Click **Upload** to send it. When the upload finishes you'll see **Upload successful!** and a note that the video will be ready in about 30 to 60 seconds. RTMLink prepares it in the background so it plays smoothly on any phone.
-
-> **Processing takes a moment.** A new video moves through **Pending**, then **Processing**, then **Ready**. You can keep working while it processes; the thumbnail and preview tools below unlock once it's **Ready**.
+> **Processing takes a moment.** After uploading, RTMLink prepares the video in the background so it plays smoothly on any phone, usually within a minute. You can save the exercise and keep working while it processes.
 
 ### Reuse a video from your library
 
-**Select from Library** opens your clinic's video collection. Search by name or filter by **Body Region**, then click a video to attach it. (There's no separate "Video Library" item in the sidebar; you reach your videos through this picker or from inside an exercise.)
+Click **Choose from video library** to open **Select Exercise Video**. Search by name or pick a category, then click a video to attach it. Only videos that have finished processing are listed, newest first, so search if you don't see an older one.
 
 ### Paste a link
 
-**Add Video URL** lets you paste a **YouTube or Vimeo** link instead of uploading a file.
+Click **Paste a YouTube or Vimeo link** and paste the video's link. Use the full link, starting with `https://`, up to 500 characters. Copy the video's share link, not the address of a search results page.
 
-However you add a video, a preview appears at the top of the Media section. Click the **✕** to remove it and choose a different one.
+However you add a video, it shows on the **Media** card. Click the **x** beside it to remove it and choose a different one.
+
+## The video library
+
+To manage all your clinic's videos in one place, click **More** at the top of the exercise library, then **Video Library**. From there you can:
+
+- **Upload Video** without attaching it to an exercise yet. Add a **Title**, **Category**, **Tags**, and **Description**, then upload. When it finishes you'll see **Upload successful!**, and the video is ready in about 30 to 60 seconds.
+- Open a video to fine-tune how patients see it (below).
 
 ## Choosing a thumbnail and a preview animation
 
-After a video is **Ready**, open it from your video library to fine-tune how patients see it:
+After a video is **Ready**, open it from the video library:
 
 - **Thumbnail Selector:** pick the still frame patients see before they play the video. Choose a frame from the filmstrip, or type an exact **Timestamp** and click **Go**, then **Save Thumbnail**.
 - **Animated GIF Preview:** create a short looping preview (up to **5 seconds**) that patients see for the exercise. Set a **Start (seconds)** and **End (seconds)**, use **Preview GIF** to check it, then **Save GIF Selection**. **Remove GIF** clears it.
@@ -62,5 +62,3 @@ After a video is **Ready**, open it from your video library to fine-tune how pat
 - [The exercise library](the-exercise-library.md)
 - [The patient's exercise experience](the-patient-exercise-experience.md)
 - [Understanding the Home Exercise Program](understanding-hep.md)
-</content>
-</invoke>

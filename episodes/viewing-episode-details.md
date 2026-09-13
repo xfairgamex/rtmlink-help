@@ -83,7 +83,7 @@ Below the working area, four tabs let you view and manage more episode data:
 - **Billing Claims:** all billing claims generated for this episode. Click any row to open the full claim detail: CPT code, billing period, service date, qualification evidence, clinical note, and workflow history. Users with billing approval access also see two actions in the tab header:
   - **Add Claim:** manually enter a claim for a code the system did not derive automatically. Manual claims are marked Ready to Bill and are never overwritten by automatic regeneration.
   - **Regenerate Claims:** re-evaluate all billing data for this episode. Stale claims (suggested, approved, or rejected) that no longer qualify are removed; new qualifying claims are created. Claims that have been exported, billed, linked to DrChrono, or have a signed clinical note are never affected.
-- **Exercises:** exercises assigned to this episode. See [Assigning HEP to an episode](../exercises/assigning-hep-to-an-episode.md).
+- **Exercises:** the patient's home exercises. Click **Manage plan** to change them. See [Assigning exercises to a patient](../exercises/assigning-hep-to-an-episode.md).
 - **Windows:** the full history of 30-day billing windows. Click any row to see its detail: window number, date range, status, interaction days, minutes reviewed, interactive contacts, and the billable codes that were earned.
 
 > **Note:** The **Billing Claims** tab shows a banner telling you when the current window closes and how device-supply claims surface (`98985` for 2 to 15 interaction days, `98977` for 16 or more). Those claims are generated after the 30-day window closes, so you typically see this tab mid-window with no device-supply claims listed yet.

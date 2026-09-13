@@ -1,24 +1,34 @@
 ---
-description: What a Home Exercise Program (HEP) is in RTMLink, how its pieces fit an RTM episode, and how a patient completing exercises counts toward RTM billing, the same as answering a survey.
+description: What a Home Exercise Program (HEP) is in RTMLink, the difference between an exercise, a program, and a patient's plan, and how a patient completing exercises counts toward RTM billing, the same as answering a survey.
 ---
 
 # Understanding the Home Exercise Program
 
 A **Home Exercise Program (HEP)** is the set of exercises you give a patient to do between visits. In RTMLink, HEP is part of Remote Therapeutic Monitoring: patients work through their exercises from their phone, tell you how each one felt, and, just like answering a survey, **every day a patient completes an exercise counts toward RTM billing**.
 
-> **Is HEP turned on for your clinic?** Exercises are an optional feature. If your clinic doesn't have them enabled, you won't see the **Exercises** or **Exercise Programs** sections in the sidebar, or the **Exercises** tab on an episode. If you expect them and don't see them, ask your clinic owner.
+> **Is HEP turned on for your clinic?** Exercises are an optional feature. If your clinic doesn't have them enabled, you won't see **Exercises** in the sidebar or the **Exercises** tab on an episode. If you expect them and don't see them, ask your clinic owner.
 
-## The pieces, and how they fit together
+## Three words to know
 
-HEP is built from a few parts that build on each other:
+RTMLink uses three words for three different things:
 
-1. **The exercise library:** your clinic's collection of exercises, each with instructions, images, and an optional demonstration video. See [The exercise library](the-exercise-library.md).
-2. **Exercise programs:** reusable, ordered sets of exercises (for example, a "Post-op knee, week 1" routine) you can assign in one step. See [Exercise programs](exercise-programs.md).
-3. **Assigning HEP to an episode:** you add individual exercises or a whole program to a patient's episode and set how often and how much (sets, reps, hold). See [Assigning HEP to an episode](assigning-hep-to-an-episode.md).
-4. **The patient does their exercises:** the patient opens their personal link, works through each exercise, marks it done, and records how it felt. See [The patient's exercise experience](the-patient-exercise-experience.md).
-5. **You track adherence:** the episode shows how consistently the patient is completing their HEP. See [Tracking exercise adherence](tracking-exercise-adherence.md).
+| Word | What it is | Example |
+|------|------------|---------|
+| **Exercise** | One movement in your library, with instructions, photos or video, and default sets and reps. | Quad sets |
+| **Program** | A named, reusable set of exercises saved to your clinic's library. | "Post-op knee, phase 1" |
+| **Plan** | The exercises one specific patient has on their episode, with their own prescription. | Sarah's plan |
 
-> **Shared or patient-specific exercises.** Most exercises in your library are shared, so you can assign them to any patient. You can also create a **patient-specific** exercise that is private to one patient and can only be assigned to that patient's episodes. It shows a lock icon in the list and is marked **Private to** that patient. See [The exercise library](the-exercise-library.md).
+A program is a starting point you can use again and again. A plan belongs to one patient.
+
+## How the pieces fit together
+
+1. **The exercise library** holds your exercises. See [The exercise library](the-exercise-library.md).
+2. **You build a plan** by adding exercises from the library and setting sets, reps, weight, side, and how often. See [Building an exercise plan](building-an-exercise-plan.md).
+3. **You assign the plan to a patient**, or save it as a **program** to reuse. See [Assigning exercises to a patient](assigning-hep-to-an-episode.md) and [Exercise programs](exercise-programs.md).
+4. **The patient does their exercises** from their personal link, marks each one done, and records how it felt. See [The patient's exercise experience](the-patient-exercise-experience.md).
+5. **You track adherence** on the episode. See [Tracking exercise adherence](tracking-exercise-adherence.md).
+
+> **Shared or patient-specific exercises.** Most exercises in your library are shared, so you can put them on any patient's plan. You can also create a **patient-specific** exercise that's private to one patient, for example one holding that patient's own photos or video. It only appears in the library while you're working on that patient's plan. See [Patient-specific exercises](the-exercise-library.md#patient-specific-exercises).
 
 ## How exercise completion counts toward billing
 
@@ -30,18 +40,31 @@ Just opening the exercise link doesn't count; the patient has to actually mark a
 
 ## Where exercises live
 
-Your exercises and programs live in the left sidebar under the **Templates** group:
+Open **Exercises** in the left sidebar, under the **Templates** group. It opens the **Exercise library**, which has two tabs:
 
-- **Exercises:** your exercise library.
-- **Exercise Programs:** your reusable programs.
+- **Exercises:** every exercise you can use.
+- **Programs:** your saved programs.
 
-You assign HEP to a specific patient from the **Exercises** tab on their episode, not from these library screens. Think of it as two jobs: the library is where you **build and maintain** exercises once, and the episode is where you **put them to work** for one patient.
+You can work on a patient's plan from two places: the library (click **For a patient**) or the patient's episode (click **Manage plan** on the **Exercises** tab). Both open the same plan builder.
+
+## Role permissions
+
+| Action | Clinic Owner | Provider | Staff | Billing Staff | Auditor |
+|--------|:-:|:-:|:-:|:-:|:-:|
+| Browse the exercise library and programs | Yes | Yes | Yes | No | No |
+| Build a plan, assign it, or update a patient's plan | Yes | Yes | Yes | No | No |
+| Create and edit exercises | Yes | Yes | No | No | No |
+| Save programs and edit them | Yes | Yes | No | No | No |
+| Delete exercises, archive or restore programs | Yes | No | No | No | No |
+
+Sending the patient a message when you assign a plan also requires permission to send messages. A patient-specific exercise is visible only to clinic owners and the providers who treat that patient.
 
 ## Related articles
 
 - [The exercise library](the-exercise-library.md)
+- [Building an exercise plan](building-an-exercise-plan.md)
 - [Exercise programs](exercise-programs.md)
-- [Assigning HEP to an episode](assigning-hep-to-an-episode.md)
+- [Assigning exercises to a patient](assigning-hep-to-an-episode.md)
 - [Tracking exercise adherence](tracking-exercise-adherence.md)
 - [The patient's exercise experience](the-patient-exercise-experience.md)
 - [Understanding episodes](../episodes/understanding-episodes.md)

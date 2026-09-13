@@ -206,10 +206,8 @@ articles:
   - path: episodes/enrolling-a-patient.md
     section: episodes
     audience: clinic-staff
-    status: review
-    note: "Refreshed for the Patient-picker DOB label (Bundle 120, app PR #1054). Added a Tier-2 sentence to the 'Patient' enrollment bullet: each search result now shows the patient's date of birth in parentheses after the name (for example, 'Jane Smith (03/14/1975)') so you can tell apart two patients who share a name and avoid enrolling the wrong one. Verified against production main (3280d5e): EpisodeResource form 'Patient' field getOptionLabelUsing/getSearchResultsUsing -> searchPatientOptions both resolve Patient::full_name_with_dob, whose accessor renders 'First Last (mm/dd/yyyy)' and falls back to name-only when DOB is missing. Verify-only otherwise; re-confirmed every other label in the article still matches main: Enrollment section ('Patient', 'Assigned Provider', 'Start Date' default today/maxDate today/disabled on edit, paused-episode notice); RTM Program Consent radio (Send digital consent form default / Verbal consent obtained / Paper consent form signed, visible+required only when tenant rtmConsentRequired()); Survey & Schedule ('Survey', 'Send Time' default 10:00, 'Frequency' default 'Every day'); Frequency options (Every day / Every other day / Every 3 days / Every 7 days / Weekdays only via SurveyFrequency::label); the 'Text message (SMS)'/'Email' channel checkboxes; 'Create'. No new screenshots. No em-dashes. --- PRIOR WRITER NOTE (Bundle 101, PR #805, RTM consent capture): added the 'RTM Program Consent' field to the Enrollment section and a new 'Recording RTM consent' section covering the three options ('Send digital consent form' default / 'Verbal consent obtained' / 'Paper consent form signed'), the fact it appears and is required only when a clinic administrator turns on 'Require RTM Program Consent' in Clinic Settings > Patient Consent, that verbal/paper record the enrolling user as witness and digital shows a one-time consent page on first survey-link open (surveys still send on schedule), that it affects new enrollments only, and that recording consent is not billable. Prior Bundle 45/episode-comms-redesign content (per-channel 'Text message (SMS)'/'Email' checkboxes, inline 'Mobile number', line-type green/red 'Landline' result + 'Check now', at-least-one-channel rule, SMS-to-email fallback, Frequency options) re-verified against main and still accurate. No em-dashes."
     status: stale
-    note: "STALE (scout 8de5fb3..3280d5e, app PR #1148, commit c63f804). The Create/Edit Episode form gained a 'Discipline' select (options 'Physical Therapy (PT)' / 'Occupational Therapy (OT)' / 'Speech-Language Pathology (SLP)', placeholder 'Provider default', helper 'Overrides the provider's discipline in clinical notes.'). It sets the plan-of-care discipline used for this episode's clinical-note {DISCIPLINE} tokens and its Medicare therapy modifier (GP/GO/GN on DrChrono), overriding the assigned provider's discipline; leaving it blank inherits the provider's. Writer: add a Tier-2 line where the enrollment fields are described (verify label/placeholder/helper against EpisodeResource form at origin/main). --- STALE (scout df8fe65..8de5fb3, app PR #1054, Bundle 120). The enrollment Patient picker (the 'Patient' search field on Create Episode) now shows each patient's date of birth next to the name -- rendered as 'Name (mm/dd/yyyy)' via Patient::full_name_with_dob -- so you never enroll the wrong one of two same-name patients (a wrong enrollment poisons that patient's surveys, time tracking, and billing). Writer: add a Tier-2 line to the enrollment steps noting the picker shows DOB to disambiguate same-name patients; verify the format against EpisodeResource::searchPatientOptions/getOptionLabelUsing at origin/main. The same DOB-with-name disambiguation also landed on the Messages 'New Message' patient search and the billing-suggestion patient labels (covered by the messaging + billing entries). Verify-only otherwise; last_reviewed_commit stays 4bd0af0. --- PRIOR WRITER NOTE (Bundle 101, PR #805, RTM consent capture): added the 'RTM Program Consent' field to the Enrollment section and a new 'Recording RTM consent' section covering the three options ('Send digital consent form' default / 'Verbal consent obtained' / 'Paper consent form signed'), the fact it appears and is required only when a clinic administrator turns on 'Require RTM Program Consent' in Clinic Settings > Patient Consent, that verbal/paper record the enrolling user as witness and digital shows a one-time consent page on first survey-link open (surveys still send on schedule), that it affects new enrollments only, and that recording consent is not billable. Labels verified against the settings toggle, the CreateEpisode consent_method radio, and the Consent model. Cross-linked to viewing-episode-details for the resulting badge; did not link the settings/patient-consent article (not written yet, would be a dead link). Skipped the internal patient-search refactor (no label change). Prior Bundle 45/episode-comms-redesign content (per-channel 'Text message (SMS)'/'Email' checkboxes, inline 'Mobile number', line-type green/red 'Landline' result + 'Check now', at-least-one-channel rule, SMS-to-email fallback, Frequency options) re-verified against main and still accurate. No em-dashes."
+    note: "STALE (scout 8de5fb3..3280d5e, app PR #1148, commit c63f804). The Create/Edit Episode form gained a 'Discipline' select (options 'Physical Therapy (PT)' / 'Occupational Therapy (OT)' / 'Speech-Language Pathology (SLP)', placeholder 'Provider default', helper 'Overrides the provider's discipline in clinical notes.'). It sets the plan-of-care discipline used for this episode's clinical-note {DISCIPLINE} tokens and its Medicare therapy modifier (GP/GO/GN on DrChrono), overriding the assigned provider's discipline; leaving it blank inherits the provider's. Writer: add a Tier-2 line where the enrollment fields are described (verify label/placeholder/helper against EpisodeResource form at origin/main). --- WRITER NOTE (exercise rewrite, Bundle 98, app main 13708085): added a short 'Assign exercises' subsection between Survey & Schedule and Notes, verified against EpisodeResource form (Section 'Assign exercises', create-only + exercises_enabled, repeater 'Add exercise', 'Exercise' select + 'Preview') and CreateEpisode::afterCreate skipped-row warning ('Some exercises were not assigned', episode still created); links to exercises/assigning-hep-to-an-episode#assigning-exercises-during-enrollment. Discipline flag above still OPEN, so status stays stale and last_reviewed_commit stays 3280d5e. Also merged a duplicate status/note key pair here (strict YAML check). --- PRIOR WRITER NOTE (DOB refresh): Refreshed for the Patient-picker DOB label (Bundle 120, app PR #1054). Added a Tier-2 sentence to the 'Patient' enrollment bullet: each search result now shows the patient's date of birth in parentheses after the name (for example, 'Jane Smith (03/14/1975)') so you can tell apart two patients who share a name and avoid enrolling the wrong one. Verified against production main (3280d5e): EpisodeResource form 'Patient' field getOptionLabelUsing/getSearchResultsUsing -> searchPatientOptions both resolve Patient::full_name_with_dob, whose accessor renders 'First Last (mm/dd/yyyy)' and falls back to name-only when DOB is missing. Verify-only otherwise; re-confirmed every other label in the article still matches main: Enrollment section ('Patient', 'Assigned Provider', 'Start Date' default today/maxDate today/disabled on edit, paused-episode notice); RTM Program Consent radio (Send digital consent form default / Verbal consent obtained / Paper consent form signed, visible+required only when tenant rtmConsentRequired()); Survey & Schedule ('Survey', 'Send Time' default 10:00, 'Frequency' default 'Every day'); Frequency options (Every day / Every other day / Every 3 days / Every 7 days / Weekdays only via SurveyFrequency::label); the 'Text message (SMS)'/'Email' channel checkboxes; 'Create'. No new screenshots. No em-dashes. --- PRIOR WRITER NOTE (Bundle 101, PR #805, RTM consent capture): added the 'RTM Program Consent' field to the Enrollment section and a new 'Recording RTM consent' section covering the three options ('Send digital consent form' default / 'Verbal consent obtained' / 'Paper consent form signed'), the fact it appears and is required only when a clinic administrator turns on 'Require RTM Program Consent' in Clinic Settings > Patient Consent, that verbal/paper record the enrolling user as witness and digital shows a one-time consent page on first survey-link open (surveys still send on schedule), that it affects new enrollments only, and that recording consent is not billable. Prior Bundle 45/episode-comms-redesign content (per-channel 'Text message (SMS)'/'Email' checkboxes, inline 'Mobile number', line-type green/red 'Landline' result + 'Check now', at-least-one-channel rule, SMS-to-email fallback, Frequency options) re-verified against main and still accurate. No em-dashes."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -226,7 +224,7 @@ articles:
     section: episodes
     audience: clinic-staff
     status: review
-    note: "Refreshed for app ticket #1024 (commit 1dd7208): added a Tier-2 note to the working-area 'Patient Responses' section describing the new Export CSV button. Verified the label 'Export CSV' and tooltip against patient-responses-table.blade.php at main df8fe65, and the behavior against PatientResponsesTable::exportCsv + SurveyResponseExportService: the button appears only when there is exportable data (a billable-interaction response or an exercise log) and requires episodes.view; the file is a long-format spreadsheet (one row per answer plus one per exercise log) with columns Patient/Date/Type/Survey/Question/Answer/Flagged/Status/Submitted At, times in the program timezone, and opening it records a PHI-access activity entry. Kept the enumeration light per SCOPE (Tier-2 line, not a new section). Also removed stray '</content></invoke>' tags left at the end of the committed file. No screenshots added. No em-dashes."
+    note: "Refreshed for app ticket #1024 (commit 1dd7208): added a Tier-2 note to the working-area 'Patient Responses' section describing the new Export CSV button. Verified the label 'Export CSV' and tooltip against patient-responses-table.blade.php at main df8fe65, and the behavior against PatientResponsesTable::exportCsv + SurveyResponseExportService: the button appears only when there is exportable data (a billable-interaction response or an exercise log) and requires episodes.view; the file is a long-format spreadsheet (one row per answer plus one per exercise log) with columns Patient/Date/Type/Survey/Question/Answer/Flagged/Status/Submitted At, times in the program timezone, and opening it records a PHI-access activity entry. Kept the enumeration light per SCOPE (Tier-2 line, not a new section). Also removed stray '</content></invoke>' tags left at the end of the committed file. No screenshots added. No em-dashes. --- EXERCISE REWRITE (app main 13708085): only the 'Exercises' tab bullet changed, to mention the new 'Manage plan' button (HepAssignmentsRelationManager) and the retitled 'Assigning exercises to a patient' link. Rest of the article not re-verified in that pass, so last_reviewed_commit stays df8fe65."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -352,103 +350,150 @@ articles:
     last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
 
   # === 5. Exercises / HEP (Phase 2) ========================================
+  # Bundle 194 (Exercise Program Builder, app PRs #1417-#1452, Sep 2026) rebuilt this
+  # section around one flow: library -> plan -> assign to patient OR save as program.
+  # Vocabulary is deliberate (app docs/design/exercise-program-builder-2026-09/README.md):
+  # Exercise = one library movement; Program = reusable named set; Plan = one patient's
+  # exercises. Keep "program" and "plan" distinct in prose.
   - path: exercises/understanding-hep.md
     section: exercises
     audience: clinic-staff
-    status: published
-    note: "Refreshed for patient-specific (patient-locked) exercises: an exercise can be private to one patient (locked_patient_id on Exercise; HepService enforces it on assignment, surfaced as a lock icon + 'Private to' badge + 'Patient-specific' filter). Added a one-line note to the library piece; cleaned all em-dashes. Nav labels (Templates group, Exercises, Exercise Programs), exercises_enabled gating, and the interaction-day billing rule all re-verified accurate."
+    status: review
+    note: "Rewritten for the Exercise Program Builder (Bundle 194, app PRs #1417-#1452). New 'Three words to know' table (Exercise / Program / Plan), pieces list re-ordered around building a plan, 'Where exercises live' now: sidebar 'Exercises' under the collapsed 'Templates' group opens the 'Exercise library' with 'Exercises' and 'Programs' tabs; the separate 'Exercise Programs' sidebar item is GONE (ExerciseProgramResource::shouldRegisterNavigation false; /exercise-programs redirects to ?tab=programs). Patient plans are worked on from the library ('For a patient') or the episode ('Manage plan'). Added a Role Permissions table verified against ENFORCED code, not the seeder (exercises.* permissions are checked but never seeded in RolesSeeder, so roles decide): view library/build/assign = owner, provider, staff (ExerciseResource::canViewAny; assign has no extra role check); create/edit exercises + save/edit programs = owner, provider (canCreate/canEdit, ExerciseProgramResource::canCreate/canEdit); delete exercises + archive/restore programs = owner only (canDelete); notifying the patient needs messages.send; patient-locked exercises visible only to owner + treating providers (ExerciseResource locked-visibility scope). Billing staff/auditor = no library access. Interaction-day billing rule unchanged. Verified at main 13708085. No em-dashes. PRIOR: patient-locked exercise note (b7bf044)."
     priority: 2
     sources:
+      - app/Filament/Clinic/Resources/ExerciseResource/ExerciseResource.php
+      - app/Filament/Clinic/Resources/ExerciseProgramResource/ExerciseProgramResource.php
+      - app/Enums/PlanContext.php
       - app/Models/HepAssignment.php
       - app/Models/ExerciseProgram.php
       - app/Services/HepService.php
       - app/Services/ExerciseCompletionService.php
-      - app/Enums/HepFrequency.php
     screenshots: []
-    last_reviewed_commit: b7bf0447094d612a9aca3bfeb4017a680e426e39
+    last_reviewed_commit: 13708085d1c7bc6d9e25218ddc413433bebd0bcb
 
   - path: exercises/the-exercise-library.md
     section: exercises
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout d14896f..f939dfb, app PR #952, commit 640f31a). The exercise EDIT page now shows a warning subheading whenever you edit a shared (non-patient-locked) exercise that is currently assigned: 'Assigned to N active patient(s). Changes apply everywhere this exercise is assigned.' (patient-locked exercises show no warning -- their reach is one patient by construction). The edit page can now also be launched from an episode's Exercises tab (see assigning-hep-to-an-episode) and returns to that episode on save. Malformed exercise/template/episode URL params are now guarded (internal, no user-visible label change). Writer: add a Tier-2 caution that editing a shared exercise changes it for every patient it is assigned to; verify the subheading text against EditExercise::getSubheading at origin/main. last_reviewed_commit stays eba6a61."
+    status: review
+    note: "Rewritten for Bundle 194 slices B/F/I/K/L/M (library page, new exercise form, usage counts). Supersedes the open stale flags (PR #952 edit-page warning; scout f3a11de..9040caa 'Created by' column/filter + inline '+' category create) and folds them in. /exercises is now a card grid (page title 'Exercise library', breadcrumb 'Library'): search (matches name, 'Also known as' aliases, tags, instructions, description; example 'heel raises' -> 'Standing Calf Raises' verified in database/data/exercise-library.json), 'Filters' facets Source ('RTMLink library' / '{clinic} custom') / Category / Difficulty / Equipment (single-select, 'Clear all'), 'Show more' (48 per batch). Card: 'No photo yet', play badge, source tag Platform/Imported/Clinic (table view says Custom), lock tag, dose line '3 × 10 · hold 5s', round +/check add-to-plan button. Drawer: plays video in place, Sets/Reps/Hold tiles, Instructions list, usage line 'On N patients' plans · in N programs at {clinic}' (active episodes only), 'Often paired with', footer 'Add to plan'/'Remove from plan' + 'Edit' or 'Duplicate & edit' (no modal; platform copy named '{name} Variation N', locked copy stays locked without media). New exercise form (header 'New exercise', owner/provider): Instructions textarea one step per line (NO helper text in UI; lines become numbered steps), 'Default dosage' Sets/Reps/Hold (sec)/Rest (sec), 'Details' Category (+ inline create) / Difficulty (Beginner/Intermediate/Advanced) / Equipment / Tags / 'Also known as', 'Media' (PNG/JPG/WebP, 10, 2 MB, Cmd/Ctrl+V), live 'Patient sees' card; buttons Create / 'Save and add to plan' / Create & create another; 'Copy details from exercise' on create only (copies instructions, category, difficulty, equipment, tags, defaults; name as Variation N; never media or aliases). Description field is GONE from the form. Edit: save bar 'Save changes'/'Discard'; subheading 'Assigned to N active patients and in N programs. Changes apply everywhere this exercise is assigned.' (hidden for locked or unused). Delete: 'Danger zone' -> Delete -> 'Delete this exercise?', owner only, non-platform only, patients keep it (plan shows 'Deleted from library'). Manage Categories moved into header 'More' menu ('Exercise Categories' / 'Add category' / 'Save categories'). Table view: More -> 'Table view' (/exercises/table, 'Exercises table'): columns incl. 'Created by'; filters Category/Source/Created by/Patient-specific/Hidden; platform row actions Hide/Restore (hidden exercises also drop out of the card grid, InteractsWithPlanDraft::baseQuery); 'Library view' back. AI 'Generate illustration' is Platform-only (not documented). Old table screenshot embed removed (retired UI); new 'exercise-library' capture registered for the Visualizer. Verified at main 13708085. No em-dashes."
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ExerciseResource/**
+      - app/Livewire/Clinic/Hep/ExerciseLibrary.php
+      - app/Livewire/Clinic/Hep/Concerns/InteractsWithPlanDraft.php
+      - resources/views/livewire/clinic/hep/exercise-library.blade.php
+      - resources/views/livewire/clinic/hep/partials/card.blade.php
+      - resources/views/livewire/clinic/hep/partials/drawer.blade.php
+      - resources/views/filament/clinic/resources/exercises/**
       - app/Models/Exercise.php
       - app/Enums/ExerciseCategory.php
       - app/Enums/ExerciseDifficulty.php
-    screenshots: [exercise-list]
-    last_reviewed_commit: eba6a61565268f1cb8fac81fe84641d930ac045b
+    screenshots: [exercise-library]
+    last_reviewed_commit: 13708085d1c7bc6d9e25218ddc413433bebd0bcb
+
+  - path: exercises/building-an-exercise-plan.md
+    section: exercises
+    audience: clinic-staff
+    status: review
+    note: "NEW article for the Exercise Program Builder (Bundle 194 slices A/B/C/E/H/I/J). Covers the plan as a per-user draft (session-backed PlanDraftStore; nothing written until assign/update/save). Step 1 add: card + button / drawer 'Add to plan'; plan bar 'Plan · N exercises · ~M min' with 'Clear' / 'Review plan'; 'Save and add to plan' on the new exercise form. Step 2 slide-over (plan-panel.blade): rename, Sets (1-20) / Reps (1-100) / Hold (sec) (0-300) / Rest (sec) (0-600), blank = library default (placeholder + 'library default 3 × 10, 5s' sub-line), Weight free text (50), Side cycles Both/Left/Right, 'Times / day' stepper 1-6, 'Days / week' stepper 1-7 (default 7 = every day), 'Note to patient (optional)' (500), up/down reorder, x remove, '+ Back to library to add more'; meta 'N exercises · ~M min · patient does these N days a week' (minutes estimate from sets/reps/hold). Expand icon -> full-screen 'Review plan' (/exercises/plan) with quick-add bar + 'Library' back. Step 3 assign (assign-modal.blade, PlanContext): 'Assign to patient' -> 'Assign as a plan', 'Patient · episode' picker lists ACTIVE and PAUSED episodes only, own patients first; 'Patient preview'; 'Assign & send' / 'Assign'; APPENDS to existing exercises with no dedupe (HepPlanService) -> documented as a caution. Changing a patient's plan: 'Manage plan' (episode tab) or 'For a patient' -> 'Who is this plan for?'; patient badge; private exercises join + sort first; 'Update plan' -> 'Update {First}'s plan' -> 'Update & notify' / 'Update plan'; kept rows keep logs/adherence/billing, removed rows DEACTIVATED not deleted, new rows added; toast 'X added · Y kept · Z removed'; 'Revert changes'; badge x clears the plan with no confirmation; add-or-replace prompt 'Add to current plan' / 'Replace current plan'; legacy HepFrequency maps to times/days on load (HasPrescriptionSchedule). Notify: 'Notify {First}' default on only with a reachable channel AND messages.send; chips 'Text message' / 'Email' follow episode communication methods + consent; default 'Hi {First}! Here's your updated home program.' + link on its own line; unreachable -> reason shown + assigned without message (UI copy contains an em-dash, so paraphrased); send failure still assigns. Save as program: 'Save as program' -> 'Program name' (req) + 'Category' -> 'Save program'; locked + deleted exercises silently left out. 'Deleted from library' tag. Known app bugs found during research were NOT documented as behavior (spun off separately): slide-over footer label/action swap in Program context, steppers active on read-only programs, 'already has 0 exercises' prompt. 'Which way to start' bullets drafted at Joe's request; each route verified (enrollment 'Assign exercises' section; 'Manage plan'; opening a program while a patient is pinned keeps episode context with 'Update plan' as primary, PlanEditor; 'For a patient' first surfaces that patient's private exercises; 'Save as program' from an unpinned plan). No screenshots yet: 'exercise-plan-panel' registered for the Visualizer. Verified at main 13708085. No em-dashes."
+    priority: 2
+    sources:
+      - app/Livewire/Clinic/Hep/ExerciseLibrary.php
+      - app/Livewire/Clinic/Hep/PlanEditor.php
+      - app/Livewire/Clinic/Hep/Concerns/InteractsWithPlanDraft.php
+      - app/Enums/PlanContext.php
+      - app/Enums/ExerciseSide.php
+      - app/Services/Hep/HepPlanService.php
+      - app/Support/Hep/PlanDraft.php
+      - app/Models/Concerns/HasPrescriptionSchedule.php
+      - resources/views/livewire/clinic/hep/**
+    screenshots: [exercise-plan-panel]
+    last_reviewed_commit: 13708085d1c7bc6d9e25218ddc413433bebd0bcb
 
   - path: exercises/exercise-videos.md
     section: exercises
     audience: clinic-staff
-    status: published
+    status: review
+    note: "Refreshed for the inline video picker (Bundle 194 form rework + PR #1414 URL validation). The exercise form no longer opens the upload slide-over: the Media card takes a dropped video or 'Browse for a video' (upload auto-starts, titled after the exercise name, inline progress, 'Try again' on failure), 'Choose from video library' (modal 'Select Exercise Video', search + category filter, ready videos only, newest first, capped list), and 'Paste a YouTube or Vimeo link' (url rule, max 500 chars, errors 'Enter the full video link, starting with https://.' / share-link-not-search-page message). Old labels 'Upload Video' / 'Select from Library' / 'Add Video URL' are gone from the form. The 'Upload Video' slide-over (Title / Category, NOT 'Body Region' / Tags / Description; 'Upload successful!') now lives only on the Video Library page, reached via the library header 'More' -> 'Video Library' (still hidden from the sidebar). Thumbnail Selector / Animated GIF Preview labels and ExerciseVideoStatus labels unchanged since 057fea2 (diff empty). Roles re-verified: add/edit = owner + provider (ExerciseVideoPolicy create/update), delete = owner (policy delete); removed the old claim that staff can reuse videos (staff cannot edit exercises). Removed stray '</content></invoke>' tags at end of file. Verified at main 13708085. No em-dashes."
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ExerciseVideoResource/**
       - app/Models/ExerciseVideo.php
       - app/Livewire/ExerciseVideo/**
+      - resources/views/livewire/exercise-video/**
+      - resources/views/filament/clinic/resources/exercise-video/**
+      - app/Policies/ExerciseVideoPolicy.php
       - app/Enums/ExerciseVideoStatus.php
       - app/Services/MuxService.php
     screenshots: []
-    last_reviewed_commit: 057fea2ff55f721f9cb8d80987f7c6b6604e3769
+    last_reviewed_commit: 13708085d1c7bc6d9e25218ddc413433bebd0bcb
 
   - path: exercises/exercise-programs.md
     section: exercises
     audience: clinic-staff
-    status: published
+    status: review
+    note: "Rewritten for Bundle 194 slices D/H/I (Programs tab + program editor). Retired and removed from prose: the Exercise Programs list page, 'New Exercise Program' form (no create page exists), 'Import from Library', Estimated Duration field, drag reorder, Collapse/Expand all. Creating = build a plan then 'Save as program' (Program name required, Category). Programs tab: 'Search saved programs', 'For a patient', Filters (programs containing a matching exercise), cards with 4 thumbnails, meta '6 exercises · ~12 min · Knee', badge Platform/Custom/Archived, 'Assigned N×' (distinct clinic episodes), 'Open →'. Editor (/exercise-programs/{id}, title 'Program'): inline rename; table Sets / Reps / Hold (sec) / Rest (sec) / Weight / Side / Schedule; quick-add bar; 'Details' modal (Category, 'Provider description', 'Patient summary' helper 'Simpler description shown to patients', 'Save details'); 'Duplicate' (copy named '{name} (copy)'); 'Archive' ('Archive this program?' / 'It leaves your Programs tab and every picker. Patients who already have it keep their plan.', owner only); 'Assign to patient'; 'Save program'. Documented as caution: 'Library' discards unsaved edits and 'Assign to patient' assigns on-screen edits without saving the program (PlanEditor behavior; possible bug spun off). Platform programs read-only ('Platform program' tag) with 'Duplicate to your library'. Archived: 'Show archived (N)' -> open -> 'Restore'. Pinned-patient open -> add-or-replace -> Update plan. Template-not-live-link note kept (HepPlanService copies items to assignments). Verified at main 13708085. No em-dashes."
     priority: 2
     sources:
-      - app/Filament/Clinic/Resources/ExerciseProgramResource.php
       - app/Filament/Clinic/Resources/ExerciseProgramResource/**
+      - app/Livewire/Clinic/Hep/PlanEditor.php
+      - resources/views/livewire/clinic/hep/plan-editor.blade.php
+      - resources/views/livewire/clinic/hep/partials/programs.blade.php
+      - app/Services/Hep/HepPlanService.php
       - app/Models/ExerciseProgram.php
       - app/Models/ExerciseProgramItem.php
     screenshots: []
-    last_reviewed_commit: 34227328
+    last_reviewed_commit: 13708085d1c7bc6d9e25218ddc413433bebd0bcb
 
   - path: exercises/assigning-hep-to-an-episode.md
     section: exercises
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout d14896f..f939dfb, app PRs #952/#955, commits 640f31a/f6480a1). The episode Exercises tab (HEP assignments) gained two per-row actions in the ActionGroup. 'Edit Exercise' (pencil icon; shown on active, non-platform exercises the clinic can edit) opens the exercise's edit page and returns to the episode on save. 'Customize this Exercise' (shown on active PLATFORM exercises) opens a 'Customize this exercise?' modal ('Creates an editable copy of this platform exercise for your clinic and switches this patient's program to it. The shared platform original is unchanged.'; submit label 'Customize') with a 'Lock to {patient}' toggle (default ON; helper: locked = private to this patient with its own photos/video, unlocked = joins your exercise library and can be assigned to anyone) -- it copies the exercise to the clinic, swaps this assignment to the copy while keeping the assignment's logs/adherence/billing evidence, and opens the copy to edit. The exercise-name cell is now a link to the exercise view page. Writer: verify the action labels + modal copy against HepAssignmentsRelationManager and HepService::customizeAssignmentForPatient at origin/main; likely a new short section on editing/customizing an assigned exercise. last_reviewed_commit stays 057fea2."
+    status: review
+    note: "Rewritten and RETITLED 'Assigning exercises to a patient' (slug kept so links survive; SUMMARY + link texts updated). Supersedes the open stale flags (PRs #952/#955 Edit Exercise + Customize this Exercise; scout f3a11de..9040caa Bundle 180 assign-modal preview) and folds them in. Leads with 'Manage plan' (new primary header action, HepAssignmentsRelationManager::managePlanAction -> /exercises?episode=) as the main path; notes the library only pins ACTIVE/PAUSED episodes (discharged/completed opens unpinned). New 'Assigning exercises during enrollment' section for Bundle 98 (EpisodeResource 'Assign exercises' section, create-only + exercises_enabled; 'Add exercise' repeater; 'Exercise' + 'Preview'; HepPrescriptionFields 'Prescription Overrides' collapsed Sets/Reps/Hold (sec)/Rest (sec); Frequency; Notes; skipped rows -> 'Some exercises were not assigned' warning, episode still created). Exercises tab: columns # / Exercise / Prescription (sets, reps, hold only) / Frequency / Program ('Individual') / Status; Tier-2 caution that rest/weight/side/schedule from the builder are NOT shown in the table. Quick actions: 'New Exercise for this Patient', 'Assign Exercise' (preview), 'Assign Program' ('Exercise Program' / 'Assign Program'), 'Print Handout'. Tier-2 'Frequency versus schedule' caution: legacy HepFrequency is ignored for patients once times_per_day/days_per_week are set (HasPrescriptionSchedule::scheduleSummary). Row actions: Edit Prescription, Edit Exercise, Customize this Exercise ('Lock to {patient}' default on, 'Customize'), Deactivate, Reactivate; bulk 'Deactivate selected' / 'Reactivate selected'; drag reorder. Dropped the unverified 'reactivated rows return at the end' claim. Old episode-exercises-tab embed removed (missing Manage plan); spec updated to wait for 'Manage plan' so the Visualizer re-captures. Verified at main 13708085. No em-dashes."
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/RelationManagers/HepAssignmentsRelationManager.php
+      - app/Filament/Clinic/Resources/EpisodeResource/Schemas/HepPrescriptionFields.php
+      - app/Filament/Clinic/Resources/EpisodeResource.php
+      - app/Filament/Clinic/Resources/EpisodeResource/Pages/CreateEpisode.php
       - app/Models/HepAssignment.php
+      - app/Models/Concerns/HasPrescriptionSchedule.php
       - app/Enums/HepFrequency.php
       - app/Services/HepService.php
     screenshots: [episode-exercises-tab]
-    last_reviewed_commit: 057fea2ff55f721f9cb8d80987f7c6b6604e3769
+    last_reviewed_commit: 13708085d1c7bc6d9e25218ddc413433bebd0bcb
 
   - path: exercises/tracking-exercise-adherence.md
     section: exercises
     audience: clinic-staff
-    status: published
+    status: review
+    note: "Verify-only refresh during the Bundle 194 exercise rewrite. ExerciseAdherenceWidget unchanged f3a11de..13708085; re-verified 'Active Exercises' / '7-Day Adherence' / '30-Day Adherence' / 'Total Completions', hidden at 0 active exercises, green (success) at >= 50% else amber (warning), so 'about half' tightened to 'half their days or better'. Cleaned all em-dashes (file had 5 + frontmatter) and updated the related-article link text to 'Assigning exercises to a patient'. Screenshot exercise-adherence still valid. Verified at main 13708085."
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/Widgets/ExerciseAdherenceWidget.php
       - app/Models/ExerciseLog.php
       - app/Services/ExerciseCompletionService.php
     screenshots: [exercise-adherence]
-    last_reviewed_commit: 34227328
+    last_reviewed_commit: 13708085d1c7bc6d9e25218ddc413433bebd0bcb
 
   - path: exercises/the-patient-exercise-experience.md
     section: exercises
     audience: patient
     status: review
-    note: "Refreshed for the post-completion UX rework (app PR #951, commit ee89108). Rewrote the summary into a new 'The daily summary' section with its three headline states, verified against exercise-walkthrough.blade.php at main (8b6e116): 'Great Work!'/'You completed all N exercises today.' (all done), 'Nice Progress!'/'You completed X of Y exercises today.' + 'You can always come back to finish the rest.' (some done), 'Ready When You Are'/'Tap any exercise below to get started.' (none done), plus the 'No Exercises Assigned' empty state; noted every summary row is tappable and unfinished rows carry a 'Do Now' button. Added the new 'Review my exercises' button to 'After they finish' (summary shows Finish your check-in / Back to Home + Review my exercises + Print; View All shows the check-in + Print buttons only). Reworked the 'updated since your last visit' banner into a tappable 'See what's new ›' button that opens the all-exercises list. Rewrote the already-completed-exercise note for the 'Next: {name} →'/'View Summary' + '← Go Back' buttons and the twice-daily variant 'Logged for today. This one is prescribed twice daily, so feel free to fit in another round.' Added the '← Back to exercise' feedback cancel, the returning-patient landing (summary if all done, else first unfinished, not exercise 1), the 'Where did you feel discomfort?' label, and the linked-video '▶ Watch the video for this exercise' hint in View All. Re-verified the kept labels against main: page title 'Your Exercises' (walkthrough.blade), '💪 Start Your Exercises' (survey-form/thank-you), feeling emojis 😊 Easy / 😐 OK / 😰 Hard, pain levels None/Mild/Moderate/Strong/Severe, discomfort areas, 500-char comment limit, 'Note from your provider', print 'Home Exercise Program' + 'Print' + 'Scan for video exercises' QR (print.blade). Idempotent completion logging is invisible to the patient, so no prose. No new screenshots (existing patient-walkthrough still applies). No em-dashes."
+    note: "Refreshed for Bundle 194 slices G/I (patients see the whole prescription), Bundle 192 start/finish image pairs, and Bundle 52 part 2 (staff preview of the walkthrough). One-at-a-time screen: schedule badge from HasPrescriptionSchedule::scheduleSummary ('Every day', 'Twice a day, 3 days a week', '3 times a day, every day'; legacy HepFrequency label only when both new columns are null); tiles sets/reps/hold/rest/weight/side (side hidden for Both). Two-image exercises (image_frames != 1) captioned 'Start' / 'Finish'. View All dose line joins HepAssignment::patientPrescriptionParts with ' x ' (e.g. '3 sets x 10 reps x 30s rest x 5 lb x Left side'). Already-done message now '✅ Logged for today. This one is prescribed {twice|N times} a day, so feel free to fit in another round.' whenever times_per_day >= 2 (was 'twice daily'). Print handout: up to two images, parts joined with ' × ' incl. rest/weight/side, new schedule line. New 'Seeing it for yourself' section: Preview Survey or Clinic Settings 'Preview the patient experience' -> 'Open patient preview →', then '💪 Start Your Exercises' (top CTA only when Patient Exercise Flow = top of check-in, survey-form.blade $ctaBeforeSurvey) or 'Start your exercises now'; up to 3 newest active library exercises with defaults, nothing recorded, print hidden, empty library -> 'No exercises in your library yet'. All other labels from the prior refresh (8b6e116: daily summary states, feedback questions, Review my exercises, See what's new) untouched. Screenshot patient-walkthrough kept (still representative). Verified at main 13708085. No em-dashes."
     priority: 2
     sources:
       - app/Livewire/Patient/ExerciseWalkthrough.php
       - resources/views/livewire/patient/exercise-walkthrough.blade.php
       - app/Http/Controllers/Patient/ExerciseController.php
       - resources/views/patient/exercises/print.blade.php
+      - app/Models/HepAssignment.php
+      - app/Models/Concerns/HasPrescriptionSchedule.php
       - app/Models/ExerciseLog.php
       - app/Enums/ExerciseFeeling.php
     screenshots: [patient-walkthrough]
-    last_reviewed_commit: 8b6e116d952fe37dd747491a6fa0c9b9c759496e
+    last_reviewed_commit: 13708085d1c7bc6d9e25218ddc413433bebd0bcb
 
   # === 6. Messaging (Phase 2) ==============================================
   - path: messaging/the-messages-inbox.md
@@ -1092,7 +1137,8 @@ articles:
   - path: reference/glossary.md
     section: reference
     audience: clinic-staff
-    status: published
+    status: review
+    note: "Exercise rewrite (Bundle 194, app main 13708085): added 'Exercise plan' and 'Exercise program' entries after HEP, matching the deliberate app vocabulary (Program = reusable named set in the clinic library; Plan = one patient's exercises). Only those two entries were checked in this pass, so last_reviewed_commit stays bded151."
     priority: 1
     sources:
       - CLAUDE.MD
@@ -1182,11 +1228,27 @@ screenshots:
   # --- Phase 2 (Exercises / HEP) ---
   # selector/steps values are best-guesses tuned during local capture.
 
-  exercise-list:
+  # Bundle 194 (Sep 2026): /exercises is a card grid now; the old table-style
+  # exercise-list shot was retired with it.
+  exercise-library:
     role: clinic_owner
     url: https://demo.rtmlink.com/exercises
-    wait_for: "Exercises"
-    output: .gitbook/assets/exercises/exercise-list.png
+    wait_for: "For a patient"
+    output: .gitbook/assets/exercises/exercise-library.png
+
+  # The plan slide-over with a few exercises in it. Each click on an
+  # 'Add to plan' card button flips that button to 'Remove from plan', so the
+  # same selector picks the next card each time.
+  exercise-plan-panel:
+    role: provider
+    url: https://demo.rtmlink.com/exercises
+    steps:
+      - 'button[aria-label="Add to plan"]'
+      - 'button[aria-label="Add to plan"]'
+      - 'button[aria-label="Add to plan"]'
+      - 'button:has-text("Review plan")'
+    wait_for: "Back to library to add more"
+    output: .gitbook/assets/exercises/exercise-plan-panel.png
 
   episode-exercises-tab:
     role: provider
@@ -1194,7 +1256,7 @@ screenshots:
     steps:
       - 'a:text-is("[DEMO] Marcus Chen")'
       - 'button:has-text("Exercises")'
-    wait_for: "Assign Exercise"
+    wait_for: "Manage plan"
     output: .gitbook/assets/exercises/episode-exercises-tab.png
 
   exercise-adherence:

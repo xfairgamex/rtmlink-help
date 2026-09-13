@@ -21,12 +21,13 @@ The exercises open on a page titled **Your Exercises**. If you've changed their 
 By default the patient goes one exercise at a time. Each exercise shows:
 
 - The **name**, with a **New** or **Updated** tag if you recently changed it.
-- The **frequency** and the prescription (sets, reps, and hold).
-- The **video** (if attached) and any **images**.
+- **How often** to do it, for example **Twice a day, 3 days a week** or **Every day**. Exercises assigned with the older frequency setting show that label instead (for example, **Daily**).
+- The **prescription**: sets, reps, and hold, plus rest time, weight, and side (**Left** or **Right**) when you've set them. Side isn't shown for exercises done on both sides.
+- The **video** (if attached) and any **images**. When an exercise has a start and finish photo, they're captioned **Start** and **Finish** so the patient can see the movement.
 - The **instructions**.
 - A **Note from your provider** block, if you added one.
 
-They can jump between exercises with the **Exercise N of N** menu at the top, or switch to **View All** to see the whole list at once. In **View All**, each exercise has a **Done ✓** button that marks it complete right away, without the feedback questions. An exercise whose video is a linked (not uploaded) clip shows a **▶ Watch the video for this exercise** link here, since that kind of video has no preview image.
+They can jump between exercises with the **Exercise N of N** menu at the top, or switch to **View All** to see the whole list at once. In **View All**, each exercise shows its prescription on one line (for example, "3 sets x 10 reps x 30s rest x 5 lb x Left side") and has a **Done ✓** button that marks it complete right away, without the feedback questions. An exercise whose video is a linked (not uploaded) clip shows a **▶ Watch the video for this exercise** link here, since that kind of video has no preview image.
 
 ## Marking an exercise done, and how it felt
 
@@ -42,7 +43,7 @@ To record the exercise and move on, they tap **Continue →**.
 
 If they tapped **Done!** by mistake, a **← Back to exercise** link at the top of the questions closes them without recording anything.
 
-If they open an exercise they already finished that day, it shows **You already completed this exercise today** in place of the questions, so it can't be counted twice. An exercise you prescribed twice a day instead reads **Logged for today. This one is prescribed twice daily, so feel free to fit in another round.** From a completed exercise they move on with a **Next: [exercise name] →** button (or **View Summary** on the last one), and can step back with **← Go Back**.
+If they open an exercise they already finished that day, it shows **You already completed this exercise today** in place of the questions, so it can't be counted twice. An exercise you prescribed more than once a day instead reads, for example, **Logged for today. This one is prescribed twice a day, so feel free to fit in another round.** From a completed exercise they move on with a **Next: [exercise name] →** button (or **View Summary** on the last one), and can step back with **← Go Back**.
 
 ## The daily summary
 
@@ -66,7 +67,16 @@ The **View All** screen shows the same check-in and print buttons at the bottom.
 
 ## The printable version
 
-A patient who prefers paper can tap **🖨️ Print my exercises** to open a clean, printer-friendly **Home Exercise Program** sheet. It lists each exercise with its image, prescription, instructions, and any note, and a **Print** button in the corner sends it to the printer. A **QR code** at the bottom, labeled "Scan for video exercises," takes them back to the digital version with the videos.
+A patient who prefers paper can tap **🖨️ Print my exercises** to open a clean, printer-friendly **Home Exercise Program** sheet. It lists each exercise with up to two images, its prescription (including rest, weight, and side), how often to do it, the instructions, and any note, and a **Print** button in the corner sends it to the printer. A **QR code** at the bottom, labeled "Scan for video exercises," takes them back to the digital version with the videos.
+
+## Seeing it for yourself
+
+You can walk through the exercise experience the way a patient does, without a real patient:
+
+1. Open a survey preview with **Preview Survey** (see [Previewing a survey](../check-ins/previewing-a-survey.md)), or in **Clinic Settings** click **Open patient preview →** under **Preview the patient experience**.
+2. Tap **💪 Start Your Exercises** at the top of the check-in, or **Start your exercises now** on a home-program question. (The button at the top appears in the preview when **Patient Exercise Flow** is set to the top of the check-in.)
+
+The preview uses up to three of your clinic's newest library exercises with their default dosage. Nothing you tap is recorded, and the print button is hidden. If your library has no exercises yet, the preview says so.
 
 ## Why it matters for billing
 
@@ -75,6 +85,7 @@ Each day a patient marks at least one exercise complete counts as an RTM interac
 ## Related articles
 
 - [Understanding the Home Exercise Program](understanding-hep.md)
-- [Assigning HEP to an episode](assigning-hep-to-an-episode.md)
+- [Assigning exercises to a patient](assigning-hep-to-an-episode.md)
+- [Building an exercise plan](building-an-exercise-plan.md)
 - [Tracking exercise adherence](tracking-exercise-adherence.md)
 - [Understanding survey responses](../check-ins/understanding-survey-responses.md)
