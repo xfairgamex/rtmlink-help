@@ -41,6 +41,8 @@ If an exercise can't be assigned (for example, it's private to another patient),
 
 Open the patient's episode and select the **Exercises** tab.
 
+![A patient's Exercises tab with three exercises from a program, each with its prescription, frequency, program, and status, and the Manage plan, New Exercise for this Patient, Assign Exercise, Assign Program, and Print Handout buttons.](../.gitbook/assets/exercises/episode-exercises-tab.png)
+
 | Column | What it shows |
 |--------|---------------|
 | **#** | The order the patient does them in. |

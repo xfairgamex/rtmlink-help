@@ -39,6 +39,8 @@ As soon as your plan has an exercise, a dark **plan bar** appears at the top of 
 
 Click **Review plan** on the plan bar. A panel slides in from the right with every exercise in your plan.
 
+![The plan panel for a new plan with two exercises, each showing Sets, Reps, Hold, Rest, Weight, Side, Times / day, Days / week, and a note field, with Save as program and Assign to patient at the bottom.](../.gitbook/assets/exercises/exercise-plan-panel.png)
+
 1. **Name the plan** (optional): click the name at the top to rename it.
 2. For each exercise, set the prescription:
    - **Sets**, **Reps**, **Hold (sec)**, and **Rest (sec)**: leave any of these blank to use the exercise's library default. The default shows in gray inside the field and under the exercise name (for example, "library default 3 × 10, 5s").
