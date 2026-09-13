@@ -8,6 +8,10 @@ The **exercise library** is where every exercise you can prescribe lives. Each e
 
 Open **Exercises** in the left sidebar, under the **Templates** group. The page is titled **Exercise library** and has two tabs: **Exercises** and **Programs** (see [Exercise programs](exercise-programs.md)). You'll only see it if your clinic has exercises enabled.
 
+> **New to the rebuilt library?** A **What's new** strip at the top offers **Show me what changed**, a short guided tour of the page. Click **Got it** to hide the strip. You can replay the tour any time from **More**, then **What's new**.
+
+![The Exercise library searched for "ankle": exercise cards with illustrations, source tags, categories, default doses, and a + button on each card, with the Exercises and Programs tabs, More, and New exercise at the top.](../.gitbook/assets/exercises/exercise-library.png)
+
 ## Finding exercises
 
 Exercises appear as cards. To narrow them down:

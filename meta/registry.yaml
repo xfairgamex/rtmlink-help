@@ -381,7 +381,7 @@ articles:
     section: exercises
     audience: clinic-staff
     status: review
-    note: "Rewritten for Bundle 194 slices B/F/I/K/L/M (library page, new exercise form, usage counts). Supersedes the open stale flags (PR #952 edit-page warning; scout f3a11de..9040caa 'Created by' column/filter + inline '+' category create) and folds them in. /exercises is now a card grid (page title 'Exercise library', breadcrumb 'Library'): search (matches name, 'Also known as' aliases, tags, instructions, description; example 'heel raises' -> 'Standing Calf Raises' verified in database/data/exercise-library.json), 'Filters' facets Source ('RTMLink library' / '{clinic} custom') / Category / Difficulty / Equipment (single-select, 'Clear all'), 'Show more' (48 per batch). Card: 'No photo yet', play badge, source tag Platform/Imported/Clinic (table view says Custom), lock tag, dose line '3 × 10 · hold 5s', round +/check add-to-plan button. Drawer: plays video in place, Sets/Reps/Hold tiles, Instructions list, usage line 'On N patients' plans · in N programs at {clinic}' (active episodes only), 'Often paired with', footer 'Add to plan'/'Remove from plan' + 'Edit' or 'Duplicate & edit' (no modal; platform copy named '{name} Variation N', locked copy stays locked without media). New exercise form (header 'New exercise', owner/provider): Instructions textarea one step per line (NO helper text in UI; lines become numbered steps), 'Default dosage' Sets/Reps/Hold (sec)/Rest (sec), 'Details' Category (+ inline create) / Difficulty (Beginner/Intermediate/Advanced) / Equipment / Tags / 'Also known as', 'Media' (PNG/JPG/WebP, 10, 2 MB, Cmd/Ctrl+V), live 'Patient sees' card; buttons Create / 'Save and add to plan' / Create & create another; 'Copy details from exercise' on create only (copies instructions, category, difficulty, equipment, tags, defaults; name as Variation N; never media or aliases). Description field is GONE from the form. Edit: save bar 'Save changes'/'Discard'; subheading 'Assigned to N active patients and in N programs. Changes apply everywhere this exercise is assigned.' (hidden for locked or unused). Delete: 'Danger zone' -> Delete -> 'Delete this exercise?', owner only, non-platform only, patients keep it (plan shows 'Deleted from library'). Manage Categories moved into header 'More' menu ('Exercise Categories' / 'Add category' / 'Save categories'). Table view: More -> 'Table view' (/exercises/table, 'Exercises table'): columns incl. 'Created by'; filters Category/Source/Created by/Patient-specific/Hidden; platform row actions Hide/Restore (hidden exercises also drop out of the card grid, InteractsWithPlanDraft::baseQuery); 'Library view' back. AI 'Generate illustration' is Platform-only (not documented). Old table screenshot embed removed (retired UI); new 'exercise-library' capture registered for the Visualizer. Verified at main 13708085. No em-dashes."
+    note: "Rewritten for Bundle 194 slices B/F/I/K/L/M (library page, new exercise form, usage counts). Supersedes the open stale flags (PR #952 edit-page warning; scout f3a11de..9040caa 'Created by' column/filter + inline '+' category create) and folds them in. /exercises is now a card grid (page title 'Exercise library', breadcrumb 'Library'): search (matches name, 'Also known as' aliases, tags, instructions, description; example 'heel raises' -> 'Standing Calf Raises' verified in database/data/exercise-library.json), 'Filters' facets Source ('RTMLink library' / '{clinic} custom') / Category / Difficulty / Equipment (single-select, 'Clear all'), 'Show more' (48 per batch). Card: 'No photo yet', play badge, source tag Platform/Imported/Clinic (table view says Custom), lock tag, dose line '3 × 10 · hold 5s', round +/check add-to-plan button. Drawer: plays video in place, Sets/Reps/Hold tiles, Instructions list, usage line 'On N patients' plans · in N programs at {clinic}' (active episodes only), 'Often paired with', footer 'Add to plan'/'Remove from plan' + 'Edit' or 'Duplicate & edit' (no modal; platform copy named '{name} Variation N', locked copy stays locked without media). New exercise form (header 'New exercise', owner/provider): Instructions textarea one step per line (NO helper text in UI; lines become numbered steps), 'Default dosage' Sets/Reps/Hold (sec)/Rest (sec), 'Details' Category (+ inline create) / Difficulty (Beginner/Intermediate/Advanced) / Equipment / Tags / 'Also known as', 'Media' (PNG/JPG/WebP, 10, 2 MB, Cmd/Ctrl+V), live 'Patient sees' card; buttons Create / 'Save and add to plan' / Create & create another; 'Copy details from exercise' on create only (copies instructions, category, difficulty, equipment, tags, defaults; name as Variation N; never media or aliases). Description field is GONE from the form. Edit: save bar 'Save changes'/'Discard'; subheading 'Assigned to N active patients and in N programs. Changes apply everywhere this exercise is assigned.' (hidden for locked or unused). Delete: 'Danger zone' -> Delete -> 'Delete this exercise?', owner only, non-platform only, patients keep it (plan shows 'Deleted from library'). Manage Categories moved into header 'More' menu ('Exercise Categories' / 'Add category' / 'Save categories'). Table view: More -> 'Table view' (/exercises/table, 'Exercises table'): columns incl. 'Created by'; filters Category/Source/Created by/Patient-specific/Hidden; platform row actions Hide/Restore (hidden exercises also drop out of the card grid, InteractsWithPlanDraft::baseQuery); 'Library view' back. AI 'Generate illustration' is Platform-only (not documented). Old table screenshot embed removed (retired UI); new 'exercise-library' capture registered for the Visualizer. Verified at main 13708085. No em-dashes. SCREENSHOTS (help PR after #117): exercise-library captured from demo (?q=ankle, owner login) and embedded under the intro. Also added a Tier-2 blockquote for the Bundle 194 slice N 'What's new' strip + guided tour (app PR #1455, af14994): strip button 'Show me what changed', dismiss 'Got it' (saved per user), replay via More -> 'What's new' (ExerciseLibrary page header + whats-new.blade). Verified the whole 13708085..af14994 diff: only the strip/tour, data-tour attributes and CSS; nothing else in the article changed, so re-stamped af14994. NOTE for app team: the tour's plan-bar step says the bar collects 'at the bottom of the page' but .hep-bar is sticky top:0 (article's 'top of the library' is correct)."
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/ExerciseResource/**
@@ -395,13 +395,13 @@ articles:
       - app/Enums/ExerciseCategory.php
       - app/Enums/ExerciseDifficulty.php
     screenshots: [exercise-library]
-    last_reviewed_commit: 13708085d1c7bc6d9e25218ddc413433bebd0bcb
+    last_reviewed_commit: af14994e04cc7884116fedbfe034a16ffdab872c
 
   - path: exercises/building-an-exercise-plan.md
     section: exercises
     audience: clinic-staff
     status: review
-    note: "NEW article for the Exercise Program Builder (Bundle 194 slices A/B/C/E/H/I/J). Covers the plan as a per-user draft (session-backed PlanDraftStore; nothing written until assign/update/save). Step 1 add: card + button / drawer 'Add to plan'; plan bar 'Plan · N exercises · ~M min' with 'Clear' / 'Review plan'; 'Save and add to plan' on the new exercise form. Step 2 slide-over (plan-panel.blade): rename, Sets (1-20) / Reps (1-100) / Hold (sec) (0-300) / Rest (sec) (0-600), blank = library default (placeholder + 'library default 3 × 10, 5s' sub-line), Weight free text (50), Side cycles Both/Left/Right, 'Times / day' stepper 1-6, 'Days / week' stepper 1-7 (default 7 = every day), 'Note to patient (optional)' (500), up/down reorder, x remove, '+ Back to library to add more'; meta 'N exercises · ~M min · patient does these N days a week' (minutes estimate from sets/reps/hold). Expand icon -> full-screen 'Review plan' (/exercises/plan) with quick-add bar + 'Library' back. Step 3 assign (assign-modal.blade, PlanContext): 'Assign to patient' -> 'Assign as a plan', 'Patient · episode' picker lists ACTIVE and PAUSED episodes only, own patients first; 'Patient preview'; 'Assign & send' / 'Assign'; APPENDS to existing exercises with no dedupe (HepPlanService) -> documented as a caution. Changing a patient's plan: 'Manage plan' (episode tab) or 'For a patient' -> 'Who is this plan for?'; patient badge; private exercises join + sort first; 'Update plan' -> 'Update {First}'s plan' -> 'Update & notify' / 'Update plan'; kept rows keep logs/adherence/billing, removed rows DEACTIVATED not deleted, new rows added; toast 'X added · Y kept · Z removed'; 'Revert changes'; badge x clears the plan with no confirmation; add-or-replace prompt 'Add to current plan' / 'Replace current plan'; legacy HepFrequency maps to times/days on load (HasPrescriptionSchedule). Notify: 'Notify {First}' default on only with a reachable channel AND messages.send; chips 'Text message' / 'Email' follow episode communication methods + consent; default 'Hi {First}! Here's your updated home program.' + link on its own line; unreachable -> reason shown + assigned without message (UI copy contains an em-dash, so paraphrased); send failure still assigns. Save as program: 'Save as program' -> 'Program name' (req) + 'Category' -> 'Save program'; locked + deleted exercises silently left out. 'Deleted from library' tag. Known app bugs found during research were NOT documented as behavior (spun off separately): slide-over footer label/action swap in Program context, steppers active on read-only programs, 'already has 0 exercises' prompt. 'Which way to start' bullets drafted at Joe's request; each route verified (enrollment 'Assign exercises' section; 'Manage plan'; opening a program while a patient is pinned keeps episode context with 'Update plan' as primary, PlanEditor; 'For a patient' first surfaces that patient's private exercises; 'Save as program' from an unpinned plan). No screenshots yet: 'exercise-plan-panel' registered for the Visualizer. Verified at main 13708085. No em-dashes."
+    note: "NEW article for the Exercise Program Builder (Bundle 194 slices A/B/C/E/H/I/J). Covers the plan as a per-user draft (session-backed PlanDraftStore; nothing written until assign/update/save). Step 1 add: card + button / drawer 'Add to plan'; plan bar 'Plan · N exercises · ~M min' with 'Clear' / 'Review plan'; 'Save and add to plan' on the new exercise form. Step 2 slide-over (plan-panel.blade): rename, Sets (1-20) / Reps (1-100) / Hold (sec) (0-300) / Rest (sec) (0-600), blank = library default (placeholder + 'library default 3 × 10, 5s' sub-line), Weight free text (50), Side cycles Both/Left/Right, 'Times / day' stepper 1-6, 'Days / week' stepper 1-7 (default 7 = every day), 'Note to patient (optional)' (500), up/down reorder, x remove, '+ Back to library to add more'; meta 'N exercises · ~M min · patient does these N days a week' (minutes estimate from sets/reps/hold). Expand icon -> full-screen 'Review plan' (/exercises/plan) with quick-add bar + 'Library' back. Step 3 assign (assign-modal.blade, PlanContext): 'Assign to patient' -> 'Assign as a plan', 'Patient · episode' picker lists ACTIVE and PAUSED episodes only, own patients first; 'Patient preview'; 'Assign & send' / 'Assign'; APPENDS to existing exercises with no dedupe (HepPlanService) -> documented as a caution. Changing a patient's plan: 'Manage plan' (episode tab) or 'For a patient' -> 'Who is this plan for?'; patient badge; private exercises join + sort first; 'Update plan' -> 'Update {First}'s plan' -> 'Update & notify' / 'Update plan'; kept rows keep logs/adherence/billing, removed rows DEACTIVATED not deleted, new rows added; toast 'X added · Y kept · Z removed'; 'Revert changes'; badge x clears the plan with no confirmation; add-or-replace prompt 'Add to current plan' / 'Replace current plan'; legacy HepFrequency maps to times/days on load (HasPrescriptionSchedule). Notify: 'Notify {First}' default on only with a reachable channel AND messages.send; chips 'Text message' / 'Email' follow episode communication methods + consent; default 'Hi {First}! Here's your updated home program.' + link on its own line; unreachable -> reason shown + assigned without message (UI copy contains an em-dash, so paraphrased); send failure still assigns. Save as program: 'Save as program' -> 'Program name' (req) + 'Category' -> 'Save program'; locked + deleted exercises silently left out. 'Deleted from library' tag. Known app bugs found during research were NOT documented as behavior (spun off separately): slide-over footer label/action swap in Program context, steppers active on read-only programs, 'already has 0 exercises' prompt. 'Which way to start' bullets drafted at Joe's request; each route verified (enrollment 'Assign exercises' section; 'Manage plan'; opening a program while a patient is pinned keeps episode context with 'Update plan' as primary, PlanEditor; 'For a patient' first surfaces that patient's private exercises; 'Save as program' from an unpinned plan). No screenshots yet: 'exercise-plan-panel' registered for the Visualizer. Verified at main 13708085. No em-dashes. SCREENSHOTS: exercise-plan-panel captured (provider login, ?q=ankle, cropped to aside.hep-panel) and embedded under Step 2."
     priority: 2
     sources:
       - app/Livewire/Clinic/Hep/ExerciseLibrary.php
@@ -455,7 +455,7 @@ articles:
     section: exercises
     audience: clinic-staff
     status: review
-    note: "Rewritten and RETITLED 'Assigning exercises to a patient' (slug kept so links survive; SUMMARY + link texts updated). Supersedes the open stale flags (PRs #952/#955 Edit Exercise + Customize this Exercise; scout f3a11de..9040caa Bundle 180 assign-modal preview) and folds them in. Leads with 'Manage plan' (new primary header action, HepAssignmentsRelationManager::managePlanAction -> /exercises?episode=) as the main path; notes the library only pins ACTIVE/PAUSED episodes (discharged/completed opens unpinned). New 'Assigning exercises during enrollment' section for Bundle 98 (EpisodeResource 'Assign exercises' section, create-only + exercises_enabled; 'Add exercise' repeater; 'Exercise' + 'Preview'; HepPrescriptionFields 'Prescription Overrides' collapsed Sets/Reps/Hold (sec)/Rest (sec); Frequency; Notes; skipped rows -> 'Some exercises were not assigned' warning, episode still created). Exercises tab: columns # / Exercise / Prescription (sets, reps, hold only) / Frequency / Program ('Individual') / Status; Tier-2 caution that rest/weight/side/schedule from the builder are NOT shown in the table. Quick actions: 'New Exercise for this Patient', 'Assign Exercise' (preview), 'Assign Program' ('Exercise Program' / 'Assign Program'), 'Print Handout'. Tier-2 'Frequency versus schedule' caution: legacy HepFrequency is ignored for patients once times_per_day/days_per_week are set (HasPrescriptionSchedule::scheduleSummary). Row actions: Edit Prescription, Edit Exercise, Customize this Exercise ('Lock to {patient}' default on, 'Customize'), Deactivate, Reactivate; bulk 'Deactivate selected' / 'Reactivate selected'; drag reorder. Dropped the unverified 'reactivated rows return at the end' claim. Old episode-exercises-tab embed removed (missing Manage plan); spec updated to wait for 'Manage plan' so the Visualizer re-captures. Verified at main 13708085. No em-dashes."
+    note: "Rewritten and RETITLED 'Assigning exercises to a patient' (slug kept so links survive; SUMMARY + link texts updated). Supersedes the open stale flags (PRs #952/#955 Edit Exercise + Customize this Exercise; scout f3a11de..9040caa Bundle 180 assign-modal preview) and folds them in. Leads with 'Manage plan' (new primary header action, HepAssignmentsRelationManager::managePlanAction -> /exercises?episode=) as the main path; notes the library only pins ACTIVE/PAUSED episodes (discharged/completed opens unpinned). New 'Assigning exercises during enrollment' section for Bundle 98 (EpisodeResource 'Assign exercises' section, create-only + exercises_enabled; 'Add exercise' repeater; 'Exercise' + 'Preview'; HepPrescriptionFields 'Prescription Overrides' collapsed Sets/Reps/Hold (sec)/Rest (sec); Frequency; Notes; skipped rows -> 'Some exercises were not assigned' warning, episode still created). Exercises tab: columns # / Exercise / Prescription (sets, reps, hold only) / Frequency / Program ('Individual') / Status; Tier-2 caution that rest/weight/side/schedule from the builder are NOT shown in the table. Quick actions: 'New Exercise for this Patient', 'Assign Exercise' (preview), 'Assign Program' ('Exercise Program' / 'Assign Program'), 'Print Handout'. Tier-2 'Frequency versus schedule' caution: legacy HepFrequency is ignored for patients once times_per_day/days_per_week are set (HasPrescriptionSchedule::scheduleSummary). Row actions: Edit Prescription, Edit Exercise, Customize this Exercise ('Lock to {patient}' default on, 'Customize'), Deactivate, Reactivate; bulk 'Deactivate selected' / 'Reactivate selected'; drag reorder. Dropped the unverified 'reactivated rows return at the end' claim. Old episode-exercises-tab embed removed (missing Manage plan); spec updated to wait for 'Manage plan' so the Visualizer re-captures. Verified at main 13708085. No em-dashes. SCREENSHOTS: episode-exercises-tab re-captured after running DemoHepSeeder on prod (demo tenant only; the nightly rtmlink:reset-demo does not re-run it), cropped to the relation manager, and re-embedded under 'The Exercises tab'."
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/RelationManagers/HepAssignmentsRelationManager.php
@@ -473,7 +473,7 @@ articles:
     section: exercises
     audience: clinic-staff
     status: review
-    note: "Verify-only refresh during the Bundle 194 exercise rewrite. ExerciseAdherenceWidget unchanged f3a11de..13708085; re-verified 'Active Exercises' / '7-Day Adherence' / '30-Day Adherence' / 'Total Completions', hidden at 0 active exercises, green (success) at >= 50% else amber (warning), so 'about half' tightened to 'half their days or better'. Cleaned all em-dashes (file had 5 + frontmatter) and updated the related-article link text to 'Assigning exercises to a patient'. Screenshot exercise-adherence still valid. Verified at main 13708085."
+    note: "Verify-only refresh during the Bundle 194 exercise rewrite. ExerciseAdherenceWidget unchanged f3a11de..13708085; re-verified 'Active Exercises' / '7-Day Adherence' / '30-Day Adherence' / 'Total Completions', hidden at 0 active exercises, green (success) at >= 50% else amber (warning), so 'about half' tightened to 'half their days or better'. Cleaned all em-dashes (file had 5 + frontmatter) and updated the related-article link text to 'Assigning exercises to a patient'. Screenshot exercise-adherence still valid. Verified at main 13708085. SCREENSHOTS: exercise-adherence re-captured on the redesigned episode page (same seeded demo data, 86% / 60%); alt text still accurate."
     priority: 2
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource/Widgets/ExerciseAdherenceWidget.php
@@ -1236,33 +1236,59 @@ screenshots:
 
   # Bundle 194 (Sep 2026): /exercises is a card grid now; the old table-style
   # exercise-list shot was retired with it.
+  # ?q= keeps the full-page shot compact (the unfiltered grid is ~5000px tall)
+  # and shows search in use. Card illustrations are CSS background images that
+  # the capture doesn't wait for, so the harmless search-box clicks below are a
+  # deliberate delay (the harness pauses 0.5s after each step) that lets them load.
   exercise-library:
     role: clinic_owner
-    url: https://demo.rtmlink.com/exercises
+    url: https://demo.rtmlink.com/exercises?q=ankle
+    steps:
+      - 'input.hep-search-input'
+      - 'input.hep-search-input'
+      - 'input.hep-search-input'
+      - 'input.hep-search-input'
+      - 'input.hep-search-input'
+      - 'input.hep-search-input'
     wait_for: "For a patient"
     output: .gitbook/assets/exercises/exercise-library.png
 
-  # The plan slide-over with a few exercises in it. Each click on an
-  # 'Add to plan' card button flips that button to 'Remove from plan', so the
-  # same selector picks the next card each time.
+  # The plan slide-over with three exercises in it. Steps target the 1st/2nd/3rd
+  # card's +/check toggle by POSITION (explicit selectors run in Playwright strict
+  # mode, and re-targeting "the first Add button" races the server round-trip,
+  # which can toggle the same card twice). The search-box click is a harmless
+  # first step that gives the page time to boot before the toggles; ?q= keeps
+  # the page light and the first three results illustrated.
   exercise-plan-panel:
     role: provider
-    url: https://demo.rtmlink.com/exercises
+    url: https://demo.rtmlink.com/exercises?q=ankle
     steps:
-      - 'button[aria-label="Add to plan"]'
-      - 'button[aria-label="Add to plan"]'
-      - 'button[aria-label="Add to plan"]'
+      - 'input.hep-search-input'
+      - ':nth-match([data-testid="card-toggle"], 1)'
+      - ':nth-match([data-testid="card-toggle"], 2)'
+      - ':nth-match([data-testid="card-toggle"], 3)'
       - 'button:has-text("Review plan")'
     wait_for: "Back to library to add more"
+    # Crop to the slide-over: the full page is taller than the viewport, so an
+    # uncropped shot shows an undimmed strip below the fixed scrim.
+    selector: 'aside.hep-panel'
     output: .gitbook/assets/exercises/exercise-plan-panel.png
 
+  # The tab click is scoped to the VISIBLE Filament tab button: a bare
+  # 'button:has-text("Exercises")' resolved to a hidden element and timed out
+  # after the Sep 2026 episode-page changes. wait_for is the seeded program name
+  # (DemoHepSeeder), NOT "Manage plan": the nightly rtmlink:reset-demo does not
+  # re-run DemoHepSeeder, and "Manage plan" renders on an EMPTY tab too, so the
+  # old anchor let an empty-state shot silently replace a good one. Cropped to
+  # the relation manager (full-page shots float the sidebar mid-page).
   episode-exercises-tab:
     role: provider
     url: https://demo.rtmlink.com/episodes
     steps:
       - 'a:text-is("[DEMO] Marcus Chen")'
-      - 'button:has-text("Exercises")'
-    wait_for: "Manage plan"
+      - 'button.fi-tabs-item:has-text("Exercises") >> visible=true'
+    wait_for: "[DEMO] Knee Recovery Program"
+    selector: '.fi-resource-relation-manager'
     output: .gitbook/assets/exercises/episode-exercises-tab.png
 
   exercise-adherence:
