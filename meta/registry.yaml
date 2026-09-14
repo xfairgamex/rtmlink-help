@@ -168,7 +168,7 @@ articles:
   - path: patients/patient-consent-management.md
     section: patients
     audience: clinic-staff
-    status: stale
+    status: review
     note: "STALE (scout f3a11de..9040caa, app PRs #1294/#1296). New SMS carrier-block signal with a hidden consequence for consent. A carrier-level block (the patient's mobile carrier rejects a send after a STOP, or the patient texts STOP) is now recorded on the patient (sms_carrier_blocked_at); while it is in place SMS will NOT deliver even if SMS consent is ON, and turning consent off then on again does NOT clear it -- only the patient texting START (or a phone change / a later delivered status) lifts it. The patient edit form's SMS consent toggle now carries an icon-only warning hint (tooltip 'Carrier block in place') plus helper text naming the clinic-local block date and the number to text START to; the same notice shows as text on the patient view page phone entry and on the re-enable-consent confirmation, and as a hover icon on the patient list phone column + the episode page Communication Methods entry (SMS episodes only). Saving is never blocked. Writer: add a Tier-2 note explaining that a carrier block silences SMS regardless of consent and how it clears (patient texts START); verify the toggle hint label/tooltip/helper against PatientResource + Patient (isSmsCarrierBlocked / smsCarrierBlockNotice) at origin/main; keep it patient-consent voice, do not name the SMS vendor or Filament."
     priority: 1
     sources:
@@ -177,7 +177,7 @@ articles:
       - app/Services/Sms/PatientOptOutService.php
       - app/Services/Sms/SmsKeywordHandler.php
     screenshots: []
-    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+    last_reviewed_commit: f2669ce51c110b9f07fea6c6b73b75f1c64a360d
 
   - path: patients/messaging-a-patient.md
     section: patients
