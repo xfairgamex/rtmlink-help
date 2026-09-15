@@ -25,3 +25,7 @@ redirects:
   surveys/previewing-a-survey: check-ins/previewing-a-survey.md
   surveys/understanding-survey-responses: check-ins/understanding-survey-responses.md
   surveys/survey-amendments: check-ins/survey-amendments.md
+  # Sep 2026: the app renamed a patient's "plan" to their "program" and saved
+  # "programs" to "HEP templates".
+  exercises/building-an-exercise-plan: exercises/building-a-patients-program.md
+  exercises/exercise-programs: exercises/hep-templates.md
