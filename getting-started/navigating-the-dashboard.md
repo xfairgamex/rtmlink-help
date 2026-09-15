@@ -69,8 +69,8 @@ Each incomplete step shows a **Take action** link that drops you directly onto t
 
 Everything in RTMLink is reached from the **sidebar** on the left.
 
-- Near the top are the screens you'll use most: **Patients**, **Episodes**, **Messages**, **Check-Ins**, **Appointments**, and **Billing**.
-- Below those are grouped sections you'll open less often: **Templates** (your reusable check-in and message templates, exercises, and more) and **Settings** (clinic settings, your team, integrations, and your own **My Settings**).
+- Near the top are the screens you'll use most: **Patients**, **Episodes**, **Check-Ins**, **Appointments**, **Exercises** (if your clinic uses them), **Messages**, and **Billing**.
+- Below those are grouped sections you'll open less often: **Templates** (your reusable check-in, message, and clinical note templates) and **Settings** (clinic settings, your team, integrations, and your own **My Settings**).
 - Your name opens the user menu, where you'll find **My Settings** and the sign-out option.
 
 What appears in your sidebar depends on your role. See [Understanding your role](understanding-your-role.md). You can collapse the sidebar to give yourself more room whenever you like.
