@@ -21,12 +21,12 @@ The **Search** box filters live by patient name, phone, or email. You can also f
 
 ## Reading a conversation
 
-Click a row to open the thread. Outbound messages appear on the right labeled **You**, patient replies on the left under the patient's name, and every timestamp is shown in your clinic's timezone. Opening a conversation marks its unread messages as read automatically.
+Click a row to open the thread. Outbound messages appear on the right labeled **You**, patient replies on the left under the patient's name, and every timestamp is shown in your clinic's timezone. Opening a conversation marks its unread messages as read automatically, unless you are an auditor: auditors read threads without clearing the unread badge for the team.
 
 Two buttons sit in the thread header:
 
 - **View Patient** jumps to the patient's record.
-- **Mark unread** flags the conversation for follow-up: it closes the thread, floats the conversation back to the top of the list with its unread badge, and confirms with **Marked as unread**.
+- **Mark unread** flags the conversation for follow-up: it closes the thread, floats the conversation back to the top of the list with its unread badge, and confirms with **Marked as unread**. Auditors do not see this button.
 
 ## Empty states
 

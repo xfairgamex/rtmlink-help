@@ -38,6 +38,7 @@
 * [Understanding surveys](check-ins/understanding-surveys.md)
 * [The Check-Ins queue](check-ins/the-check-ins-queue.md)
 * [Reviewing daily check-ins](check-ins/reviewing-daily-check-ins.md)
+* [Seeing you today, not on RTM](check-ins/seeing-you-today-not-on-rtm.md)
 * [Logging time and contacts during review](check-ins/logging-time-during-review.md)
 * [Daily summary emails and texts](check-ins/daily-summary-notifications.md)
 * [Summary notification settings](check-ins/summary-notification-settings.md)

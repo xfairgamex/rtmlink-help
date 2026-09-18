@@ -30,14 +30,15 @@ These are live counts, so they're a fast way to take the pulse of the clinic wit
 
 If you have the Provider role, you'll see a **Your Action Feed** panel above the metric cards. It shows only your patients, so you can work through your list without sifting through the whole clinic's data.
 
-The feed surfaces four things:
+The feed surfaces five things:
 
 - **Surveys to review:** check-in responses from your patients waiting for your sign-off. Clicking the count badge takes you straight to the review page.
 - **Claims to sign:** billing claims on your patients' episodes that still need a clinical note signed. Clicking takes you to your filtered claims list.
+- **Seeing you today, not on RTM:** patients on today's schedule who are not enrolled, with **Enroll** and **Not for RTM** beside each one. It shows the first five, then a line reading **and N more on today's schedule.** See [Seeing you today, not on RTM](../check-ins/seeing-you-today-not-on-rtm.md).
 - **Revenue opportunities:** patients who are close to meeting (or at risk of missing) a billing threshold. Each row names the patient, the reason, and shows a quick-action button to address it.
 - **At risk of dropping off:** patients who have had no billable activity for seven or more days. Their name links directly to their episode so you can act quickly.
 
-If there's nothing to act on, the feed shows a confirmation that you're all caught up.
+If there's nothing to act on, the feed shows a confirmation that you're all caught up. All five lists have to be clear for it to appear, so an unenrolled patient on today's schedule keeps the feed open even when your reviews and claims are done.
 
 The **Enroll patient** link appears in the feed if you have permission to create episodes, giving you a quick way to start a new patient without navigating away.
 

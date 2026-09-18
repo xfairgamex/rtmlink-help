@@ -16,6 +16,7 @@ The page is titled with the provider's name followed by "Survey Summary", dated 
 
 ## What the page shows
 
+- **Seeing you today, not on RTM**: above the lists, the patients on today's schedule who are not enrolled, with **Enroll** and **Not for RTM** beside each one. It is absent when there is nobody to decide about. See [Seeing you today, not on RTM](seeing-you-today-not-on-rtm.md).
 - **Today's Patients**: the main list. When the clinic has appointment data, it focuses on patients seen today; each row also shows the appointment time and status.
 - **Other Unread Comments**: patients not seen today whose responses include unread free-text comments, so written notes never sit unnoticed.
 - A banner at the bottom counts anything else outstanding and offers **View All Unread Surveys** to review the full backlog in one list.
