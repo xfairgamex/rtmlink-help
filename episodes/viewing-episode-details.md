@@ -55,6 +55,7 @@ Progress toward the treatment-management codes (`98979`, `98980`, and `98981`), 
 - **Continues From:** shown only when this episode continues an earlier one, with a link back to it.
 - **Assigned Survey**, **Frequency**, **Send Time**, **Communication Methods:** the schedule set at enrollment. See [How often surveys are sent](enrolling-a-patient.md#how-often-surveys-are-sent).
 - **RTM Consent:** a colored badge showing where the patient's RTM program consent stands. It reads **Accepted** (green, noting how consent was obtained, online, verbal, or paper form, along with the witness and date), **Pending patient agreement** (amber, while the patient has not yet agreed online), or **Declined** (red). This badge appears only when consent was captured for the episode; episodes enrolled before your clinic started requiring RTM consent have none. See [Enrolling a patient](enrolling-a-patient.md) for how consent is recorded.
+- **Welcome Message:** a blue badge reading **Scheduled for** with a date and time, shown only while a welcome message set during enrollment has not gone out yet. Once it sends, the badge disappears. Surveys wait for it, so this is the thing to check if a newly enrolled patient has had nothing yet. See [Enrolling a patient](enrolling-a-patient.md).
 - **Survey Link:** the patient's personal survey link. Click the copy icon to copy it (handy for reading the link to a patient over the phone).
 
 ## The working area

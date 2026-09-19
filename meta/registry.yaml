@@ -83,8 +83,8 @@ articles:
   - path: getting-started/navigating-the-dashboard.md
     section: getting-started
     audience: clinic-staff
-    status: stale
-    note: "EXERCISE NAV (app PR #1462, main 5a5a40eb): Exercises moved into the main sidebar below Appointments, so the sidebar sentence now lists Patients / Episodes / Check-Ins / Appointments / Exercises / Messages / Billing (actual nav sort order) and the Templates group description drops exercises (visible Templates items: Check-In, Message, Clinical Note Templates; HEP Templates + Video Library are in the group but hidden). Only that bullet was touched; the existing stale flags remain open. --- PRIOR: UPDATE (scout f3a11de..9040caa, app PR #1304 + follow-up). The per-therapist RTM enrollment rollup widget (flagged stale below) had its caseload attribution reworked and its footnote reworded: a patient is now attributed to a therapist through a source chain -- the latest appointment's provider_user_id (HENO/CSV), else the mapped external id (DrChrono), else the latest episode's assigned provider, else the patient's primary provider -- so a fresh appointment feed no longer pushes therapists to zero and patients to 'not linked'. This refines the existing stale flag (no separate article action): verify the current widget footnote / empty-state copy against TherapistEnrollmentRollupService + the widget blade at origin/main. --- STALE (scout 3280d5e..f3a11de, app PR #1195 / commit d94db71, Bundle 173). A new owner-level dashboard widget: the per-therapist RTM enrollment rollup (TherapistEnrollmentRollupWidget, registered in the panel's dashboard widgets, canView = owner-level access only, sort 3, full width). It shows each therapist's RTM enrollment rate across their caseload for clinic owners; a companion change fixed how an empty caseload renders (shows n/a instead of a bare percent, PR #1197) and attributes caseload by who saw the patient rather than the primary provider. Writer: add a Tier-2 description of this widget to the dashboard article (owners only); verify heading/columns/empty-state copy against TherapistEnrollmentRollupWidget + TherapistEnrollmentRollupService + the widget blade at origin/main; do NOT name Filament/Livewire. last_reviewed_commit stays. --- PRIOR WRITER NOTE: \"Unread Surveys\" KPI now returns real counts — was hardcoded 0; ClinicDashboardMetrics.unreadSurveysCount() wired to UnreadSurveyService (PR #535); dashboard page heading changed from '{name} Dashboard' to '{name}'s RTMLink Dashboard' (PR #587); NeedsAttentionWidget and QuickActionsWidget removed (PRs #628/#620); replaced by two role-segmented widgets: ProviderActionFeedWidget (providers only — surveys/HEPs to review, claims to sign, near-billable nudges, drop-offs scoped to assigned patients, PR #617/Bundle 50) and ClinicOwnerInsightsWidget (owners/staff/billing — revenue opportunities, claims awaiting sign-off, patient drop-offs with quick Pause/Stop actions, revenue values shown to owners/billing only, drill-down by provider, PR #620/Bundle 51); 'Send reminder' on drop-off rows now opens the patient messaging composer (PR #622)"
+    status: review
+    note: "WRITER (partial, reconciled for app PRs #1496/#1506/#1509 only). Your Action Feed now surfaces five things, not four: the RTM enrollment prompt renders inside the feed between the count pills and Revenue opportunities, capped at 5 rows with an 'and N more on today's schedule.' footer. Also corrected the all-caught-up line, which now additionally requires the enrollment prompt to be empty. The article's PRIOR stale flags are NOT cleared by this pass and last_reviewed_commit is deliberately left where it was."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Dashboard.php
@@ -211,8 +211,8 @@ articles:
   - path: episodes/enrolling-a-patient.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 8de5fb3..3280d5e, app PR #1148, commit c63f804). The Create/Edit Episode form gained a 'Discipline' select (options 'Physical Therapy (PT)' / 'Occupational Therapy (OT)' / 'Speech-Language Pathology (SLP)', placeholder 'Provider default', helper 'Overrides the provider's discipline in clinical notes.'). It sets the plan-of-care discipline used for this episode's clinical-note {DISCIPLINE} tokens and its Medicare therapy modifier (GP/GO/GN on DrChrono), overriding the assigned provider's discipline; leaving it blank inherits the provider's. Writer: add a Tier-2 line where the enrollment fields are described (verify label/placeholder/helper against EpisodeResource form at origin/main). --- WRITER NOTE (exercise rewrite, Bundle 98, app main 13708085): added a short 'Assign exercises' subsection between Survey & Schedule and Notes, verified against EpisodeResource form (Section 'Assign exercises', create-only + exercises_enabled, repeater 'Add exercise', 'Exercise' select + 'Preview') and CreateEpisode::afterCreate skipped-row warning ('Some exercises were not assigned', episode still created); links to exercises/assigning-hep-to-an-episode#assigning-exercises-during-enrollment. Discipline flag above still OPEN, so status stays stale and last_reviewed_commit stays 3280d5e. Also merged a duplicate status/note key pair here (strict YAML check). --- PRIOR WRITER NOTE (DOB refresh): Refreshed for the Patient-picker DOB label (Bundle 120, app PR #1054). Added a Tier-2 sentence to the 'Patient' enrollment bullet: each search result now shows the patient's date of birth in parentheses after the name (for example, 'Jane Smith (03/14/1975)') so you can tell apart two patients who share a name and avoid enrolling the wrong one. Verified against production main (3280d5e): EpisodeResource form 'Patient' field getOptionLabelUsing/getSearchResultsUsing -> searchPatientOptions both resolve Patient::full_name_with_dob, whose accessor renders 'First Last (mm/dd/yyyy)' and falls back to name-only when DOB is missing. Verify-only otherwise; re-confirmed every other label in the article still matches main: Enrollment section ('Patient', 'Assigned Provider', 'Start Date' default today/maxDate today/disabled on edit, paused-episode notice); RTM Program Consent radio (Send digital consent form default / Verbal consent obtained / Paper consent form signed, visible+required only when tenant rtmConsentRequired()); Survey & Schedule ('Survey', 'Send Time' default 10:00, 'Frequency' default 'Every day'); Frequency options (Every day / Every other day / Every 3 days / Every 7 days / Weekdays only via SurveyFrequency::label); the 'Text message (SMS)'/'Email' channel checkboxes; 'Create'. No new screenshots. No em-dashes. --- PRIOR WRITER NOTE (Bundle 101, PR #805, RTM consent capture): added the 'RTM Program Consent' field to the Enrollment section and a new 'Recording RTM consent' section covering the three options ('Send digital consent form' default / 'Verbal consent obtained' / 'Paper consent form signed'), the fact it appears and is required only when a clinic administrator turns on 'Require RTM Program Consent' in Clinic Settings > Patient Consent, that verbal/paper record the enrolling user as witness and digital shows a one-time consent page on first survey-link open (surveys still send on schedule), that it affects new enrollments only, and that recording consent is not billable. Prior Bundle 45/episode-comms-redesign content (per-channel 'Text message (SMS)'/'Email' checkboxes, inline 'Mobile number', line-type green/red 'Landline' result + 'Check now', at-least-one-channel rule, SMS-to-email fallback, Frequency options) re-verified against main and still accurate. No em-dashes."
+    status: review
+    note: "WRITER (reconciled to 6bf63d1, app PR #1510 + #1496/#1506/#1509). Corrected the toggle label from 'Send Welcome Message Now' to 'Send Welcome Message' (the 'Now' variant is still correct for the front-desk check-in flow, so front-desk/enrolling-and-managing-at-check-in and getting-started/quickstart-front-desk were left alone) and rewrote its helper text to match the app, including the portal-invite case. Documented the new create-only 'Schedule for' datetime field, its prefill to 30 minutes before the patient's next appointment, and the consequence that surveys are held until the welcome goes out. Updated Finishing up step 3 and added the two new entry points (the enrollment prompt's Enroll button and the Appointments row action) to the ways in."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -223,13 +223,13 @@ articles:
       - app/Enums/SurveyFrequency.php
       - app/Models/Episode.php
     screenshots: []
-    last_reviewed_commit: 3280d5ee051d77814e96e50ca3eecfb04ac2cb89
+    last_reviewed_commit: 6bf63d11a80d6028aab804a705ba9cd286b12a6c
 
   - path: episodes/viewing-episode-details.md
     section: episodes
     audience: clinic-staff
     status: review
-    note: "TERMINOLOGY REFRESH: Exercises tab bullet now says 'Manage program' (on active and paused episodes, #1466/#1472). --- PRIOR: Refreshed for app ticket #1024 (commit 1dd7208): added a Tier-2 note to the working-area 'Patient Responses' section describing the new Export CSV button. Verified the label 'Export CSV' and tooltip against patient-responses-table.blade.php at main df8fe65, and the behavior against PatientResponsesTable::exportCsv + SurveyResponseExportService: the button appears only when there is exportable data (a billable-interaction response or an exercise log) and requires episodes.view; the file is a long-format spreadsheet (one row per answer plus one per exercise log) with columns Patient/Date/Type/Survey/Question/Answer/Flagged/Status/Submitted At, times in the program timezone, and opening it records a PHI-access activity entry. Kept the enumeration light per SCOPE (Tier-2 line, not a new section). Also removed stray '</content></invoke>' tags left at the end of the committed file. No screenshots added. No em-dashes. --- EXERCISE REWRITE (app main 13708085): only the 'Exercises' tab bullet changed, to mention the new 'Manage plan' button (HepAssignmentsRelationManager) and the retitled 'Assigning exercises to a patient' link. Rest of the article not re-verified in that pass, so last_reviewed_commit stays df8fe65."
+    note: "WRITER (reconciled to 6bf63d1, app PR #1510). Added the Welcome Message badge ('Scheduled for <date time>', info colour) that renders only while a scheduled welcome has not gone out. It matters because surveys are held until the welcome sends, so it is the first thing to check when a newly enrolled patient has received nothing."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
@@ -238,7 +238,7 @@ articles:
       - app/Filament/Clinic/Resources/EpisodeResource/Widgets/**
       - app/Livewire/Clinic/Episodes/**
     screenshots: [episode-list, episode-detail-overview]
-    last_reviewed_commit: df8fe65583c4d8d18fd616b1c0446b4bda2dde7a
+    last_reviewed_commit: 6bf63d11a80d6028aab804a705ba9cd286b12a6c
 
   - path: episodes/managing-episode-status.md
     section: episodes
@@ -334,14 +334,15 @@ articles:
   - path: check-ins/understanding-survey-responses.md
     section: check-ins
     audience: clinic-staff
-    status: published
+    status: review
+    note: "WRITER (reconciled to 6bf63d1, app PR #1474). The auto-mark-as-read blockquote was unconditional; PatientResponsesTable::canChangeReadState() now gates it on the user not being read-only, and the Mark as Read / Unread buttons are hidden for auditors. Added the exception rather than rewriting the rule."
     priority: 1
     sources:
       - app/Models/SurveyResponse.php
       - app/Services/SurveyResponseService.php
       - app/Livewire/Patient/SurveyForm.php
     screenshots: []
-    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+    last_reviewed_commit: 6bf63d11a80d6028aab804a705ba9cd286b12a6c
 
   - path: check-ins/survey-amendments.md
     section: check-ins
@@ -504,8 +505,8 @@ articles:
   - path: messaging/the-messages-inbox.md
     section: messaging
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout cf43d1a..aae867c, app PR #886): the Messages inbox is now gated on the seeded messages.view permission (canAccess), which also drives the nav item + unread badge. Enforced clinic-staff access: clinic_owner/provider/staff = full inbox; auditor = read-only (can open + read, cannot send); billing_staff = NO access — they never see the Messages nav item or inbox at all (previously any authenticated clinic user could open it and message patients). Update any 'who can see the inbox' wording. (Platform support roles are also admitted: super_admin full, platform_admin read-only — out of scope for clinic-staff prose.)"
+    status: review
+    note: "WRITER (partial, reconciled for app PR #1474 only). Auditors now read threads without clearing the team's unread badge (MessagesCenter / MessagingDrawer read-only guards) and never see the Mark unread button. Added those two caveats. The article's PRIOR stale flags are NOT cleared by this pass and last_reviewed_commit is deliberately left where it was."
     priority: 2
     sources:
       - app/Filament/Clinic/Pages/MessagesCenter.php
@@ -547,7 +548,8 @@ articles:
   - path: messaging/managing-conversations.md
     section: messaging
     audience: clinic-staff
-    status: published
+    status: review
+    note: "WRITER (reconciled to 6bf63d1, app PR #1474). Narrowed 'opening a conversation marks it read for the whole team' to exclude auditors, who are read-only and no longer clear the badge."
     priority: 2
     sources:
       - app/Livewire/Clinic/MessagesCenter.php
@@ -557,7 +559,7 @@ articles:
       - app/Filament/Clinic/Widgets/UndeliverablePhoneBannerWidget.php
       - app/Services/Sms/SendSmsService.php
     screenshots: []
-    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
+    last_reviewed_commit: 6bf63d11a80d6028aab804a705ba9cd286b12a6c
 
   - path: messaging/message-templates.md
     section: messaging
@@ -639,8 +641,8 @@ articles:
   - path: check-ins/reviewing-daily-check-ins.md
     section: check-ins
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout f3a11de..9040caa, app PR #1288 + follow-ups, 'review queue never hides unread'). The provider review/summary page changed. Its second card is now 'Other Unread, Outside Today's Schedule' and lists every other unread patient (comments or not), where it previously listed only unread that had free-text comments; the today card's empty state now points at it. The buried 'View All' link and its 'Back to today's patients' twin are gone -- in their place, tabs at the top of the page switch between 'Today's patients' (today first, other unread below) and 'All unread' (one list, one save), each badged with its count and remembered per user (users.preferences / User::reviewLayout); the tabs appear only once the clinic has appointment data. Writer: reconcile the 'Other'/'View All' descriptions to the new 'Other Unread, Outside Today's Schedule' card + the 'Today's patients' / 'All unread' tabs; verify labels against ReviewSummary + review-summary.blade + UnreadSurveyService at origin/main. last_reviewed_commit stays. --- PRIOR WRITER NOTE: Already current, re-stamped. Re-verified the three flagged app changes against the rtmlink checkout (main 7df976f) and found the article already accurate on all three, so no prose changed. (1) Owner access (PR #875): the Role permissions section already states a clinic owner can open any provider's review page and everyone else (staff/billing staff/auditor) gets a permission error, matching ReviewSummary::mount (provider-self OR User::hasOwnerLevelAccess = clinic_owner + platform staff). (2) Appointment times in clinic timezone (PR #887): no label change and the article makes no timezone claim (formatAppointment uses tenant()->convert). (3) 'Message Patient' gated on messages.send (PR #886): no visible effect on this page, because the only clinic roles that can open it (provider, clinic_owner) both hold messages.send per RolesSeeder, so the @can('messages.send') button always renders for any viewer here; adding a caveat would falsely imply some viewers cannot message. No source file (ReviewSummary.php, review-summary.blade.php, survey-patient-row.blade.php, UnreadSurveyService.php) changed between the prior last_reviewed_commit b50b7d77 and main HEAD. Re-verified every bold label against the blades: page title '{provider} Survey Summary', stats 'Patients/Responses/Comments', 'Today's Patients', 'Other Unread Comments', 'View All Unread Surveys', 'View All Responses'/'Hide Responses', response + 'Comments' badges, 'Message Patient' + red unread badge, 'Save Today's Time and Mark as Read' (+ Other/All variants), the missing-interactive-comm and unsaved-comm prompts, 'Time Logged Successfully', 'All Surveys Reviewed'. No em-dashes."
+    status: review
+    note: "WRITER (partial, reconciled for app PRs #1496/#1506/#1509 only). Added the 'Seeing you today, not on RTM' prompt to 'What the page shows'; it renders at the top of this page in full (no 5-row cap, unlike the dashboard feed). The article's PRIOR stale flag for app PR #1288 (the 'Other Unread, Outside Today's Schedule' card and the Today's patients / All unread tabs) is NOT addressed by this pass and last_reviewed_commit is deliberately left where it was."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ReviewSummary.php
@@ -650,6 +652,22 @@ articles:
     screenshots:
       - review-today-patients
     last_reviewed_commit: 7df976f496d2b3c5fbfd33c2ba9f3dcac99d0395
+
+  - path: check-ins/seeing-you-today-not-on-rtm.md
+    section: check-ins
+    audience: clinic-staff
+    status: review
+    note: "NEW ARTICLE (app PRs #1496 / #1506 / #1509, reconciled to 6bf63d1). The RTM enrollment prompt had no coverage anywhere: grep found zero hits for 'Seeing you today', 'Not for RTM' or 'enrollment prompt'. It renders on two surfaces (the provider's review page in full, and Your Action Feed capped at 5), so this is one article plus cross-references from navigating-the-dashboard, reviewing-daily-check-ins, enrolling-a-patient and viewing-appointments rather than duplicated sections. Verified against RtmEnrollmentPromptService, RtmEnrollmentPrompt, rtm-enrollment-prompt.blade and RolesSeeder at origin/main: who is listed (today's schedule, no active or paused episode, no live decline; cancelled/rescheduled/no-show and self-pay excluded; evaluations first), attribution (performing or rendering clinician, then the DrChrono provider mapping, then the primary provider; a visit matching nobody is shown to nobody), and the decline's mute rule (until the next episode of care or a later-day evaluation visit, never a timer). Role table reflects reachability, not just the button gates: only Clinic Owner and Provider can open either surface. No screenshots declared; the panel is compact and changes with the day's schedule, so per SCOPE-AND-TMI it is prose only."
+    priority: 1
+    sources:
+      - app/Services/RtmEnrollmentPromptService.php
+      - app/Livewire/Clinic/RtmEnrollmentPrompt.php
+      - resources/views/livewire/clinic/rtm-enrollment-prompt.blade.php
+      - app/Models/RtmEnrollmentDecline.php
+      - resources/views/filament/clinic/widgets/provider-action-feed-widget.blade.php
+      - resources/views/filament/clinic/pages/review-summary.blade.php
+    screenshots: []
+    last_reviewed_commit: 6bf63d11a80d6028aab804a705ba9cd286b12a6c
 
   - path: check-ins/logging-time-during-review.md
     section: check-ins
@@ -684,8 +702,8 @@ articles:
   - path: billing/understanding-rtm-billing.md
     section: billing
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 3280d5e..f3a11de, app PR #1194 / commit f2f5ef4, Bundle 175 assistant attribution + CQ/CO de minimis; see docs/decisions/ADR-022 in the app). RTM billing now models assistant-furnished work: when a PTA/OTA independently furnishes more than 10% of a billed unit, the claim line carries the CQ (PT assistant) / CO (OT assistant) modifier. Time entries can record whether work was performed jointly with the supervising therapist (joint work counts as therapist time and is excluded from the de minimis numerator). BillingSuggestionService computes the modifier; a clinic setting decides whether it is auto-applied or offered as a per-claim recommendation (see billing/configuring-billing-rates, also stale). Applies to Original Medicare FFS. Writer: add the CQ/CO assistant-modifier concept at the right depth (Tier-2, likely a short section) to the billing overview; verify against BillingSuggestionService + AssistantDeMinimisService + BillingSuggestion at origin/main. Cross-cuts billing-suggestions (review), approving-and-rejecting-claims (stale), configuring-billing-rates (stale), and users/managing-your-team (stale, credential fields). last_reviewed_commit stays."
+    status: review
+    note: "WRITER (reconciled to 6bf63d1, app PR #1498). Documented the one-device-code-per-patient-per-30-days rule and its three consequences a clinic will actually hit: the claim is dated to the last data day and pushed to 30 days after the previous device claim when needed; a fully qualifying period can yield NO claim when no date inside it clears the spacing; and discharge no longer shortens a period, so the final device claim waits for the original 30 days. Corrected 'surface after a window closes' to 'once the full 30 days have run out'. Corrected the 98976 row, which claimed the same 16+ day requirement as 98977: generation only ever emits 98977 or 98985, and 98976 exists solely as a manual-claim option."
     priority: 1
     sources:
       - app/Models/BillingSuggestion.php
@@ -698,13 +716,13 @@ articles:
       - CLAUDE.MD
     screenshots:
       - billing-claims-list
-    last_reviewed_commit: eab6ef9a165c2850785afb063d92abb709a59c67
+    last_reviewed_commit: 6bf63d11a80d6028aab804a705ba9cd286b12a6c
 
   - path: billing/billing-suggestions.md
     section: billing
     audience: clinic-staff
     status: review
-    note: "STALE (scout 0337083..d14896f). Billing Overview widget: the 'Billed This Month' stat is now keyed on service_date (when care happened) and the clinic-local month, NOT updated_at (when the row was last touched) -- editing a July claim in August no longer drops it out of July's count (commit 802a345). Claim-detail (View Claim) evidence -- the Time entries and Interactive contacts sections in the infolist -- is now shown chronologically, oldest first (ticket #1023, app PR #948). The 'Export all ready'/bulk Export CSV filename is now stamped in clinic-local time (July, not the next UTC day). Verify the 'Billed This Month' meaning and any claim-detail evidence-ordering wording; likely small/verify-only. last_reviewed_commit stays 057fea2."
+    note: "WRITER (reconciled to 6bf63d1, app PR #1498). Documented the hard 30-day spacing validation on Service Date for device-supply codes on both Add Claim and the row Edit action (with the verbatim error), noting it is patient-wide rather than episode-scoped; the new Date of Service and Data Counted Through evidence rows that are the only place a claim's date is explained; and that regeneration now RE-DATES unbilled device claims, on the scheduled sweep as well as the button. REMOVED 'exported' from the protected-claims list: isReplaceableBySystem checks status, signed note, DrChrono link and source only, and a CSV export changes no status, so an exported-but-unbilled claim can still be re-dated or removed. Flagged to Joe, because the generation service's own docblock claims exported rows are never touched, so either the comment is stale or the protection is missing."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/**
@@ -713,7 +731,7 @@ articles:
       - app/Services/BillingSuggestionService.php
     screenshots:
       - billing-claim-detail
-    last_reviewed_commit: 2a0968cdbd0507e89cf1f91d2dc38b08e16e2708
+    last_reviewed_commit: 6bf63d11a80d6028aab804a705ba9cd286b12a6c
 
   - path: billing/approving-and-rejecting-claims.md
     section: billing
@@ -754,8 +772,8 @@ articles:
   - path: billing/exporting-to-drchrono.md
     section: billing
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 8de5fb3..3280d5e, app PR #1148, commit 43f48e5). The therapy modifier on the DrChrono claim line items is no longer hardcoded 'GP'. It now follows the episode's plan-of-care discipline (episode Discipline override -> assigned provider's discipline -> PT default): GP for PT, GO for OT, GN for SLP -- the same resolution the {DISCIPLINE_MODIFIER} clinical-note token uses, so a claim line and its note always agree. A PT-only clinic sees no change; an OT/SLP clinic now gets the correct modifier where it previously always sent GP. Writer: if the article states or implies the modifier is always 'GP' / 'outpatient physical therapy', correct it to 'follows the episode's discipline (GP/GO/GN)'; verify against DrChronoAppointmentExportService + Discipline::modifier at origin/main. Likely a small Tier-2 correction to the Billing Line Items step. last_reviewed_commit stays 7df976f. --- PRIOR WRITER NOTE: Refreshed for app PR #975 (commit 1ac8405): added a Tier-2 blockquote to the 'Sending a claim to DrChrono' steps describing the new diagnosis-code staleness warning. Verified against SendToDrChronoAction at the checkout's main (7df976f): the 'Check diagnosis codes' placeholder notice renders above the 'ICD-10 Codes' field only when the resolved codes differ from the patient's most recent coded appointment as of the claim's service date (icd10StalenessWarning + DrChronoIcd10SyncService::latestCodedAppointment), lists that newer appointment's codes, and is informational only (submit stays enabled, no block). Deliberately did NOT document the 'No diagnosis codes' empty-field notice or the ICD-10 field's live update: both are on an unmerged dev branch, not on production main (git diff main..HEAD confirms). Sources glob already carries SendToDrChronoAction (fixed in a prior pass). Re-verified the other bold labels in step 2 against main and left them unchanged (Provider, Appointment Profile, Office, Exam Room, Scheduled Date/Time, ICD-10 Codes, Billing Line Items, Clinical Note). No new screenshots. No em-dashes."
+    status: review
+    note: "WRITER (reconciled to 6bf63d1, app PR #1514). RTMLink now owns every claim line: the Billing Profile select is gone from both the Send to DrChrono modal and the clinical note template form, no billing_profile is sent on a line item, and after export RTMLink reads the appointment back and warns about lines it did not send. Documented the persistent 'Sent to DrChrono: action needed' warning, what to do about it, and why leaving the appointment profile's billing profile unlinked is the fix. Sharpened the confirmation step to name the View Appointment and View Billing buttons. The article never listed Billing Profile among the modal fields, so nothing was stale there. The prior stale note about the GP/GO/GN therapy modifier is SUPERSEDED but still unwritten: the article's line-items step makes no modifier claim, so nothing is wrong, but the discipline modifier (and the CQ/CO assistant modifier now added alongside it via lineModifiers) is still undocumented. Left for a Writer pass."
     priority: 1
     sources:
       - app/Services/BillingExportService.php
@@ -763,7 +781,7 @@ articles:
       - app/Filament/Clinic/Resources/BillingSuggestionResource/Actions/SendToDrChronoAction.php
       - app/Services/Ehr/DrChronoIcd10SyncService.php
     screenshots: []
-    last_reviewed_commit: 7df976f496d2b3c5fbfd33c2ba9f3dcac99d0395
+    last_reviewed_commit: 6bf63d11a80d6028aab804a705ba9cd286b12a6c
 
   - path: billing/billing-window-progress.md
     section: billing
@@ -798,8 +816,8 @@ articles:
   - path: appointments/viewing-appointments.md
     section: appointments
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 47f0bdd..cf43d1a, app PR #887): appointment times now display in the clinic's timezone across the Appointments page ('Date & Time' column) and the episode/patient appointment tabs (previously the raw UTC-stored time could drift a day near midnight). The **Today** filter and the From/Until date-range filter now match the clinic's calendar day instead of the UTC date. Labels unchanged ('Date & Time', 'Today') — verify the article's description of appointment times/filtering reflects clinic-local time."
+    status: review
+    note: "WRITER (reconciled to 6bf63d1, app PRs #1512 + #1515). Default sort corrected from 'newest first' to soonest first (Appointments::table defaultSort scheduled_at asc). Documented the new RTM badge column (Active / Paused / Not enrolled), the RTM episode ternary filter (All patients / Active or paused episode / Not enrolled), the row action group (Start episode, View episode, View patient, Message patient, Not for RTM) with its visibility rules, and the Not for RTM modal wording. Corrected 'owner and admin actions' to Clinic Owners (no clinic admin role exists; hasOwnerLevelAccess). Narrowed the 'nothing is edited by hand here' claim, which the row menu broke. NOTE: Start episode is NOT gated on the seeded episodes.create permission; EpisodeResource has no policy, so Filament allows create and only the Gate::before read-only hook (auditor) denies it. Screenshot appointments-page still shows the pre-#1512 column set and the old sort: flagged for the Visualizer, not re-shot here."
     priority: 2
     sources:
       - app/Filament/Clinic/Pages/Appointments.php
@@ -807,13 +825,13 @@ articles:
       - app/Filament/Clinic/Concerns/HasAppointmentDisplay.php
     screenshots:
       - appointments-page
-    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
+    last_reviewed_commit: 6bf63d11a80d6028aab804a705ba9cd286b12a6c
 
   - path: appointments/syncing-appointments.md
     section: appointments
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 47f0bdd..cf43d1a, app PR #875 + #887): the Appointments-page header actions — **Import Appointments** (manual upload, when no EHR) and **Sync from DrChrono** (when DrChrono is connected) — are now visible to clinic owners; they were gated on the unseeded `clinic_admin` ghost role and effectively hidden. Confirm the article frames these as owner-only. Also (PR #887) DrChrono appointment sync/ingestion now stores/compares scheduled times correctly against the clinic timezone; no user-facing label change."
+    status: review
+    note: "WRITER (reconciled to 6bf63d1, app PRs #1500 + #1505). Documented that an import REPLACES the clinic-local days a file covers (ReplaceImportedAppointmentWindow removes csv rows with an external id that are absent from the run), which was never documented at all; that EMR presets hide columns the export never fills (HENO loses Patient Name / Date / Time per config/emr-import-maps.php appointments_hidden); and corrected which rows actually fail (an unknown patient is created via PatientUpsertService, an unknown provider goes to the Unmapped EMR providers queue). Also corrected the button story: Import Appointments hides only for a connected DrChrono integration, so a HENO clinic keeps it, and the Check-Ins queue button is labelled Upload Appointments. STILL OPEN (pre-existing, not from this window): the CSV column table lists 7 of the 19 columns AppointmentImporter offers and marks Patient Name / Date / Time required when every rule is nullable. Left for a Writer pass."
     priority: 2
     sources:
       - app/Filament/Clinic/Pages/Appointments.php
@@ -987,8 +1005,8 @@ articles:
   - path: integrations/connecting-drchrono.md
     section: integrations
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 3280d5e..f3a11de, app PRs #1253 Bundle 159 / #1259 Bundle 179). The Integrations page is no longer DrChrono-only: it now also hosts a HENO integration (client ID/secret, Test Connection, Sync Now, sync-log history, disconnect) and a manual appointment CSV import path. DrChrono still works as documented, but this article's framing ('Integrations = DrChrono') is now too narrow. Writer: keep this article DrChrono-specific but reconcile any 'the Integrations page' framing that now implies DrChrono is the only EMR; the HENO connection flow itself is a NEW article (see the new integrations/connecting-heno.md todo below). Verify against Integrations.php + integrations.blade.php at origin/main. last_reviewed_commit stays."
+    status: review
+    note: "WRITER (partial, reconciled for app PRs #1507 + #1514 only). Sync failure text is no longer printed under the Recent Sync Logs table: it now opens from a red exclamation icon beside the Failed badge (x-error-hint, aria-label 'Why this sync failed: <message>'), so the article describes the icon. Also added the caution not to link a DrChrono billing profile to an appointment profile RTMLink exports to, since RTMLink now writes every claim line itself (#1514). Billing profiles ARE still synced, so the What syncs list stays correct. STILL OPEN and not touched: the Integrations page also appears for HENO clinics and for any clinic with unmapped EMR providers, not only DrChrono clinics; and the whole HENO EMR card plus the Unmapped EMR providers queue have no help coverage at all. Left for a Scout/Writer pass."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/Integrations.php
@@ -1032,8 +1050,8 @@ articles:
   - path: settings/invoices-and-billing.md
     section: settings
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout f3a11de..9040caa, app PR #1363, ADR-018). The platform invoice email for clinics on the 'check' payment channel now offers BOTH ways to settle: a 'Pay online' button to the Stripe hosted page (ACH, saves the bank for future invoices) and an 'Or mail a check to' block with payee + remit address; it still never auto-charges. Separately, a tenant with a blank billing-contact email is now a surfaced failure on every invoice-email path (an admin warning on Send Invoice, a danger notification on Resend) instead of a silent skip that reported 'sent'. Writer: this article's 'How invoices are paid' section frames the check channel as check-remit only -- add the pay-online option now offered to check-channel clinics; verify the email's button/label copy against invoice-sent.blade + InvoiceEmailService / StripeInvoicingService at origin/main. last_reviewed_commit stays. --- PRIOR WRITER NOTE: Refreshed for the subscription invoice/payment rework (app PRs #1027/#1034, ADR-018/ADR-019). Added a 'How invoices are paid' section: RTMLink now sends the invoice emails itself (its email is the clinic's only invoice notice; no separate processor email), listed the three invoice-email subject lines verified against the mailables (InvoiceSentMail 'Your RTMLink invoice for {period}', InvoicePaidMail 'Payment received for your {period} RTMLink invoice', InvoicePaymentFailedMail 'Action needed: payment for your {period} RTMLink invoice'), and described the three payment arrangements from Tenant::billingPaymentChannel (auto default: saved method auto-charged else a 'Pay this invoice' button; check: emailed with check-remit instructions even with a saved method, team records payment; card: card-only page with a per-invoice 'Card processing fee' line, verified 2.9% + $0.30 default against StripeInvoicingService::cardFeeLabel). Framed the channels as platform-set (not chosen on the page) and routed unsure clinics to RTMLink support, per the measured-depth guidance. Also corrected the 'Your plan' section: the page has no literal 'Plan' heading, so rewrote it around the actual disabled 'Adjust plan' button + 'Plan management is coming soon' + 'Contact us' link (billing-settings.blade). Re-verified every other bold label against the rtmlink checkout (main 2c4ed78): nav 'Invoices' under Settings, 'Payment' section + 'Update'/'Add' button + auto-pay helper text, Invoices table statuses Paid/Open + 'View'/'Load more'/'No invoices yet.', 'Cancellation' section + 'Cancel' button + 'Cancellation requested' badge. Access unchanged: owner-only via canAccess() (clinic_owner + platform staff), everyone else 403. No screenshots. No em-dashes."
+    status: review
+    note: "WRITER (reconciled to 6bf63d1, app PR #1499). Invoices now go to Tenant::billingContactEmail(), which is the platform-set billing.invoice_email override when present and the clinic Contact Email otherwise, with a billing.invoice_cc list copied on every invoice, receipt and payment-failure email. Both are deliberately platform-admin only and are shown nowhere on the clinic's own Settings page, so the article now says who the billing contact is, that editing Contact Email may not move the invoices, and to email support to change either. Also stopped addressing the reader as the guaranteed recipient of the three emails, since an owner not on the CC list receives none of them."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/BillingSettings.php
@@ -1043,7 +1061,7 @@ articles:
       - app/Mail/Invoice*Mail.php
       - resources/views/emails/invoice-sent.blade.php
     screenshots: []
-    last_reviewed_commit: 2c4ed78b9f2cc66466609bdb52f9988270338915
+    last_reviewed_commit: 6bf63d11a80d6028aab804a705ba9cd286b12a6c
 
   # === 16. My Settings (merged into settings section) =====================
   - path: settings/managing-your-account.md

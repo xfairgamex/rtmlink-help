@@ -10,8 +10,9 @@ Enrolling a patient starts an **episode**, the course of monitoring during which
 
 - **From the patient's record:** open the patient and click **Start Episode**. The patient is filled in for you, along with their provider and contact preferences.
 - **From the Episodes list:** click **Episodes** in the left sidebar, then **New episode** (or **Enroll a patient** on a clinic with no episodes yet), and choose the patient.
+- **From today's schedule:** the **Seeing you today, not on RTM** prompt has an **Enroll** button beside each patient, and the Appointments page offers **Start episode** on a row. Both prefill the patient. See [Seeing you today, not on RTM](../check-ins/seeing-you-today-not-on-rtm.md).
 
-Both open the same enrollment form.
+All of them open the same enrollment form.
 
 ## Filling in the enrollment form
 
@@ -28,7 +29,10 @@ Both open the same enrollment form.
 - **Send Time:** the time of day the survey link goes out, in the patient's timezone. Defaults to **10:00**.
 - **Frequency:** how often the survey is sent: **Every day**, **Every other day**, **Every 3 days**, **Every 7 days**, or **Weekdays only** (defaults to **Every day**). See [How often surveys are sent](#how-often-surveys-are-sent) for what each option means.
 - **How we'll reach the patient:** pick at least one of **Text message (SMS)** or **Email** (see [Choosing how to reach the patient](#choosing-how-to-reach-the-patient) below). These are pre-filled from the patient's consent settings.
-- **Send Welcome Message Now:** on by default. When on, the patient gets their first survey right away. Turn it off to wait until the next scheduled send time instead.
+- **Send Welcome Message:** on by default. When on, the patient gets their first survey link right away, or the portal invite instead if your clinic requires patient logins. Turn it off and it goes out at the regular survey time.
+- **Schedule for:** optional, and only shown while **Send Welcome Message** is on. Pick a date and time to hold the welcome until then. Leave it blank to send as soon as the episode is created. If the patient has an appointment coming up, RTMLink pre-fills this with 30 minutes before that appointment, so the welcome lands while they are on their way in rather than at the desk. Clear it if you would rather send now.
+
+> **Surveys wait for the welcome.** While a welcome is scheduled, the survey schedule is held back so the patient never gets a survey before their introduction. A time that has already passed by the time you click **Create** simply sends right away.
 
 ### Assign exercises
 
@@ -92,7 +96,7 @@ Click **Create** to enroll the patient. RTMLink:
 
 1. Creates the episode and sets it to **Active**.
 2. Opens the first 30-day billing window starting on the start date.
-3. Sends the first survey immediately if **Send Welcome Message Now** was on.
+3. Sends the first survey immediately if **Send Welcome Message** was on and you left **Schedule for** blank. If you set a time, RTMLink confirms with **Welcome message scheduled** and the date and time it will go out, and the first survey waits until then.
 
 You'll land on the new episode's detail page, where you can see responses come in, log time, and track billing progress.
 

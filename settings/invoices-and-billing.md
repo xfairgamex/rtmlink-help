@@ -20,7 +20,9 @@ With a payment method on file, future invoices are auto-paid with that account. 
 
 RTMLink sends your invoice emails itself, so an email from RTMLink is your clinic's only invoice notice (there is no separate email from a payment processor). Each invoice email goes to your clinic's billing contact and lists what you are being charged for.
 
-You will see one of three emails:
+> **Who your billing contact is.** By default it is your clinic's **Contact Email** from **Clinic Settings**. If billing belongs with someone else, a practice manager, a bookkeeper, or an accounts-payable inbox, RTMLink can point invoices at that address instead, and can copy anyone else you want on every invoice, receipt, and payment-failure notice. Both are set with RTMLink rather than on this page, so this page does not display them: email [support@rtmlink.com](mailto:support@rtmlink.com) to set or change either. Worth knowing if you are the owner and stop seeing invoice emails: they may be going to your billing contact with you not copied.
+
+Your billing contact, and anyone copied, will see one of three emails:
 
 - **Your RTMLink invoice for [period]** when a new invoice is issued.
 - **Payment received for your [period] RTMLink invoice** once a payment clears.
