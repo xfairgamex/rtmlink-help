@@ -321,15 +321,20 @@ articles:
   - path: check-ins/previewing-a-survey.md
     section: check-ins
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 3280d5e..f3a11de, app PR #1175 / commits 343081a, 49a12c8, d29cbe0, Bundle 52). The staff preview grew from a survey-only preview into a walk of the whole patient flow. A new consent step now precedes the survey: a new /survey-preview/{survey}/consent route and SurveyController::previewConsent render the RTM consent screen the same way patients see it, but inert (nothing is saved). The preview mirrors the clinic's own settings — it starts at consent only when Patient Consent is turned on, otherwise it skips straight to the survey. On Clinic Settings the entry point was relabeled from 'Preview Survey' / 'Open Survey Preview' to 'Preview the patient experience' / 'Open patient preview' with a 'Skip to the survey' link. Writer: broaden this article to cover the consent-first preview + the settings entry point; verify route + labels + the consent-on/off behavior against SurveyController::previewConsent, routes/tenant.php, and ClinicSettings survey_preview at origin/main. Note the consent-screen content itself is also covered by patient-portal/taking-a-survey (stale). last_reviewed_commit stays. NEEDS a Visualizer sources update too — this article should also source app/Http/Controllers/Patient/SurveyController.php."
+    status: review
+    note: "WRITER (broadened for Bundle 52, app PR #1175 + the exercise-walkthrough follow-on, verified at app main b9a0af2). The staff preview is no longer survey-only: it now walks the whole patient flow (consent -> survey -> home exercise program), mirroring the clinic's own settings. Rewrote 'Opening the preview' into 'Two ways to preview' and added 'What the preview walks through'. Two distinct entry points, verified: (1) 'Preview Survey' still opens route('survey.preview') = the survey step ONLY, from the survey row action in Check-In Templates (SurveyResource line 484) and the Preview Survey button on the View and Edit pages (ViewSurvey line 33 / EditSurvey line 38); (2) NEW 'Open patient preview' walks the full flow from the 'Preview the patient experience' placeholder in the Branding section of Clinic Settings (ClinicSettings survey_preview, label line 250, link line 284), starting at /survey-preview/{survey}/consent when consent is on, else /survey-preview/{survey}; a 'Skip to the survey' link shows only when consent is on (line 272), and the link is replaced by a 'create a survey first' note when no active survey exists (line 256). Consent step appears only when Require RTM Program Consent (Patient Consent section, ClinicSettings line 519, tenant.rtmConsentRequired -> settings.consent.rtm_required) is on; SurveyController::previewConsent redirects to the survey when it's off. In preview the consent controls are inert: 'I Agree' is a GET to the survey step, 'I don't want to participate' is disabled (consent.blade lines 76/83). Exercise walkthrough step appears only when Exercises is on (previewExercises redirects otherwise); HEP-linked question shows 'Start your exercises now' (survey-form.blade line 129). Nothing is saved anywhere in the preview (no consent record, response, interaction, or exercise log). Nav 'Check-In Templates' under 'Templates' and 'Clinic Settings' under 'Settings' re-verified. Sources widened to the entry points + consent/walkthrough views for the maintenance loop. No screenshots (a multi-step walkthrough that mirrors per-clinic settings; not a stable single screen). No em-dashes. Cross-linked patient-portal/taking-a-survey."
     priority: 1
     sources:
       - routes/tenant.php
       - app/Livewire/Patient/SurveyForm.php
       - app/Http/Controllers/Patient/SurveyController.php
+      - app/Filament/Clinic/Pages/ClinicSettings.php
+      - app/Filament/Clinic/Resources/SurveyResource.php
+      - app/Filament/Clinic/Resources/SurveyResource/Pages/**
+      - resources/views/patient/consent.blade.php
+      - resources/views/livewire/patient/survey-form.blade.php
     screenshots: []
-    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+    last_reviewed_commit: b9a0af2db7e82cca9ee986a621587183f4d71888
 
   - path: check-ins/understanding-survey-responses.md
     section: check-ins
