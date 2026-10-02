@@ -8,7 +8,7 @@ A shared inbox needs a few habits to stay useful. This guide covers the follow-u
 
 ## Mark unread for follow-up
 
-Opening a conversation marks it read for the whole team, so a message you read but cannot act on yet is easy to lose. Click **Mark unread** in the thread header to flag it: the conversation closes, floats back to the top of the list with its green unread badge, and stays there until someone opens it again. The same button lives in the slide-over composer on patient and episode pages.
+Opening a conversation marks it read for the whole team (auditors excepted, since they change nothing), so a message you read but cannot act on yet is easy to lose. Click **Mark unread** in the thread header to flag it: the conversation closes, floats back to the top of the list with its green unread badge, and stays there until someone opens it again. The same button lives in the slide-over composer on patient and episode pages.
 
 ## Reading delivery statuses
 

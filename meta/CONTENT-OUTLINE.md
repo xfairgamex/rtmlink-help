@@ -165,31 +165,37 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 > RTM credit: a patient marking **one exercise complete** counts as a **billable interaction day** for that calendar day — the same as answering a survey question. Make this connection clear wherever it's relevant; it's a core reason clinics use HEP.
 
+> **Vocabulary (app Bundle 194 slice P, Sep 2026):** a patient's exercises are their **program** (Manage program, Update program); a saved reusable set is a **HEP template** (HEP Templates tab). Never "plan" for the patient's exercises, never "program" for the saved set.
+
 ### 5.1 Understanding the Home Exercise Program
 - What HEP is and how it fits into an RTM episode
 - How exercise completion counts toward RTM interaction days (billing relevance)
-- The pieces: exercise library → exercise programs → assigning HEP to an episode → patient completes → adherence tracking
+- The pieces: exercise library, building a patient's program, assigning it (or saving a HEP template), patient completes, adherence tracking
 
 ### 5.2 The Exercise Library
-- Browsing and searching exercises
-- Exercise attributes: category, difficulty, description/instructions
-- Creating and editing exercises
+- Browsing, searching, and filtering exercises
+- Exercise attributes: category, difficulty, equipment, aliases, instructions
+- Creating, editing, and deleting exercises; patient-specific exercises; the table view
 
 ### 5.3 Exercise Videos
 - Adding a demonstration video to an exercise
 - Choosing a thumbnail and (where supported) a looping clip/GIF range
 - Video processing status (e.g. pending, ready) and what each means
 
-### 5.4 Exercise Programs
-- What a program is (a reusable, ordered set of exercises)
-- Building a program and ordering its exercises
-- Reusing programs across patients
+### 5.4 Building a Patient's Exercise Program (exercises/building-a-patients-program.md)
+- The program bar, the review slide-over, and the full-screen review
+- Per-exercise prescription: sets, reps, hold, rest, weight, side, times a day, days a week
+- Assigning to a patient, updating a patient's current program, notifying the patient
 
-### 5.5 Assigning HEP to an Episode
-- Adding exercises/a program to a patient's episode
-- Setting frequency (per the HEP frequency options)
-- Setting reps/sets/hold or other per-exercise parameters (verify what the form exposes)
-- Editing or removing assigned HEP
+### 5.4b HEP Templates (exercises/hep-templates.md)
+- What a HEP template is (a reusable, ordered set of exercises)
+- Saving a program as a template, editing, duplicating, archiving
+- Platform templates and assigning a template to a patient
+
+### 5.5 Assigning Exercises to a Patient (exercises/assigning-hep-to-an-episode.md)
+- Manage program from the episode; assigning during enrollment
+- The episode Exercises tab: columns, quick actions, prescription fields
+- Editing, customizing, deactivating, and reactivating assigned exercises
 
 ### 5.6 Tracking Exercise Adherence
 - The exercise adherence view on the episode (completion over time)

@@ -1,97 +1,113 @@
 ---
-description: "Your clinic's exercise library in RTMLink: browsing and filtering exercises, what Platform, Imported, and Custom exercises are, duplicating a platform exercise to edit it, hiding ones you don't use, and creating exercises with instructions, media, tags, and default prescriptions."
+description: "Your clinic's exercise library in RTMLink: finding exercises with search and filters, what Platform, Imported, and Clinic exercises are, creating and editing an exercise, categories, patient-specific exercises, and the table view."
 ---
 
 # The exercise library
 
-The **exercise library** is your clinic's collection of exercises. Each exercise holds the instructions, images, and an optional demonstration video a patient sees, plus default prescription values (sets, reps, hold) you reuse every time you assign it. You build the library here once, then assign exercises to patients from their episodes.
+The **exercise library** is where every exercise you can prescribe lives. Each exercise holds the instructions, photos, and optional video a patient sees, plus default sets, reps, hold, and rest that fill in whenever you add it to a patient's program.
 
-Open it from **Exercises** in the left sidebar, under the **Templates** group. (You'll only see it if your clinic has exercises enabled.)
+Click **Exercises** in the left sidebar (it sits below **Appointments**). The page is titled **Exercise library** and has two tabs: **Exercises** and **HEP Templates** (see [HEP templates](hep-templates.md)). You'll only see it if your clinic has exercises enabled.
 
-![The exercise library, with each exercise's category, tags, whether it has a video, its source, and default sets and reps.](../.gitbook/assets/exercises/exercise-list.png)
+> **New to the rebuilt library?** A strip at the top, **A new way to build exercise programs**, offers **Show me what changed**, a short guided tour of the page. Click **Got it, hide this** to hide the strip. You can replay the tour any time from **More**, then **What's new**.
 
-## Reading the list
+![The Exercise library searched for "ankle": exercise cards with illustrations, source tags, categories, default doses, and a + button on each card, with the Exercises and HEP Templates tabs, More, and New exercise at the top.](../.gitbook/assets/exercises/exercise-library.png)
 
-Each row is one exercise:
+## Finding exercises
 
-| Column | What it shows |
-|--------|---------------|
-| **Name** | The exercise name. A lock icon means it's private to one patient (see [Patient-specific exercises](#patient-specific-exercises)). |
-| **Category** | The exercise category, shown as a badge. |
-| **Tags** | Any free-text labels added to the exercise, shown as gray badges. |
-| **Video** | Whether a demonstration video is attached. |
-| **Source** | Where it came from: **Platform**, **Imported**, or **Custom**. |
-| **Sets** / **Reps** | The default prescription, if you've set one. |
+Exercises appear as cards. To narrow them down:
 
-Filter the list by **category**, by **source**, by whether an exercise is **Patient-specific**, and by whether it's **Hidden**. You can also search by name or by tag.
+- **Search** by name. Search also matches the other names your team uses for an exercise (**Also known as**), its tags, and its instructions, so searching "heel raises" finds **Standing Calf Raises**.
+- Click **Filters** to filter by **Source**, **Category**, **Difficulty**, or **Equipment**. Pick one option per group; click it again to clear it. Active filters show as chips you can remove, and **Clear all** resets everything.
+- Click **Show more** at the bottom to load more cards.
 
-## Platform, imported, and custom exercises
+## Reading an exercise card
 
-RTMLink ships a shared **platform library** of ready-made exercises every clinic can use. Platform exercises appear in your library alongside your own, marked with a **Platform** source badge:
+Each card shows:
 
-- **Platform** exercises are read-only: you can assign them to patients, but you can't edit or delete the shared originals.
-- **Imported** exercises are editable copies you made from a platform exercise.
-- **Custom** exercises are ones you created from scratch.
+- The exercise's photo. A play badge means it has a video; **No photo yet** means it has neither.
+- A source tag: **Platform**, **Imported**, or **Clinic** (see below).
+- A lock tag if the exercise is private to one patient.
+- Its category and default dose, for example `3 × 10 · hold 5s`.
+- A round **+** button that adds it to the program you're building (see [Building a patient's exercise program](building-a-patients-program.md)).
 
-### Duplicate a platform exercise to edit it
+Click anywhere else on the card to open the exercise's details. The details panel plays the video in place and shows the default **Sets**, **Reps**, and **Hold**, the numbered **Instructions**, and how widely it's used, for example "On 3 patients' programs · in 2 templates" (counting patients on active episodes). **Often paired with** suggests exercises your clinic tends to use alongside it. At the bottom, click **Add to program**, or **Edit** to change the exercise.
 
-If a platform exercise is *almost* right, make yourself an editable copy:
+## Platform, imported, and clinic exercises
 
-1. Open the exercise's row menu (or open the exercise and use its **Duplicate to edit** button).
-2. Click **Duplicate to edit**.
-3. Confirm on the **Duplicate to your library** prompt.
+RTMLink ships a shared **platform library** of ready-made exercises that every clinic can use.
 
-RTMLink creates an editable **(copy)** in your own library (images included) and leaves the shared platform version untouched. The copy shows an **Imported** source badge. When you start from the exercise's own page, RTMLink opens the new copy for editing right away.
+- **Platform** exercises are read-only. You can put them on any program, but you can't edit the shared originals.
+- **Imported** exercises are editable copies your clinic made from a platform exercise.
+- **Clinic** exercises are ones your clinic created. (The **Source** filter groups imported and clinic exercises together as your clinic's custom exercises.)
 
-> Your changes to an imported copy never touch the shared platform version or any other clinic.
-
-### Hide a platform exercise you don't use
-
-To keep your library focused, you can remove a platform exercise from view without affecting other clinics:
-
-- Click **Hide** on a platform exercise's row menu to remove it from your library.
-- To bring it back, switch the **Hidden** filter to **Hidden only** or **Visible + hidden**, find the exercise, and click **Restore**.
+**To customize a platform exercise**, open its details and click **Duplicate & edit**. RTMLink makes an editable copy in your library (named, for example, "Bridge Variation 1") and opens it for editing. The shared original is unchanged, for your clinic and every other clinic.
 
 ## Creating an exercise
 
-Click **New Exercise** and fill in the form, which is organized into sections:
+Clinic owners and providers can create exercises.
 
-**Exercise Details**
-- **Name** (required).
-- **Category:** the body area or function the exercise targets. The default list spans physical therapy and chiropractic (Shoulder, Knee, Hip, Spine, Core, Ankle/Foot, Wrist/Hand, Elbow, Neck, Balance & Gait), occupational therapy (Hand Therapy, Fine Motor, Daily Activities (ADL)), and speech-language pathology (Swallowing (Dysphagia), Articulation & Speech, Voice, Language), plus Cognition and General. Your clinic can add its own (see [Managing categories](#managing-categories)).
-- **Tags:** optional free-text labels for everything the exercise addresses (for example, shoulder flexion or elbow extension). Press Enter after each one. Tags are searchable from the list.
+1. Click **New exercise** at the top of the library.
+2. Enter the exercise name.
+3. Under **Instructions**, write the steps the patient follows, **one step per line**. Each line becomes a numbered step on the patient's screen.
+4. Under **Default dosage**, set **Sets**, **Reps**, **Hold (sec)**, and **Rest (sec)**. These fill in whenever you add the exercise to a program and leave those fields blank.
+5. Under **Details**, fill in what helps your team find it:
+   - **Category:** the body area or function it targets. Click **+** beside the field to create a new category on the spot.
+   - **Difficulty:** **Beginner**, **Intermediate**, or **Advanced**.
+   - **Equipment:** press Enter after each item. Leave it empty for no equipment.
+   - **Tags:** labels for everything the exercise addresses (for example, shoulder flexion). Press Enter after each one.
+   - **Also known as:** other names your team uses for this exercise. Searching any of them finds it.
+6. Under **Media**, drop photos or a video onto the card. Photos can be JPG, PNG, WebP, AVIF, or straight from an iPhone (HEIC), up to 10 photos at 20 MB each. Large photos are resized automatically, and iPhone photos are converted as they upload. You can also paste a photo with **Cmd/Ctrl + V**. See [Exercise videos](exercise-videos.md) for video options.
+7. Check the **Patient sees** card. It previews the exercise the way the patient will see it and updates as you type.
+8. Click **Create**, or **Save and add to program** to create it and drop it straight into the program you're building.
 
-> Starting from something similar? Use **Copy details from exercise** to pull in another exercise's name, instructions, tags, and default prescription. Media is never copied, so add this exercise's own images and video.
+> **Starting from something similar?** On the New exercise page, click **Copy details from exercise** and pick an exercise. RTMLink copies its instructions, category, difficulty, equipment, tags, and default dosage, and names the copy as a variation. Photos and video are never copied.
 
-**Content**
-- **Description:** a short summary.
-- **Patient Instructions:** the step-by-step guidance the patient reads while doing the exercise.
+## Editing an exercise
 
-**Media**
-- Attach a demonstration video and up to ten **Images** (PNG, JPG, or WebP, max 2 MB each). You can paste an image straight from your clipboard with **Cmd/Ctrl + V**. See [Exercise videos](exercise-videos.md) for the video options.
+Open the exercise's details and click **Edit**. When you change something, a bar appears at the top with **Save changes** and **Discard**.
 
-**Defaults**
-- **Sets**, **Reps**, and **Hold (seconds)**: the default prescription that fills in automatically when you assign this exercise. You can override these per patient at assignment time.
+> **Changes apply everywhere.** Editing a shared exercise changes it for every patient who has it. When it's in use, the top of the page says so, for example "Assigned to 3 active patients and in 1 template. Changes apply everywhere this exercise is assigned." To change it for one patient only, use **Customize this Exercise** from their episode (see [Assigning exercises to a patient](assigning-hep-to-an-episode.md#editing-an-assigned-exercise)).
 
-Editing opens the same form; **View** shows a read-only summary.
+## Deleting an exercise
+
+Clinic owners can delete an exercise your clinic created or imported. Open it for editing, scroll to **Danger zone** at the bottom, click **Delete**, and confirm.
+
+Deleting removes the exercise from your library and every picker. Patients who already have it keep it until you remove it from their program, where it shows a **Deleted from library** tag.
 
 ## Managing categories
 
-Your clinic can add its own categories on top of the built-in ones:
+The built-in categories cover physical therapy, occupational therapy, and speech-language pathology (for example Shoulder, Knee, Hand Therapy, and Swallowing (Dysphagia)), listed alphabetically. Clinic owners and providers can add their own:
 
-1. Click **Manage Categories** at the top of the exercise list.
+1. Click **More** at the top of the library, then **Manage Categories**.
 2. In the **Exercise Categories** window, click **Add category** and type a name.
 3. Click **Save categories**.
 
-Your categories appear in the **Category** dropdown right away. The platform defaults (Shoulder, Knee, Hip, and so on) are always included.
+Your categories appear in the **Category** field and filter right away. You can also add one while editing an exercise with the **+** beside **Category**.
 
 ## Patient-specific exercises
 
-Sometimes you want an exercise that belongs to a single patient, for example one holding that patient's own photos or video. When you create an exercise from a patient's episode, you can **lock it to that patient**. A locked exercise holds that patient's media, can never be assigned to anyone else, and shows a lock icon in the library.
+Sometimes an exercise should belong to a single patient, for example one holding that patient's own photos or video. A patient-specific exercise:
+
+- Is created from the patient's episode, with **New Exercise for this Patient** or **Customize this Exercise** (see [Assigning exercises to a patient](assigning-hep-to-an-episode.md)).
+- Shows a lock tag and **Private to** that patient.
+- Appears in the library only while you're working on that patient's program, where it sorts to the top.
+- Is visible only to clinic owners and the providers who treat that patient.
+- Can never be assigned to anyone else or saved into a HEP template.
+
+To make an editable copy that stays private to the same patient, open its details and click **Duplicate & edit**. Photos and video aren't copied, so add the patient's media to the copy.
+
+## The table view
+
+For a spreadsheet-style list, click **More**, then **Table view**. It shows each exercise's category, tags, video, source, **Created by**, and default sets and reps, with filters for each. The table view is also where clinic owners:
+
+- **Hide** a platform exercise your clinic never uses, so it stops appearing in your library. To bring it back, set the **Hidden** filter to **Hidden only**, find the exercise, and click **Restore**.
+
+Anyone can filter the table to the **Patient-specific** exercises they're allowed to see. Use the **Exercises** and **HEP Templates** tabs at the top, or **Library view**, to return to the cards.
 
 ## Related articles
 
 - [Understanding the Home Exercise Program](understanding-hep.md)
+- [Building a patient's exercise program](building-a-patients-program.md)
 - [Exercise videos](exercise-videos.md)
-- [Exercise programs](exercise-programs.md)
-- [Assigning HEP to an episode](assigning-hep-to-an-episode.md)
+- [HEP templates](hep-templates.md)
+- [Assigning exercises to a patient](assigning-hep-to-an-episode.md)

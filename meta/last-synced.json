@@ -1,6 +1,6 @@
 {
-  "app_commit": "f3a11de23b8ee4343efa167bfc412a0000ed1741",
+  "app_commit": "9040caa3a968041e3ba0d17e5ea2317a5741c9eb",
   "app_branch": "main",
-  "synced_at": "2026-09-01",
+  "synced_at": "2026-09-11",
   "note": "The RTMLink app commit on `main` (production, live at rtmlink.com) that the help center has been TRIAGED up to. In the three-agent pipeline the Scout (meta/agents/scout.md) advances this in its triage PR, after diffing `main` forward from here and flagging affected articles — it means 'every change up to here has been triaged into the registry as stale/todo', NOT 'every article is reconciled'. Per-article reconciliation is tracked separately by each article's `last_reviewed_commit`, which the Writer advances. ALWAYS diff from origin/main, never `git rev-parse HEAD` (the app working tree is often an unmerged feature branch). Advance this only to a merged `main` commit, together with that window's flags."
 }

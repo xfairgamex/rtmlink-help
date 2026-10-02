@@ -18,7 +18,9 @@ Synced appointments carry their DrChrono provider, status, and reason, and power
 
 ## Without an EHR: CSV import
 
-Clinics without a connection use the **Import Appointments** button on the Appointments page (the same import is offered on the Check-Ins queue). The CSV columns:
+The Appointments page offers **Import Appointments** to every clinic except one connected to DrChrono, where **Sync from DrChrono** takes its place instead. A clinic on HENO keeps the import button alongside its nightly sync on purpose: the nightly report is an overnight snapshot, so a CSV is the faster way to pull in today's changes. The Check-Ins queue offers the same import under **Upload Appointments**, and that button does hide for any connected EHR.
+
+The CSV columns:
 
 | Column | Example | Notes |
 | --- | --- | --- |
@@ -30,13 +32,17 @@ Clinics without a connection use the **Import Appointments** button on the Appoi
 | Reason / Chief Complaint | Follow-up shoulder PT | optional |
 | Status | Confirmed | optional |
 
-Rows that fail (a patient name that does not match, or a date that cannot be parsed) are reported when the import completes, with a failures file you can download, fix, and re-import.
+A patient RTMLink does not recognize is created and linked rather than rejected, and a provider name it does not recognize goes to the **Unmapped EMR providers** queue on the **Integrations** page for your Clinic Owner to match up. Rows only fail when RTMLink cannot read the date or time, cannot split a single name into a first and last name, or finds no patient name or identifier at all. Failures are reported when the import completes, with a file you can download, fix, and re-import.
+
+> **Your clinic may be offered fewer columns than this.** If your EMR has a preset in RTMLink, the mapping step pre-fills itself and hides the columns your export never fills. A HENO clinic, for example, is not offered **Patient Name**, **Date**, or **Time** at all, because its export carries first and last name and a single start timestamp instead. Clinics with no preset are offered every column.
+
+> **An import replaces the days it covers, it does not just add to them.** For each clinic day your file covers, RTMLink removes previously imported appointments that are not in the new file, so a visit cancelled in your EMR disappears here too instead of lingering on the Check-Ins queue. That only applies to rows carrying an appointment identifier, so a hand-made partial sheet never deletes anything. Import the whole day, not a few corrected rows.
 
 > **Why import at all?** Appointments make the Check-Ins queue focus on today's patients and give the review page its appointment chips. A quick morning import keeps the daily review aligned with the front desk schedule.
 
 ## Role permissions
 
-Importing and manual syncing are for Clinic Owners and admins; the appointment list itself is visible to everyone.
+Importing and manual syncing are for Clinic Owners; the appointment list itself is visible to everyone.
 
 ## Related articles
 

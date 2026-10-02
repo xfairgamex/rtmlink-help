@@ -39,7 +39,7 @@ Click any response to open it. You'll see:
 - **Exercise feedback** the patient gave that same day, if they're on a home exercise program: how each exercise felt, any pain, and notes.
 - A **Read** / **Unread** badge.
 
-> Opening a completed, unread response **marks it as read** automatically and removes it from your unread count; no extra click needed.
+> Opening a completed, unread response **marks it as read** automatically and removes it from your unread count; no extra click needed. Auditors are the exception: they read responses without clearing anyone's unread count, and they do not get the read and unread buttons.
 
 ## Flagged answers
 

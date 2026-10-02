@@ -10,17 +10,27 @@ RTMLink watches your patients' activity and your team's logged time, and turns q
 
 RTM pays on two separate schedules, and RTMLink tracks them separately:
 
-- **Device-supply codes** are earned over each episode's rolling **30-day window** and are based on **interaction days**: unique calendar dates on which the patient engaged (answered a check-in question or completed an exercise). These claims surface only **after a window closes**, which is why a mid-window episode shows progress but no device-supply claim yet.
+- **Device-supply codes** are earned over each episode's rolling **30-day window** and are based on **interaction days**: unique calendar dates on which the patient engaged (answered a check-in question or completed an exercise). These claims surface only once the window's **full 30 days have run out**, which is why a mid-window episode shows progress but no device-supply claim yet.
 - **Treatment-management codes** are earned over the **calendar month** and are based on **provider minutes** plus at least one **interactive contact**. These are counted **per patient, not per episode**: if a patient has more than one episode in a month, their minutes and contacts are combined and RTMLink creates **one** monthly treatment claim, attached to the most recent episode with activity.
 
 > **Why you sometimes see one claim where you expected two:** a patient with two open episodes gets a single treatment-management claim each month. The episode page's **This Calendar Month** card shows the patient-wide total whenever another episode contributed activity.
+
+### Device-supply claims are always 30 days apart
+
+Medicare allows one device-supply code per patient per 30 days, whichever device code it is, so RTMLink never dates two of them closer together than that for the same patient. Three consequences are worth knowing before you go looking for a missing claim:
+
+- **The claim is dated to the patient's last day of data**, not to the end of the period. If that day would fall within 30 days of their previous device-supply claim, RTMLink moves the date forward to exactly 30 days after it.
+- **A qualifying period can produce no claim at all.** If no day inside the period is 30 days clear of the previous device-supply claim, there is nothing RTMLink can date, so it creates nothing. You can see a closed window with plenty of interaction days and no claim against it, and that is correct rather than a missing claim.
+- **Discharging a patient does not bring the final claim forward.** The period keeps its full 30 days, so the last device-supply claim appears when those 30 days are up, not on the discharge day. Data after the discharge date never counts toward it.
+
+Every device claim's detail page explains its own date; see [Billing claims and suggestions](billing-suggestions.md).
 
 ## The CPT codes
 
 | Code | What it pays for | Requirement |
 | --- | --- | --- |
 | `98975` | Initial setup and patient education | Once per episode. Your clinic chooses how many interaction days to wait before it surfaces (see [Configuring billing rates](configuring-billing-rates.md)). |
-| `98976` | Device supply, respiratory system | 16+ interaction days in a 30-day window |
+| `98976` | Device supply, respiratory system | Manual claims only. RTMLink never generates this one; add it yourself if your clinic bills it. |
 | `98977` | Device supply, musculoskeletal system | 16+ interaction days in a 30-day window |
 | `98985` | Device supply, partial window | 2 to 15 interaction days in a 30-day window |
 | `98979` | Treatment management, first 10 minutes | Calendar month, requires an interactive contact |
