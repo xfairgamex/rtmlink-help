@@ -20,9 +20,11 @@ The **Integrations** page appears in the sidebar only once you have chosen DrChr
 
 Once connected, RTMLink pulls your DrChrono providers, offices, exam rooms, appointment profiles, billing profiles, and patient appointments. Syncing runs automatically every hour, and DrChrono changes also arrive in near real time. The connected card shows counts for each type of record and when the last sync ran.
 
+> **Do not link a billing profile to an appointment profile RTMLink exports to.** RTMLink writes every code, unit, and modifier on a claim itself, so a linked billing profile only adds lines it did not send, which then have to be removed in DrChrono before the claim goes out. See [Exporting claims and sending to DrChrono](../billing/exporting-to-drchrono.md).
+
 ## Sync now
 
-Need the latest immediately? Click **Sync Now** on the connected card. RTMLink confirms the sync is queued and updates the **Sync Status** (Idle, Syncing, or Error) as it runs. If a sync hits a problem, a **Sync Error** message and a **Recent Sync Logs** table explain what happened.
+Need the latest immediately? Click **Sync Now** on the connected card. RTMLink confirms the sync is queued and updates the **Sync Status** (Idle, Syncing, or Error) as it runs. If a sync hits a problem, a red **Sync Error** panel appears on the card, and the failed run shows up in the **Recent Sync Logs** table with a **Failed** badge. Hover, tap, or tab to the red exclamation icon beside that badge to read why that particular run failed.
 
 ## Disconnect
 

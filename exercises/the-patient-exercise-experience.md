@@ -86,6 +86,6 @@ Each day a patient marks at least one exercise complete counts as an RTM interac
 
 - [Understanding the Home Exercise Program](understanding-hep.md)
 - [Assigning exercises to a patient](assigning-hep-to-an-episode.md)
-- [Building an exercise plan](building-an-exercise-plan.md)
+- [Building a patient's exercise program](building-a-patients-program.md)
 - [Tracking exercise adherence](tracking-exercise-adherence.md)
 - [Understanding survey responses](../check-ins/understanding-survey-responses.md)

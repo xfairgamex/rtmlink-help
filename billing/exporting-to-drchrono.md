@@ -25,11 +25,15 @@ If your clinic has an active DrChrono connection and the patient is linked to a 
 2. Review the appointment details: provider, appointment profile, office, exam room, date and time, and the ICD-10 codes (pre-filled from the episode or the patient's past appointments).
 3. The claim's billing line items are listed and locked: all codes on the claim are submitted on one appointment.
 4. The clinical note rides along as the appointment's SOAP Assessment note.
-5. Confirm. RTMLink creates the appointment and shows a link so you can open it in DrChrono.
+5. Confirm. RTMLink creates the appointment and shows a confirmation with **View Appointment** and **View Billing** buttons that open it in DrChrono.
 
 > **Watch for a diagnosis-code warning.** If the pre-filled ICD-10 codes do not match the patient's most recent coded appointment (as of the claim's service date), RTMLink shows a **Check diagnosis codes** notice above the **ICD-10 Codes** field, listing the codes on that newer appointment. It usually means a new course of care began after the patient was enrolled, so the episode's saved codes may be out of date. The notice is a heads-up only and does not block the send: review the codes, correct them if needed, then send.
 
 Each claim maps to **one** DrChrono appointment. If part of a claim was already sent, sending again adds the remaining line items to the same appointment rather than creating a second one.
+
+> **Watch for line items RTMLink did not send.** After the appointment is created, RTMLink reads it back and compares its billing lines against the ones it just sent. If DrChrono put any of its own on the appointment, the confirmation reads **Sent to DrChrono: action needed** and names the extra codes. Remove them in DrChrono before the claim is submitted, because an extra line goes out on the claim: a duplicate `98975` next to the one RTMLink sent, or a `98977` on a `98985` claim. This notice stays on screen until you dismiss it; a clean send reads **Sent to DrChrono** and clears itself. If RTMLink cannot read the appointment back at all, the notice says so and asks you to review the appointment's billing in DrChrono.
+>
+> Extra lines almost always come from a DrChrono **billing profile** attached to the appointment profile you picked. RTMLink writes every code, unit, and modifier on the claim itself, so the fix is to leave that appointment profile's billing profile unlinked in DrChrono. A profile's own codes cannot follow the episode's discipline modifier, its CQ/CO assistant modifier, or its `98981` units, which is why RTMLink no longer sends one.
 
 ## Linking to an existing appointment
 

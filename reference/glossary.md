@@ -30,9 +30,9 @@ The terms you will run into most in RTMLink, in plain language.
 
 **HEP (Home Exercise Program)**: the exercises assigned to a patient, which they mark complete from their portal.
 
-**Exercise plan**: the exercises one patient has on their episode, with their own sets, reps, and schedule. You build and update it in the exercise library.
+**Program (exercise program)**: the exercises one patient has on their episode, with their own sets, reps, and schedule. You build and update it in the exercise library.
 
-**Exercise program**: a named, reusable set of exercises saved to your clinic's library, used as a starting point for patients' plans.
+**HEP template**: a named, reusable set of exercises saved to your clinic's library, used as a starting point for patients' programs. Found on the **HEP Templates** tab of the exercise library.
 
 **Amendment**: a patient's correction to a past check-in; the original is preserved and the amendment is saved alongside it.
 

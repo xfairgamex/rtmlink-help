@@ -18,7 +18,7 @@ On the exercise form's **Media** card:
 
 ### Upload a video
 
-Drag the file onto the **Media** card or click **Browse for a video**. Accepted formats are **MP4, MOV, or WebM**, up to **2 GB**, one video per exercise.
+Drag the file onto the **Media** card or click **Browse for a video**. Accepted formats are **MP4, MOV, M4V, WebM, MKV, AVI, 3GP, WMV, or MPEG**, up to **2 GB**, one video per exercise.
 
 The upload starts right away and shows its progress on the card. The video is named after the exercise, so give the exercise its name first. If an upload fails, click **Try again**.
 

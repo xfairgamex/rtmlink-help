@@ -38,6 +38,7 @@
 * [Understanding surveys](check-ins/understanding-surveys.md)
 * [The Check-Ins queue](check-ins/the-check-ins-queue.md)
 * [Reviewing daily check-ins](check-ins/reviewing-daily-check-ins.md)
+* [Seeing you today, not on RTM](check-ins/seeing-you-today-not-on-rtm.md)
 * [Logging time and contacts during review](check-ins/logging-time-during-review.md)
 * [Daily summary emails and texts](check-ins/daily-summary-notifications.md)
 * [Summary notification settings](check-ins/summary-notification-settings.md)
@@ -51,8 +52,8 @@
 
 * [Understanding the Home Exercise Program](exercises/understanding-hep.md)
 * [The exercise library](exercises/the-exercise-library.md)
-* [Building an exercise plan](exercises/building-an-exercise-plan.md)
-* [Exercise programs](exercises/exercise-programs.md)
+* [Building a patient's exercise program](exercises/building-a-patients-program.md)
+* [HEP templates](exercises/hep-templates.md)
 * [Assigning exercises to a patient](exercises/assigning-hep-to-an-episode.md)
 * [Exercise videos](exercises/exercise-videos.md)
 * [Tracking exercise adherence](exercises/tracking-exercise-adherence.md)
