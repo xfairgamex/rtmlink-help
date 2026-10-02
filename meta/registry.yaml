@@ -71,7 +71,8 @@ articles:
   - path: getting-started/understanding-your-role.md
     section: getting-started
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 9040caa..f2669ce, likely verify). The read-only auditor role is now enforced across the whole clinic panel (app PR #1474, commit 4e3a11d) -- previously nothing stopped an auditor writing. If this article describes the Auditor as read-only / view-only, that is now true in code; confirm the description matches the enforced behavior (write pages, edit/delete actions and the lifecycle/messaging write actions are all closed to auditors) against User::isReadOnly + AuthServiceProvider at origin/main. See reference/role-permissions-matrix (stale) for the full surface list. last_reviewed_commit stays."
     priority: 1
     sources:
       - app/Models/User.php
@@ -131,12 +132,13 @@ articles:
     section: patients
     audience: clinic-staff
     status: stale
-    note: "STALE (scout f3a11de..9040caa). Two changes to the patient list. (1) 'My patients | All patients' tabs (app PR #1289): the list now opens on two counted tabs -- 'My patients' (primary provider = the signed-in user) and 'All patients' -- with the last-chosen tab remembered per user across devices (users.ui_preferences); providers with a caseload default to My patients, everyone else (owners, staff, no-caseload providers) to All patients, and the My-patients empty state points to All patients. The Provider filter now also lists clinic owners (an owner who treats patients could not filter to their own list before), and a chosen filter now sticks for the session. (2) SMS carrier-block hover icon on the phone column (app PRs #1294/#1296): a warning icon appears beside a patient's phone when a carrier-level STOP block is on the number -- see patients/patient-consent-management (stale) for the consequence. Writer: add a Tier-2 description of the tabs + the widened Provider filter; verify labels ('My patients'/'All patients', the tab counts, the My-patients empty-state copy) against ListPatients + PatientResource::table at origin/main. last_reviewed_commit stays. --- STALE (scout 3280d5e..f3a11de, app PR #1203 / commit 6d9c62d, Bundle 178 EMR import foundation). The patient list gained a 'Phone needs review' toggle filter that narrows to imported patients whose EMR phone value was held for review (a new phone_needs_review flag on Patient; the EHR sometimes sends extra text with a phone value, often a caregiver's number, so it is not applied automatically). Deliberately a filter, not an error banner — the hard stop lives at enrollment. Writer: add a Tier-2 line to the list/filters section describing the filter and what the review state means; verify the label 'Phone needs review' against PatientResource::table at origin/main. last_reviewed_commit stays."
+    note: "WRITER (PR #116, merged): documented the 'Phone needs review' filter in the list/filters section (a Tier-2 bullet + a short note on the review state), verified against PatientResource::table (toggle filter labeled 'Phone needs review') and PatientUpsertService::applyPhone; the Bundle 178 phone-needs-review sub-item at the end of this note is DONE. The article is still stale for the newer scout f3a11de..9040caa changes described next. --- STALE (scout f3a11de..9040caa). Two changes to the patient list. (1) 'My patients | All patients' tabs (app PR #1289): the list now opens on two counted tabs -- 'My patients' (primary provider = the signed-in user) and 'All patients' -- with the last-chosen tab remembered per user across devices (users.ui_preferences); providers with a caseload default to My patients, everyone else (owners, staff, no-caseload providers) to All patients, and the My-patients empty state points to All patients. The Provider filter now also lists clinic owners (an owner who treats patients could not filter to their own list before), and a chosen filter now sticks for the session. (2) SMS carrier-block hover icon on the phone column (app PRs #1294/#1296): a warning icon appears beside a patient's phone when a carrier-level STOP block is on the number -- see patients/patient-consent-management (stale) for the consequence. Writer: add a Tier-2 description of the tabs + the widened Provider filter; verify labels ('My patients'/'All patients', the tab counts, the My-patients empty-state copy) against ListPatients + PatientResource::table at origin/main. last_reviewed_commit stays. --- STALE (scout 3280d5e..f3a11de, app PR #1203 / commit 6d9c62d, Bundle 178 EMR import foundation). The patient list gained a 'Phone needs review' toggle filter that narrows to imported patients whose EMR phone value was held for review (a new phone_needs_review flag on Patient; the EHR sometimes sends extra text with a phone value, often a caregiver's number, so it is not applied automatically). Deliberately a filter, not an error banner — the hard stop lives at enrollment. Writer: add a Tier-2 line to the list/filters section describing the filter and what the review state means; verify the label 'Phone needs review' against PatientResource::table at origin/main. last_reviewed_commit stays."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/PatientResource.php
       - app/Filament/Clinic/Resources/PatientResource/Pages/ListPatients.php
       - app/Models/Patient.php
+      - app/Services/Ehr/PatientUpsertService.php
     screenshots: [patient-list]
     last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
 
@@ -1178,7 +1180,8 @@ articles:
   - path: reference/role-permissions-matrix.md
     section: reference
     audience: clinic-staff
-    status: published
+    status: stale
+    note: "STALE (scout 9040caa..f2669ce, likely verify). The read-only auditor role is now actually ENFORCED across the clinic panel (app PR #1474, commit 4e3a11d): before, the auditor was 'read-only everything' by intent but nothing stopped an auditor writing. Now a Gate::before (User::isReadOnly / READ_ONLY_ROLES) denies every write ability to read-only roles -- Patient/Episode create + edit pages, Edit/Delete/bulk-delete actions and relation-manager reordering are closed, and custom write actions require it too (episode pause/resume/discharge/reopen, portal invite, Re-enable SMS, Start Episode, check-in read/unread, mark-read/unread in the inbox and drawer, provider-summary sends, review-summary time logging) -- all hidden for auditors. Writer: if the matrix already states the auditor is read-only everywhere this is verify-only; confirm the auditor row's 'cannot' cells now match enforced behavior against User.php + AuthServiceProvider + the AuditorReadOnlyAccessTest at origin/main. (Also note exercises.* permissions are checked but never seeded, so exercise-library access is role-driven -- app PR #1469, cfb5804.) last_reviewed_commit stays."
     priority: 1
     sources:
       - database/seeders/RolesSeeder.php
