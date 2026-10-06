@@ -200,16 +200,16 @@ articles:
   - path: episodes/understanding-episodes.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout f2669ce..457eff5, app Bundle 154a/154b, PRs around commits 6f03420a/77fe085d/d52209ba). The core episode lifecycle changed. The 'Paused' status is RETIRED: an episode's status badge is now just Active or Inactive (with a plan-of-care popover), and pausing/resuming no longer exists. In its place the clinic now toggles two things on a case independently: check-in Surveys on/off and RTM billing on/off (EpisodeLifecycleService::setSurveysEnabled / setRtmEnrollment). A patient can now hold MULTIPLE concurrent cases, but only ONE may have RTM billing on at a time (CMS 'one case at a time per patient'; Episode::patientHasOtherRtmCase). The clinic now owns the explicit RTM start/end dates that the 30-day periods, setup code and provider time count from. Writer: rewrite the episode-states / paused framing to Active-vs-Inactive + the two on/off switches + concurrent cases; verify against Episode.php + EpisodeLifecycleService + EpisodeWindowService at origin/main. Coordinate with episodes/managing-episode-status (same Bundle). last_reviewed_commit stays."
+    status: review
+    note: "WRITER (Bundle 154a/154b rewrite, verified at app main 457eff5). Retired the four-state (Active/Paused/Discharged/Completed) model and the Pause/Resume framing. Rewrote around: (1) the list badge, which reads Active (status 'active') or Inactive (discharged/completed) with a hover popover showing 'Plan of care: Active|Completed|Discharged' + 'Surveys: On/Off' + 'RTM: Disabled|Active since {date}|Ended {date}' + 'Home program: None|N exercises' (verified against resources/views/filament/tables/columns/episodes/status.blade.php and EpisodeResource status filter options active/completed/discharged). (2) The two independent switches replacing pause: Surveys (toggle label 'Surveys'; off = patient gets only the home exercise program; can only be turned off when the clinic has exercises enabled) and RTM billing (toggle label 'Enroll in RTM' on create / 'Enrolled in RTM' on edit) -- EpisodeResource lines 273/333-337, EpisodeLifecycleService::setSurveysEnabled/setRtmEnrollment. (3) Concurrent cases: a patient may hold multiple open episodes but only ONE may bill RTM at a time; quoted the refusal message verbatim from EpisodeLifecycleService::ONE_RTM_CASE_MESSAGE and verified Episode::patientHasOtherRtmCase. (4) RTM dates owned by the clinic (rtm_enrolled_on start / rtm_ended_on end); 30-day windows now tile from the RTM start date (EpisodeWindowService::resolveAnchorDate), engine counts only inside the interval. Kept the interaction-day definition tight and accurate (survey answer OR exercise complete, several same-day actions = one day, opening without answering doesn't count; BILLABLE_EVENT_TYPES also includes a received message, phrased as 'such as' not an exhaustive list). Added cross-link to billing/understanding-rtm-billing. No screenshots (conceptual overview). No em-dashes. Do not name Filament/Livewire."
     priority: 1
     sources:
       - app/Models/Episode.php
       - app/Models/Window.php
-      - app/Models/EpisodePauseHistory.php
+      - app/Services/EpisodeLifecycleService.php
       - app/Services/EpisodeWindowService.php
     screenshots: []
-    last_reviewed_commit: cf3ec337317d9423269683f76833cd3ea12b3724
+    last_reviewed_commit: 457eff5c7ecbe15baa24f6107c92e3624fdff8b8
 
   - path: episodes/enrolling-a-patient.md
     section: episodes
