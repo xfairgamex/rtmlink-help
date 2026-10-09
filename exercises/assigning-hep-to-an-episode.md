@@ -23,7 +23,7 @@ A patient's exercises live on their **episode**. The [library](the-exercise-libr
 
 Exercises you keep retain their history, and exercises you remove are deactivated rather than deleted. For every detail, see [Changing a patient's current program](building-a-patients-program.md#changing-a-patients-current-program).
 
-> **Active and paused episodes only.** **Manage program** appears only on episodes that are active or paused. A discharged or completed episode's exercises can be viewed and printed, but not changed.
+> **Active episodes only.** **Manage program** appears only on active episodes. A discharged or completed episode's exercises can be viewed and printed, but not changed.
 
 ## Assigning exercises during enrollment
 

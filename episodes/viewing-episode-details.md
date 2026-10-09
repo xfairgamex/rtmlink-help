@@ -17,11 +17,11 @@ You can also reach an episode from the patient's record by choosing **View Episo
 
 ## The page heading
 
-At the top of the page you will see the patient's name, followed by a status badge (**Active**, **Paused**, **Completed**, or **Discharged**) so you can tell at a glance where the episode stands.
+At the top of the page you will see the patient's name, followed by a status badge (**Active**, **Completed**, or **Discharged**) so you can tell at a glance where the episode stands. A small **Surveys off** or **Billing off** note appears next to it when that switch is turned off for the episode.
 
 - Click the copy icon next to the name to copy the patient's full name to your clipboard (handy when you are looking them up in another system or reading it to someone over the phone).
 - Just under the name, a line shows the assigned **Provider**, when the episode started, and the patient's date of birth.
-- The buttons across the top let you act on the episode: start a time tracking timer, message the patient, resume it if it is paused, and edit its details. See [Episode actions](episode-actions.md).
+- The buttons across the top let you act on the episode: start a time tracking timer, message the patient, and edit its details. See [Episode actions](episode-actions.md).
 
 ## The summary rail
 
@@ -50,10 +50,11 @@ Progress toward the treatment-management codes (`98979`, `98980`, and `98981`), 
 ### Episode Details
 
 - **ICD-10 Codes:** diagnosis codes recorded on the episode, if any.
-- **Pause Reason:** shown only while the episode is paused.
 - **Discharge Date:** shown only after the episode is discharged or completed.
 - **Continues From:** shown only when this episode continues an earlier one, with a link back to it.
-- **Assigned Survey**, **Frequency**, **Send Time**, **Communication Methods:** the schedule set at enrollment. See [How often surveys are sent](enrolling-a-patient.md#how-often-surveys-are-sent).
+- **Surveys:** **On**, or **Off (exercises only)** when survey texts are turned off for this episode.
+- **RTM:** **Enrolled since** a date, **Ended** on a date, or **Not enrolled**. See [Stopping surveys or RTM billing temporarily](managing-episode-status.md#stopping-surveys-or-rtm-billing-temporarily).
+- **Assigned Survey**, **Reminders**, **Send Time**, **Communication Methods:** the schedule set at enrollment. See [How often surveys are sent](enrolling-a-patient.md#how-often-surveys-are-sent).
 - **RTM Consent:** a colored badge showing where the patient's RTM program consent stands. It reads **Accepted** (green, noting how consent was obtained, online, verbal, or paper form, along with the witness and date), **Pending patient agreement** (amber, while the patient has not yet agreed online), or **Declined** (red). This badge appears only when consent was captured for the episode; episodes enrolled before your clinic started requiring RTM consent have none. See [Enrolling a patient](enrolling-a-patient.md) for how consent is recorded.
 - **Welcome Message:** a blue badge reading **Scheduled for** with a date and time, shown only while a welcome message set during enrollment has not gone out yet. Once it sends, the badge disappears. Surveys wait for it, so this is the thing to check if a newly enrolled patient has had nothing yet. See [Enrolling a patient](enrolling-a-patient.md).
 - **Survey Link:** the patient's personal survey link. Click the copy icon to copy it (handy for reading the link to a patient over the phone).
@@ -84,7 +85,7 @@ Below the working area, four tabs let you view and manage more episode data:
 - **Billing Claims:** all billing claims generated for this episode. Click any row to open the full claim detail: CPT code, billing period, service date, qualification evidence, clinical note, and workflow history. Users with billing approval access also see two actions in the tab header:
   - **Add Claim:** manually enter a claim for a code the system did not derive automatically. Manual claims are marked Ready to Bill and are never overwritten by automatic regeneration.
   - **Regenerate Claims:** re-evaluate all billing data for this episode. Stale claims (suggested, approved, or rejected) that no longer qualify are removed; new qualifying claims are created. Claims that have been exported, billed, linked to DrChrono, or have a signed clinical note are never affected.
-- **Exercises:** the patient's home exercises. Click **Manage program** to change them (on active and paused episodes). See [Assigning exercises to a patient](../exercises/assigning-hep-to-an-episode.md).
+- **Exercises:** the patient's home exercises. Click **Manage program** to change them (on active episodes). See [Assigning exercises to a patient](../exercises/assigning-hep-to-an-episode.md).
 - **Windows:** the full history of 30-day billing windows. Click any row to see its detail: window number, date range, status, interaction days, minutes reviewed, interactive contacts, and the billable codes that were earned.
 
 > **Note:** The **Billing Claims** tab shows a banner telling you when the current window closes and how device-supply claims surface (`98985` for 2 to 15 interaction days, `98977` for 16 or more). Those claims are generated after the 30-day window closes, so you typically see this tab mid-window with no device-supply claims listed yet.

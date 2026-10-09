@@ -18,7 +18,7 @@ Providers see their own list. A Clinic Owner opening a provider's review page se
 A patient is listed when all of these are true:
 
 - They have a visit on today's schedule.
-- They have no active or paused episode.
+- They have no active episode.
 - There is no reason on file for skipping them (see **Not for RTM** below).
 
 Cancelled, rescheduled, no-show, and self-pay visits are left out. Evaluation visits sort to the top of the list and carry an **Evaluation** badge, because an eval is the natural moment to start monitoring; every other row shows the visit reason instead. The rest sort by appointment time.

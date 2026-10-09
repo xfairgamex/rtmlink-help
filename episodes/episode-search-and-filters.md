@@ -24,7 +24,7 @@ You can type more than one word, for example a first and last name together.
 | Column | What it shows |
 |--------|---------------|
 | **Patient** | The patient's name (click to open the episode). |
-| **Status** | Active, Paused, Completed, or Discharged. |
+| **Status** | **Active** (green) or **Inactive** (gray, for completed or discharged episodes). Hover over the badge for the details: the plan of care's state, **Surveys** (On or Off), **RTM** (Active since a date, Ended, or Disabled), and how many exercises are in the home program. |
 | **Start Date** | When the episode began. |
 | **Unread** | Completed survey responses you haven't read yet. |
 | **Window Start** | The start date of the current 30-day window. |
@@ -41,7 +41,9 @@ Click a column heading to sort by it.
 
 Click **Filter** to narrow the list. The available filters are:
 
-- **Status:** Active (the default), Paused, Completed, or Discharged.
+- **Status:** Active (the default), Completed, or Discharged.
+- **Surveys:** **Surveys on** or **Surveys off**.
+- **RTM billing:** **Billing on** or **Billing off**.
 - **Provider:** show one provider's episodes.
 - **Survey:** show episodes using a particular survey.
 - **Attention:** surface episodes that need a look (see below).
@@ -56,7 +58,7 @@ The **Attention** filter helps you find episodes that may need follow-up:
 
 - **Unread surveys:** has completed responses you haven't read.
 - **Flagged unread responses:** has unread responses that tripped an alert (e.g. a high pain score).
-- **No check-ins (3+ days):** an active or paused episode with no completed response in the last three days.
+- **No check-ins (3+ days):** an active episode with no completed response in the last three days.
 - **High risk:** the episode is marked high risk.
 
 > The same signals power the **Needs Attention** panel on your dashboard, so you can start your day there and drill into the Episodes list for the details. See [Navigating the dashboard](../getting-started/navigating-the-dashboard.md).

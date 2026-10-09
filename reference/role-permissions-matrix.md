@@ -11,7 +11,7 @@ RTMLink has five clinic roles. This table compares what each can do; for a fulle
 | View patients and episodes | Yes | Yes | Yes | Yes | Yes |
 | Add and edit patients | Yes | No | Yes | No | No |
 | Enroll patients | Yes | Yes | Yes | No | No |
-| Pause, resume, discharge episodes | Yes | Yes | No | No | No |
+| Discharge episodes | Yes | Yes | No | No | No |
 | Build and edit surveys | Yes | No | No | No | No |
 | Review responses, mark read | Yes | Yes | No | No | View only |
 | Log provider time | Yes | Yes | Yes | Yes | No |

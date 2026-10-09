@@ -59,7 +59,7 @@ The line under the program name sums it up, for example **4 exercises · ~8 min 
 ## Step 3: Assign it to a patient
 
 1. At the bottom of the panel, click **Assign to patient**.
-2. Under **Patient · episode**, search for the patient and click their episode. Only **active** and **paused** episodes are listed, with your own patients first.
+2. Under **Patient · episode**, search for the patient and click their episode. Only **active** episodes are listed, with your own patients first.
 3. Decide whether to tell the patient (see [Notifying the patient](#notifying-the-patient) below).
 4. Check the **Patient preview** on the right. It shows the exercises the way the patient will see them. If the program includes an exercise that's been deleted from your library, the window lists it as not assigned.
 5. Click **Assign & send** (or **Assign** if you're not sending a message).
