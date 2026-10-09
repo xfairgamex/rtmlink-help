@@ -50,7 +50,7 @@ If you have the Clinic Owner, Staff, or Billing Staff role, you'll see a **What 
 - **Claims to sign:** the number of episodes across the clinic (or the selected provider's patients) with unsigned billing claims. Clicking takes you to the filtered claims list.
 - **Pending check-ins:** unread survey responses awaiting review. Clicking takes you to the pending summaries page.
 - **Revenue opportunities:** patients approaching or at risk of missing billing thresholds, listed with the reason and a quick-action button. Clinic owners and billing staff also see an estimated dollar value for each opportunity.
-- **At risk of dropping off:** patients with no billable activity in the last seven or more days. Each row shows the patient's name, their assigned provider (in the clinic-wide view), and how many days since their last activity. You can act directly from the list: click **Pause** to pause the episode (you'll be prompted to pick a reason) or **Stop** to discharge the patient from RTM.
+- **At risk of dropping off:** patients with no billable activity in the last seven or more days. Each row shows the patient's name, their assigned provider (in the clinic-wide view), and how many days since their last activity. You can act directly from the list: click **Stop** to discharge the patient from RTM (you'll be prompted to pick a reason). To give a patient a break instead, turn off **Surveys** or **Enrolled in RTM** on the episode. See [Stopping surveys or RTM billing temporarily](../episodes/managing-episode-status.md#stopping-surveys-or-rtm-billing-temporarily).
 
 If there's nothing to act on, the panel shows a confirmation that the clinic is on track.
 

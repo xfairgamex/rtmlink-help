@@ -1,45 +1,40 @@
 ---
-description: How to pause, resume, discharge, and reopen an RTM episode in RTMLink, including the available reasons and what each change does to monitoring and billing.
+description: How to stop surveys or RTM billing on an episode, discharge it, and reopen it in RTMLink, including the available reasons and what each change does to monitoring and billing.
 ---
 
 # Managing episode status
 
-An episode moves through a few states over its life: **Active**, **Paused**, **Discharged**, and **Completed**. You change between them with four actions: **Pause**, **Resume**, **Discharge**, and **Reopen**.
+An episode is in one of three states over its life: **Active**, **Discharged**, or **Completed**. You close an episode with **Discharge** and bring a closed one back with **Reopen**.
+
+To stop texts or billing for a while without closing the episode, use the **Surveys** and **Enrolled in RTM** switches on the episode instead. See [Stopping surveys or RTM billing temporarily](#stopping-surveys-or-rtm-billing-temporarily) below.
 
 ## Where to find these actions
 
-Most status changes are on the **Episodes** list. Open the actions menu on the episode's row (the **⋯** button at the end of the row) and choose the action you need. When you have an episode open, you can also resume a paused one with the **Resume Episode** button at the top of the page.
+Status changes are on the **Episodes** list. Open the actions menu on the episode's row (the **⋯** button at the end of the row) and choose the action you need.
 
-The actions you see depend on the episode's current status. For example, **Pause** only appears on active episodes, **Discharge** is available on both active and paused episodes, and **Reopen** only appears on closed ones.
+The actions you see depend on the episode's current status: **Discharge** only appears on active episodes, and **Reopen** only appears on discharged or completed ones.
 
-## Pausing an episode
+## Stopping surveys or RTM billing temporarily
 
-Pause when monitoring needs to stop temporarily. While paused, **no surveys are sent**.
+There is no separate "pause" state. When a patient needs a break (a vacation, a hospital stay, an insurance change), keep the episode **Active** and turn off what should stop:
 
-1. From the episode's actions menu, choose **Pause**.
-2. Select a **Reason**:
-   - Patient requested
-   - Hospitalization
-   - Vacation
-   - Insufficient data
-   - Insurance change
-   - Other
-3. Add **Notes** (required if you chose **Other**).
-4. Confirm.
+1. Open the episode and click **Edit**.
+2. Turn off the switch you need:
+   - **Surveys:** stops survey texts. If your clinic uses home exercises, exercise reminders can keep going so the patient still gets a link to their program. To stop all texts, also set **How often** to **No reminders**.
+   - **Enrolled in RTM:** stops RTM billing. Set the **RTM end date** (it defaults to today). The current 30-day window still closes on schedule and counts only the days recorded up to the end date. No new billing suggestions are created after that, and any you already have are kept.
+3. Save.
 
-## Resuming an episode
+When the patient is ready to continue, edit the episode again and turn the switch back on. For RTM, the **RTM start date** stays the same unless you change it.
 
-When the patient is ready to continue, resume the episode to start surveys again.
+> **Surveys can only be turned off once exercises are enabled for your clinic.** If exercises are off, the **Surveys** switch can't be changed.
 
-- From the actions menu choose **Resume**, or open the episode and click **Resume Episode**.
+You can see which switches are on at a glance: on the **Episodes** list, hover over the **Status** badge to see **Surveys** (On or Off) and **RTM** (Active or Disabled). On the episode's own page, a small **Surveys off** or **Billing off** note appears next to the status.
 
-The episode returns to **Active** and surveys resume on the original schedule.
+> **At the front desk.** Staff using the front desk can change the same switches. Open the patient's **Manage** menu, check or uncheck **Surveys** or **RTM billing** on the **Settings** tab, and click **Save Changes**. See [Enrolling and managing at check-in](../front-desk/enrolling-and-managing-at-check-in.md).
 
 ## Discharging an episode
 
 Discharge when monitoring is finished. This **closes the current billing window** and ends the episode.
-
-> **Discharging a paused episode.** You can discharge an episode that is currently paused without resuming it first. This is useful when a patient will not return to monitoring (for example, after a hospitalization from which they are not continuing RTM).
 
 1. From the actions menu, choose **Discharge**.
 2. Select a **Reason**:
@@ -64,7 +59,7 @@ If an episode was discharged or completed by mistake, or the patient returns to 
 
 The episode returns to **Active** and its most recent billing window is reopened.
 
-> **A patient can have only one open episode.** If the patient already has another episode that is **Active** or **Paused**, RTMLink will not reopen this one. You see the message "Cannot reopen this episode," with the note "This patient already has an active or paused episode. Continue care there, or close it first." Continue care on the episode that is already open, or discharge it first if you genuinely need to reopen this one.
+> **RTM can only be billed on one episode at a time.** A patient can have more than one open episode, but only one of them can be enrolled in RTM. If the episode you are reopening was enrolled in RTM and the patient already has another open episode enrolled in RTM, RTMLink will not reopen it and shows **Cannot reopen this episode**. Turn off **Enrolled in RTM** on the other open episode (or discharge it) first, then reopen this one.
 
 > **Reopen vs. a new episode.** Reopen continues the *same* episode and its existing billing windows. If the patient is starting a genuinely new course of care, enroll them in a fresh episode instead. See [Enrolling a patient](enrolling-a-patient.md).
 

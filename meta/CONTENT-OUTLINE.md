@@ -70,7 +70,7 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 ### 3.1 Understanding Episodes
 - What an episode represents (an RTM engagement period)
-- Episode lifecycle: active, paused, discharged
+- Episode lifecycle: active, discharged, completed (paused retired in app Bundle 154b; use the Surveys / Enrolled in RTM switches)
 - Relationship between patients, episodes, and billing windows
 
 ### 3.2 Creating an Episode (Enrolling a Patient)
@@ -92,8 +92,7 @@ Per-section coverage for the help center, organized by functional area. Each ent
 - Billing status: CPT code eligibility and progress
 
 ### 3.4 Managing Episode Status
-- **Pausing** an episode: selecting a reason (patient requested, hospitalization, vacation, etc.)
-- **Resuming** a paused episode
+- **Stopping surveys or RTM billing temporarily**: the Surveys and Enrolled in RTM switches on Edit (replaced Pause/Resume, app Bundle 154b)
 - **Discharging** an episode: selecting a reason and adding notes
 - **Reopening** a discharged episode
 
@@ -415,9 +414,8 @@ Per-section coverage for the help center, organized by functional area. Each ent
 
 ### 11.4 Managing Episodes at Check-In
 - Viewing active episode settings
-- Pausing an episode (with reason selection)
+- Turning Surveys / RTM billing off and on (front desk Manage > Settings)
 - Discharging an episode (with reason selection)
-- Resuming a paused episode
 
 ---
 
@@ -619,7 +617,7 @@ Per-section coverage for the help center, organized by functional area. Each ent
 - How do I see billing eligibility for a patient?
 - Can a patient have multiple active episodes?
 - How do I re-send a provider summary?
-- What happens when I pause an episode?
+- How do I give a patient a break from surveys or RTM billing?
 - How do I add a new provider to the system?
 - What CPT codes does RTMLink support?
 - How are billing suggestions calculated?

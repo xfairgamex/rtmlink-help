@@ -18,8 +18,7 @@ Each row shows **Date & Time**, **Patient**, **RTM**, **Provider**, **Duration**
 The **RTM** badge tells you where the patient stands on monitoring, so you can spot an unenrolled patient while they are still in the building:
 
 - **Active** (green): the patient has an active episode.
-- **Paused** (amber): their episode is paused.
-- **Not enrolled** (gray): they have no active or paused episode.
+- **Not enrolled** (gray): they have no active episode.
 
 > **RTM** reflects the patient, not the visit. It reads from their current episode, so the same patient shows the same badge on every appointment in the list.
 
@@ -29,7 +28,7 @@ The **RTM** badge tells you where the patient stands on monitoring, so you can s
 
 The **Today** filter is on by default, so the page opens to today's schedule. Turn it off and use **Provider** or the **From** / **Until** date range to look wider.
 
-**RTM episode** narrows the list by monitoring status. It starts at **All patients**; choose **Active or paused episode** to see only patients already on monitoring, or **Not enrolled** to build the day's enrollment list.
+**RTM episode** narrows the list by monitoring status. It starts at **All patients**; choose **Active episode** to see only patients already on monitoring, or **Not enrolled** to build the day's enrollment list.
 
 If the list comes up empty, the page says **No appointments found**. The advice underneath depends on your clinic: a DrChrono clinic is pointed at **Sync from DrChrono**, and everyone else is told to import a CSV file. Either way it also suggests adjusting your date filter.
 
