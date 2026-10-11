@@ -273,14 +273,14 @@ articles:
   - path: episodes/episode-actions.md
     section: episodes
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout f2669ce..457eff5, app Bundle 154a/154b). The row/header action set changed: Pause and Resume actions are retired, replaced by the Surveys-on/off and RTM-on/off switches on the forms; EpisodeResource + its Pages changed heavily in-window. Writer: re-verify which actions still exist (Discharge/Complete, Reopen, Edit) and drop any pause/resume action prose; verify against EpisodeResource at origin/main. Coordinate with episodes/managing-episode-status. last_reviewed_commit stays."
+    status: review
+    note: "WRITER (refreshed for Bundle 154a/154b at main 457eff5). Re-verified the everyday action set in the row actions menu and the open-episode header: Message (gated on messages.send), View, Edit, and Survey Link all still exist; no Pause/Resume prose was present to drop (status actions Discharge/Reopen stay with episodes/managing-episode-status, cross-linked). Fixes made: (1) the open-episode Survey Link now lives in the 'Episode Details' card, not 'Survey Settings' (verified against the infolist sections: Episode Details holds the copyable survey_link entry); (2) rewrote the Edit section against EpisodeResource::form() grouped by its actual sections, with verified labels: 'Assigned Provider'; the new 'Surveys' switch + 'Survey' select (Survey section); 'Send time' + 'How often' (was 'Frequency'); comm checkboxes 'Text message (SMS)' / 'Email' + 'Mobile number'; the new 'Enrolled in RTM' toggle + 'RTM start date' / 'RTM end date'; Clinical Context now includes the new 'Discipline' field alongside Diagnosis Code/Description, ICD-10 Codes, Body Part, Treatment Type, Episode Name; Notes. (3) Added a note that Message appears only for roles with messages.send (owner/provider/staff; not billing_staff/auditor, verified in RolesSeeder). Kept the Patient + Start Date fixed-after-enrollment note (both still disabled on EditEpisode). No screenshots (short reference). No em-dashes."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/EpisodeResource.php
       - app/Filament/Clinic/Resources/EpisodeResource/Pages/**
     screenshots: []
-    last_reviewed_commit: 3d0da0988db6a51d06368409bb2a9489d09e146f
+    last_reviewed_commit: 457eff5c7ecbe15baa24f6107c92e3624fdff8b8
 
   # === 4. Check-Ins (surveys; app sidebar says Check-Ins) ================
   - path: check-ins/understanding-surveys.md
