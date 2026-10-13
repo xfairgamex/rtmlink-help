@@ -71,15 +71,16 @@ articles:
   - path: getting-started/understanding-your-role.md
     section: getting-started
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 9040caa..f2669ce, likely verify). The read-only auditor role is now enforced across the whole clinic panel (app PR #1474, commit 4e3a11d) -- previously nothing stopped an auditor writing. If this article describes the Auditor as read-only / view-only, that is now true in code; confirm the description matches the enforced behavior (write pages, edit/delete actions and the lifecycle/messaging write actions are all closed to auditors) against User::isReadOnly + AuthServiceProvider at origin/main. See reference/role-permissions-matrix (stale) for the full surface list. last_reviewed_commit stays."
+    status: review
+    note: "WRITER (re-verified at app main 14b26c7e): already current, re-stamped -- no prose change. Re-checked the scout staleness trigger (auditor read-only now enforced, app PR #1474) against code: the article already describes the Auditor as 'Read-only across the whole clinic ... can look at everything but change nothing', and that claim is now ENFORCED (User::isReadOnly -> READ_ONLY_ROLES ['auditor']; AuthServiceProvider Gate::before denies every WRITE_ABILITIES ability create/update/delete/deleteAny/forceDelete/restore/replicate/reorder for read-only users), so no wording needed to change. Also re-verified the whole article against production: the five clinic roles (clinic_owner, provider, staff, billing_staff, auditor) and every cell of the 'What each role can do' table match RolesSeeder exactly (owner billing/settings/users/audit Full; provider patients View + episodes enroll/discharge + responses Review + own time; staff patients add/edit + episodes create/enroll + view & log time, no surveys/billing; billing_staff billing Full + patients/episodes View + view & log time; auditor view-only everywhere + activity log, no settings/users). The owner-only team management sentence and the deactivation blockquote ('Your account has been deactivated.', signed out on next page load) re-verified against RolesSeeder (users.* owner-only) and FilamentClinicAuth. --- PRIOR: STALE (scout 9040caa..f2669ce, likely verify). The read-only auditor role is now enforced across the whole clinic panel (app PR #1474, commit 4e3a11d) -- previously nothing stopped an auditor writing."
     priority: 1
     sources:
       - app/Models/User.php
       - database/seeders/RolesSeeder.php
+      - app/Providers/AuthServiceProvider.php
       - app/Policies/**
     screenshots: []
-    last_reviewed_commit: 5b90ad6aed193bd86c67de3bf8cfecc05eb752ff
+    last_reviewed_commit: 14b26c7e65f29aee41fb4f475e03748692453820
 
   - path: getting-started/navigating-the-dashboard.md
     section: getting-started
