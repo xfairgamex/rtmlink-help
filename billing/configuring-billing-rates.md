@@ -31,6 +31,15 @@ The **RTM Billing** section has one more control: **98975 minimum interaction da
 - The default is **2**: the setup claim is suggested once the patient has been active on 2 different days (any answered check-in question, submitted check-in, or completed exercise counts).
 - Set it to **0** to suggest the setup claim immediately on enrollment.
 
+## Assistant modifiers (CQ/CO)
+
+The **RTM Billing** section also has an **Auto-apply CQ/CO assistant modifiers** switch, turned **off** by default. It controls how RTMLink handles a claim where a physical therapist assistant (PTA) or occupational therapy assistant (OTA) independently furnished more than 10% of a billed unit. For Original Medicare, CMS requires the `CQ` (PTA) or `CO` (OTA) modifier on that line, which reduces payment on it to 85%.
+
+- **Off** (the default): RTMLink works out the modifier and shows it as a recommendation on the claim for your team to confirm before the claim goes out.
+- **On**: RTMLink adds the computed modifier to the claim line for you.
+
+> This rule follows Original Medicare fee-for-service. Confirm the payer before relying on it for Medicare Advantage or commercial plans, which set their own rules.
+
 ## Role permissions
 
 Changing rates and the `98975` preference requires the billing settings permission, which only the **Clinic Owner** holds. Billing Staff work the claims list but do not set rates.

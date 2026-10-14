@@ -812,8 +812,8 @@ articles:
   - path: billing/configuring-billing-rates.md
     section: billing
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 3280d5e..f3a11de, app PR #1194 / commit f2f5ef4, Bundle 175). The billing settings section gained an 'Auto-apply CQ/CO assistant modifiers' toggle (default OFF). Helper text: when a PTA/OTA independently furnishes more than 10% of a billed unit, apply the computed CQ/CO modifier to the claim line automatically; off means the modifier appears as a per-claim recommendation the team confirms. Applies to Original Medicare FFS; confirm the payer for Medicare Advantage / commercial. Writer: add a Tier-2 line to the billing-settings walkthrough describing this toggle and its consequence; verify label + helper against ClinicSettings form at origin/main. See billing/understanding-rtm-billing (stale) for the concept. last_reviewed_commit stays."
+    status: review
+    note: "WRITER (reconciled to app main d8dfb32a). Added an 'Assistant modifiers (CQ/CO)' section to cover the new RTM Billing switch the scout flagged. Verified against ClinicSettings form: Toggle label 'Auto-apply CQ/CO assistant modifiers', default OFF; helper text (a PTA or OTA independently furnishing >10% of a billed unit, computed CQ/CO modifier, off = per-claim recommendation the team confirms, Original Medicare FFS only, confirm payer for Medicare Advantage / commercial). Consequence re-verified downstream: off path surfaces the recommendation on the claim (BillingSuggestionsTable assistantModifierState -> '{CQ|CO} recommended' + makeApplyAssistantModifierAction); CQ=PTA / CO=OTA from CredentialType::assistantModifier; 85% reduction wording from the Apply action modalDescription. Lives in the RTM Billing section alongside '98975 minimum interaction days' (label + helper re-verified). Re-verified the rest of the article against main: page is Clinic Settings, owner-only access (ClinicSettings::canAccess -> hasOwnerLevelAccess, clinic_owner among clinic roles); Reimbursement Rates section description + the per-code dollar fields with national-average placeholders (98975/98985/98977/98979/98980/98981). The DrChrono auto-send fields in the same section are DrChrono-gated and stay with billing/exporting-to-drchrono. No new screenshots (a single switch). No em-dashes. --- PRIOR SCOUT: STALE (scout 3280d5e..f3a11de, app PR #1194 / commit f2f5ef4, Bundle 175). See billing/understanding-rtm-billing (stale) for the concept."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/ClinicSettings.php
@@ -821,7 +821,7 @@ articles:
       - app/Models/Tenant.php
     screenshots:
       - reimbursement-rates
-    last_reviewed_commit: eab6ef9a165c2850785afb063d92abb709a59c67
+    last_reviewed_commit: d8dfb32a756207a31980c31c8fb7027e581eb690
 
   # === 9b. Electronic claims / Clearinghouse (NEW — coverage census, scout f2669ce..457eff5) =
   # A large new billing capability (app Bundles CH-00A..CH-27A, ~40 commits) with ZERO
