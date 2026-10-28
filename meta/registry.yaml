@@ -1047,17 +1047,19 @@ articles:
   - path: users/adding-team-members.md
     section: users
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 8de5fb3..3280d5e, app PRs #1144/#1148, commits 9d357dd/8495aa7/c63f804). Two changes to the add-a-team-member surface. (1) New 'Discipline' field on the member form: a select of 'Physical Therapy (PT)' / 'Occupational Therapy (OT)' / 'Speech-Language Pathology (SLP)', placeholder 'Not set', helper 'Fills the {DISCIPLINE} token in clinical notes.' -- its non-obvious consequence is that it feeds the discipline used in clinical notes and the Medicare therapy modifier (GP/GO/GN) on DrChrono claims (see billing/clinical-notes + billing/exporting-to-drchrono), so it earns a Tier-2 line, not just a field mention. (2) The welcome/invite email was rewritten in RTMLink's voice: subject is now 'Your RTMLink account is ready' (was 'Welcome to {clinic}'); the body now reads 'Hi {first name}, your RTMLink account at {clinic} is ready.' (was 'an administrator at {clinic} created an RTMLink account for you'). If the article quotes the old subject/opening, update it. The first-time password page the email links to also changed heading/copy -- tracked in getting-started/logging-in-and-account-setup. Writer: verify the Discipline options/helper against UserResource form and the email subject/body against UserWelcomeMail + user-welcome.blade at origin/main. last_reviewed_commit stays 47f0bdd."
+    status: review
+    note: "WRITER (reconciled to main). Rewrote the add-a-team-member form to match UserResource's User Details section at main: the earlier 'Discipline' field is gone, replaced by a 'Licence level' select (CredentialType::OPTIONS: Physical Therapist (PT) / Physical Therapist Assistant (PTA) / Occupational Therapist (OT) / Occupational Therapy Assistant (OTA / COTA) / Speech-Language Pathologist (SLP) / Speech-Language Pathology Assistant (SLPA) / Non-clinical staff), placeholder 'Not set'. Added the conditional 'Supervising therapist' field (shown + required for assistant licences, matching-discipline therapists only), the 'Employment' select (Employed by the practice / Contractor), the SLPA-cannot-be-Provider rule, and a Tier-2 line that licence level drives assistant billing attribution (CQ/CO) and is separate from the panel role. Kept 'Credentials' as the free-text display field and clarified the two are different. Welcome email verified against UserWelcomeMail (subject 'Your RTMLink account is ready') + user-welcome.blade (one-time link, 48h expiry); resend action is 'Send welcome email' in the Users list. Create-page submit button is 'Create' (HasRedesignedFormActions keeps the default label). The Practitioner identity / Medicare / EMR-mapping sections are edit-only and stay in managing-your-team. Who-can-add verified against RolesSeeder (only clinic_owner holds users.create)."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/UserResource.php
       - app/Filament/Clinic/Resources/UserResource/Pages/CreateUser.php
-      - app/Filament/Clinic/Pages/InitialPasswordSetup.php
+      - app/Support/CredentialType.php
+      - app/Mail/UserWelcomeMail.php
+      - resources/views/emails/user-welcome.blade.php
       - app/Jobs/SendUserWelcomeEmailJob.php
     screenshots:
       - users-list
-    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
+    last_reviewed_commit: 8df4ad929f78c30fb3416e0c0d83ce4ea79d8092
 
   - path: users/managing-your-team.md
     section: users
