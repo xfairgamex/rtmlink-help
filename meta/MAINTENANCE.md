@@ -22,13 +22,15 @@ last-synced.json ──▶ git diff the app since that commit
         └─ a removed feature → archive/delete its article
         │
         ▼
-  open ONE PR (target: dev) ──▶ human review ──▶ merge
+  open (or roll forward) ONE PR (target: main) ──▶ human review ──▶ merge
         │
         ▼
   bump last-synced.json to the reconciled origin/main commit   (only after merge)
 ```
 
-**Golden rule (non-negotiable):** this loop ends at a **PR for human review**. Healthcare content is never auto-published. Never push to `main`/`dev` directly; never self-merge. See `../AGENTS.md`.
+**Golden rule (non-negotiable):** this loop ends at a **PR for human review**. Healthcare content is never auto-published. Never push to `main` directly; never self-merge. See `../AGENTS.md`.
+
+> **Runner note.** In the live pipeline this whole loop — triage *and* writing — is run by the **Maintainer** (`meta/agents/maintainer.md`) as the "monolithic flow": one agent, one **rolling** PR that each run refreshes rather than restacking. The step-by-step below is the manual it follows; where it says "open ONE PR," read it as the Maintainer's single rolling PR (`docs(maintainer): …`, base `main`).
 
 ---
 
@@ -143,11 +145,13 @@ If a stale article turns out to need **no** change (pure internal refactor), sti
 Bundle the whole reconciliation pass into **one** PR so the reviewer sees the app-change → doc-change story together.
 
 ```bash
-git checkout -b docs/sync-$(date +%Y-%m-%d)
+# Fresh pass (no open Maintainer PR). On a roll-forward, instead check out the
+# existing open PR's branch and push to it — never open a second PR.
+git checkout -b claude/maintainer-<short-TARGET>
 git add -A
 git commit   # see body template below
-git push -u origin docs/sync-$(date +%Y-%m-%d)
-gh pr create --base dev --title "Docs sync: reconcile to <short-sha>" --body "..."
+git push -u origin claude/maintainer-<short-TARGET>
+gh pr create --base main --title "docs(maintainer): reconcile <short-SINCE>..<short-TARGET>" --body "..."
 ```
 
 PR body should make review fast — list, per article: **what app change triggered it** (link the PR/commit) and **what you changed in the doc** (or "verified, no change"). Call out any new articles and any removed ones explicitly. Flag anything you were unsure about for the human to decide.
@@ -158,7 +162,7 @@ PR body should make review fast — list, per article: **what app change trigger
 
 ## Step 5 — After merge: advance the anchor
 
-> **In the three-agent pipeline this is the Scout's job, done earlier.** The Scout advances `last-synced.json` to `TARGET` inside its *triage* PR — the `stale`/`todo` flags carry the unwritten work forward (see `meta/agents/scout.md` step 4). The monolithic flow below — advance only after the *reconciliation* merges — applies when a single agent does triage **and** writing in one pass. Either way the anchor only ever moves to a merged `main` commit.
+> **The Maintainer advances `last-synced.json` to `TARGET` inside its one rolling PR** (not after merge) — the `stale`/`todo` flags carry any unwritten work forward, and each per-article `last_reviewed_commit` separately tracks what was actually reconciled (see `meta/agents/maintainer.md`). Because the PR is *rolling* (each run re-diffs from the last **merged** anchor), the anchor value in the open PR is provisional until that PR merges; the window never gets skipped. The pure "advance only after merge" variant below applies to a one-off manual pass. Either way the anchor only ever lands on a merged `main` commit.
 
 Only once the PR is **reviewed and merged** do you move the anchor forward:
 
@@ -179,9 +183,9 @@ Flip the merged articles' `status` to `published`. The next maintenance run now 
 
 Screenshots are **registry-driven** and captured by an automated harness (`php artisan help:screenshots`) from the **demo clinic only** (`demo.rtmlink.com` — never the real Tula clinic, never `.test` in published prose). The full mechanics — the registry schema (`role`/`url`/`wait_for`/`output` plus `selector`/`steps`/`auth`), demo-data seeding, the local-iterate→prod-capture workflow, and embedding — live in **`meta/SCREENSHOTS.md`**.
 
-**In the three-agent pipeline, capture is the Visualizer's job — not the Scout's.** The Scout (this maintenance loop) never logs into prod or shoots images. When an article goes `stale` (Step 2a) and a *pictured* screen actually changed, the Scout just **flags which of its screenshot ids need re-shooting** (and fixes any obviously-drifted `wait_for`/`url`/`selector` it can read from the code). The **Visualizer** (`meta/agents/visualizer.md`) then re-shoots **only those ids** against the demo clinic and embeds them in its own PR.
+**Capture is the Visualizer's job — not the Maintainer's.** The Maintainer (this maintenance loop) never logs into prod or shoots images. When an article goes `stale` (Step 2a) and a *pictured* screen actually changed, the Maintainer just **flags which of its screenshot ids need re-shooting** (and fixes any obviously-drifted `wait_for`/`url`/`selector` it can read from the code). The **Visualizer** (`meta/agents/visualizer.md`) then re-shoots **only those ids** against the demo clinic and embeds them in its own PR.
 
-> **Capture touches production.** Seeding demo data and capturing run against the live demo clinic, so they are deliberate and human-gated — never part of an automated Scout run.
+> **Capture touches production.** Seeding demo data and capturing run against the live demo clinic, so they are deliberate and human-gated — never part of an automated Maintainer run.
 
 ---
 
@@ -207,8 +211,8 @@ When a path matches nothing and isn't obviously user-facing, **default to ignore
 ## Edge cases & gotchas
 
 - **A rename in the app breaks a `sources` glob.** If a PR moves `app/Services/DrChrono/` → `app/Services/Ehr/`, the old glob stops matching future changes. When you update the article, **also fix its `sources[]`** to the new path. Stale globs silently stop flagging — audit globs whenever you touch an article.
-- **`last_reviewed_commit` vs. `last-synced.json`.** Per-article `last_reviewed_commit` = when *that article* was last verified (the **Writer** advances it on reconciliation). Global `last-synced.json` = the floor the whole loop diffs from = *triaged up to here* (the **Scout** advances it in its triage PR). They differ by design — an article can be flagged `stale` (triaged) long before a Writer reviews it. **Advancing `last-synced` after triage does NOT skip work**: the work lives in the `stale`/`todo` flags, not in re-diffing. This is exactly what stops the Scout re-triaging the same window every run.
-- **Big windows (loop hasn't run in a while).** Same procedure; just expect more matches. Triage in priority order; if it's too large for one PR, split by section (e.g. one PR for `episodes/*`, one for `billing/*`) but **don't advance the anchor until the last split PR merges**, or advance it per-merged-PR using that PR's reconciled SHA.
+- **`last_reviewed_commit` vs. `last-synced.json`.** Per-article `last_reviewed_commit` = when *that article* was last verified (the **Maintainer** advances it when it writes/re-verifies that article). Global `last-synced.json` = the floor the whole loop diffs from = *triaged up to here* (the **Maintainer** advances it inside its one rolling PR). They differ by design — an article can be flagged `stale` (triaged) long before it is rewritten, since the in-flight cap defers some writing to a later run. **Advancing `last-synced` after triage does NOT skip work**: the work lives in the `stale`/`todo` flags, not in re-diffing. This is exactly what stops the loop re-triaging the same window every run.
+- **Big windows (loop hasn't run in a while).** Same procedure; just expect more matches. Triage the whole window (triage is cheap), but only write the highest-priority few per the in-flight cap and leave the rest flagged for the next run — don't try to fit a huge window's worth of prose into the one rolling PR. The anchor still advances to `TARGET` in that PR (the flags carry the unwritten work forward); the next run, after merge, writes the next tranche from the new floor.
 - **Outline drift.** If the app grew a feature the `CONTENT-OUTLINE.md` never anticipated, add it to the outline in the same PR so the next author has guidance.
 - **No `gh` / no remote.** The loop still works with pure `git -C .. log` for context; PR creation is the only step that needs the remote.
 
@@ -230,4 +234,4 @@ Hand-check: do the changed paths match the `sources` globs of the articles you'd
 
 ## One-line summary for a scheduled agent
 
-> `git -C .. fetch origin main`; read `meta/last-synced.json`; `git -C .. diff --name-only <commit>..origin/main` (production, never working-tree HEAD); match changed paths against each article's `sources` in `meta/registry.yaml`; set matches `stale`; for each, re-verify against `git show origin/main:<path>`, update prose + re-shoot only its screenshots (demo tenant only), set `review` + `last_reviewed_commit` to `origin/main`'s SHA; consider new/removed features via `SCOPE-AND-TMI.md`; open ONE PR to `dev` for human review; never auto-publish; after merge, advance `last-synced.json` to the reconciled `origin/main` SHA.
+> `git -C .. fetch origin main`; read `meta/last-synced.json` (the last *merged* anchor); `git -C .. diff --name-only <commit>..origin/main` (production, never working-tree HEAD); match changed paths against each article's `sources` in `meta/registry.yaml`; set matches `stale`; run the coverage census for uncovered surfaces; then, in priority order up to the in-flight cap, re-verify against `git show origin/main:<path>`, write/refresh the prose + flag its screenshots for the Visualizer (demo tenant only), set `review` + `last_reviewed_commit` to `origin/main`'s SHA; consider new/removed features via `SCOPE-AND-TMI.md`; advance `last-synced.json` to `origin/main`'s SHA in the same PR; **open — or roll forward — the ONE Maintainer PR** to `main` for human review; never auto-publish, never self-merge, never open a second Maintainer PR.
