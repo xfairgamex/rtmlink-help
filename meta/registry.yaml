@@ -102,16 +102,18 @@ articles:
   - path: getting-started/signing-your-subscription-agreement.md
     section: getting-started
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 8de5fb3..3280d5e, app PR #1147, commit de914b0). The agreements gate loosened while the owner's signature is pending. Before, EnsureAgreementsSigned locked EVERY clinic page behind the waiting screen until the Subscription Agreement & BAA was signed. Now a set of setup surfaces stays open during that window (they configure the clinic's own content and never show patient data): your profile/My Settings, Users, Support, Message Templates, Clinical Note Templates, Surveys, the Exercise library / Programs / Videos, Clinic Settings, and Invoices. Deliberately still locked: the dashboard, every patient/episode record, Check-Ins, Messages, Billing, and Integrations. The waiting-screen copy changed to match ('Patient features open for everyone the moment it's signed.' + a 'Meanwhile, setup pages stay open: your profile, templates, the exercise library, and support...' line), and a slim agreement-pending banner now rides every clinic page during the wait (owners see a sign-now prompt; staff see a waiting note). Writer: update any 'you can't use the app until it's signed' framing to 'patient features are locked, setup pages stay open'; verify the open/locked route list + copy against EnsureAgreementsSigned SETUP_ROUTES, agreement-required.blade, and agreement-pending-banner.blade at origin/main. last_reviewed_commit stays 47f0bdd."
+    status: review
+    note: "Refreshed for the loosened agreements gate (scout 8de5fb3..3280d5e, app PR #1147, commit de914b0). Replaced the old 'gates the whole clinic / staff cannot use the app until it is signed' framing with the accurate behavior: patient features stay locked while setup pages stay open. Verified the open list against EnsureAgreementsSigned::SETUP_ROUTES at the rtmlink checkout (main 8df4ad9) and gave each the real sidebar label: My Settings (Profile), Clinic Settings (ClinicSettings), Users (UserResource), Invoices (BillingSettings nav label 'Invoices'), Message Templates, Clinical Note Templates, Check-In Templates (SurveyResource nav label, NOT 'Surveys'), Exercises, HEP Templates (ExerciseProgramResource), Video Library (ExerciseVideoResource), Support (SupportTicketResource nav label). Deliberately-locked list (dashboard, patient/episode records, Check-Ins, Messages, Billing, Integrations) taken from the SETUP_ROUTES docblock. Added the new agreement-pending banner section with the exact owner vs staff copy ('Patient features unlock once you sign the Subscription Agreement & BAA' + 'Review & sign' button; 'Patient features unlock once your clinic owner signs the RTMLink agreement') from agreement-pending-banner.blade, and the 'Agreement pending' badge. Noted Clinic Settings / Invoices stay owner-only even while open (page-level authorization). Re-verified the signing page labels against SignAgreement.php + sign-agreement.blade: section headings 'Review your agreement' / 'Sign electronically', field labels 'Full legal name (your electronic signature)' and 'Title', button 'Sign agreement', executed-PDF email + anytime download. Waiting screen: page title 'Almost there' (AgreementRequired::$title); its section heading uses an em-dash in-app so I described it in prose rather than quoting it. No screenshots (a legal-signing form is not a high-value, stable screen). No em-dashes; no jargon."
     priority: 1
     sources:
       - app/Filament/Clinic/Pages/SignAgreement.php
       - app/Filament/Clinic/Pages/AgreementRequired.php
       - app/Http/Middleware/EnsureAgreementsSigned.php
       - resources/views/filament/clinic/pages/sign-agreement.blade.php
+      - resources/views/filament/clinic/pages/agreement-required.blade.php
+      - resources/views/filament/components/agreement-pending-banner.blade.php
     screenshots: []
-    last_reviewed_commit: 47f0bdd7b56050e8dad75a655dac86f0a9468b22
+    last_reviewed_commit: 8df4ad929f78c30fb3416e0c0d83ce4ea79d8092
 
   - path: getting-started/quick-search.md
     section: getting-started
