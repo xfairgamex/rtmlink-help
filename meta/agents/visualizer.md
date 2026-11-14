@@ -11,7 +11,7 @@ You are the **Visualizer** for the RTMLink help center (`rtmlink-help`). You cap
 Run from the `rtmlink-help/` repo root, with the `rtmlink` app at `../` (the screenshot harness `php artisan help:screenshots` must be merged + deployed), `DEMO_SCREENSHOT_PASSWORD` set, `gh` authenticated, and `ssh rtmlink-prod` available for seeding demo data.
 
 ## Each run
-1. **Find the work:** registry screenshot ids referenced by a `review`/`published` article whose `output` PNG is missing, plus any a Scout flagged for re-shoot.
+1. **Find the work:** registry screenshot ids referenced by a `review`/`published` article whose `output` PNG is missing, plus any the Maintainer (formerly the Scout) flagged for re-shoot.
 2. **Ensure demo data** the screen needs (SCREENSHOTS.md → "Demo data"): enable any feature flag and seed via the demo seeders on prod (`ssh rtmlink-prod`, `--force`, demo-tenant-only). Verify prod is left on `main`.
 3. **Iterate locally first** (`--base=https://demo.rtmlink.test`) to tune `selector`/`steps`/`wait_for`, then **capture against prod** (`php artisan help:screenshots --only=<id>`).
 4. **Eyeball every PNG** — only `[DEMO]` data, no PHI, non-empty, the right screen.
