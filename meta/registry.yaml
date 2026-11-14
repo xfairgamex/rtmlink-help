@@ -159,8 +159,8 @@ articles:
   - path: patients/editing-patient-information.md
     section: patients
     audience: clinic-staff
-    status: stale
-    note: "STALE (scout 457eff5..14b26c7, app PR #1917, commits b0fd045b/1ee6e28a/c1e21f73). Changing a patient's Primary Provider on the edit form now offers to move their open episodes to that provider. When the selected provider differs from the saved one and the patient has active episodes not already assigned to that provider, a checkbox appears: 'Also move their current episode to {name}' / 'Also move their N current episodes to {name}', with helper text 'Surveys and billing follow the episode's provider, currently {current}.' It is checked by default each time the provider is changed. On save the matching open episodes are reassigned to the new primary provider and a 'Episode(s) moved to {name}' notice shows; the patient's Episodes table refreshes. Hidden consequence worth a Tier-2 line: surveys, unread-survey alerts and billing follow the EPISODE's assigned provider, not the patient's primary provider (the primary provider only seeds it at enrollment), so without the move the old therapist keeps getting the patient's surveys. Writer: verify the checkbox label/helper and the move behavior against PatientResource::openEpisodesToMove / moveOpenEpisodesLabel / moveOpenEpisodesHelp (form checkbox 'move_open_episodes') and EditPatient::beforeSave/afterSave at origin/main; keep patient-editing voice, do not name Livewire/Filament. Sources widened to PatientResource.php (the edit form lives there). last_reviewed_commit stays."
+    status: review
+    note: "Refreshed: added a 'Changing the primary provider' section covering the move-open-episodes checkbox ('Also move their current episode to {name}' / 'Also move their N current episodes to {name}', checked by default on each provider change), the save confirmation, and the Tier-2 why (surveys, unread-survey alerts and billing follow the episode's own provider, not the patient's primary provider, which only seeds the provider at enrollment). Labels verified against PatientResource::moveOpenEpisodesLabel/moveOpenEpisodesHelp (form checkbox 'move_open_episodes') and EditPatient::beforeSave/afterSave at main 07507bc. Also cleaned pre-existing em-dashes across the file (CI)."
     priority: 1
     sources:
       - app/Filament/Clinic/Resources/PatientResource.php
@@ -168,7 +168,7 @@ articles:
       - app/Filament/Clinic/Resources/PatientResource/Pages/ViewPatient.php
       - app/Models/Patient.php
     screenshots: []
-    last_reviewed_commit: b8a760f1b76baaebe50f1b4a28be30260538a12e
+    last_reviewed_commit: 07507bc97da489b1b3ac7369a57404b3d097013f
 
   - path: patients/patient-consent-management.md
     section: patients
