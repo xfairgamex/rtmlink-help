@@ -10,7 +10,7 @@ The dashboard is the first thing you see after signing in. It's your clinic's ho
 
 At the top you'll see your clinic's name in the heading **[Your Clinic]'s RTMLink Dashboard**, with the subheading **Remote Therapeutic Monitoring Overview**. Below that, the page is built from a few sections that update on their own as your team works.
 
-What you see on the dashboard depends on your role. Providers see a personal action feed scoped to their own patients. Clinic owners, staff, and billing staff see a clinic-wide attention panel instead. Everyone sees the key-metric cards and the onboarding checklist (until setup is complete).
+What you see on the dashboard depends on your role. Providers see a personal action feed scoped to their own patients. Clinic owners, staff, and billing staff see a clinic-wide attention panel instead. Clinic owners also get a panel that breaks down RTM enrollment by therapist. Everyone sees the key-metric cards and the onboarding checklist (until setup is complete).
 
 ![The RTMLink dashboard: the onboarding checklist, a row of key metrics, and the Needs Attention list.](../.gitbook/assets/getting-started/dashboard-overview.png)
 
@@ -46,13 +46,30 @@ The **Enroll patient** link appears in the feed if you have permission to create
 
 If you have the Clinic Owner, Staff, or Billing Staff role, you'll see a **What Needs Attention** panel below the metric cards. It covers the whole clinic by default.
 
-- **Provider filter:** a dropdown that lets you drill into a single provider's patients. Available when your clinic has providers with assigned episodes. Set it to **All providers** to return to the clinic-wide view.
+- **Provider:** a dropdown that lets you drill into a single provider's patients. It appears once your clinic has providers with assigned episodes. Set it to **All providers** to return to the clinic-wide view.
 - **Claims to sign:** the number of episodes across the clinic (or the selected provider's patients) with unsigned billing claims. Clicking takes you to the filtered claims list.
 - **Pending check-ins:** unread survey responses awaiting review. Clicking takes you to the pending summaries page.
 - **Revenue opportunities:** patients approaching or at risk of missing billing thresholds, listed with the reason and a quick-action button. Clinic owners and billing staff also see an estimated dollar value for each opportunity.
 - **At risk of dropping off:** patients with no billable activity in the last seven or more days. Each row shows the patient's name, their assigned provider (in the clinic-wide view), and how many days since their last activity. You can act directly from the list: click **Stop** to discharge the patient from RTM (you'll be prompted to pick a reason). To give a patient a break instead, turn off **Surveys** or **Enrolled in RTM** on the episode. See [Stopping surveys or RTM billing temporarily](../episodes/managing-episode-status.md#stopping-surveys-or-rtm-billing-temporarily).
 
 If there's nothing to act on, the panel shows a confirmation that the clinic is on track.
+
+## RTM enrollment by therapist (clinic owners)
+
+If you have the Clinic Owner role, you'll also see an **RTM enrollment by therapist** panel at the bottom of the dashboard. It answers one question at a glance: which therapists are putting their patients on Remote Therapeutic Monitoring, and which aren't, so you don't have to filter the episodes list one provider at a time. You can collapse the panel when you don't need it.
+
+Each therapist gets a row with these figures:
+
+- **Seen in 30 days:** how many patients that therapist has seen in the last 30 days, taken from your appointment schedule. Upcoming visits are not counted. This is the caseload the rate is measured against.
+- **Enrolled in RTM:** how many of those patients have had an RTM episode at any point, including episodes that have since been paused, completed, or discharged.
+- **Active Episode:** how many have an RTM episode running right now. This is always a smaller number than **Enrolled in RTM**; the gap is patients who were enrolled and have since stopped.
+- **Rate:** **Active Episode** divided by **Seen in 30 days**, so you can see the share of the patients a therapist is treating now who are on RTM right now.
+
+A **Total** row at the bottom sums the whole clinic. Rows are sorted by the heaviest caseload first.
+
+> **If your clinic has not connected or imported an appointment schedule,** the panel cannot tell who each therapist is currently seeing, so it leaves out the **Seen in 30 days** and **Rate** columns and shows enrollment counts only. Connect or import your schedule to see the rates.
+
+Patients seen in the last 30 days whose appointment clinician is not linked to an RTMLink user (and who have no RTM episode or assigned provider to place them by) are not counted in any row. When there are any, the panel notes how many just below the table, so the totals still reconcile with your patient list.
 
 ## Getting set up (new clinics)
 
