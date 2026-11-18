@@ -46,8 +46,13 @@ Below them, tabs split the list: **Ready to Bill**, **Billed**, **Rejected**, an
 - **Billing Note** tells you which clock produced the claim: Setup, Device Supply for a numbered window, or Treatment Mgmt for a named month.
 - **Clinical Note** shows the documentation state: **Missing**, **Draft**, or **Signed**. See [Clinical notes and sign-off](clinical-notes.md).
 - **CPT Codes** shows every code on the claim. A month's `98980` and its `98981` add-ons are one claim, submitted together, so they share a row.
+- **Assistant Modifier** flags when a therapy-assistant modifier (`CQ` for a physical therapist assistant, `CO` for an occupational therapy assistant) applies to the claim, or is recommended and waiting for your team to confirm. Most claims show nothing here. See [Configuring billing rates](configuring-billing-rates.md).
 - **Qualifiers** shows the evidence at a glance: interaction-day counts for device-supply claims, or minutes and contacts for treatment claims.
+- **Service Date** is the date the claim is billed under. For a device-supply claim this is the patient's last day of data in the window, moved forward when needed to keep device codes 30 days apart (see above). If the case is on hold, a short note appears beneath the date.
 - **Status** and **Est. Amount** track the claim through your workflow and what it is worth.
+- **Provider** is the episode's assigned provider.
+
+> Use the column controls above the table to show or hide optional columns, such as the full **Clinical Note Text**. If your clinic sends claims electronically, a **Reconciliation** column also appears, tracking each billed claim against the payer's remittance.
 
 ![The Billing page: one row per claim, with the Clinical Note column showing where each claim's note stands.](../.gitbook/assets/billing/billing-claims-list.png)
 
