@@ -96,6 +96,18 @@ Sometimes an exercise should belong to a single patient, for example one holding
 
 To make an editable copy that stays private to the same patient, open its details and click **Duplicate & edit**. Photos and video aren't copied, so add the patient's media to the copy.
 
+### Add a patient-specific exercise to your library
+
+When you click **New Exercise for this Patient**, the **Lock to [patient]** switch at the top of the form is on by default. If you want the new exercise in your library for everyone, turn that switch off before you save. It's still assigned to the patient.
+
+If an exercise is already private and you want everyone to be able to use it, a clinic owner can move it into the library:
+
+1. Open the exercise (from the patient's program, or from **Exercises** with the **Patient-specific** filter in the table view).
+2. Click **Move to library**. In the Library view it's the link next to **Private to** that patient; on the exercise page it's at the top right.
+3. Read the message and click **Move to library**.
+
+The exercise stops being private, joins your library, and stays on the patient's program. Its photos and video go with it, so check they don't show the patient first. This can't be undone. Providers don't see **Move to library**; ask a clinic owner.
+
 ## The table view
 
 For a spreadsheet-style list, click **More**, then **Table view**. It shows each exercise's category, tags, video, source, **Created by**, and default sets and reps, with filters for each. The table view is also where clinic owners:

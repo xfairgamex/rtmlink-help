@@ -57,7 +57,7 @@ If the patient has no exercises yet, the tab reads **No exercises assigned yet**
 
 Across the top of the tab, besides **Manage program**:
 
-- **New Exercise for this Patient:** create a new exercise that's [private to this patient](the-exercise-library.md#patient-specific-exercises) (the lock toggle is on by default) and assign it when you save. Clinic owners and providers only.
+- **New Exercise for this Patient:** create a new exercise that's [private to this patient](the-exercise-library.md#patient-specific-exercises) (the lock toggle is on by default; turn it off to add the exercise to your library instead) and assign it when you save. Clinic owners and providers only.
 - **Assign Exercise:** add one exercise. Pick the **Exercise** (a preview shows its photo, instructions, and defaults), set the prescription (below), then click **Assign**.
 - **Assign HEP template:** add every exercise in a template at once. Pick the **HEP template** and click **Assign template**.
 - **Print Handout:** open the patient's printable exercise sheet in a new tab. It stays available after the episode is discharged, so you can reprint it later.
